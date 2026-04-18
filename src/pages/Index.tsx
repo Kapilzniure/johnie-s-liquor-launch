@@ -432,33 +432,32 @@ const FAQ = () => (
 const QRConnect = () => {
   const linksUrl = "https://johnies-liquor.com";
   const qrSrc = `https://api.qrserver.com/v1/create-qr-code/?size=320x320&bgcolor=18120c&color=e8c870&data=${encodeURIComponent(linksUrl)}`;
+  const channels = [
+    { icon: Star, label: "Google Reviews", sub: "See what locals say", href: REVIEWS_URL, accent: true },
+    { icon: Instagram, label: "Instagram", sub: "@johnies.liquor", href: IG_URL },
+    { icon: Facebook, label: "Facebook", sub: "Updates & events", href: FB_URL },
+  ];
   return (
-    <Section eyebrow="Stay connected" title="Follow us & scan to save">
-      <div className="grid lg:grid-cols-2 gap-8 items-stretch">
-        <div className="p-8 md:p-10 rounded-2xl bg-gradient-card border border-border space-y-5">
-          <h3 className="font-display text-2xl font-bold">Find us online</h3>
-          <p className="text-muted-foreground">Tap any link to follow, review, or message us.</p>
-          <div className="grid sm:grid-cols-3 gap-3">
-            {[
-              { icon: Instagram, label: "Instagram", href: IG_URL },
-              { icon: Facebook, label: "Facebook", href: FB_URL },
-              { icon: Star, label: "Reviews", href: REVIEWS_URL },
-            ].map((s) => (
-              <a key={s.label} href={s.href} target="_blank" rel="noopener" className="flex items-center gap-3 p-4 rounded-xl border border-border hover:border-gold/50 hover:bg-gold/5 transition-smooth">
-                <s.icon className="w-5 h-5 text-gold" /> <span className="font-medium">{s.label}</span>
-              </a>
-            ))}
-          </div>
-        </div>
-        <div className="p-8 md:p-10 rounded-2xl bg-gradient-card border border-gold/30 flex items-center gap-6">
-          <img src={qrSrc} alt="QR code linking to all Johnie's Liquor channels" loading="lazy" width={160} height={160} className="rounded-lg shadow-gold w-32 h-32 md:w-40 md:h-40" />
-          <div>
-            <div className="inline-flex items-center gap-2 mb-2 text-gold text-xs uppercase tracking-widest">
-              <QrCode className="w-3 h-3" /> Scan me
+    <Section eyebrow="Stay in touch" title="Connect with Johnie's Liquor" subtitle="Check reviews, follow updates, and stay connected with your East Austin liquor store.">
+      <div className="grid lg:grid-cols-3 gap-5 mb-6">
+        {channels.map((c) => (
+          <a key={c.label} href={c.href} target="_blank" rel="noopener"
+             className={`group flex items-center gap-4 p-6 rounded-2xl border transition-smooth hover-lift ${c.accent ? "border-gold/40 bg-gradient-card shadow-soft" : "border-border bg-card hover:border-gold/40"}`}>
+            <div className="w-14 h-14 rounded-xl bg-gold/10 flex items-center justify-center shrink-0 group-hover:bg-gold/20 transition-smooth">
+              <c.icon className="w-6 h-6 text-gold" />
             </div>
-            <h3 className="font-display text-2xl font-bold mb-2">All our links, one scan</h3>
-            <p className="text-sm text-muted-foreground">Open the camera, point at the code, save us in your phone.</p>
-          </div>
+            <div className="min-w-0">
+              <div className="font-display font-bold text-lg leading-tight">{c.label}</div>
+              <div className="text-sm text-muted-foreground truncate">{c.sub}</div>
+            </div>
+          </a>
+        ))}
+      </div>
+      <div className="flex flex-col sm:flex-row items-center gap-5 p-6 rounded-2xl border border-dashed border-gold/30 bg-card/40">
+        <img src={qrSrc} alt="QR code linking to all Johnie's Liquor channels" loading="lazy" width={96} height={96} className="rounded-md w-24 h-24 shrink-0" />
+        <div className="text-center sm:text-left flex-1">
+          <p className="text-xs uppercase tracking-widest text-gold mb-1">Scan to explore more</p>
+          <p className="text-foreground/80">Point your camera at the code to save our contact, hours and links.</p>
         </div>
       </div>
     </Section>
