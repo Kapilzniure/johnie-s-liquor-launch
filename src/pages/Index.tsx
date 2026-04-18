@@ -154,7 +154,7 @@ const Hero = () => (
           <Clock className="w-4 h-4 text-gold" /> Open today until 9 PM · Free parking out front
         </p>
     </div>
-    <div className="hidden lg:block absolute right-6 xl:right-20 top-1/2 -translate-y-1/2 z-10 pointer-events-none animate-fade-up">
+    <div className="hidden lg:block absolute right-6 xl:right-20 top-20 xl:top-16 z-10 pointer-events-none animate-fade-up">
       <div className="relative">
         <div className="absolute inset-0 bg-gold/30 blur-3xl rounded-full scale-75" aria-hidden />
         <img
