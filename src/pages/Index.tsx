@@ -37,7 +37,7 @@ const IG_URL = "https://instagram.com";
 const FB_URL = "https://facebook.com";
 
 const Section = ({ id, eyebrow, title, subtitle, children, className = "" }: any) => (
-  <section id={id} className={`py-20 md:py-28 ${className}`}>
+  <section id={id} className={`py-24 md:py-32 ${className}`}>
     <div className="container mx-auto px-5">
       {(eyebrow || title) && (
         <div className="max-w-3xl mb-12 md:mb-16">
