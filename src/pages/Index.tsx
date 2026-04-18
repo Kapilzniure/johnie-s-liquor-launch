@@ -476,13 +476,13 @@ const FinalCTA = () => (
       <h2 className="text-5xl md:text-7xl font-display font-bold leading-[1]">
         Visit <span className="gradient-gold-text italic">Johnie's Liquor</span> today
       </h2>
-      <p className="mt-6 text-lg text-foreground/75">Five minutes from downtown. Free parking. Friendly faces.</p>
+      <p className="mt-6 text-lg text-foreground/75">Five minutes from downtown Austin · Free parking · Friendly faces waiting inside.</p>
       <div className="mt-9 flex flex-col sm:flex-row gap-3 justify-center">
         <Button asChild variant="gold" size="xl">
-          <a href={MAPS_URL} target="_blank" rel="noopener"><Navigation className="w-5 h-5 mr-2" /> Get Directions</a>
+          <a href={MAPS_URL} target="_blank" rel="noopener"><Navigation className="w-5 h-5 mr-2" /> Find us in minutes</a>
         </Button>
         <Button asChild variant="outlineGold" size="xl">
-          <a href={`tel:${PHONE}`}><Phone className="w-5 h-5 mr-2" /> Call {PHONE_DISPLAY}</a>
+          <a href={`tel:${PHONE}`}><Phone className="w-5 h-5 mr-2" /> Call to check availability</a>
         </Button>
       </div>
     </div>
