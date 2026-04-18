@@ -129,11 +129,11 @@ const Hero = () => (
           <span className="text-xs uppercase tracking-[0.2em] text-gold">Open today · Visit us</span>
         </div>
         <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-bold leading-[0.95]">
-          Your <span className="gradient-gold-text italic">neighborhood</span><br />
-          liquor store in Austin
+          Best <span className="gradient-gold-text italic">Liquor Store</span><br />
+          in Austin, Texas
         </h1>
         <p className="mt-6 text-lg md:text-xl text-foreground/80 max-w-xl">
-          Wine, beer & spirits — handpicked on East 6th Street. Visit today for the best selection in town.
+          Best Liquor Store in Austin, Texas — wine, beer & spirits, handpicked on East 6th Street.
         </p>
         <div className="mt-6 flex items-center gap-4">
           <div className="flex items-center gap-1 text-gold">
