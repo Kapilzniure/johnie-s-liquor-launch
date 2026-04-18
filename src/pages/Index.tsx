@@ -344,16 +344,16 @@ const About = () => (
 );
 
 const Experience = () => (
-  <Section eyebrow="Visit the store" title="Step inside Johnie's">
+  <Section eyebrow="Visit the store" title="Step inside Johnie's" subtitle="Visit our store for a great selection — and the warm welcome you'd expect from a neighbor.">
     <div className="grid md:grid-cols-2 gap-6">
-      <figure className="relative overflow-hidden rounded-2xl group">
+      <figure className="relative overflow-hidden rounded-2xl group shadow-deep">
         <img src={storefront} alt="Storefront at night" loading="lazy" className="w-full aspect-[16/10] object-cover group-hover:scale-105 transition-smooth duration-700" />
         <figcaption className="absolute bottom-0 inset-x-0 p-6 bg-gradient-to-t from-background to-transparent">
           <p className="text-gold text-xs uppercase tracking-widest mb-1">Outside</p>
-          <p className="font-display text-xl">Easy to spot on East 6th</p>
+          <p className="font-display text-xl">Easy to spot on East 6th Street</p>
         </figcaption>
       </figure>
-      <figure className="relative overflow-hidden rounded-2xl group">
+      <figure className="relative overflow-hidden rounded-2xl group shadow-deep">
         <img src={storeInside} alt="Aisles inside the store" loading="lazy" className="w-full aspect-[16/10] object-cover group-hover:scale-105 transition-smooth duration-700" />
         <figcaption className="absolute bottom-0 inset-x-0 p-6 bg-gradient-to-t from-background to-transparent">
           <p className="text-gold text-xs uppercase tracking-widest mb-1">Inside</p>
