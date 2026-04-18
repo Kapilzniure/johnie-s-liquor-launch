@@ -530,12 +530,15 @@ const Footer = () => (
 );
 
 const StickyMobileBar = () => (
-  <div className="md:hidden fixed bottom-0 inset-x-0 z-40 bg-background/95 backdrop-blur-xl border-t border-gold/20">
-    <div className="grid grid-cols-2 divide-x divide-border">
-      <a href={`tel:${PHONE}`} className="flex items-center justify-center gap-2 py-4 font-semibold">
-        <Phone className="w-5 h-5 text-gold" /> Call Now
+  <div className="md:hidden fixed bottom-0 inset-x-0 z-40 bg-background/95 backdrop-blur-xl border-t border-gold/30 shadow-deep">
+    <div className="flex items-center justify-center gap-2 py-1.5 text-[11px] uppercase tracking-widest text-gold/90">
+      <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" /> Open now · Until 9 PM
+    </div>
+    <div className="grid grid-cols-2 divide-x divide-border border-t border-border/50">
+      <a href={`tel:${PHONE}`} className="flex items-center justify-center gap-2 py-4 font-semibold text-base active:bg-gold/10">
+        <Phone className="w-5 h-5 text-gold" /> Call Store
       </a>
-      <a href={MAPS_URL} target="_blank" rel="noopener" className="flex items-center justify-center gap-2 py-4 font-semibold bg-gradient-gold text-primary-foreground">
+      <a href={MAPS_URL} target="_blank" rel="noopener" className="flex items-center justify-center gap-2 py-4 font-semibold text-base bg-gradient-gold text-primary-foreground">
         <Navigation className="w-5 h-5" /> Directions
       </a>
     </div>
