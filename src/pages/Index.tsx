@@ -319,12 +319,12 @@ const About = () => (
         <div className="inline-flex items-center gap-2 mb-4 text-xs uppercase tracking-[0.25em] text-gold">
           <span className="h-px w-8 bg-gold" /> Our Story
         </div>
-        <h2 className="text-4xl md:text-5xl font-display font-bold leading-tight">Serving Austin neighbors for over 20 years</h2>
+        <h2 className="text-4xl md:text-5xl font-display font-bold leading-tight">Proudly serving the East Austin community for 20+ years</h2>
         <p className="mt-6 text-lg text-foreground/80 leading-relaxed">
-          Johnie's Liquor started as a small family shop on East 6th Street with a simple idea — give people great drinks at fair prices, and treat them like family.
+          Johnie's Liquor started as a small family shop on East 6th Street with a simple idea — give our neighbors great drinks at fair prices, and treat everyone like family.
         </p>
         <p className="mt-4 text-foreground/70 leading-relaxed">
-          Two decades later, we're still right here. Same friendly faces, bigger selection, and the same promise: you'll always find what you need at Johnie's.
+          Two decades later we're still right here on the same corner. Same friendly faces, a bigger selection, and the same promise: you'll always find what you came for at Johnie's.
         </p>
         <div className="mt-8 grid grid-cols-3 gap-6">
           {[["20+", "Years"], ["1.2k", "Products"], ["4.8★", "Rated"]].map(([n,l]) => (
