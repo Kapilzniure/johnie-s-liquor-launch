@@ -271,8 +271,9 @@ const Deals = () => {
     { title: "Whiskey of the Month", body: "Featured premium bourbon at $10 off retail.", tag: "April" },
   ];
   return (
-    <Section eyebrow="Deals & offers" title="This week's specials" subtitle="Real savings, every week. Limited stock — visit the store before they're gone.">
+    <Section eyebrow="Deals & offers" title="This week's specials" subtitle="Real savings every week — limited stock, so visit today for the best selection.">
       <div className="grid md:grid-cols-3 gap-6">
+        <p className="md:col-span-3 -mt-6 mb-2 text-sm text-gold/90 uppercase tracking-widest">⏳ Available in store only · while supplies last</p>
         {deals.map((d) => (
           <div key={d.title} className="relative p-8 rounded-2xl bg-gradient-card border border-gold/20 hover-lift">
             <div className="absolute top-6 right-6 inline-flex items-center gap-1.5 text-xs uppercase tracking-widest text-gold">
