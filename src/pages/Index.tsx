@@ -18,6 +18,7 @@ import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 import hero from "@/assets/hero-store.jpg";
+import heroBottle from "@/assets/hero-bottle.png";
 import catWine from "@/assets/cat-wine.jpg";
 import catBeer from "@/assets/cat-beer.jpg";
 import catSpirits from "@/assets/cat-spirits.jpg";
@@ -152,7 +153,19 @@ const Hero = () => (
         <p className="mt-5 text-sm text-muted-foreground flex items-center gap-2">
           <Clock className="w-4 h-4 text-gold" /> Open today until 9 PM · Free parking out front
         </p>
+    </div>
+    <div className="hidden lg:block absolute right-6 xl:right-20 top-1/2 -translate-y-1/2 z-10 pointer-events-none animate-fade-up">
+      <div className="relative">
+        <div className="absolute inset-0 bg-gold/30 blur-3xl rounded-full scale-75" aria-hidden />
+        <img
+          src={heroBottle}
+          alt="Premium whiskey bottle from Johnie's Liquor selection"
+          width={768}
+          height={1280}
+          className="relative w-[280px] xl:w-[360px] h-auto drop-shadow-[0_25px_60px_rgba(0,0,0,0.7)] rotate-[6deg]"
+        />
       </div>
+    </div>
     </div>
     <a href="#quick" className="hidden md:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-gold/70 hover:text-gold transition-smooth">
       <span className="text-xs uppercase tracking-[0.3em]">Scroll</span>
