@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
-import {
-  Phone, MapPin, Clock, Star, Instagram, Facebook, Navigation, Menu, X,
-  Wine, Beer, GlassWater, Tag, Shield, Truck, Heart, ChevronDown, QrCode,
-} from "lucide-react";
+import * as Icons from "lucide-react";
+const {
+  Phone, MapPin, Clock, Star, Navigation, Menu, X,
+  Wine, Beer, GlassWater, Tag, Shield, Heart, ChevronDown, QrCode,
+} = Icons;
+const Instagram = (Icons as any).Instagram;
+const Facebook = (Icons as any).Facebook;
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
