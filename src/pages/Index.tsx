@@ -29,15 +29,22 @@ import pWine from "@/assets/p-wine.jpg";
 import pBeer from "@/assets/p-beer.jpg";
 import pTequila from "@/assets/p-tequila.jpg";
 
-const PHONE = "+15125550142";
-const PHONE_DISPLAY = "(512) 555-0142";
-const ADDRESS = "1428 E 6th St, Austin, TX 78702";
-const MAPS_URL = "https://www.google.com/maps/dir/?api=1&destination=1428+E+6th+St+Austin+TX+78702";
-const REVIEWS_URL = "https://www.google.com/maps/place/Austin,+TX";
-const IG_URL = "https://instagram.com";
+const PHONE = "+15123835004";
+const PHONE_DISPLAY = "(512) 383-5004";
+const ADDRESS = "13201 Pond Springs Rd, Suite 203, Austin, TX 78729";
+const MAPS_URL = "https://www.google.com/maps/dir/?api=1&destination=13201+Pond+Springs+Rd+Suite+203+Austin+TX+78729";
+const REVIEWS_URL = "https://www.google.com/maps/place/13201+Pond+Springs+Rd+Suite+203+Austin+TX+78729";
+const IG_URL = "https://www.instagram.com/johnniesliquorstore/";
 const FB_URL = "https://facebook.com";
 
-const Section = ({ id, eyebrow, title, subtitle, children, className = "" }: any) => (
+const Section = ({ id, eyebrow, title, subtitle, children, className = "" }: {
+  id?: string;
+  eyebrow?: string;
+  title?: string;
+  subtitle?: string;
+  children: React.ReactNode;
+  className?: string;
+}) => (
   <section id={id} className={`py-24 md:py-32 ${className}`}>
     <div className="container mx-auto px-5">
       {(eyebrow || title) && (
@@ -80,7 +87,7 @@ const Header = () => {
             <span className="font-display font-bold text-primary-foreground text-lg">J</span>
           </div>
           <div className="leading-tight">
-            <div className="font-display font-bold text-lg tracking-tight">Johnie's</div>
+            <div className="font-display font-bold text-lg tracking-tight">Johnnies</div>
             <div className="text-[10px] uppercase tracking-[0.25em] text-gold -mt-0.5">Liquor · Austin</div>
           </div>
         </a>
@@ -120,7 +127,7 @@ const Header = () => {
 
 const Hero = () => (
   <section id="home" className="relative min-h-[100svh] flex items-center overflow-hidden">
-    <img src={hero} alt="Inside Johnie's Liquor store in Austin, Texas with shelves of whiskey and wine" className="absolute inset-0 w-full h-full object-cover" width={1920} height={1080} />
+    <img src={hero} alt="Inside Johnnies Liquor store in Austin, Texas with shelves of whiskey and wine" className="absolute inset-0 w-full h-full object-cover" width={1920} height={1080} />
     <div className="absolute inset-0 bg-gradient-hero" />
     <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-transparent" />
     <div className="container mx-auto px-5 relative z-10 pt-28 pb-16">
@@ -134,7 +141,7 @@ const Hero = () => (
           in Austin, Texas
         </h1>
         <p className="mt-6 text-lg md:text-xl text-foreground/80 max-w-xl">
-          Best Liquor Store in Austin, Texas — wine, beer & spirits, handpicked on East 6th Street.
+          Wine, Beer & Spirits at Great Prices – Visit Today
         </p>
         <div className="mt-6 flex items-center gap-4">
           <div className="flex items-center gap-1 text-gold">
@@ -151,7 +158,7 @@ const Hero = () => (
           </Button>
         </div>
         <p className="mt-5 text-sm text-muted-foreground flex items-center gap-2">
-          <Clock className="w-4 h-4 text-gold" /> Open today until 9 PM · Free parking out front
+          <Clock className="w-4 h-4 text-gold" /> Open today until 9 PM · Free parking available
         </p>
     </div>
     <div className="hidden lg:block absolute right-6 xl:right-20 top-20 xl:top-16 z-10 pointer-events-none animate-fade-up">
@@ -159,7 +166,7 @@ const Hero = () => (
         <div className="absolute inset-0 bg-gold/30 blur-3xl rounded-full scale-75" aria-hidden />
         <img
           src={heroBottle}
-          alt="Premium whiskey bottle from Johnie's Liquor selection"
+          alt="Premium whiskey bottle from Johnnies Liquor selection"
           width={768}
           height={1280}
           className="relative w-[280px] xl:w-[360px] h-auto drop-shadow-[0_25px_60px_rgba(0,0,0,0.7)] rotate-[6deg]"
@@ -233,7 +240,7 @@ const Categories = () => {
         {cats.map((c) => (
           <article key={c.title} className="group relative overflow-hidden rounded-2xl bg-gradient-card border border-border hover-lift">
             <div className="aspect-[4/5] overflow-hidden">
-              <img src={c.img} alt={`${c.title} selection at Johnie's Liquor`} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-smooth duration-700" />
+              <img src={c.img} alt={`${c.title} selection at Johnnies Liquor`} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-smooth duration-700" />
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
             </div>
             <div className="absolute inset-x-0 bottom-0 p-7">
@@ -306,7 +313,7 @@ const WhyUs = () => {
     { icon: GlassWater, t: "Wide Selection", d: "Hundreds of wines, beers and spirits — local and international." },
     { icon: Tag, t: "Best Prices", d: "Fair, honest pricing with weekly deals you'll actually use." },
     { icon: Heart, t: "Friendly Service", d: "Family-owned. Real recommendations from people who care." },
-    { icon: MapPin, t: "Easy to Find", d: "Right on East 6th — free parking and 5 minutes from downtown." },
+    { icon: MapPin, t: "Convenient Location", d: "Located at 13201 Pond Springs Rd with easy access and plenty of parking." },
   ];
   return (
     <Section eyebrow="Why locals choose us" title="A neighborhood store, done right">
@@ -332,12 +339,12 @@ const About = () => (
         <div className="inline-flex items-center gap-2 mb-4 text-xs uppercase tracking-[0.25em] text-gold">
           <span className="h-px w-8 bg-gold" /> Our Story
         </div>
-        <h2 className="text-4xl md:text-5xl font-display font-bold leading-tight">Proudly serving the East Austin community for 20+ years</h2>
+        <h2 className="text-4xl md:text-5xl font-display font-bold leading-tight">Proudly serving the Austin community for 20+ years</h2>
         <p className="mt-6 text-lg text-foreground/80 leading-relaxed">
-          Johnie's Liquor started as a small family shop on East 6th Street with a simple idea — give our neighbors great drinks at fair prices, and treat everyone like family.
+          Johnnies Liquor started as a family-owned shop with a simple idea — give our neighbors great drinks at fair prices, and treat everyone like family.
         </p>
         <p className="mt-4 text-foreground/70 leading-relaxed">
-          Two decades later we're still right here on the same corner. Same friendly faces, a bigger selection, and the same promise: you'll always find what you came for at Johnie's.
+          Two decades later we're still right here. Same friendly faces, a bigger selection, and the same promise: you'll always find what you came for at Johnnies Liquor.
         </p>
         <div className="mt-8 grid grid-cols-3 gap-6">
           {[["20+", "Years"], ["1.2k", "Products"], ["4.8★", "Rated"]].map(([n,l]) => (
@@ -349,8 +356,8 @@ const About = () => (
         </div>
       </div>
       <div className="grid grid-cols-2 gap-4">
-        <img src={storefront} alt="Johnie's Liquor storefront on E 6th St Austin" loading="lazy" className="rounded-xl aspect-[4/5] object-cover shadow-deep" />
-        <img src={storeInside} alt="Inside Johnie's Liquor — wine and spirits aisles" loading="lazy" className="rounded-xl aspect-[4/5] object-cover shadow-deep mt-10" />
+        <img src={storefront} alt="Johnnies Liquor storefront" loading="lazy" className="rounded-xl aspect-[4/5] object-cover shadow-deep" />
+        <img src={storeInside} alt="Inside Johnnies Liquor — wine and spirits aisles" loading="lazy" className="rounded-xl aspect-[4/5] object-cover shadow-deep mt-10" />
       </div>
     </div>
   </Section>
@@ -360,14 +367,14 @@ const Experience = () => (
   <Section eyebrow="Visit the store" title="Step inside Johnie's" subtitle="Visit our store for a great selection — and the warm welcome you'd expect from a neighbor.">
     <div className="grid md:grid-cols-2 gap-6">
       <figure className="relative overflow-hidden rounded-2xl group shadow-deep">
-        <img src={storefront} alt="Storefront at night" loading="lazy" className="w-full aspect-[16/10] object-cover group-hover:scale-105 transition-smooth duration-700" />
+        <img src={storefront} alt="Storefront at Johnnies Liquor" loading="lazy" className="w-full aspect-[16/10] object-cover group-hover:scale-105 transition-smooth duration-700" />
         <figcaption className="absolute bottom-0 inset-x-0 p-6 bg-gradient-to-t from-background to-transparent">
           <p className="text-gold text-xs uppercase tracking-widest mb-1">Outside</p>
           <p className="font-display text-xl">Easy to spot on East 6th Street</p>
         </figcaption>
       </figure>
       <figure className="relative overflow-hidden rounded-2xl group shadow-deep">
-        <img src={storeInside} alt="Aisles inside the store" loading="lazy" className="w-full aspect-[16/10] object-cover group-hover:scale-105 transition-smooth duration-700" />
+        <img src={storeInside} alt="Aisles inside Johnnies Liquor" loading="lazy" className="w-full aspect-[16/10] object-cover group-hover:scale-105 transition-smooth duration-700" />
         <figcaption className="absolute bottom-0 inset-x-0 p-6 bg-gradient-to-t from-background to-transparent">
           <p className="text-gold text-xs uppercase tracking-widest mb-1">Inside</p>
           <p className="font-display text-xl">Organized aisles, real selection</p>
@@ -401,7 +408,7 @@ const Location = () => (
           <Clock className="w-6 h-6 text-gold mb-3" />
           <h3 className="font-display text-2xl font-bold mb-3">Opening Hours</h3>
           <ul className="space-y-1.5 text-sm">
-            {[["Mon – Thu", "10:00 AM – 9:00 PM"], ["Fri – Sat", "10:00 AM – 11:00 PM"], ["Sunday", "12:00 PM – 8:00 PM"]].map(([d,h]) => (
+            {[["Mon – Sat", "10:00 AM – 9:00 PM"], ["Sunday", "Closed"]].map(([d,h]) => (
               <li key={d} className="flex justify-between gap-4 py-1.5 border-b border-border/60 last:border-0">
                 <span className="text-muted-foreground">{d}</span><span className="font-medium">{h}</span>
               </li>
@@ -411,8 +418,8 @@ const Location = () => (
       </div>
       <div className="lg:col-span-3 rounded-2xl overflow-hidden border border-border min-h-[400px] shadow-deep">
         <iframe
-          title="Johnie's Liquor location"
-          src="https://www.google.com/maps?q=1428+E+6th+St+Austin+TX+78702&output=embed"
+          title="Johnnies Liquor location"
+          src="https://www.google.com/maps?q=13201+Pond+Springs+Rd+Suite+203+Austin+TX+78729&output=embed"
           className="w-full h-full min-h-[500px] grayscale-[0.3] contrast-110"
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
@@ -427,9 +434,9 @@ const FAQ = () => (
     <div className="max-w-3xl">
       <Accordion type="single" collapsible className="space-y-3">
         {[
-          { q: "What are your hours?", a: "Mon–Thu 10am–9pm, Fri–Sat 10am–11pm, Sun 12pm–8pm. We're open today!" },
+          { q: "What are your hours?", a: "Mon–Sat 10am–9pm. We're closed on Sundays." },
           { q: "What products do you sell?", a: "Wine (red, white, rosé, sparkling), beer (local Texas craft, imports, domestic), and spirits including whiskey, bourbon, tequila, vodka, gin, rum and liqueurs." },
-          { q: "Where are you located?", a: "1428 E 6th St, Austin, TX 78702. About 5 minutes from downtown Austin with free parking out front." },
+          { q: "Where are you located?", a: "13201 Pond Springs Rd, Suite 203, Austin, TX 78729. Conveniently located with plenty of parking." },
           { q: "Do you have a loyalty program?", a: "Yes — ask the staff in store about our regulars program. You'll get exclusive deals on your favorites." },
           { q: "Do you carry rare or limited bottles?", a: "We get regular allocations of limited whiskey, tequila and wine. Call ahead to check stock or ask for a special order." },
         ].map((f, i) => (
@@ -444,11 +451,11 @@ const FAQ = () => (
 );
 
 const QRConnect = () => {
-  const linksUrl = "https://johnies-liquor.com";
+  const linksUrl = "https://johnniesliquor.com";
   const qrSrc = `https://api.qrserver.com/v1/create-qr-code/?size=320x320&bgcolor=18120c&color=e8c870&data=${encodeURIComponent(linksUrl)}`;
   const channels = [
     { icon: Star, label: "Google Reviews", sub: "See what locals say", href: REVIEWS_URL, accent: true },
-    { icon: Instagram, label: "Instagram", sub: "@johnies.liquor", href: IG_URL },
+    { icon: Instagram, label: "Instagram", sub: "@johnniesliquorstore", href: IG_URL },
     { icon: Facebook, label: "Facebook", sub: "Updates & events", href: FB_URL },
   ];
   return (
@@ -489,7 +496,7 @@ const FinalCTA = () => (
       <h2 className="text-5xl md:text-7xl font-display font-bold leading-[1]">
         Visit <span className="gradient-gold-text italic">Johnie's Liquor</span> today
       </h2>
-      <p className="mt-6 text-lg text-foreground/75">Five minutes from downtown Austin · Free parking · Friendly faces waiting inside.</p>
+      <p className="mt-6 text-lg text-foreground/75">Conveniently located with plenty of parking · Friendly faces waiting inside.</p>
       <div className="mt-9 flex flex-col sm:flex-row gap-3 justify-center">
         <Button asChild variant="gold" size="xl">
           <a href={MAPS_URL} target="_blank" rel="noopener"><Navigation className="w-5 h-5 mr-2" /> Find us in minutes</a>
@@ -511,9 +518,9 @@ const Footer = () => (
             <div className="w-9 h-9 rounded-md bg-gradient-gold flex items-center justify-center">
               <span className="font-display font-bold text-primary-foreground text-lg">J</span>
             </div>
-            <span className="font-display font-bold text-xl">Johnie's Liquor</span>
+            <span className="font-display font-bold text-xl">Johnnies Liquor</span>
           </div>
-          <p className="text-muted-foreground max-w-md">Austin's trusted neighborhood liquor store. Wine, beer & spirits — serving East 6th for over 20 years.</p>
+          <p className="text-muted-foreground max-w-md">Austin's trusted neighborhood liquor store. Wine, beer & spirits — serving the community for over 20 years.</p>
           <div className="flex gap-3 mt-5">
             <a href={IG_URL} aria-label="Instagram" className="w-10 h-10 rounded-lg border border-border flex items-center justify-center hover:border-gold hover:text-gold transition-smooth"><Instagram className="w-4 h-4"/></a>
             <a href={FB_URL} aria-label="Facebook" className="w-10 h-10 rounded-lg border border-border flex items-center justify-center hover:border-gold hover:text-gold transition-smooth"><Facebook className="w-4 h-4"/></a>
@@ -530,7 +537,7 @@ const Footer = () => (
         <div>
           <h4 className="font-display font-bold mb-3 text-gold">Find us</h4>
           <a href={MAPS_URL} target="_blank" rel="noopener" className="block rounded-lg overflow-hidden border border-border hover:border-gold/50 transition-smooth">
-            <iframe title="Mini map" src="https://www.google.com/maps?q=1428+E+6th+St+Austin+TX+78702&output=embed" className="w-full h-32 pointer-events-none" loading="lazy" />
+            <iframe title="Mini map" src="https://www.google.com/maps?q=13201+Pond+Springs+Rd+Suite+203+Austin+TX+78729&output=embed" className="w-full h-32 pointer-events-none" loading="lazy" />
           </a>
         </div>
       </div>
