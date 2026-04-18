@@ -37,7 +37,7 @@ const IG_URL = "https://instagram.com";
 const FB_URL = "https://facebook.com";
 
 const Section = ({ id, eyebrow, title, subtitle, children, className = "" }: any) => (
-  <section id={id} className={`py-20 md:py-28 ${className}`}>
+  <section id={id} className={`py-24 md:py-32 ${className}`}>
     <div className="container mx-auto px-5">
       {(eyebrow || title) && (
         <div className="max-w-3xl mb-12 md:mb-16">
@@ -129,26 +129,29 @@ const Hero = () => (
           <span className="text-xs uppercase tracking-[0.2em] text-gold">Open today · Visit us</span>
         </div>
         <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-bold leading-[0.95]">
-          Best <span className="gradient-gold-text italic">Liquor Store</span><br />
-          in Austin, Texas
+          Your <span className="gradient-gold-text italic">neighborhood</span><br />
+          liquor store in Austin
         </h1>
         <p className="mt-6 text-lg md:text-xl text-foreground/80 max-w-xl">
-          Wine, Beer, Spirits & much more — handpicked by your neighbors on East 6th. Stop by today.
+          Wine, beer & spirits — handpicked on East 6th Street. Visit today for the best selection in town.
         </p>
         <div className="mt-6 flex items-center gap-4">
           <div className="flex items-center gap-1 text-gold">
             {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
           </div>
-          <span className="text-sm text-muted-foreground">Trusted by 300+ local customers</span>
+          <span className="text-sm text-muted-foreground">4.8 ★ from 327+ Austin neighbors</span>
         </div>
         <div className="mt-9 flex flex-col sm:flex-row gap-3">
           <Button asChild variant="gold" size="xl">
-            <a href={MAPS_URL} target="_blank" rel="noopener"><Navigation className="w-5 h-5 mr-2" /> Get Directions</a>
+            <a href={MAPS_URL} target="_blank" rel="noopener"><Navigation className="w-5 h-5 mr-2" /> Find us in minutes</a>
           </Button>
           <Button asChild variant="outlineGold" size="xl">
-            <a href={`tel:${PHONE}`}><Phone className="w-5 h-5 mr-2" /> Call {PHONE_DISPLAY}</a>
+            <a href={`tel:${PHONE}`}><Phone className="w-5 h-5 mr-2" /> Call to check availability</a>
           </Button>
         </div>
+        <p className="mt-5 text-sm text-muted-foreground flex items-center gap-2">
+          <Clock className="w-4 h-4 text-gold" /> Open today until 9 PM · Free parking out front
+        </p>
       </div>
     </div>
     <a href="#quick" className="hidden md:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-gold/70 hover:text-gold transition-smooth">
@@ -268,8 +271,9 @@ const Deals = () => {
     { title: "Whiskey of the Month", body: "Featured premium bourbon at $10 off retail.", tag: "April" },
   ];
   return (
-    <Section eyebrow="Deals & offers" title="This week's specials" subtitle="Real savings, every week. Limited stock — visit the store before they're gone.">
+    <Section eyebrow="Deals & offers" title="This week's specials" subtitle="Real savings every week — limited stock, so visit today for the best selection.">
       <div className="grid md:grid-cols-3 gap-6">
+        <p className="md:col-span-3 -mt-6 mb-2 text-sm text-gold/90 uppercase tracking-widest">⏳ Available in store only · while supplies last</p>
         {deals.map((d) => (
           <div key={d.title} className="relative p-8 rounded-2xl bg-gradient-card border border-gold/20 hover-lift">
             <div className="absolute top-6 right-6 inline-flex items-center gap-1.5 text-xs uppercase tracking-widest text-gold">
@@ -315,12 +319,12 @@ const About = () => (
         <div className="inline-flex items-center gap-2 mb-4 text-xs uppercase tracking-[0.25em] text-gold">
           <span className="h-px w-8 bg-gold" /> Our Story
         </div>
-        <h2 className="text-4xl md:text-5xl font-display font-bold leading-tight">Serving Austin neighbors for over 20 years</h2>
+        <h2 className="text-4xl md:text-5xl font-display font-bold leading-tight">Proudly serving the East Austin community for 20+ years</h2>
         <p className="mt-6 text-lg text-foreground/80 leading-relaxed">
-          Johnie's Liquor started as a small family shop on East 6th Street with a simple idea — give people great drinks at fair prices, and treat them like family.
+          Johnie's Liquor started as a small family shop on East 6th Street with a simple idea — give our neighbors great drinks at fair prices, and treat everyone like family.
         </p>
         <p className="mt-4 text-foreground/70 leading-relaxed">
-          Two decades later, we're still right here. Same friendly faces, bigger selection, and the same promise: you'll always find what you need at Johnie's.
+          Two decades later we're still right here on the same corner. Same friendly faces, a bigger selection, and the same promise: you'll always find what you came for at Johnie's.
         </p>
         <div className="mt-8 grid grid-cols-3 gap-6">
           {[["20+", "Years"], ["1.2k", "Products"], ["4.8★", "Rated"]].map(([n,l]) => (
@@ -340,16 +344,16 @@ const About = () => (
 );
 
 const Experience = () => (
-  <Section eyebrow="Visit the store" title="Step inside Johnie's">
+  <Section eyebrow="Visit the store" title="Step inside Johnie's" subtitle="Visit our store for a great selection — and the warm welcome you'd expect from a neighbor.">
     <div className="grid md:grid-cols-2 gap-6">
-      <figure className="relative overflow-hidden rounded-2xl group">
+      <figure className="relative overflow-hidden rounded-2xl group shadow-deep">
         <img src={storefront} alt="Storefront at night" loading="lazy" className="w-full aspect-[16/10] object-cover group-hover:scale-105 transition-smooth duration-700" />
         <figcaption className="absolute bottom-0 inset-x-0 p-6 bg-gradient-to-t from-background to-transparent">
           <p className="text-gold text-xs uppercase tracking-widest mb-1">Outside</p>
-          <p className="font-display text-xl">Easy to spot on East 6th</p>
+          <p className="font-display text-xl">Easy to spot on East 6th Street</p>
         </figcaption>
       </figure>
-      <figure className="relative overflow-hidden rounded-2xl group">
+      <figure className="relative overflow-hidden rounded-2xl group shadow-deep">
         <img src={storeInside} alt="Aisles inside the store" loading="lazy" className="w-full aspect-[16/10] object-cover group-hover:scale-105 transition-smooth duration-700" />
         <figcaption className="absolute bottom-0 inset-x-0 p-6 bg-gradient-to-t from-background to-transparent">
           <p className="text-gold text-xs uppercase tracking-widest mb-1">Inside</p>
@@ -429,33 +433,32 @@ const FAQ = () => (
 const QRConnect = () => {
   const linksUrl = "https://johnies-liquor.com";
   const qrSrc = `https://api.qrserver.com/v1/create-qr-code/?size=320x320&bgcolor=18120c&color=e8c870&data=${encodeURIComponent(linksUrl)}`;
+  const channels = [
+    { icon: Star, label: "Google Reviews", sub: "See what locals say", href: REVIEWS_URL, accent: true },
+    { icon: Instagram, label: "Instagram", sub: "@johnies.liquor", href: IG_URL },
+    { icon: Facebook, label: "Facebook", sub: "Updates & events", href: FB_URL },
+  ];
   return (
-    <Section eyebrow="Stay connected" title="Follow us & scan to save">
-      <div className="grid lg:grid-cols-2 gap-8 items-stretch">
-        <div className="p-8 md:p-10 rounded-2xl bg-gradient-card border border-border space-y-5">
-          <h3 className="font-display text-2xl font-bold">Find us online</h3>
-          <p className="text-muted-foreground">Tap any link to follow, review, or message us.</p>
-          <div className="grid sm:grid-cols-3 gap-3">
-            {[
-              { icon: Instagram, label: "Instagram", href: IG_URL },
-              { icon: Facebook, label: "Facebook", href: FB_URL },
-              { icon: Star, label: "Reviews", href: REVIEWS_URL },
-            ].map((s) => (
-              <a key={s.label} href={s.href} target="_blank" rel="noopener" className="flex items-center gap-3 p-4 rounded-xl border border-border hover:border-gold/50 hover:bg-gold/5 transition-smooth">
-                <s.icon className="w-5 h-5 text-gold" /> <span className="font-medium">{s.label}</span>
-              </a>
-            ))}
-          </div>
-        </div>
-        <div className="p-8 md:p-10 rounded-2xl bg-gradient-card border border-gold/30 flex items-center gap-6">
-          <img src={qrSrc} alt="QR code linking to all Johnie's Liquor channels" loading="lazy" width={160} height={160} className="rounded-lg shadow-gold w-32 h-32 md:w-40 md:h-40" />
-          <div>
-            <div className="inline-flex items-center gap-2 mb-2 text-gold text-xs uppercase tracking-widest">
-              <QrCode className="w-3 h-3" /> Scan me
+    <Section eyebrow="Stay in touch" title="Connect with Johnie's Liquor" subtitle="Check reviews, follow updates, and stay connected with your East Austin liquor store.">
+      <div className="grid lg:grid-cols-3 gap-5 mb-6">
+        {channels.map((c) => (
+          <a key={c.label} href={c.href} target="_blank" rel="noopener"
+             className={`group flex items-center gap-4 p-6 rounded-2xl border transition-smooth hover-lift ${c.accent ? "border-gold/40 bg-gradient-card shadow-soft" : "border-border bg-card hover:border-gold/40"}`}>
+            <div className="w-14 h-14 rounded-xl bg-gold/10 flex items-center justify-center shrink-0 group-hover:bg-gold/20 transition-smooth">
+              <c.icon className="w-6 h-6 text-gold" />
             </div>
-            <h3 className="font-display text-2xl font-bold mb-2">All our links, one scan</h3>
-            <p className="text-sm text-muted-foreground">Open the camera, point at the code, save us in your phone.</p>
-          </div>
+            <div className="min-w-0">
+              <div className="font-display font-bold text-lg leading-tight">{c.label}</div>
+              <div className="text-sm text-muted-foreground truncate">{c.sub}</div>
+            </div>
+          </a>
+        ))}
+      </div>
+      <div className="flex flex-col sm:flex-row items-center gap-5 p-6 rounded-2xl border border-dashed border-gold/30 bg-card/40">
+        <img src={qrSrc} alt="QR code linking to all Johnie's Liquor channels" loading="lazy" width={96} height={96} className="rounded-md w-24 h-24 shrink-0" />
+        <div className="text-center sm:text-left flex-1">
+          <p className="text-xs uppercase tracking-widest text-gold mb-1">Scan to explore more</p>
+          <p className="text-foreground/80">Point your camera at the code to save our contact, hours and links.</p>
         </div>
       </div>
     </Section>
@@ -473,13 +476,13 @@ const FinalCTA = () => (
       <h2 className="text-5xl md:text-7xl font-display font-bold leading-[1]">
         Visit <span className="gradient-gold-text italic">Johnie's Liquor</span> today
       </h2>
-      <p className="mt-6 text-lg text-foreground/75">Five minutes from downtown. Free parking. Friendly faces.</p>
+      <p className="mt-6 text-lg text-foreground/75">Five minutes from downtown Austin · Free parking · Friendly faces waiting inside.</p>
       <div className="mt-9 flex flex-col sm:flex-row gap-3 justify-center">
         <Button asChild variant="gold" size="xl">
-          <a href={MAPS_URL} target="_blank" rel="noopener"><Navigation className="w-5 h-5 mr-2" /> Get Directions</a>
+          <a href={MAPS_URL} target="_blank" rel="noopener"><Navigation className="w-5 h-5 mr-2" /> Find us in minutes</a>
         </Button>
         <Button asChild variant="outlineGold" size="xl">
-          <a href={`tel:${PHONE}`}><Phone className="w-5 h-5 mr-2" /> Call {PHONE_DISPLAY}</a>
+          <a href={`tel:${PHONE}`}><Phone className="w-5 h-5 mr-2" /> Call to check availability</a>
         </Button>
       </div>
     </div>
@@ -527,12 +530,15 @@ const Footer = () => (
 );
 
 const StickyMobileBar = () => (
-  <div className="md:hidden fixed bottom-0 inset-x-0 z-40 bg-background/95 backdrop-blur-xl border-t border-gold/20">
-    <div className="grid grid-cols-2 divide-x divide-border">
-      <a href={`tel:${PHONE}`} className="flex items-center justify-center gap-2 py-4 font-semibold">
-        <Phone className="w-5 h-5 text-gold" /> Call Now
+  <div className="md:hidden fixed bottom-0 inset-x-0 z-40 bg-background/95 backdrop-blur-xl border-t border-gold/30 shadow-deep">
+    <div className="flex items-center justify-center gap-2 py-1.5 text-[11px] uppercase tracking-widest text-gold/90">
+      <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" /> Open now · Until 9 PM
+    </div>
+    <div className="grid grid-cols-2 divide-x divide-border border-t border-border/50">
+      <a href={`tel:${PHONE}`} className="flex items-center justify-center gap-2 py-4 font-semibold text-base active:bg-gold/10">
+        <Phone className="w-5 h-5 text-gold" /> Call Store
       </a>
-      <a href={MAPS_URL} target="_blank" rel="noopener" className="flex items-center justify-center gap-2 py-4 font-semibold bg-gradient-gold text-primary-foreground">
+      <a href={MAPS_URL} target="_blank" rel="noopener" className="flex items-center justify-center gap-2 py-4 font-semibold text-base bg-gradient-gold text-primary-foreground">
         <Navigation className="w-5 h-5" /> Directions
       </a>
     </div>
