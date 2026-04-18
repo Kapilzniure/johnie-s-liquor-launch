@@ -18,6 +18,7 @@ import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 import hero from "@/assets/hero-store.jpg";
+import heroBottle from "@/assets/hero-bottle.png";
 import catWine from "@/assets/cat-wine.jpg";
 import catBeer from "@/assets/cat-beer.jpg";
 import catSpirits from "@/assets/cat-spirits.jpg";
