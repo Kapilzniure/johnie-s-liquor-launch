@@ -32,9 +32,9 @@ import pTequila from "@/assets/p-tequila.jpg";
 const PHONE = "+15123835004";
 const PHONE_DISPLAY = "(512) 383-5004";
 const ADDRESS = "13201 Pond Springs Rd, Suite 203, Austin, TX 78729";
-const MAPS_URL = "https://www.google.com/maps/dir/?api=1&destination=13201+Pond+Springs+Rd+Suite+203+Austin+TX+78729";
-const REVIEWS_URL = "https://www.google.com/maps/place/13201+Pond+Springs+Rd+Suite+203+Austin+TX+78729";
-const IG_URL = "https://www.instagram.com/johnniesliquorstore/";
+const MAPS_URL = "https://maps.app.goo.gl/zuJNXZ1312syYQb48";
+const REVIEWS_URL = "https://maps.app.goo.gl/zuJNXZ1312syYQb48";
+const IG_URL = "https://www.instagram.com/johnniesliquor_store/";
 const FB_URL = "https://facebook.com";
 
 const Section = ({ id, eyebrow, title, subtitle, children, className = "" }: {
