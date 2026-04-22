@@ -32,7 +32,7 @@ import pTequila from "@/assets/p-tequila.jpg";
 const PHONE = "+15123835004";
 const PHONE_DISPLAY = "(512) 383-5004";
 const ADDRESS = "13201 Pond Springs Rd, Suite 203, Austin, TX 78729";
-const MAPS_URL = "https://www.google.com/maps/place/Johnnie's+Liquor+Store/@30.4458344,-97.778399,17z/data=!3m2!4b1!5s0x8644cd2fb7b7f3f1:0xc10671f0e8c46ad0!4m6!3m5!1s0x8644cd31e09cd681:0x7df1cdbd4a044e3!8m2!3d30.4458344!4d-97.778399!16s%2Fg%2F11h_prtsbz?entry=ttu";
+const MAPS_URL = "https://www.google.com/maps/place/Johnnie's+Liquor+Store/@30.4458344,-97.778399,17z/data=!3m2!4b1!5s0x8644cd2fb7b7f3f1:0xc10671f0e8c46ad0!4m6!3m5!1s0x8644cd31e09cd681:0x7df1cdbd4a044e3!8m2!3d30.4458344!4d-97.778399!16s%2Fg%2F11h_prtsbz?entry=ttu&g_ep=EgoyMDI2MDQxOS4wIKXMDSoASAFQAw%3D%3D";
 const REVIEWS_URL = MAPS_URL;
 const IG_URL = "https://www.instagram.com/johnniesliquor_store/";
 const FB_URL = "https://facebook.com";
