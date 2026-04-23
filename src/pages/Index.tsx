@@ -24,6 +24,9 @@ import catSpirits from "@/assets/cat-spirits.jpg";
 import storefront from "@/assets/storefront.jpg";
 import storeInside from "@/assets/store-inside.jpg";
 import shelves from "@/assets/p-wine.jpg";
+import pBourbon from "@/assets/p-bourbon.jpg";
+import pWine from "@/assets/p-wine.jpg";
+import pBeer from "@/assets/p-beer.jpg";
 
 const PHONE = "+15123835004";
 const PHONE_DISPLAY = "(512) 383-5004";
