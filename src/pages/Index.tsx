@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import {
-  Phone, MapPin, Clock, Star, Navigation, Menu, X,
+  Phone, MapPin, Clock, Navigation, Menu, X,
   Wine, Beer, GlassWater, Truck, ChevronDown,
 } from "lucide-react";
 
@@ -179,7 +179,7 @@ const QuickActions = () => {
   const items = [
     { icon: Navigation, label: "Get Directions", href: MAPS_URL, ext: true },
     { icon: Phone, label: "Call Now", href: `tel:${PHONE}` },
-    { icon: Star, label: "Google Reviews", href: REVIEWS_URL, ext: true },
+    { icon: Truck, label: "Order Delivery", href: "#delivery" },
     { icon: Instagram, label: "Instagram", href: IG_URL, ext: true },
   ];
   return (
@@ -199,27 +199,10 @@ const QuickActions = () => {
   );
 };
 
-const TrustBar = () => (
-  <Section className="!py-16">
-    <div className="grid md:grid-cols-3 gap-8 items-center">
-      <div className="flex items-center gap-4">
-        <div className="text-5xl font-display font-bold gradient-gold-text">4.8</div>
-        <div>
-          <div className="flex text-gold">{[...Array(5)].map((_,i)=><Star key={i} className="w-4 h-4 fill-current"/>)}</div>
-          <p className="text-sm text-muted-foreground mt-1">327+ Google reviews</p>
-        </div>
-      </div>
-      <blockquote className="md:col-span-1 text-lg italic text-foreground/80 leading-relaxed">
-        "Best selection in East Austin. Friendly staff, fair prices, and they always have what I'm looking for."
-        <footer className="not-italic text-sm text-muted-foreground mt-2">— Marcus R., regular customer</footer>
-      </blockquote>
-      <div className="md:text-right">
-        <Button asChild variant="outlineGold">
-          <a href={REVIEWS_URL} target="_blank" rel="noopener">See all reviews</a>
-        </Button>
-      </div>
-    </div>
-  </Section>
+const DoorDashIcon = ({ className = "" }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden>
+    <path d="M2 8.5h13.4c3.1 0 5.6 2.5 5.6 5.6 0 3.1-2.5 5.6-5.6 5.6H6.2c-.6 0-1.1-.5-1.1-1.1 0-.6.5-1.1 1.1-1.1h9.2c1.9 0 3.4-1.5 3.4-3.4s-1.5-3.4-3.4-3.4H2c-.6 0-1.1-.5-1.1-1.1S1.4 8.5 2 8.5z"/>
+  </svg>
 );
 
 const Categories = () => {
@@ -248,28 +231,69 @@ const Categories = () => {
     </Section>
   );
 };
-const FinalCTA = () => (
-  <section className="relative py-24 md:py-32 overflow-hidden">
-    <img src={hero} alt="" loading="lazy" className="absolute inset-0 w-full h-full object-cover opacity-40" />
-    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/85 to-background/70" />
-    <div className="container mx-auto px-5 relative z-10 text-center max-w-3xl">
-      <div className="inline-flex items-center gap-2 mb-5 text-xs uppercase tracking-[0.3em] text-gold">
-        <Shield className="w-3 h-3" /> Open today
+const Delivery = () => (
+  <Section id="delivery" eyebrow="Delivery available" title="Order from home" subtitle="Get your favorite drinks delivered. Available on DoorDash & Grubhub.">
+    <div className="grid md:grid-cols-2 gap-5 max-w-3xl">
+      <a href={DOORDASH_URL} target="_blank" rel="noopener"
+         className="group flex items-center justify-between p-7 rounded-2xl bg-gradient-card border border-border hover:border-gold/50 hover-lift">
+        <div>
+          <div className="text-xs uppercase tracking-widest text-gold mb-2">Order on</div>
+          <div className="text-2xl md:text-3xl font-display font-bold">DoorDash</div>
+          <p className="text-sm text-muted-foreground mt-1">Fast local delivery</p>
+        </div>
+        <Truck className="w-10 h-10 text-gold group-hover:scale-110 transition-smooth" />
+      </a>
+      <a href={GRUBHUB_URL} target="_blank" rel="noopener"
+         className="group flex items-center justify-between p-7 rounded-2xl bg-gradient-card border border-border hover:border-gold/50 hover-lift">
+        <div>
+          <div className="text-xs uppercase tracking-widest text-gold mb-2">Order on</div>
+          <div className="text-2xl md:text-3xl font-display font-bold">Grubhub</div>
+          <p className="text-sm text-muted-foreground mt-1">Door-to-door service</p>
+        </div>
+        <Truck className="w-10 h-10 text-gold group-hover:scale-110 transition-smooth" />
+      </a>
+    </div>
+  </Section>
+);
+
+const VisitUs = () => (
+  <Section id="contact" eyebrow="Visit us" title="Find us, call us, stop by">
+    <div className="grid lg:grid-cols-5 gap-8">
+      <div className="lg:col-span-2 space-y-5">
+        <div className="p-6 rounded-2xl bg-gradient-card border border-border">
+          <MapPin className="w-6 h-6 text-gold mb-3" />
+          <h3 className="font-display text-xl font-bold mb-1">Address</h3>
+          <p className="text-foreground/80 text-sm">{ADDRESS}</p>
+          <Button asChild variant="gold" className="mt-4 w-full">
+            <a href={MAPS_URL} target="_blank" rel="noopener"><Navigation className="w-4 h-4 mr-2" /> Get Directions</a>
+          </Button>
+        </div>
+        <div className="p-6 rounded-2xl bg-gradient-card border border-border">
+          <Clock className="w-6 h-6 text-gold mb-3" />
+          <h3 className="font-display text-xl font-bold mb-3">Opening Hours</h3>
+          <ul className="space-y-1 text-sm">
+            {[["Mon – Sat", "10:00 AM – 9:00 PM"], ["Sunday", "Closed"]].map(([d,h]) => (
+              <li key={d} className="flex justify-between gap-4 py-1.5 border-b border-border/60 last:border-0">
+                <span className="text-muted-foreground">{d}</span><span className="font-medium">{h}</span>
+              </li>
+            ))}
+          </ul>
+          <Button asChild variant="outlineGold" className="mt-4 w-full">
+            <a href={`tel:${PHONE}`}><Phone className="w-4 h-4 mr-2" /> {PHONE_DISPLAY}</a>
+          </Button>
+        </div>
       </div>
-      <h2 className="text-5xl md:text-7xl font-display font-bold leading-[1]">
-        Visit <span className="gradient-gold-text italic">Johnie's Liquor</span> today
-      </h2>
-      <p className="mt-6 text-lg text-foreground/75">Conveniently located with plenty of parking · Friendly faces waiting inside.</p>
-      <div className="mt-9 flex flex-col sm:flex-row gap-3 justify-center">
-        <Button asChild variant="gold" size="xl">
-          <a href={MAPS_URL} target="_blank" rel="noopener"><Navigation className="w-5 h-5 mr-2" /> Find us in minutes</a>
-        </Button>
-        <Button asChild variant="outlineGold" size="xl">
-          <a href={`tel:${PHONE}`}><Phone className="w-5 h-5 mr-2" /> Call to check availability</a>
-        </Button>
+      <div className="lg:col-span-3 rounded-2xl overflow-hidden border border-border min-h-[360px] shadow-deep">
+        <iframe
+          title="Johnnies Liquor location"
+          src="https://www.google.com/maps?q=13201+Pond+Springs+Rd+Suite+203+Austin+TX+78729&output=embed"
+          className="w-full h-full min-h-[420px]"
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        />
       </div>
     </div>
-  </section>
+  </Section>
 );
 
 const Footer = () => (
@@ -317,11 +341,14 @@ const StickyMobileBar = () => (
     <div className="flex items-center justify-center gap-2 py-1.5 text-[11px] uppercase tracking-widest text-gold/90">
       <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" /> Open now · Until 9 PM
     </div>
-    <div className="grid grid-cols-2 divide-x divide-border border-t border-border/50">
-      <a href={`tel:${PHONE}`} className="flex items-center justify-center gap-2 py-4 font-semibold text-base active:bg-gold/10">
-        <Phone className="w-5 h-5 text-gold" /> Call Store
+    <div className="grid grid-cols-3 divide-x divide-border border-t border-border/50">
+      <a href={`tel:${PHONE}`} className="flex flex-col items-center justify-center gap-1 py-3 font-semibold text-xs active:bg-gold/10">
+        <Phone className="w-5 h-5 text-gold" /> Call
       </a>
-      <a href={MAPS_URL} target="_blank" rel="noopener" className="flex items-center justify-center gap-2 py-4 font-semibold text-base bg-gradient-gold text-primary-foreground">
+      <a href="#delivery" className="flex flex-col items-center justify-center gap-1 py-3 font-semibold text-xs active:bg-gold/10">
+        <Truck className="w-5 h-5 text-gold" /> Delivery
+      </a>
+      <a href={MAPS_URL} target="_blank" rel="noopener" className="flex flex-col items-center justify-center gap-1 py-3 font-semibold text-xs bg-gradient-gold text-primary-foreground">
         <Navigation className="w-5 h-5" /> Directions
       </a>
     </div>
@@ -334,17 +361,9 @@ const Index = () => (
     <main>
       <Hero />
       <QuickActions />
-      <TrustBar />
       <Categories />
-      <Popular />
-      <Deals />
-      <WhyUs />
-      <About />
-      <Experience />
-      <Location />
-      <FAQ />
-      <QRConnect />
-      <FinalCTA />
+      <Delivery />
+      <VisitUs />
     </main>
     <Footer />
     <StickyMobileBar />
