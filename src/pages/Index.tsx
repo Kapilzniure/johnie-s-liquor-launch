@@ -466,6 +466,7 @@ const Index = () => (
     <main>
       <Hero />
       <QuickActions />
+      <Favorites />
       <Specials />
       <Categories />
       <OurStory />
