@@ -432,7 +432,10 @@ const Index = () => (
     <main>
       <Hero />
       <QuickActions />
+      <Specials />
       <Categories />
+      <OurStory />
+      <Gallery />
       <Delivery />
       <VisitUs />
     </main>
