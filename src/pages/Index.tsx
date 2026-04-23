@@ -132,28 +132,27 @@ const Hero = () => (
           <span className="text-xs uppercase tracking-[0.2em] text-gold">Open today · Visit us</span>
         </div>
         <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-bold leading-[0.95]">
-          Best <span className="gradient-gold-text italic">Liquor Store</span><br />
-          in Austin, Texas
+          <span className="gradient-gold-text italic">Johnnie's</span><br />Liquor Store
         </h1>
         <p className="mt-6 text-lg md:text-xl text-foreground/80 max-w-xl">
-          Wine, Beer & Spirits at Great Prices – Visit Today
+          Wine • Beer • Spirits and more in Austin, TX
         </p>
-        <div className="mt-6 flex items-center gap-4">
-          <div className="flex items-center gap-1 text-gold">
-            {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
-          </div>
-          <span className="text-sm text-muted-foreground">4.8 ★ from 327+ Austin neighbors</span>
-        </div>
-        <div className="mt-9 flex flex-col sm:flex-row gap-3">
+        <p className="mt-2 text-base text-foreground/60 max-w-xl">
+          Fast, friendly service — delivery available.
+        </p>
+        <div className="mt-8 flex flex-col sm:flex-row flex-wrap gap-3">
           <Button asChild variant="gold" size="xl">
-            <a href={MAPS_URL} target="_blank" rel="noopener"><Navigation className="w-5 h-5 mr-2" /> Find us in minutes</a>
+            <a href={`tel:${PHONE}`}><Phone className="w-5 h-5 mr-2" /> Call Now</a>
           </Button>
           <Button asChild variant="outlineGold" size="xl">
-            <a href={`tel:${PHONE}`}><Phone className="w-5 h-5 mr-2" /> Call to check availability</a>
+            <a href={MAPS_URL} target="_blank" rel="noopener"><Navigation className="w-5 h-5 mr-2" /> Get Directions</a>
+          </Button>
+          <Button asChild variant="outlineGold" size="xl">
+            <a href="#delivery"><Truck className="w-5 h-5 mr-2" /> Order Delivery</a>
           </Button>
         </div>
-        <p className="mt-5 text-sm text-muted-foreground flex items-center gap-2">
-          <Clock className="w-4 h-4 text-gold" /> Open today until 9 PM · Free parking available
+        <p className="mt-6 text-sm text-muted-foreground flex items-center gap-2">
+          <Clock className="w-4 h-4 text-gold" /> Open today until 9 PM · Free parking
         </p>
     </div>
     <div className="hidden lg:block absolute right-6 xl:right-20 top-20 xl:top-16 z-10 pointer-events-none animate-fade-up">
