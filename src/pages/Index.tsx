@@ -69,8 +69,8 @@ const Header = () => {
 
   const links = [
     { label: "Home", href: "#home" },
-    { label: "Products", href: "#products" },
-    { label: "About", href: "#about" },
+    { label: "Offerings", href: "#products" },
+    { label: "Delivery", href: "#delivery" },
     { label: "Contact", href: "#contact" },
   ];
 
@@ -199,11 +199,7 @@ const QuickActions = () => {
   );
 };
 
-const DoorDashIcon = ({ className = "" }: { className?: string }) => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden>
-    <path d="M2 8.5h13.4c3.1 0 5.6 2.5 5.6 5.6 0 3.1-2.5 5.6-5.6 5.6H6.2c-.6 0-1.1-.5-1.1-1.1 0-.6.5-1.1 1.1-1.1h9.2c1.9 0 3.4-1.5 3.4-3.4s-1.5-3.4-3.4-3.4H2c-.6 0-1.1-.5-1.1-1.1S1.4 8.5 2 8.5z"/>
-  </svg>
-);
+
 
 const Categories = () => {
   const cats = [
@@ -212,7 +208,7 @@ const Categories = () => {
     { icon: GlassWater, title: "Spirits", img: catSpirits, desc: "Whiskey, bourbon, tequila, vodka, gin, rum & more." },
   ];
   return (
-    <Section id="products" eyebrow="What we sell" title="Everything you came for" subtitle="A carefully curated selection across three signature categories. If we don't have it, we'll help you find it.">
+    <Section id="products" eyebrow="What we offer" title="Wine, beer & spirits" subtitle="A wide selection of premium and everyday options — backed by friendly local service.">
       <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
         {cats.map((c) => (
           <article key={c.title} className="group relative overflow-hidden rounded-2xl bg-gradient-card border border-border hover-lift">
