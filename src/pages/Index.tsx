@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import {
   Phone, MapPin, Clock, Navigation, Menu, X,
-  Wine, Beer, GlassWater, Truck, ChevronDown,
+  Wine, Beer, GlassWater, Truck, ChevronDown, Sparkles, Star, Package, Award,
 } from "lucide-react";
 
 const Instagram = ({ className = "" }: { className?: string }) => (
@@ -21,6 +21,9 @@ import heroBottle from "@/assets/hero-bottle.png";
 import catWine from "@/assets/cat-wine.jpg";
 import catBeer from "@/assets/cat-beer.jpg";
 import catSpirits from "@/assets/cat-spirits.jpg";
+import storefront from "@/assets/storefront.jpg";
+import storeInside from "@/assets/store-inside.jpg";
+import shelves from "@/assets/p-wine.jpg";
 
 const PHONE = "+15123835004";
 const PHONE_DISPLAY = "(512) 383-5004";
@@ -69,7 +72,9 @@ const Header = () => {
 
   const links = [
     { label: "Home", href: "#home" },
+    { label: "Specials", href: "#specials" },
     { label: "Offerings", href: "#products" },
+    { label: "Story", href: "#story" },
     { label: "Delivery", href: "#delivery" },
     { label: "Contact", href: "#contact" },
   ];
@@ -252,6 +257,78 @@ const Delivery = () => (
   </Section>
 );
 
+const Specials = () => {
+  const offers = [
+    { tag: "Weekly", title: "20% Off Wine Wednesdays", desc: "Every Wednesday on bottles over $20.", icon: Wine },
+    { tag: "Limited", title: "Buy 2, Get 1 Free Craft Beer", desc: "Mix & match local Texas craft six-packs.", icon: Beer },
+    { tag: "Monthly", title: "Whiskey of the Month", desc: "Featured premium bourbon at $10 off.", icon: GlassWater },
+  ];
+  return (
+    <Section id="specials" eyebrow="Promotions" title="Weekly specials & offers" subtitle="Fresh deals every week — stop in or order delivery to save more.">
+      <div className="grid md:grid-cols-3 gap-6">
+        {offers.map((o) => (
+          <article key={o.title} className="group relative p-7 rounded-2xl bg-gradient-card border border-border hover:border-gold/50 hover-lift">
+            <div className="flex items-center justify-between mb-5">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] uppercase tracking-[0.2em] text-gold border border-gold/30 bg-gold/5">
+                <Sparkles className="w-3 h-3" /> {o.tag}
+              </span>
+              <o.icon className="w-7 h-7 text-gold/70 group-hover:text-gold transition-smooth" />
+            </div>
+            <h3 className="text-2xl font-display font-bold leading-tight mb-2">{o.title}</h3>
+            <p className="text-foreground/70 text-sm">{o.desc}</p>
+          </article>
+        ))}
+      </div>
+      <p className="mt-8 text-xs text-muted-foreground">Offers subject to availability. Must be 21+. Please drink responsibly.</p>
+    </Section>
+  );
+};
+
+const OurStory = () => {
+  const stats = [
+    { icon: Award, value: "20+", label: "Years serving Austin" },
+    { icon: Package, value: "1.2k", label: "Products in store" },
+    { icon: Star, value: "4.8★", label: "Customer rating" },
+  ];
+  return (
+    <Section id="story" eyebrow="Our Story" title="A family-owned Austin staple" subtitle="Proudly serving Austin for 20+ years — focused on great selection, fair prices, and friendly service.">
+      <div className="grid md:grid-cols-3 gap-5">
+        {stats.map((s) => (
+          <div key={s.label} className="p-7 rounded-2xl bg-gradient-card border border-border text-center hover-lift">
+            <s.icon className="w-8 h-8 text-gold mx-auto mb-3" />
+            <div className="text-4xl md:text-5xl font-display font-bold gradient-gold-text">{s.value}</div>
+            <div className="mt-2 text-sm text-muted-foreground uppercase tracking-widest">{s.label}</div>
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+};
+
+const Gallery = () => {
+  const shots = [
+    { img: storefront, caption: "Easy to find location" },
+    { img: storeInside, caption: "Clean and organized" },
+    { img: shelves, caption: "Wide selection" },
+  ];
+  return (
+    <Section id="gallery" eyebrow="Inside the store" title="Visit the store" subtitle="Take a look around — friendly faces, well-stocked shelves, easy parking.">
+      <div className="grid md:grid-cols-3 gap-5">
+        {shots.map((s) => (
+          <figure key={s.caption} className="group relative overflow-hidden rounded-2xl border border-border hover-lift">
+            <div className="aspect-[4/5] overflow-hidden">
+              <img src={s.img} alt={s.caption} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-smooth duration-700" />
+            </div>
+            <div className="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-background via-background/70 to-transparent">
+              <figcaption className="text-sm font-medium text-foreground/90">{s.caption}</figcaption>
+            </div>
+          </figure>
+        ))}
+      </div>
+    </Section>
+  );
+};
+
 const VisitUs = () => (
   <Section id="contact" eyebrow="Visit us" title="Find us, call us, stop by">
     <div className="grid lg:grid-cols-5 gap-8">
@@ -357,7 +434,10 @@ const Index = () => (
     <main>
       <Hero />
       <QuickActions />
+      <Specials />
       <Categories />
+      <OurStory />
+      <Gallery />
       <Delivery />
       <VisitUs />
     </main>
