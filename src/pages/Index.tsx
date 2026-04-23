@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import {
-  Phone, MapPin, Clock, Star, Navigation, Menu, X,
-  Wine, Beer, GlassWater, Tag, Shield, Heart, ChevronDown, QrCode,
+  Phone, MapPin, Clock, Navigation, Menu, X,
+  Wine, Beer, GlassWater, Truck, ChevronDown,
 } from "lucide-react";
 
 const Instagram = ({ className = "" }: { className?: string }) => (
@@ -15,19 +15,12 @@ const Facebook = ({ className = "" }: { className?: string }) => (
   </svg>
 );
 import { Button } from "@/components/ui/button";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 import hero from "@/assets/hero-store.jpg";
 import heroBottle from "@/assets/hero-bottle.png";
 import catWine from "@/assets/cat-wine.jpg";
 import catBeer from "@/assets/cat-beer.jpg";
 import catSpirits from "@/assets/cat-spirits.jpg";
-import storefront from "@/assets/storefront.jpg";
-import storeInside from "@/assets/store-inside.jpg";
-import pBourbon from "@/assets/p-bourbon.jpg";
-import pWine from "@/assets/p-wine.jpg";
-import pBeer from "@/assets/p-beer.jpg";
-import pTequila from "@/assets/p-tequila.jpg";
 
 const PHONE = "+15123835004";
 const PHONE_DISPLAY = "(512) 383-5004";
@@ -36,6 +29,8 @@ const MAPS_URL = "https://www.google.com/maps/place/Johnnie's+Liquor+Store/@30.4
 const REVIEWS_URL = MAPS_URL;
 const IG_URL = "https://www.instagram.com/johnniesliquor_store/";
 const FB_URL = "https://facebook.com";
+const DOORDASH_URL = "https://www.doordash.com/";
+const GRUBHUB_URL = "https://www.grubhub.com/";
 
 const Section = ({ id, eyebrow, title, subtitle, children, className = "" }: {
   id?: string;
@@ -74,8 +69,8 @@ const Header = () => {
 
   const links = [
     { label: "Home", href: "#home" },
-    { label: "Products", href: "#products" },
-    { label: "About", href: "#about" },
+    { label: "Offerings", href: "#products" },
+    { label: "Delivery", href: "#delivery" },
     { label: "Contact", href: "#contact" },
   ];
 
@@ -137,28 +132,27 @@ const Hero = () => (
           <span className="text-xs uppercase tracking-[0.2em] text-gold">Open today · Visit us</span>
         </div>
         <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-bold leading-[0.95]">
-          Best <span className="gradient-gold-text italic">Liquor Store</span><br />
-          in Austin, Texas
+          <span className="gradient-gold-text italic">Johnnie's</span><br />Liquor Store
         </h1>
         <p className="mt-6 text-lg md:text-xl text-foreground/80 max-w-xl">
-          Wine, Beer & Spirits at Great Prices – Visit Today
+          Wine • Beer • Spirits and more in Austin, TX
         </p>
-        <div className="mt-6 flex items-center gap-4">
-          <div className="flex items-center gap-1 text-gold">
-            {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
-          </div>
-          <span className="text-sm text-muted-foreground">4.8 ★ from 327+ Austin neighbors</span>
-        </div>
-        <div className="mt-9 flex flex-col sm:flex-row gap-3">
+        <p className="mt-2 text-base text-foreground/60 max-w-xl">
+          Fast, friendly service — delivery available.
+        </p>
+        <div className="mt-8 flex flex-col sm:flex-row flex-wrap gap-3">
           <Button asChild variant="gold" size="xl">
-            <a href={MAPS_URL} target="_blank" rel="noopener"><Navigation className="w-5 h-5 mr-2" /> Find us in minutes</a>
+            <a href={`tel:${PHONE}`}><Phone className="w-5 h-5 mr-2" /> Call Now</a>
           </Button>
           <Button asChild variant="outlineGold" size="xl">
-            <a href={`tel:${PHONE}`}><Phone className="w-5 h-5 mr-2" /> Call to check availability</a>
+            <a href={MAPS_URL} target="_blank" rel="noopener"><Navigation className="w-5 h-5 mr-2" /> Get Directions</a>
+          </Button>
+          <Button asChild variant="outlineGold" size="xl">
+            <a href="#delivery"><Truck className="w-5 h-5 mr-2" /> Order Delivery</a>
           </Button>
         </div>
-        <p className="mt-5 text-sm text-muted-foreground flex items-center gap-2">
-          <Clock className="w-4 h-4 text-gold" /> Open today until 9 PM · Free parking available
+        <p className="mt-6 text-sm text-muted-foreground flex items-center gap-2">
+          <Clock className="w-4 h-4 text-gold" /> Open today until 9 PM · Free parking
         </p>
     </div>
     <div className="hidden lg:block absolute right-6 xl:right-20 top-20 xl:top-16 z-10 pointer-events-none animate-fade-up">
@@ -185,7 +179,7 @@ const QuickActions = () => {
   const items = [
     { icon: Navigation, label: "Get Directions", href: MAPS_URL, ext: true },
     { icon: Phone, label: "Call Now", href: `tel:${PHONE}` },
-    { icon: Star, label: "Google Reviews", href: REVIEWS_URL, ext: true },
+    { icon: Truck, label: "Order Delivery", href: "#delivery" },
     { icon: Instagram, label: "Instagram", href: IG_URL, ext: true },
   ];
   return (
@@ -205,28 +199,7 @@ const QuickActions = () => {
   );
 };
 
-const TrustBar = () => (
-  <Section className="!py-16">
-    <div className="grid md:grid-cols-3 gap-8 items-center">
-      <div className="flex items-center gap-4">
-        <div className="text-5xl font-display font-bold gradient-gold-text">4.8</div>
-        <div>
-          <div className="flex text-gold">{[...Array(5)].map((_,i)=><Star key={i} className="w-4 h-4 fill-current"/>)}</div>
-          <p className="text-sm text-muted-foreground mt-1">327+ Google reviews</p>
-        </div>
-      </div>
-      <blockquote className="md:col-span-1 text-lg italic text-foreground/80 leading-relaxed">
-        "Best selection in East Austin. Friendly staff, fair prices, and they always have what I'm looking for."
-        <footer className="not-italic text-sm text-muted-foreground mt-2">— Marcus R., regular customer</footer>
-      </blockquote>
-      <div className="md:text-right">
-        <Button asChild variant="outlineGold">
-          <a href={REVIEWS_URL} target="_blank" rel="noopener">See all reviews</a>
-        </Button>
-      </div>
-    </div>
-  </Section>
-);
+
 
 const Categories = () => {
   const cats = [
@@ -235,7 +208,7 @@ const Categories = () => {
     { icon: GlassWater, title: "Spirits", img: catSpirits, desc: "Whiskey, bourbon, tequila, vodka, gin, rum & more." },
   ];
   return (
-    <Section id="products" eyebrow="What we sell" title="Everything you came for" subtitle="A carefully curated selection across three signature categories. If we don't have it, we'll help you find it.">
+    <Section id="products" eyebrow="What we offer" title="Wine, beer & spirits" subtitle="A wide selection of premium and everyday options — backed by friendly local service.">
       <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
         {cats.map((c) => (
           <article key={c.title} className="group relative overflow-hidden rounded-2xl bg-gradient-card border border-border hover-lift">
@@ -254,259 +227,69 @@ const Categories = () => {
     </Section>
   );
 };
-
-const Popular = () => {
-  const items = [
-    { name: "Single Barrel Bourbon", tag: "Whiskey · 750ml", img: pBourbon, price: "$42" },
-    { name: "Texas Reserve Red", tag: "Wine · 750ml", img: pWine, price: "$28" },
-    { name: "Local Craft IPA", tag: "Beer · 6-pack", img: pBeer, price: "$14" },
-    { name: "Reposado Tequila", tag: "Tequila · 750ml", img: pTequila, price: "$36" },
-  ];
-  return (
-    <Section eyebrow="Customer favorites" title="Popular this month" subtitle="What our regulars are picking up. Stop by to see the full lineup in store.">
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
-        {items.map((p) => (
-          <div key={p.name} className="group rounded-xl bg-gradient-card border border-border overflow-hidden hover-lift">
-            <div className="aspect-[3/4] bg-deep overflow-hidden">
-              <img src={p.img} alt={p.name} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-smooth duration-500" />
-            </div>
-            <div className="p-4 md:p-5">
-              <p className="text-[11px] uppercase tracking-widest text-gold mb-1.5">{p.tag}</p>
-              <div className="flex items-start justify-between gap-2">
-                <h3 className="font-display font-semibold text-base md:text-lg leading-tight">{p.name}</h3>
-                <span className="text-gold font-semibold whitespace-nowrap">{p.price}</span>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </Section>
-  );
-};
-
-const Deals = () => {
-  const deals = [
-    { title: "20% Off Wine Wednesdays", body: "Every Wednesday on all bottles over $20.", tag: "Weekly" },
-    { title: "Buy 2, Get 1 Free Craft Beer", body: "Mix & match local Texas craft six-packs.", tag: "Limited" },
-    { title: "Whiskey of the Month", body: "Featured premium bourbon at $10 off retail.", tag: "April" },
-  ];
-  return (
-    <Section eyebrow="Deals & offers" title="This week's specials" subtitle="Real savings every week — limited stock, so visit today for the best selection.">
-      <div className="grid md:grid-cols-3 gap-6">
-        <p className="md:col-span-3 -mt-6 mb-2 text-sm text-gold/90 uppercase tracking-widest">⏳ Available in store only · while supplies last</p>
-        {deals.map((d) => (
-          <div key={d.title} className="relative p-8 rounded-2xl bg-gradient-card border border-gold/20 hover-lift">
-            <div className="absolute top-6 right-6 inline-flex items-center gap-1.5 text-xs uppercase tracking-widest text-gold">
-              <Tag className="w-3 h-3" /> {d.tag}
-            </div>
-            <h3 className="text-2xl font-display font-bold mt-2 mb-3 pr-20">{d.title}</h3>
-            <p className="text-muted-foreground">{d.body}</p>
-          </div>
-        ))}
-      </div>
-    </Section>
-  );
-};
-
-const WhyUs = () => {
-  const items = [
-    { icon: GlassWater, t: "Wide Selection", d: "Hundreds of wines, beers and spirits — local and international." },
-    { icon: Tag, t: "Best Prices", d: "Fair, honest pricing with weekly deals you'll actually use." },
-    { icon: Heart, t: "Friendly Service", d: "Family-owned. Real recommendations from people who care." },
-    { icon: MapPin, t: "Convenient Location", d: "Located at 13201 Pond Springs Rd with easy access and plenty of parking." },
-  ];
-  return (
-    <Section eyebrow="Why locals choose us" title="A neighborhood store, done right">
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {items.map((i) => (
-          <div key={i.t} className="p-7 rounded-xl border border-border bg-card hover:border-gold/40 transition-smooth">
-            <div className="w-12 h-12 rounded-lg bg-gold/10 flex items-center justify-center mb-5">
-              <i.icon className="w-6 h-6 text-gold" />
-            </div>
-            <h3 className="font-display font-bold text-xl mb-2">{i.t}</h3>
-            <p className="text-muted-foreground text-sm leading-relaxed">{i.d}</p>
-          </div>
-        ))}
-      </div>
-    </Section>
-  );
-};
-
-const About = () => (
-  <Section id="about" className="bg-card/30">
-    <div className="grid lg:grid-cols-2 gap-14 items-center">
-      <div>
-        <div className="inline-flex items-center gap-2 mb-4 text-xs uppercase tracking-[0.25em] text-gold">
-          <span className="h-px w-8 bg-gold" /> Our Story
+const Delivery = () => (
+  <Section id="delivery" eyebrow="Delivery available" title="Order from home" subtitle="Get your favorite drinks delivered. Available on DoorDash & Grubhub.">
+    <div className="grid md:grid-cols-2 gap-5 max-w-3xl">
+      <a href={DOORDASH_URL} target="_blank" rel="noopener"
+         className="group flex items-center justify-between p-7 rounded-2xl bg-gradient-card border border-border hover:border-gold/50 hover-lift">
+        <div>
+          <div className="text-xs uppercase tracking-widest text-gold mb-2">Order on</div>
+          <div className="text-2xl md:text-3xl font-display font-bold">DoorDash</div>
+          <p className="text-sm text-muted-foreground mt-1">Fast local delivery</p>
         </div>
-        <h2 className="text-4xl md:text-5xl font-display font-bold leading-tight">Proudly serving the Austin community for 20+ years</h2>
-        <p className="mt-6 text-lg text-foreground/80 leading-relaxed">
-          Johnnies Liquor started as a family-owned shop with a simple idea — give our neighbors great drinks at fair prices, and treat everyone like family.
-        </p>
-        <p className="mt-4 text-foreground/70 leading-relaxed">
-          Two decades later we're still right here. Same friendly faces, a bigger selection, and the same promise: you'll always find what you came for at Johnnies Liquor.
-        </p>
-        <div className="mt-8 grid grid-cols-3 gap-6">
-          {[["20+", "Years"], ["1.2k", "Products"], ["4.8★", "Rated"]].map(([n,l]) => (
-            <div key={l}>
-              <div className="text-3xl md:text-4xl font-display font-bold gradient-gold-text">{n}</div>
-              <div className="text-xs uppercase tracking-widest text-muted-foreground mt-1">{l}</div>
-            </div>
-          ))}
+        <Truck className="w-10 h-10 text-gold group-hover:scale-110 transition-smooth" />
+      </a>
+      <a href={GRUBHUB_URL} target="_blank" rel="noopener"
+         className="group flex items-center justify-between p-7 rounded-2xl bg-gradient-card border border-border hover:border-gold/50 hover-lift">
+        <div>
+          <div className="text-xs uppercase tracking-widest text-gold mb-2">Order on</div>
+          <div className="text-2xl md:text-3xl font-display font-bold">Grubhub</div>
+          <p className="text-sm text-muted-foreground mt-1">Door-to-door service</p>
         </div>
-      </div>
-      <div className="grid grid-cols-2 gap-4">
-        <img src={storefront} alt="Johnnies Liquor storefront" loading="lazy" className="rounded-xl aspect-[4/5] object-cover shadow-deep" />
-        <img src={storeInside} alt="Inside Johnnies Liquor — wine and spirits aisles" loading="lazy" className="rounded-xl aspect-[4/5] object-cover shadow-deep mt-10" />
-      </div>
+        <Truck className="w-10 h-10 text-gold group-hover:scale-110 transition-smooth" />
+      </a>
     </div>
   </Section>
 );
 
-const Experience = () => (
-  <Section eyebrow="Visit the store" title="Step inside Johnie's" subtitle="Visit our store for a great selection — and the warm welcome you'd expect from a neighbor.">
-    <div className="grid md:grid-cols-2 gap-6">
-      <figure className="relative overflow-hidden rounded-2xl group shadow-deep">
-        <img src={storefront} alt="Storefront at Johnnies Liquor" loading="lazy" className="w-full aspect-[16/10] object-cover group-hover:scale-105 transition-smooth duration-700" />
-        <figcaption className="absolute bottom-0 inset-x-0 p-6 bg-gradient-to-t from-background to-transparent">
-          <p className="text-gold text-xs uppercase tracking-widest mb-1">Outside</p>
-          <p className="font-display text-xl">Easy to spot on East 6th Street</p>
-        </figcaption>
-      </figure>
-      <figure className="relative overflow-hidden rounded-2xl group shadow-deep">
-        <img src={storeInside} alt="Aisles inside Johnnies Liquor" loading="lazy" className="w-full aspect-[16/10] object-cover group-hover:scale-105 transition-smooth duration-700" />
-        <figcaption className="absolute bottom-0 inset-x-0 p-6 bg-gradient-to-t from-background to-transparent">
-          <p className="text-gold text-xs uppercase tracking-widest mb-1">Inside</p>
-          <p className="font-display text-xl">Organized aisles, real selection</p>
-        </figcaption>
-      </figure>
-    </div>
-  </Section>
-);
-
-const Location = () => (
-  <Section id="contact" eyebrow="Location & hours" title="Find us, call us, visit us">
+const VisitUs = () => (
+  <Section id="contact" eyebrow="Visit us" title="Find us, call us, stop by">
     <div className="grid lg:grid-cols-5 gap-8">
-      <div className="lg:col-span-2 space-y-6">
-        <div className="p-7 rounded-2xl bg-gradient-card border border-border">
+      <div className="lg:col-span-2 space-y-5">
+        <div className="p-6 rounded-2xl bg-gradient-card border border-border">
           <MapPin className="w-6 h-6 text-gold mb-3" />
-          <h3 className="font-display text-2xl font-bold mb-1">Address</h3>
-          <p className="text-foreground/80">{ADDRESS}</p>
-          <Button asChild variant="gold" className="mt-5 w-full">
+          <h3 className="font-display text-xl font-bold mb-1">Address</h3>
+          <p className="text-foreground/80 text-sm">{ADDRESS}</p>
+          <Button asChild variant="gold" className="mt-4 w-full">
             <a href={MAPS_URL} target="_blank" rel="noopener"><Navigation className="w-4 h-4 mr-2" /> Get Directions</a>
           </Button>
         </div>
-        <div className="p-7 rounded-2xl bg-gradient-card border border-border">
-          <Phone className="w-6 h-6 text-gold mb-3" />
-          <h3 className="font-display text-2xl font-bold mb-1">Phone</h3>
-          <a href={`tel:${PHONE}`} className="text-foreground/80 hover:text-gold transition-smooth">{PHONE_DISPLAY}</a>
-          <Button asChild variant="outlineGold" className="mt-5 w-full">
-            <a href={`tel:${PHONE}`}><Phone className="w-4 h-4 mr-2" /> Call Now</a>
-          </Button>
-        </div>
-        <div className="p-7 rounded-2xl bg-gradient-card border border-border">
+        <div className="p-6 rounded-2xl bg-gradient-card border border-border">
           <Clock className="w-6 h-6 text-gold mb-3" />
-          <h3 className="font-display text-2xl font-bold mb-3">Opening Hours</h3>
-          <ul className="space-y-1.5 text-sm">
+          <h3 className="font-display text-xl font-bold mb-3">Opening Hours</h3>
+          <ul className="space-y-1 text-sm">
             {[["Mon – Sat", "10:00 AM – 9:00 PM"], ["Sunday", "Closed"]].map(([d,h]) => (
               <li key={d} className="flex justify-between gap-4 py-1.5 border-b border-border/60 last:border-0">
                 <span className="text-muted-foreground">{d}</span><span className="font-medium">{h}</span>
               </li>
             ))}
           </ul>
+          <Button asChild variant="outlineGold" className="mt-4 w-full">
+            <a href={`tel:${PHONE}`}><Phone className="w-4 h-4 mr-2" /> {PHONE_DISPLAY}</a>
+          </Button>
         </div>
       </div>
-      <div className="lg:col-span-3 rounded-2xl overflow-hidden border border-border min-h-[400px] shadow-deep">
+      <div className="lg:col-span-3 rounded-2xl overflow-hidden border border-border min-h-[360px] shadow-deep">
         <iframe
           title="Johnnies Liquor location"
           src="https://www.google.com/maps?q=13201+Pond+Springs+Rd+Suite+203+Austin+TX+78729&output=embed"
-          className="w-full h-full min-h-[500px] grayscale-[0.3] contrast-110"
+          className="w-full h-full min-h-[420px]"
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
         />
       </div>
     </div>
   </Section>
-);
-
-const FAQ = () => (
-  <Section eyebrow="FAQ" title="Quick answers">
-    <div className="max-w-3xl">
-      <Accordion type="single" collapsible className="space-y-3">
-        {[
-          { q: "What are your hours?", a: "Mon–Sat 10am–9pm. We're closed on Sundays." },
-          { q: "What products do you sell?", a: "Wine (red, white, rosé, sparkling), beer (local Texas craft, imports, domestic), and spirits including whiskey, bourbon, tequila, vodka, gin, rum and liqueurs." },
-          { q: "Where are you located?", a: "13201 Pond Springs Rd, Suite 203, Austin, TX 78729. Conveniently located with plenty of parking." },
-          { q: "Do you have a loyalty program?", a: "Yes — ask the staff in store about our regulars program. You'll get exclusive deals on your favorites." },
-          { q: "Do you carry rare or limited bottles?", a: "We get regular allocations of limited whiskey, tequila and wine. Call ahead to check stock or ask for a special order." },
-        ].map((f, i) => (
-          <AccordionItem key={i} value={`f${i}`} className="border border-border rounded-xl px-6 bg-card/50">
-            <AccordionTrigger className="text-left font-display text-lg hover:text-gold hover:no-underline">{f.q}</AccordionTrigger>
-            <AccordionContent className="text-muted-foreground leading-relaxed">{f.a}</AccordionContent>
-          </AccordionItem>
-        ))}
-      </Accordion>
-    </div>
-  </Section>
-);
-
-const QRConnect = () => {
-  const linksUrl = "https://johnniesliquor.com";
-  const qrSrc = `https://api.qrserver.com/v1/create-qr-code/?size=320x320&bgcolor=18120c&color=e8c870&data=${encodeURIComponent(linksUrl)}`;
-  const channels = [
-    { icon: Star, label: "Google Reviews", sub: "See what locals say", href: REVIEWS_URL, accent: true },
-    { icon: Instagram, label: "Instagram", sub: "@johnniesliquorstore", href: IG_URL },
-    { icon: Facebook, label: "Facebook", sub: "Updates & events", href: FB_URL },
-  ];
-  return (
-    <Section eyebrow="Stay in touch" title="Connect with Johnie's Liquor" subtitle="Check reviews, follow updates, and stay connected with your East Austin liquor store.">
-      <div className="grid lg:grid-cols-3 gap-5 mb-6">
-        {channels.map((c) => (
-          <a key={c.label} href={c.href} target="_blank" rel="noopener"
-             className={`group flex items-center gap-4 p-6 rounded-2xl border transition-smooth hover-lift ${c.accent ? "border-gold/40 bg-gradient-card shadow-soft" : "border-border bg-card hover:border-gold/40"}`}>
-            <div className="w-14 h-14 rounded-xl bg-gold/10 flex items-center justify-center shrink-0 group-hover:bg-gold/20 transition-smooth">
-              <c.icon className="w-6 h-6 text-gold" />
-            </div>
-            <div className="min-w-0">
-              <div className="font-display font-bold text-lg leading-tight">{c.label}</div>
-              <div className="text-sm text-muted-foreground truncate">{c.sub}</div>
-            </div>
-          </a>
-        ))}
-      </div>
-      <div className="flex flex-col sm:flex-row items-center gap-5 p-6 rounded-2xl border border-dashed border-gold/30 bg-card/40">
-        <img src={qrSrc} alt="QR code linking to all Johnie's Liquor channels" loading="lazy" width={96} height={96} className="rounded-md w-24 h-24 shrink-0" />
-        <div className="text-center sm:text-left flex-1">
-          <p className="text-xs uppercase tracking-widest text-gold mb-1">Scan to explore more</p>
-          <p className="text-foreground/80">Point your camera at the code to save our contact, hours and links.</p>
-        </div>
-      </div>
-    </Section>
-  );
-};
-
-const FinalCTA = () => (
-  <section className="relative py-24 md:py-32 overflow-hidden">
-    <img src={hero} alt="" loading="lazy" className="absolute inset-0 w-full h-full object-cover opacity-40" />
-    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/85 to-background/70" />
-    <div className="container mx-auto px-5 relative z-10 text-center max-w-3xl">
-      <div className="inline-flex items-center gap-2 mb-5 text-xs uppercase tracking-[0.3em] text-gold">
-        <Shield className="w-3 h-3" /> Open today
-      </div>
-      <h2 className="text-5xl md:text-7xl font-display font-bold leading-[1]">
-        Visit <span className="gradient-gold-text italic">Johnie's Liquor</span> today
-      </h2>
-      <p className="mt-6 text-lg text-foreground/75">Conveniently located with plenty of parking · Friendly faces waiting inside.</p>
-      <div className="mt-9 flex flex-col sm:flex-row gap-3 justify-center">
-        <Button asChild variant="gold" size="xl">
-          <a href={MAPS_URL} target="_blank" rel="noopener"><Navigation className="w-5 h-5 mr-2" /> Find us in minutes</a>
-        </Button>
-        <Button asChild variant="outlineGold" size="xl">
-          <a href={`tel:${PHONE}`}><Phone className="w-5 h-5 mr-2" /> Call to check availability</a>
-        </Button>
-      </div>
-    </div>
-  </section>
 );
 
 const Footer = () => (
@@ -554,11 +337,14 @@ const StickyMobileBar = () => (
     <div className="flex items-center justify-center gap-2 py-1.5 text-[11px] uppercase tracking-widest text-gold/90">
       <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" /> Open now · Until 9 PM
     </div>
-    <div className="grid grid-cols-2 divide-x divide-border border-t border-border/50">
-      <a href={`tel:${PHONE}`} className="flex items-center justify-center gap-2 py-4 font-semibold text-base active:bg-gold/10">
-        <Phone className="w-5 h-5 text-gold" /> Call Store
+    <div className="grid grid-cols-3 divide-x divide-border border-t border-border/50">
+      <a href={`tel:${PHONE}`} className="flex flex-col items-center justify-center gap-1 py-3 font-semibold text-xs active:bg-gold/10">
+        <Phone className="w-5 h-5 text-gold" /> Call
       </a>
-      <a href={MAPS_URL} target="_blank" rel="noopener" className="flex items-center justify-center gap-2 py-4 font-semibold text-base bg-gradient-gold text-primary-foreground">
+      <a href="#delivery" className="flex flex-col items-center justify-center gap-1 py-3 font-semibold text-xs active:bg-gold/10">
+        <Truck className="w-5 h-5 text-gold" /> Delivery
+      </a>
+      <a href={MAPS_URL} target="_blank" rel="noopener" className="flex flex-col items-center justify-center gap-1 py-3 font-semibold text-xs bg-gradient-gold text-primary-foreground">
         <Navigation className="w-5 h-5" /> Directions
       </a>
     </div>
@@ -571,17 +357,9 @@ const Index = () => (
     <main>
       <Hero />
       <QuickActions />
-      <TrustBar />
       <Categories />
-      <Popular />
-      <Deals />
-      <WhyUs />
-      <About />
-      <Experience />
-      <Location />
-      <FAQ />
-      <QRConnect />
-      <FinalCTA />
+      <Delivery />
+      <VisitUs />
     </main>
     <Footer />
     <StickyMobileBar />
