@@ -72,7 +72,9 @@ const Header = () => {
 
   const links = [
     { label: "Home", href: "#home" },
+    { label: "Specials", href: "#specials" },
     { label: "Offerings", href: "#products" },
+    { label: "Story", href: "#story" },
     { label: "Delivery", href: "#delivery" },
     { label: "Contact", href: "#contact" },
   ];
