@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import {
   Phone, MapPin, Clock, Navigation, Menu, X,
-  Wine, Beer, GlassWater, Truck, ChevronDown,
+  Wine, Beer, GlassWater, Truck, ChevronDown, Sparkles, Star, Package, Award,
 } from "lucide-react";
 
 const Instagram = ({ className = "" }: { className?: string }) => (
@@ -21,6 +21,9 @@ import heroBottle from "@/assets/hero-bottle.png";
 import catWine from "@/assets/cat-wine.jpg";
 import catBeer from "@/assets/cat-beer.jpg";
 import catSpirits from "@/assets/cat-spirits.jpg";
+import storefront from "@/assets/storefront.jpg";
+import storeInside from "@/assets/store-inside.jpg";
+import shelves from "@/assets/p-wine.jpg";
 
 const PHONE = "+15123835004";
 const PHONE_DISPLAY = "(512) 383-5004";
