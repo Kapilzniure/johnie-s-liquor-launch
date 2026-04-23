@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import {
   Phone, MapPin, Clock, Star, Navigation, Menu, X,
-  Wine, Beer, GlassWater, Tag, Shield, Heart, ChevronDown, QrCode,
+  Wine, Beer, GlassWater, Truck, ChevronDown,
 } from "lucide-react";
 
 const Instagram = ({ className = "" }: { className?: string }) => (
@@ -15,19 +15,12 @@ const Facebook = ({ className = "" }: { className?: string }) => (
   </svg>
 );
 import { Button } from "@/components/ui/button";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 import hero from "@/assets/hero-store.jpg";
 import heroBottle from "@/assets/hero-bottle.png";
 import catWine from "@/assets/cat-wine.jpg";
 import catBeer from "@/assets/cat-beer.jpg";
 import catSpirits from "@/assets/cat-spirits.jpg";
-import storefront from "@/assets/storefront.jpg";
-import storeInside from "@/assets/store-inside.jpg";
-import pBourbon from "@/assets/p-bourbon.jpg";
-import pWine from "@/assets/p-wine.jpg";
-import pBeer from "@/assets/p-beer.jpg";
-import pTequila from "@/assets/p-tequila.jpg";
 
 const PHONE = "+15123835004";
 const PHONE_DISPLAY = "(512) 383-5004";
@@ -36,6 +29,8 @@ const MAPS_URL = "https://www.google.com/maps/place/Johnnie's+Liquor+Store/@30.4
 const REVIEWS_URL = MAPS_URL;
 const IG_URL = "https://www.instagram.com/johnniesliquor_store/";
 const FB_URL = "https://facebook.com";
+const DOORDASH_URL = "https://www.doordash.com/";
+const GRUBHUB_URL = "https://www.grubhub.com/";
 
 const Section = ({ id, eyebrow, title, subtitle, children, className = "" }: {
   id?: string;
