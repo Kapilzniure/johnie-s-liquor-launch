@@ -154,7 +154,7 @@ const Hero = () => (
             <a href={`tel:${PHONE}`}><Phone className="w-5 h-5 mr-2" /> Call Now</a>
           </Button>
           <Button asChild variant="outlineGold" size="xl">
-            <a href={MAPS_URL} target="_blank" rel="noopener"><Navigation className="w-5 h-5 mr-2" /> Get Directions</a>
+            <a href={DIRECTIONS_URL} target="_blank" rel="noopener noreferrer"><Navigation className="w-5 h-5 mr-2" /> Get Directions</a>
           </Button>
           <Button asChild variant="outlineGold" size="xl">
             <a href="#delivery"><Truck className="w-5 h-5 mr-2" /> Order Delivery</a>
@@ -186,7 +186,7 @@ const Hero = () => (
 
 const QuickActions = () => {
   const items = [
-    { icon: Navigation, label: "Get Directions", href: MAPS_URL, ext: true },
+    { icon: Navigation, label: "Get Directions", href: DIRECTIONS_URL, ext: true },
     { icon: Phone, label: "Call Now", href: `tel:${PHONE}` },
     { icon: Truck, label: "Order Delivery", href: "#delivery" },
     { icon: Instagram, label: "Instagram", href: IG_URL, ext: true },
@@ -378,7 +378,7 @@ const VisitUs = () => (
           <h3 className="font-display text-xl font-bold mb-1">Address</h3>
           <p className="text-foreground/80 text-sm">{ADDRESS}</p>
           <Button asChild variant="gold" className="mt-4 w-full">
-            <a href={MAPS_URL} target="_blank" rel="noopener"><Navigation className="w-4 h-4 mr-2" /> Get Directions</a>
+            <a href={DIRECTIONS_URL} target="_blank" rel="noopener noreferrer"><Navigation className="w-4 h-4 mr-2" /> Get Directions</a>
           </Button>
         </div>
         <div className="p-6 rounded-2xl bg-gradient-card border border-border">
@@ -461,7 +461,7 @@ const StickyMobileBar = () => (
       <a href="#delivery" className="flex flex-col items-center justify-center gap-1 py-3 font-semibold text-xs active:bg-gold/10">
         <Truck className="w-5 h-5 text-gold" /> Delivery
       </a>
-      <a href={MAPS_URL} target="_blank" rel="noopener" className="flex flex-col items-center justify-center gap-1 py-3 font-semibold text-xs bg-gradient-gold text-primary-foreground">
+      <a href={DIRECTIONS_URL} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center justify-center gap-1 py-3 font-semibold text-xs bg-gradient-gold text-primary-foreground">
         <Navigation className="w-5 h-5" /> Directions
       </a>
     </div>
