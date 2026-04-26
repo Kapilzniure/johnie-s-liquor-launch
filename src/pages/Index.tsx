@@ -31,7 +31,8 @@ import pBeer from "@/assets/p-beer.jpg";
 const PHONE = "+15123835004";
 const PHONE_DISPLAY = "(512) 383-5004";
 const ADDRESS = "13201 Pond Springs Rd, Suite 203, Austin, TX 78729";
-const MAPS_URL = "https://www.google.com/maps/place/Johnnie's+Liquor+Store/@30.4458344,-97.778399,17z/data=!3m2!4b1!5s0x8644cd2fb7b7f3f1:0xc10671f0e8c46ad0!4m6!3m5!1s0x8644cd31e09cd681:0x7df1cdbd4a044e3!8m2!3d30.4458344!4d-97.778399!16s%2Fg%2F11h_prtsbz?entry=ttu&g_ep=EgoyMDI2MDQxOS4wIKXMDSoASAFQAw%3D%3D";
+const MAPS_URL = "https://www.google.com/maps/place/Johnnie's+Liquor+Store/@30.445839,-97.7809739,17z/data=!3m2!4b1!5s0x8644cd2fb7b7f3f1:0xc10671f0e8c46ad0!4m6!3m5!1s0x8644cd31e09cd681:0x7df1cdbd4a044e3!8m2!3d30.4458344!4d-97.778399!16s%2Fg%2F11h_prtsbz?entry=ttu&g_ep=EgoyMDI2MDQyMi4wIKXMDSoASAFQAw%3D%3D";
+const DIRECTIONS_URL = "https://www.google.com/maps/dir/?api=1&destination=Johnnie%27s+Liquor+Store%2C+13201+Pond+Springs+Rd+Suite+203%2C+Austin%2C+TX+78729&destination_place_id=ChIJgdac4DHNRIYRY04ETb3N8X0";
 const REVIEWS_URL = MAPS_URL;
 const IG_URL = "https://www.instagram.com/johnniesliquor_store/";
 const FB_URL = "https://www.facebook.com/profile.php?id=61572162096238&locale=ja_JP#";
@@ -263,9 +264,9 @@ const Delivery = () => (
 
 const Favorites = () => {
   const items = [
-    { img: pBourbon, cat: "Whiskey · 750ml", name: "Single Barrel Bourbon",  },
-    { img: pWine, cat: "Wine · 750ml", name: "Texas Reserve Red",  },
-    { img: pBeer, cat: "Beer · 6-pack", name: "Local Craft IPA", },
+    { img: pBourbon, cat: "Whiskey · 750ml", name: "Single Barrel Bourbon", price: "$42" },
+    { img: pWine, cat: "Wine · 750ml", name: "Texas Reserve Red", price: "$28" },
+    { img: pBeer, cat: "Beer · 6-pack", name: "Local Craft IPA", price: "$14" },
   ];
   return (
     <Section id="favorites" eyebrow="Customer favorites" title="Popular this month" subtitle="What our regulars are picking up. Stop by to see the full lineup in store.">
@@ -327,11 +328,17 @@ const OurStory = () => {
     <Section id="story" eyebrow="Our Story" title="A family-owned Austin staple" subtitle="Proudly serving Austin for 20+ years — focused on great selection, fair prices, and friendly service.">
       <div className="grid md:grid-cols-3 gap-5">
         {stats.map((s) => (
-          <div key={s.label} className="p-7 rounded-2xl bg-gradient-card border border-border text-center hover-lift">
+          <a
+            key={s.label}
+            href={MAPS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block p-7 rounded-2xl bg-gradient-card border border-border text-center hover-lift hover:border-gold/50 transition-smooth"
+          >
             <s.icon className="w-8 h-8 text-gold mx-auto mb-3" />
             <div className="text-4xl md:text-5xl font-display font-bold gradient-gold-text">{s.value}</div>
             <div className="mt-2 text-sm text-muted-foreground uppercase tracking-widest">{s.label}</div>
-          </div>
+          </a>
         ))}
       </div>
     </Section>
