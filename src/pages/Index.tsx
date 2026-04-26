@@ -34,7 +34,7 @@ const ADDRESS = "13201 Pond Springs Rd, Suite 203, Austin, TX 78729";
 const MAPS_URL = "https://www.google.com/maps/place/Johnnie's+Liquor+Store/@30.4458344,-97.778399,17z/data=!3m2!4b1!5s0x8644cd2fb7b7f3f1:0xc10671f0e8c46ad0!4m6!3m5!1s0x8644cd31e09cd681:0x7df1cdbd4a044e3!8m2!3d30.4458344!4d-97.778399!16s%2Fg%2F11h_prtsbz?entry=ttu&g_ep=EgoyMDI2MDQxOS4wIKXMDSoASAFQAw%3D%3D";
 const REVIEWS_URL = MAPS_URL;
 const IG_URL = "https://www.instagram.com/johnniesliquor_store/";
-const FB_URL = "https://facebook.com";
+const FB_URL = "https://www.facebook.com/profile.php?id=61572162096238&locale=ja_JP#";
 const DOORDASH_URL = "https://www.doordash.com/";
 const GRUBHUB_URL = "https://www.grubhub.com/";
 
@@ -189,11 +189,12 @@ const QuickActions = () => {
     { icon: Phone, label: "Call Now", href: `tel:${PHONE}` },
     { icon: Truck, label: "Order Delivery", href: "#delivery" },
     { icon: Instagram, label: "Instagram", href: IG_URL, ext: true },
+    { icon: Facebook, label: "Facebook", href: FB_URL, ext: true },
   ];
   return (
     <section id="quick" className="border-y border-border bg-card/50">
       <div className="container mx-auto px-5">
-        <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-border">
+        <div className="grid grid-cols-2 md:grid-cols-5 divide-y md:divide-y-0 md:divide-x divide-border">
           {items.map((it) => (
             <a key={it.label} href={it.href} target={it.ext ? "_blank" : undefined} rel={it.ext ? "noopener" : undefined}
                className="flex items-center justify-center gap-3 py-6 md:py-7 hover:bg-gold/5 transition-smooth group">
@@ -262,9 +263,9 @@ const Delivery = () => (
 
 const Favorites = () => {
   const items = [
-    { img: pBourbon, cat: "Whiskey · 750ml", name: "Single Barrel Bourbon", price: "$42" },
-    { img: pWine, cat: "Wine · 750ml", name: "Texas Reserve Red", price: "$28" },
-    { img: pBeer, cat: "Beer · 6-pack", name: "Local Craft IPA", price: "$14" },
+    { img: pBourbon, cat: "Whiskey · 750ml", name: "Single Barrel Bourbon",  },
+    { img: pWine, cat: "Wine · 750ml", name: "Texas Reserve Red",  },
+    { img: pBeer, cat: "Beer · 6-pack", name: "Local Craft IPA", },
   ];
   return (
     <Section id="favorites" eyebrow="Customer favorites" title="Popular this month" subtitle="What our regulars are picking up. Stop by to see the full lineup in store.">
@@ -289,32 +290,32 @@ const Favorites = () => {
   );
 };
 
-const Specials = () => {
-  const offers = [
-    { tag: "Weekly", title: "20% Off Wine Wednesdays", desc: "Every Wednesday on bottles over $20.", icon: Wine },
-    { tag: "Limited", title: "Buy 2, Get 1 Free Craft Beer", desc: "Mix & match local Texas craft six-packs.", icon: Beer },
-    { tag: "Monthly", title: "Whiskey of the Month", desc: "Featured premium bourbon at $10 off.", icon: GlassWater },
-  ];
-  return (
-    <Section id="specials" eyebrow="Promotions" title="Weekly specials & offers" subtitle="Fresh deals every week — stop in or order delivery to save more.">
-      <div className="grid md:grid-cols-3 gap-6">
-        {offers.map((o) => (
-          <article key={o.title} className="group relative p-7 rounded-2xl bg-gradient-card border border-border hover:border-gold/50 hover-lift">
-            <div className="flex items-center justify-between mb-5">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] uppercase tracking-[0.2em] text-gold border border-gold/30 bg-gold/5">
-                <Sparkles className="w-3 h-3" /> {o.tag}
-              </span>
-              <o.icon className="w-7 h-7 text-gold/70 group-hover:text-gold transition-smooth" />
-            </div>
-            <h3 className="text-2xl font-display font-bold leading-tight mb-2">{o.title}</h3>
-            <p className="text-foreground/70 text-sm">{o.desc}</p>
-          </article>
-        ))}
-      </div>
-      <p className="mt-8 text-xs text-muted-foreground">Offers subject to availability. Must be 21+. Please drink responsibly.</p>
-    </Section>
-  );
-};
+// const Specials = () => {
+//   const offers = [
+//     { tag: "Weekly", title: "20% Off Wine Wednesdays", desc: "Every Wednesday on bottles over $20.", icon: Wine },
+//     { tag: "Limited", title: "Buy 2, Get 1 Free Craft Beer", desc: "Mix & match local Texas craft six-packs.", icon: Beer },
+//     { tag: "Monthly", title: "Whiskey of the Month", desc: "Featured premium bourbon at $10 off.", icon: GlassWater },
+//   ];
+//   return (
+//     <Section id="specials" eyebrow="Promotions" title="Weekly specials & offers" subtitle="Fresh deals every week — stop in or order delivery to save more.">
+//       <div className="grid md:grid-cols-3 gap-6">
+//         {offers.map((o) => (
+//           <article key={o.title} className="group relative p-7 rounded-2xl bg-gradient-card border border-border hover:border-gold/50 hover-lift">
+//             <div className="flex items-center justify-between mb-5">
+//               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] uppercase tracking-[0.2em] text-gold border border-gold/30 bg-gold/5">
+//                 <Sparkles className="w-3 h-3" /> {o.tag}
+//               </span>
+//               <o.icon className="w-7 h-7 text-gold/70 group-hover:text-gold transition-smooth" />
+//             </div>
+//             <h3 className="text-2xl font-display font-bold leading-tight mb-2">{o.title}</h3>
+//             <p className="text-foreground/70 text-sm">{o.desc}</p>
+//           </article>
+//         ))}
+//       </div>
+//       <p className="mt-8 text-xs text-muted-foreground">Offers subject to availability. Must be 21+. Please drink responsibly.</p>
+//     </Section>
+//   );
+// };
 
 const OurStory = () => {
   const stats = [
@@ -467,7 +468,7 @@ const Index = () => (
       <Hero />
       <QuickActions />
       <Favorites />
-      <Specials />
+      {/* <Specials /> */}
       <Categories />
       <OurStory />
       <Gallery />
