@@ -34,7 +34,7 @@ const ADDRESS = "13201 Pond Springs Rd, Suite 203, Austin, TX 78729";
 const MAPS_URL = "https://www.google.com/maps/place/Johnnie's+Liquor+Store/@30.4458344,-97.778399,17z/data=!3m2!4b1!5s0x8644cd2fb7b7f3f1:0xc10671f0e8c46ad0!4m6!3m5!1s0x8644cd31e09cd681:0x7df1cdbd4a044e3!8m2!3d30.4458344!4d-97.778399!16s%2Fg%2F11h_prtsbz?entry=ttu&g_ep=EgoyMDI2MDQxOS4wIKXMDSoASAFQAw%3D%3D";
 const REVIEWS_URL = MAPS_URL;
 const IG_URL = "https://www.instagram.com/johnniesliquor_store/";
-const FB_URL = "https://www.facebook.com/profile.php?id=61572162096238&locale=ja_JP#";
+const FB_URL = "https://www.facebook.com/people/Johnnies-Liquor-Store/61567907153640/";
 const DOORDASH_URL = "https://www.doordash.com/";
 const GRUBHUB_URL = "https://www.grubhub.com/";
 
@@ -210,32 +210,55 @@ const QuickActions = () => {
 
 
 
-const Categories = () => {
-  const cats = [
-    { icon: Wine, title: "Wine", img: catWine, desc: "Reds, whites, rosés & sparkling from around the world." },
-    { icon: Beer, title: "Beer", img: catBeer, desc: "Local Texas craft, imports, ciders & cold six-packs." },
-    { icon: GlassWater, title: "Spirits", img: catSpirits, desc: "Whiskey, bourbon, tequila, vodka, gin, rum & more." },
-  ];
-  return (
-    <Section id="products" eyebrow="What we offer" title="Wine, beer & spirits" subtitle="A wide selection of premium and everyday options — backed by friendly local service.">
-      <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
-        {cats.map((c) => (
-          <article key={c.title} className="group relative overflow-hidden rounded-2xl bg-gradient-card border border-border hover-lift">
-            <div className="aspect-[4/5] overflow-hidden">
-              <img src={c.img} alt={`${c.title} selection at Johnnies Liquor`} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-smooth duration-700" />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+const PreviewCard = () => (
+  <Section eyebrow="SEO Preview" title="How we appear in search" subtitle="This is how our website looks in Google search results.">
+    <div className="max-w-4xl mx-auto">
+      <div className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+        {/* Desktop Layout */}
+        <div className="hidden md:flex items-start gap-4">
+          {/* Logo and Title */}
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-3 mb-2">
+              {/* Replace this URL with your logo */}
+              <img src="/og-image.jpg" alt="Johnnies Liquor Logo" className="w-6 h-6 rounded-sm flex-shrink-0 logo" />
+              <h3 className="text-lg font-semibold text-blue-600 truncate">Johnnies Liquor Store - Austin</h3>
             </div>
-            <div className="absolute inset-x-0 bottom-0 p-7">
-              <c.icon className="w-7 h-7 text-gold mb-3" />
-              <h3 className="text-3xl font-display font-bold mb-2">{c.title}</h3>
-              <p className="text-foreground/70">{c.desc}</p>
-            </div>
-          </article>
-        ))}
+            <div className="text-sm text-green-700 truncate mb-2">johnniesliquor.com</div>
+            <p className="text-sm text-gray-600 leading-relaxed">
+              Johnnies Liquor is Austin's trusted liquor store. Wine, beer, whiskey, tequila & spirits at great prices. Visit us at 13201 Pond Springs Rd, Suite 203.
+            </p>
+          </div>
+          
+          {/* Preview Image */}
+          <div className="flex-shrink-0">
+            {/* Replace this URL with your image */}
+            <img src="/johnniesliquor.webp" alt="Johnnies Liquor Store Preview" className="w-24 h-18 object-cover rounded-sm border border-gray-200" />
+          </div>
+        </div>
+        
+        {/* Mobile Layout */}
+        <div className="md:hidden">
+          {/* Logo and Title */}
+          <div className="flex items-center gap-3 mb-2">
+            {/* Replace this URL with your logo */}
+            <img src="/og-image.jpg" alt="Johnnies Liquor Logo" className="w-6 h-6 rounded-sm flex-shrink-0 logo" />
+            <h3 className="text-lg font-semibold text-blue-600 truncate">Johnnies Liquor Store - Austin</h3>
+          </div>
+          <div className="text-sm text-green-700 truncate mb-2">johnniesliquor.com</div>
+          <p className="text-sm text-gray-600 mb-3 leading-relaxed">
+            Johnnies Liquor is Austin's trusted liquor store. Wine, beer, whiskey, tequila & spirits at great prices. Visit us at 13201 Pond Springs Rd, Suite 203.
+          </p>
+          
+          {/* Preview Image */}
+          <div className="flex justify-center">
+            {/* Replace this URL with your image */}
+            <img src="YOUR_IMAGE_URL_HERE" alt="Johnnies Liquor Store Preview" className="w-full max-w-xs h-32 object-cover rounded-sm border border-gray-200" />
+          </div>
+        </div>
       </div>
-    </Section>
-  );
-};
+    </div>
+  </Section>
+);
 const Delivery = () => (
   <Section id="delivery" eyebrow="Delivery available" title="Order from home" subtitle="Get your favorite drinks delivered. Available on DoorDash & Grubhub.">
     <div className="grid md:grid-cols-2 gap-5 max-w-3xl">
@@ -467,6 +490,7 @@ const Index = () => (
     <main>
       <Hero />
       <QuickActions />
+      <PreviewCard />
       <Favorites />
       {/* <Specials /> */}
       <Categories />
