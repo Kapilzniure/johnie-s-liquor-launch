@@ -31,7 +31,8 @@ import pBeer from "@/assets/p-beer.jpg";
 const PHONE = "+15123835004";
 const PHONE_DISPLAY = "(512) 383-5004";
 const ADDRESS = "13201 Pond Springs Rd, Suite 203, Austin, TX 78729";
-const MAPS_URL = "https://www.google.com/maps/place/Johnnie's+Liquor+Store/@30.4458344,-97.778399,17z/data=!3m2!4b1!5s0x8644cd2fb7b7f3f1:0xc10671f0e8c46ad0!4m6!3m5!1s0x8644cd31e09cd681:0x7df1cdbd4a044e3!8m2!3d30.4458344!4d-97.778399!16s%2Fg%2F11h_prtsbz?entry=ttu&g_ep=EgoyMDI2MDQxOS4wIKXMDSoASAFQAw%3D%3D";
+const MAPS_URL = "https://www.google.com/maps/place/Johnnie's+Liquor+Store/@30.445839,-97.7809739,17z/data=!3m2!4b1!5s0x8644cd2fb7b7f3f1:0xc10671f0e8c46ad0!4m6!3m5!1s0x8644cd31e09cd681:0x7df1cdbd4a044e3!8m2!3d30.4458344!4d-97.778399!16s%2Fg%2F11h_prtsbz?entry=ttu&g_ep=EgoyMDI2MDQyMi4wIKXMDSoASAFQAw%3D%3D";
+const DIRECTIONS_URL = "https://www.google.com/maps/dir/?api=1&destination=Johnnie%27s+Liquor+Store%2C+13201+Pond+Springs+Rd+Suite+203%2C+Austin%2C+TX+78729&destination_place_id=ChIJgdac4DHNRIYRY04ETb3N8X0";
 const REVIEWS_URL = MAPS_URL;
 const IG_URL = "https://www.instagram.com/johnniesliquor_store/";
 const FB_URL = "https://www.facebook.com/people/Johnnies-Liquor-Store/61567907153640/";
@@ -153,7 +154,7 @@ const Hero = () => (
             <a href={`tel:${PHONE}`}><Phone className="w-5 h-5 mr-2" /> Call Now</a>
           </Button>
           <Button asChild variant="outlineGold" size="xl">
-            <a href={MAPS_URL} target="_blank" rel="noopener"><Navigation className="w-5 h-5 mr-2" /> Get Directions</a>
+            <a href={DIRECTIONS_URL} target="_blank" rel="noopener noreferrer"><Navigation className="w-5 h-5 mr-2" /> Get Directions</a>
           </Button>
           <Button asChild variant="outlineGold" size="xl">
             <a href="#delivery"><Truck className="w-5 h-5 mr-2" /> Order Delivery</a>
@@ -185,7 +186,7 @@ const Hero = () => (
 
 const QuickActions = () => {
   const items = [
-    { icon: Navigation, label: "Get Directions", href: MAPS_URL, ext: true },
+    { icon: Navigation, label: "Get Directions", href: DIRECTIONS_URL, ext: true },
     { icon: Phone, label: "Call Now", href: `tel:${PHONE}` },
     { icon: Truck, label: "Order Delivery", href: "#delivery" },
     { icon: Instagram, label: "Instagram", href: IG_URL, ext: true },
@@ -210,55 +211,6 @@ const QuickActions = () => {
 
 
 
-const PreviewCard = () => (
-  <Section eyebrow="SEO Preview" title="How we appear in search" subtitle="This is how our website looks in Google search results.">
-    <div className="max-w-4xl mx-auto">
-      <div className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
-        {/* Desktop Layout */}
-        <div className="hidden md:flex items-start gap-4">
-          {/* Logo and Title */}
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-3 mb-2">
-              {/* Replace this URL with your logo */}
-              <img src="/og-image.jpg" alt="Johnnies Liquor Logo" className="w-6 h-6 rounded-sm flex-shrink-0 logo" />
-              <h3 className="text-lg font-semibold text-blue-600 truncate">Johnnies Liquor Store - Austin</h3>
-            </div>
-            <div className="text-sm text-green-700 truncate mb-2">johnniesliquor.com</div>
-            <p className="text-sm text-gray-600 leading-relaxed">
-              Johnnies Liquor is Austin's trusted liquor store. Wine, beer, whiskey, tequila & spirits at great prices. Visit us at 13201 Pond Springs Rd, Suite 203.
-            </p>
-          </div>
-          
-          {/* Preview Image */}
-          <div className="flex-shrink-0">
-            {/* Replace this URL with your image */}
-            <img src="/johnniesliquor.webp" alt="Johnnies Liquor Store Preview" className="w-24 h-18 object-cover rounded-sm border border-gray-200" />
-          </div>
-        </div>
-        
-        {/* Mobile Layout */}
-        <div className="md:hidden">
-          {/* Logo and Title */}
-          <div className="flex items-center gap-3 mb-2">
-            {/* Replace this URL with your logo */}
-            <img src="/og-image.jpg" alt="Johnnies Liquor Logo" className="w-6 h-6 rounded-sm flex-shrink-0 logo" />
-            <h3 className="text-lg font-semibold text-blue-600 truncate">Johnnies Liquor Store - Austin</h3>
-          </div>
-          <div className="text-sm text-green-700 truncate mb-2">johnniesliquor.com</div>
-          <p className="text-sm text-gray-600 mb-3 leading-relaxed">
-            Johnnies Liquor is Austin's trusted liquor store. Wine, beer, whiskey, tequila & spirits at great prices. Visit us at 13201 Pond Springs Rd, Suite 203.
-          </p>
-          
-          {/* Preview Image */}
-          <div className="flex justify-center">
-            {/* Replace this URL with your image */}
-            <img src="YOUR_IMAGE_URL_HERE" alt="Johnnies Liquor Store Preview" className="w-full max-w-xs h-32 object-cover rounded-sm border border-gray-200" />
-          </div>
-        </div>
-      </div>
-    </div>
-  </Section>
-);
 const Delivery = () => (
   <Section id="delivery" eyebrow="Delivery available" title="Order from home" subtitle="Get your favorite drinks delivered. Available on DoorDash & Grubhub.">
     <div className="grid md:grid-cols-2 gap-5 max-w-3xl">
@@ -286,9 +238,9 @@ const Delivery = () => (
 
 const Favorites = () => {
   const items = [
-    { img: pBourbon, cat: "Whiskey · 750ml", name: "Single Barrel Bourbon",  },
-    { img: pWine, cat: "Wine · 750ml", name: "Texas Reserve Red",  },
-    { img: pBeer, cat: "Beer · 6-pack", name: "Local Craft IPA", },
+    { img: pBourbon, cat: "Whiskey · 750ml", name: "Single Barrel Bourbon", price: "$42" },
+    { img: pWine, cat: "Wine · 750ml", name: "Texas Reserve Red", price: "$28" },
+    { img: pBeer, cat: "Beer · 6-pack", name: "Local Craft IPA", price: "$14" },
   ];
   return (
     <Section id="favorites" eyebrow="Customer favorites" title="Popular this month" subtitle="What our regulars are picking up. Stop by to see the full lineup in store.">
@@ -350,11 +302,17 @@ const OurStory = () => {
     <Section id="story" eyebrow="Our Story" title="A family-owned Austin staple" subtitle="Proudly serving Austin for 20+ years — focused on great selection, fair prices, and friendly service.">
       <div className="grid md:grid-cols-3 gap-5">
         {stats.map((s) => (
-          <div key={s.label} className="p-7 rounded-2xl bg-gradient-card border border-border text-center hover-lift">
+          <a
+            key={s.label}
+            href={MAPS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block p-7 rounded-2xl bg-gradient-card border border-border text-center hover-lift hover:border-gold/50 transition-smooth"
+          >
             <s.icon className="w-8 h-8 text-gold mx-auto mb-3" />
             <div className="text-4xl md:text-5xl font-display font-bold gradient-gold-text">{s.value}</div>
             <div className="mt-2 text-sm text-muted-foreground uppercase tracking-widest">{s.label}</div>
-          </div>
+          </a>
         ))}
       </div>
     </Section>
@@ -394,7 +352,7 @@ const VisitUs = () => (
           <h3 className="font-display text-xl font-bold mb-1">Address</h3>
           <p className="text-foreground/80 text-sm">{ADDRESS}</p>
           <Button asChild variant="gold" className="mt-4 w-full">
-            <a href={MAPS_URL} target="_blank" rel="noopener"><Navigation className="w-4 h-4 mr-2" /> Get Directions</a>
+            <a href={DIRECTIONS_URL} target="_blank" rel="noopener noreferrer"><Navigation className="w-4 h-4 mr-2" /> Get Directions</a>
           </Button>
         </div>
         <div className="p-6 rounded-2xl bg-gradient-card border border-border">
@@ -477,7 +435,7 @@ const StickyMobileBar = () => (
       <a href="#delivery" className="flex flex-col items-center justify-center gap-1 py-3 font-semibold text-xs active:bg-gold/10">
         <Truck className="w-5 h-5 text-gold" /> Delivery
       </a>
-      <a href={MAPS_URL} target="_blank" rel="noopener" className="flex flex-col items-center justify-center gap-1 py-3 font-semibold text-xs bg-gradient-gold text-primary-foreground">
+      <a href={DIRECTIONS_URL} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center justify-center gap-1 py-3 font-semibold text-xs bg-gradient-gold text-primary-foreground">
         <Navigation className="w-5 h-5" /> Directions
       </a>
     </div>
@@ -490,10 +448,9 @@ const Index = () => (
     <main>
       <Hero />
       <QuickActions />
-      <PreviewCard />
       <Favorites />
       {/* <Specials /> */}
-      <Categories />
+      {/* <Categories /> */}
       <OurStory />
       <Gallery />
       <Delivery />
