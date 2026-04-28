@@ -295,7 +295,7 @@ const Favorites = () => {
 const OurStory = () => {
   const stats = [
     { icon: Award, value: "20+", label: "Years serving Austin" },
-    { icon: Package, value: "1.2k", label: "Products in store" },
+    { icon: Package, value: "3.2k", label: "Products in store" },
     { icon: Star, value: "4.8★", label: "Customer rating" },
   ];
   return (
@@ -309,9 +309,9 @@ const OurStory = () => {
             rel="noopener noreferrer"
             className="block p-7 rounded-2xl bg-gradient-card border border-border text-center hover-lift hover:border-gold/50 transition-smooth"
           >
-            <s.icon className="w-8 h-8 text-gold mx-auto mb-3" />
-            <div className="text-4xl md:text-5xl font-display font-bold gradient-gold-text">{s.value}</div>
-            <div className="mt-2 text-sm text-muted-foreground uppercase tracking-widest">{s.label}</div>
+            <s.icon className="w-8 h-8 text-gold mx-auto mb-2" />
+            <div className="text-7xl md:text-4xl font-display font-bold gradient-gold-text">{s.value}</div>
+            <div className="mt-7 text-sm text-muted-foreground uppercase tracking-widest">{s.label}</div>
           </a>
         ))}
       </div>
