@@ -21,9 +21,9 @@ import heroBottle from "@/assets/hero-bottle.png";
 import catWine from "@/assets/cat-wine.jpg";
 import catBeer from "@/assets/cat-beer.jpg";
 import catSpirits from "@/assets/cat-spirits.jpg";
-import storefront from "@/assets/storefront.jpg";
-import storeInside from "@/assets/store-inside.jpg";
-import shelves from "@/assets/p-wine.jpg";
+import storefront from "/public/rum.jpg";
+import storeInside from "/public/johnniesliquor.webp";
+import shelves from "/public/freeze.jpg";
 import pBourbon from "@/assets/p-bourbon.jpg";
 import pWine from "@/assets/p-wine.jpg";
 import pBeer from "@/assets/p-beer.jpg";
@@ -321,8 +321,8 @@ const OurStory = () => {
 
 const Gallery = () => {
   const shots = [
-    { img: storefront, caption: "Easy to find location" },
-    { img: storeInside, caption: "Clean and organized" },
+    { img: storeInside , caption: "Easy to find location" },
+    { img: storefront, caption: "Clean and organized" },
     { img: shelves, caption: "Wide selection" },
   ];
   return (
@@ -330,7 +330,7 @@ const Gallery = () => {
       <div className="grid md:grid-cols-3 gap-5">
         {shots.map((s) => (
           <figure key={s.caption} className="group relative overflow-hidden rounded-2xl border border-border hover-lift">
-            <div className="aspect-[4/5] overflow-hidden">
+            <div className="aspect-[5/5] overflow-hidden">
               <img src={s.img} alt={s.caption} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-smooth duration-700" />
             </div>
             <div className="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-background via-background/70 to-transparent">
