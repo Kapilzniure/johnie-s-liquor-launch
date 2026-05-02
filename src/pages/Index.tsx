@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import {
   Phone, MapPin, Clock, Navigation, Menu, X,
   Wine, Beer, GlassWater, Truck, ChevronDown, Sparkles, Star, Package, Award,
@@ -95,113 +94,11 @@ const Header = () => {
           <div className="leading-tight">
             <div className="font-display font-bold text-lg tracking-tight">Johnnies</div>
             <div className="text-[10px] uppercase tracking-[0.25em] text-gold -mt-0.5">Liquor · Austin</div>
-             <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="sm:max-w-lg bg-black text-white border-gray-800 max-h-[80vh] overflow-y-auto">
-          <DialogHeader className="flex flex-row items-center justify-between">
-            <DialogTitle className="text-xl font-bold">Quick Survey</DialogTitle>
-            <Button variant="ghost" size="sm" onClick={() => setIsOpen(false)}>
-              <X className="w-4 h-4" />
-            </Button>
-          </DialogHeader>
-          <form onSubmit={onSubmit} className="space-y-6">
-            <input type="hidden" name="q1" value={q1 === 'Other' ? other1 : q1} />
-            <input type="hidden" name="q2" value={q2 === 'Other' ? other2 : q2} />
-            <input type="hidden" name="q3" value={q3} />
-            <input type="hidden" name="q4" value={q4 === 'Other' ? other4 : q4} />
-            <div>
-              <label className="block text-sm font-medium mb-2">How did you hear about us?</label>
-              <Select value={q1} onValueChange={setQ1}>
-                <SelectTrigger className="bg-gray-900 border-gray-700">
-                  <SelectValue placeholder="Select an option" />
-                </SelectTrigger>
-                <SelectContent className="bg-gray-900 border-gray-700">
-                  <SelectItem value="Instagram">Instagram</SelectItem>
-                  <SelectItem value="Facebook">Facebook</SelectItem>
-                  <SelectItem value="Google">Google</SelectItem>
-                  <SelectItem value="Friends">Friends</SelectItem>
-                  <SelectItem value="Website">Website</SelectItem>
-                  <SelectItem value="AI">AI</SelectItem>
-                  <SelectItem value="Other">Other</SelectItem>
-                </SelectContent>
-              </Select>
-              {q1 === 'Other' && (
-                <Input
-                  value={other1}
-                  onChange={(e) => setOther1(e.target.value)}
-                  placeholder="Please specify"
-                  className="mt-2 bg-gray-900 border-gray-700"
-                />
-              )}
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium mb-2">What do you usually buy?</label>
-              <Select value={q2} onValueChange={setQ2}>
-                <SelectTrigger className="bg-gray-900 border-gray-700">
-                  <SelectValue placeholder="Select an option" />
-                </SelectTrigger>
-                <SelectContent className="bg-gray-900 border-gray-700">
-                  <SelectItem value="Beer">Beer</SelectItem>
-                  <SelectItem value="Wine">Wine</SelectItem>
-                  <SelectItem value="Whiskey">Whiskey</SelectItem>
-                  <SelectItem value="Other">Other</SelectItem>
-                </SelectContent>
-              </Select>
-              {q2 === 'Other' && (
-                <Input
-                  value={other2}
-                  onChange={(e) => setOther2(e.target.value)}
-                  placeholder="Please specify"
-                  className="mt-2 bg-gray-900 border-gray-700"
-                />
-              )}
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium mb-2">How often do you visit?</label>
-              <Select value={q3} onValueChange={setQ3}>
-                <SelectTrigger className="bg-gray-900 border-gray-700">
-                  <SelectValue placeholder="Select an option" />
-                </SelectTrigger>
-                <SelectContent className="bg-gray-900 border-gray-700">
-                  <SelectItem value="Weekly">Weekly</SelectItem>
-                  <SelectItem value="Monthly">Monthly</SelectItem>
-                  <SelectItem value="Occasionally">Occasionally</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium mb-2">What would you like more?</label>
-              <Select value={q4} onValueChange={setQ4}>
-                <SelectTrigger className="bg-gray-900 border-gray-700">
-                  <SelectValue placeholder="Select an option" />
-                </SelectTrigger>
-                <SelectContent className="bg-gray-900 border-gray-700">
-                  <SelectItem value="Discounts">Discounts</SelectItem>
-                  <SelectItem value="New products">New products</SelectItem>
-                  <SelectItem value="Events">Events</SelectItem>
-                  <SelectItem value="Other">Other</SelectItem>
-                </SelectContent>
-              </Select>
-              {q4 === 'Other' && (
-                <Textarea
-                  value={other4}
-                  onChange={(e) => setOther4(e.target.value)}
-                  placeholder="Please specify"
-                  className="mt-2 bg-gray-900 border-gray-700"
-                />
-              )}
-            </div>
-
-            <Button type="submit" disabled={isSubmitting} className="w-full bg-gold hover:bg-gold/90">
-              {isSubmitting ? 'Submitting...' : 'Submit'}
-            </Button>
-          </form>
-        </DialogContent>
-      </Dialog>
           </div>
         </a>
+        <div className="md:hidden flex items-center ml-auto mr-2">
+          <SurveyButton onOpen={() => (window as any).__openSurvey?.()} />
+        </div>
         <nav className="hidden md:flex items-center gap-10">
           {links.map((l) => (
             <a key={l.href} href={l.href} className="text-sm font-medium text-foreground/80 hover:text-gold transition-smooth">
