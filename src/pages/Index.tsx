@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import {
   Phone, MapPin, Clock, Navigation, Menu, X,
   Wine, Beer, GlassWater, Truck, ChevronDown, Sparkles, Star, Package, Award,
@@ -15,15 +16,16 @@ const Facebook = ({ className = "" }: { className?: string }) => (
   </svg>
 );
 import { Button } from "@/components/ui/button";
+import Survey, { SurveyButton } from "@/components/Survey";
 
 import hero from "@/assets/hero-store.jpg";
 import heroBottle from "@/assets/hero-bottle.png";
 import catWine from "@/assets/cat-wine.jpg";
 import catBeer from "@/assets/cat-beer.jpg";
 import catSpirits from "@/assets/cat-spirits.jpg";
-import storefront from "/public/rum.jpg";
-import storeInside from "/public/johnniesliquor.webp";
-import shelves from "/public/freeze.jpg";
+import storefront from "@/assets/rum.jpg";
+import storeInside from "@/assets/johnniesliquor.webp";
+import shelves from "@/assets/freeze.jpg";
 import pBourbon from "@/assets/p-bourbon.jpg";
 import pWine from "@/assets/p-wine.jpg";
 import pBeer from "@/assets/p-beer.jpg";
@@ -32,7 +34,7 @@ const PHONE = "+15123835004";
 const PHONE_DISPLAY = "(512) 383-5004";
 const ADDRESS = "13201 Pond Springs Rd, Suite 203, Austin, TX 78729";
 const MAPS_URL = "https://www.google.com/maps/place/Johnnie's+Liquor+Store/@30.445839,-97.7809739,17z/data=!3m2!4b1!5s0x8644cd2fb7b7f3f1:0xc10671f0e8c46ad0!4m6!3m5!1s0x8644cd31e09cd681:0x7df1cdbd4a044e3!8m2!3d30.4458344!4d-97.778399!16s%2Fg%2F11h_prtsbz?entry=ttu&g_ep=EgoyMDI2MDQyMi4wIKXMDSoASAFQAw%3D%3D";
-const DIRECTIONS_URL = "https://www.google.com/maps/dir/?api=1&destination=Johnnie%27s+Liquor+Store%2C+13201+Pond+Springs+Rd+Suite+203%2C+Austin%2C+TX+78729&destination_place_id=ChIJgdac4DHNRIYRY04ETb3N8X0";
+const DIRECTIONS_URL = "https://www.google.com/maps/place/Johnnie's+Liquor+Store/@30.4458344,-97.778399,17z/data=!3m2!4b1!5s0x8644cd2fb7b7f3f1:0xc10671f0e8c46ad0!4m6!3m5!1s0x8644cd31e09cd681:0x7df1cdbd4a044e3!8m2!3d30.4458344!4d-97.778399!16s%2Fg%2F11h_prtsbz?entry=ttu&g_ep=EgoyMDI2MDQyOS4wIKXMDSoASAFQAw%3D%3D";
 const REVIEWS_URL = MAPS_URL;
 const IG_URL = "https://www.instagram.com/johnniesliquor_store/";
 const FB_URL = "https://www.facebook.com/people/Johnnies-Liquor-Store/61567907153640/";
@@ -93,6 +95,111 @@ const Header = () => {
           <div className="leading-tight">
             <div className="font-display font-bold text-lg tracking-tight">Johnnies</div>
             <div className="text-[10px] uppercase tracking-[0.25em] text-gold -mt-0.5">Liquor · Austin</div>
+             <Dialog open={isOpen} onOpenChange={setIsOpen}>
+        <DialogContent className="sm:max-w-lg bg-black text-white border-gray-800 max-h-[80vh] overflow-y-auto">
+          <DialogHeader className="flex flex-row items-center justify-between">
+            <DialogTitle className="text-xl font-bold">Quick Survey</DialogTitle>
+            <Button variant="ghost" size="sm" onClick={() => setIsOpen(false)}>
+              <X className="w-4 h-4" />
+            </Button>
+          </DialogHeader>
+          <form onSubmit={onSubmit} className="space-y-6">
+            <input type="hidden" name="q1" value={q1 === 'Other' ? other1 : q1} />
+            <input type="hidden" name="q2" value={q2 === 'Other' ? other2 : q2} />
+            <input type="hidden" name="q3" value={q3} />
+            <input type="hidden" name="q4" value={q4 === 'Other' ? other4 : q4} />
+            <div>
+              <label className="block text-sm font-medium mb-2">How did you hear about us?</label>
+              <Select value={q1} onValueChange={setQ1}>
+                <SelectTrigger className="bg-gray-900 border-gray-700">
+                  <SelectValue placeholder="Select an option" />
+                </SelectTrigger>
+                <SelectContent className="bg-gray-900 border-gray-700">
+                  <SelectItem value="Instagram">Instagram</SelectItem>
+                  <SelectItem value="Facebook">Facebook</SelectItem>
+                  <SelectItem value="Google">Google</SelectItem>
+                  <SelectItem value="Friends">Friends</SelectItem>
+                  <SelectItem value="Website">Website</SelectItem>
+                  <SelectItem value="AI">AI</SelectItem>
+                  <SelectItem value="Other">Other</SelectItem>
+                </SelectContent>
+              </Select>
+              {q1 === 'Other' && (
+                <Input
+                  value={other1}
+                  onChange={(e) => setOther1(e.target.value)}
+                  placeholder="Please specify"
+                  className="mt-2 bg-gray-900 border-gray-700"
+                />
+              )}
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium mb-2">What do you usually buy?</label>
+              <Select value={q2} onValueChange={setQ2}>
+                <SelectTrigger className="bg-gray-900 border-gray-700">
+                  <SelectValue placeholder="Select an option" />
+                </SelectTrigger>
+                <SelectContent className="bg-gray-900 border-gray-700">
+                  <SelectItem value="Beer">Beer</SelectItem>
+                  <SelectItem value="Wine">Wine</SelectItem>
+                  <SelectItem value="Whiskey">Whiskey</SelectItem>
+                  <SelectItem value="Other">Other</SelectItem>
+                </SelectContent>
+              </Select>
+              {q2 === 'Other' && (
+                <Input
+                  value={other2}
+                  onChange={(e) => setOther2(e.target.value)}
+                  placeholder="Please specify"
+                  className="mt-2 bg-gray-900 border-gray-700"
+                />
+              )}
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium mb-2">How often do you visit?</label>
+              <Select value={q3} onValueChange={setQ3}>
+                <SelectTrigger className="bg-gray-900 border-gray-700">
+                  <SelectValue placeholder="Select an option" />
+                </SelectTrigger>
+                <SelectContent className="bg-gray-900 border-gray-700">
+                  <SelectItem value="Weekly">Weekly</SelectItem>
+                  <SelectItem value="Monthly">Monthly</SelectItem>
+                  <SelectItem value="Occasionally">Occasionally</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium mb-2">What would you like more?</label>
+              <Select value={q4} onValueChange={setQ4}>
+                <SelectTrigger className="bg-gray-900 border-gray-700">
+                  <SelectValue placeholder="Select an option" />
+                </SelectTrigger>
+                <SelectContent className="bg-gray-900 border-gray-700">
+                  <SelectItem value="Discounts">Discounts</SelectItem>
+                  <SelectItem value="New products">New products</SelectItem>
+                  <SelectItem value="Events">Events</SelectItem>
+                  <SelectItem value="Other">Other</SelectItem>
+                </SelectContent>
+              </Select>
+              {q4 === 'Other' && (
+                <Textarea
+                  value={other4}
+                  onChange={(e) => setOther4(e.target.value)}
+                  placeholder="Please specify"
+                  className="mt-2 bg-gray-900 border-gray-700"
+                />
+              )}
+            </div>
+
+            <Button type="submit" disabled={isSubmitting} className="w-full bg-gold hover:bg-gold/90">
+              {isSubmitting ? 'Submitting...' : 'Submit'}
+            </Button>
+          </form>
+        </DialogContent>
+      </Dialog>
           </div>
         </a>
         <nav className="hidden md:flex items-center gap-10">
@@ -106,6 +213,7 @@ const Header = () => {
           <a href={`tel:${PHONE}`} className="text-sm font-medium hover:text-gold transition-smooth flex items-center gap-2">
             <Phone className="w-4 h-4" /> {PHONE_DISPLAY}
           </a>
+          <SurveyButton onOpen={() => (window as any).__openSurvey?.()} />
           <Button asChild variant="gold" size="sm">
             <a href={MAPS_URL} target="_blank" rel="noopener"><Navigation className="w-4 h-4 mr-1.5" /> Directions</a>
           </Button>
@@ -122,6 +230,12 @@ const Header = () => {
                 {l.label}
               </a>
             ))}
+            <div className="pt-4 border-t border-border">
+              <SurveyButton onOpen={() => {
+                (window as any).__openSurvey?.();
+                setOpen(false);
+              }} />
+            </div>
           </div>
         </div>
       )}
@@ -141,7 +255,7 @@ const Hero = () => (
           <span className="text-xs uppercase tracking-[0.2em] text-gold">Open today · Visit us</span>
         </div>
         <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-bold leading-[0.95]">
-          <span className="gradient-gold-text italic">Johnnie's</span><br />Liquor Store
+          <span className="gradient-gold-text italic">Johnnies</span><br />Liquor Store
         </h1>
         <p className="mt-6 text-lg md:text-xl text-foreground/80 max-w-xl">
           Wine • Beer • Spirits and more in Austin, TX
@@ -458,6 +572,7 @@ const Index = () => (
     </main>
     <Footer />
     <StickyMobileBar />
+    <Survey />
   </div>
 );
 
