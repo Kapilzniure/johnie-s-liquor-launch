@@ -36,15 +36,22 @@ const Survey = () => {
   const [other4, setOther4] = useState('');
   const [honeypot, setHoneypot] = useState('');
 
+   // ✅ FIXED HERE ONLY
   useEffect(() => {
-    const shown = localStorage.getItem('surveyShown');
     const today = new Date().toDateString();
-    
-    // Exit intent - show dialog only once per day
+    let triggered = false;
+
     const handleMouseLeave = (e: MouseEvent) => {
-      if (e.clientY <= 0 && !shown) {
-        setIsOpen(true);
-        localStorage.setItem('surveyShown', today);
+      const shownDate = localStorage.getItem('surveyShown');
+
+      // Only show if NOT shown today
+      if (e.clientY <= 0 && !triggered && shownDate !== today) {
+        triggered = true;
+
+        setTimeout(() => {
+          setIsOpen(true);
+          localStorage.setItem('surveyShown', today);
+        }, 300);
       }
     };
 

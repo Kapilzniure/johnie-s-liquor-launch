@@ -23,7 +23,7 @@ import catWine from "@/assets/cat-wine.jpg";
 import catBeer from "@/assets/cat-beer.jpg";
 import catSpirits from "@/assets/cat-spirits.jpg";
 import storefront from "@/assets/rum.jpg";
-import storeInside from "@/assets/johnniesliquor.webp";
+import storeInside from "@/assets/johnniesliquor.jpg";
 import shelves from "@/assets/freeze.jpg";
 import pBourbon from "@/assets/p-bourbon.jpg";
 import pWine from "@/assets/p-wine.jpg";
@@ -257,11 +257,12 @@ const Delivery = () => (
   </Section>
 );
 
+//Don't add price 
 const Favorites = () => {
   const items = [
-    { img: pBourbon, cat: "Whiskey · 750ml", name: "Single Barrel Bourbon", price: "$42" },
-    { img: pWine,    cat: "Wine · 750ml",    name: "Texas Reserve Red",     price: "$28" },
-    { img: pBeer,    cat: "Beer · 6-pack",   name: "Local Craft IPA",       price: "$14" },
+    { img: pBourbon, cat: "Whiskey · 750ml", name: "Single Barrel Bourbon" },
+    { img: pWine,    cat: "Wine · 750ml",    name: "Texas Reserve Red"  },
+    { img: pBeer,    cat: "Beer · 6-pack",   name: "Local Craft IPA" },
   ];
   return (
     <Section id="favorites" eyebrow="Customer favorites" title="Popular this month" subtitle="What our regulars are picking up. Stop by to see the full lineup in store.">

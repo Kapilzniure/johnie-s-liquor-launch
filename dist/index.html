@@ -6,6 +6,11 @@
   <!-- VIEWPORT -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- BASIC SECURITY HEADERS (meta-level; real headers should be set on the host) -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()" />
+
   <!--  TITLE (Brand First) -->
   <title>Johnnies Liquor Store Austin | Wine, Beer, Spirits & More</title>
 
@@ -32,14 +37,14 @@
   <meta property="og:url" content="https://johnniesliquor.com/" />
   <meta property="og:title" content="Johnnies Liquor Store Austin" />
   <meta property="og:description" content="Austin's trusted liquor store for wine, beer, whiskey, tequila & spirits." />
-  <meta property="og:image" content="https://johnniesliquor.com/johnniesliquor.webp" />
+  <meta property="og:image" content="https://johnniesliquor.com/johnniesliquor.jpg" />
   <meta property="og:site_name" content="Johnnies Liquor Store" />
 
   <!--  TWITTER -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Johnnies Liquor Store Austin" />
   <meta name="twitter:description" content="Austin's trusted liquor store for wine, beer, whiskey, tequila & spirits." />
-  <meta name="twitter:image" content="https://johnniesliquor.com/johnniesliquor.webp" />
+  <meta name="twitter:image" content="https://johnniesliquor.com/johnniesliquor.jpg" />
 
   <!--  BUSINESS SCHEMA -->
   <script type="application/ld+json">
@@ -47,7 +52,7 @@
     "@context": "https://schema.org",
     "@type": "LiquorStore",
     "name": "Johnnies Liquor Store",
-    "image": "https://johnniesliquor.com/johnniesliquor.webp",
+    "image": "https://johnniesliquor.com/johnniesliquor.jpg",
     "url": "https://johnniesliquor.com/",
     "telephone": "+1-512-383-5004",
     "priceRange": "$$",
@@ -58,7 +63,23 @@
       "addressRegion": "TX",
       "postalCode": "78729",
       "addressCountry": "US"
-    }
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 30.4458344,
+      "longitude": -97.778399
+    },
+    "areaServed": "Austin, TX",
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+      "opens": "10:00",
+      "closes": "21:00"
+    }],
+    "sameAs": [
+      "https://www.instagram.com/johnniesliquor_store/",
+      "https://www.facebook.com/people/Johnnies-Liquor-Store/61567907153640/"
+    ]
   }
   </script>
 
@@ -73,8 +94,17 @@
   }
   </script>
 
-  <script type="module" crossorigin src="/assets/index-Du7FGT1d.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-RQSKaBJm.css">
+  <!-- Google Analytics (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EZ8Y2CNLMK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-EZ8Y2CNLMK', { anonymize_ip: true });
+  </script>
+
+  <script type="module" crossorigin src="/assets/index-Dv_0G4Lg.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-BGn5aQkc.css">
 </head>
 
 <body>
