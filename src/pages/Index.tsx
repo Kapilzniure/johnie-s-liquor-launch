@@ -37,8 +37,8 @@ const DIRECTIONS_URL = "https://www.google.com/maps/place/Johnnie's+Liquor+Store
 const REVIEWS_URL = MAPS_URL;
 const IG_URL = "https://www.instagram.com/johnniesliquor_store/";
 const FB_URL = "https://www.facebook.com/people/Johnnies-Liquor-Store/61567907153640/";
-const DOORDASH_URL = "https://www.doordash.com/";
-const GRUBHUB_URL = "https://www.grubhub.com/";
+const DOORDASH_URL = "https://www.doordash.com/search/store/johnnies%20liquor%20austin/";
+const GRUBHUB_URL = "https://www.grubhub.com/search?queryText=johnnies+liquor&location=13201+Pond+Springs+Rd+Austin+TX+78729";
 
 // Lightweight GA event helper (no-op if gtag not loaded)
 const track = (action: string, label?: string) => {
@@ -87,9 +87,9 @@ const Header = () => {
 
   const links = [
     { label: "Home", href: "#home" },
-    { label: "Specials", href: "#specials" },
-    { label: "Offerings", href: "#products" },
+    { label: "Favorites", href: "#favorites" },
     { label: "Story", href: "#story" },
+    { label: "Visit", href: "#gallery" },
     { label: "Delivery", href: "#delivery" },
     { label: "Contact", href: "#contact" },
   ];
@@ -122,7 +122,7 @@ const Header = () => {
           </a>
           <SurveyButton onOpen={() => (window as any).__openSurvey?.()} />
           <Button asChild variant="gold" size="sm">
-            <a href={MAPS_URL} target="_blank" rel="noopener"><Navigation className="w-4 h-4 mr-1.5" /> Directions</a>
+            <a href={DIRECTIONS_URL} target="_blank" rel="noopener noreferrer"><Navigation className="w-4 h-4 mr-1.5" /> Directions</a>
           </Button>
         </div>
         <button onClick={() => setOpen(!open)} className="md:hidden p-2" aria-label="Menu">
