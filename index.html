@@ -6,6 +6,11 @@
   <!-- VIEWPORT -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- BASIC SECURITY HEADERS (meta-level; real headers should be set on the host) -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()" />
+
   <!--  TITLE (Brand First) -->
   <title>Johnnies Liquor Store Austin | Wine, Beer, Spirits & More</title>
 
@@ -58,7 +63,23 @@
       "addressRegion": "TX",
       "postalCode": "78729",
       "addressCountry": "US"
-    }
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 30.4458344,
+      "longitude": -97.778399
+    },
+    "areaServed": "Austin, TX",
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+      "opens": "10:00",
+      "closes": "21:00"
+    }],
+    "sameAs": [
+      "https://www.instagram.com/johnniesliquor_store/",
+      "https://www.facebook.com/people/Johnnies-Liquor-Store/61567907153640/"
+    ]
   }
   </script>
 
