@@ -40,6 +40,16 @@ const FB_URL = "https://www.facebook.com/people/Johnnies-Liquor-Store/6156790715
 const DOORDASH_URL = "https://www.doordash.com/";
 const GRUBHUB_URL = "https://www.grubhub.com/";
 
+// Lightweight GA event helper (no-op if gtag not loaded)
+const track = (action: string, label?: string) => {
+  try {
+    (window as any).gtag?.('event', action, {
+      event_category: 'cta',
+      event_label: label,
+    });
+  } catch { /* ignore */ }
+};
+
 const Section = ({ id, eyebrow, title, subtitle, children, className = "" }: {
   id?: string;
   eyebrow?: string;
@@ -162,13 +172,13 @@ const Hero = () => (
         </p>
         <div className="mt-8 flex flex-col sm:flex-row flex-wrap gap-3">
           <Button asChild variant="gold" size="xl">
-            <a href={`tel:${PHONE}`}><Phone className="w-5 h-5 mr-2" /> Call Now</a>
+            <a href={`tel:${PHONE}`} aria-label={`Call Johnnies Liquor at ${PHONE_DISPLAY}`} onClick={() => track('call_click', 'hero')}><Phone className="w-5 h-5 mr-2" /> Call Now</a>
           </Button>
           <Button asChild variant="outlineGold" size="xl">
-            <a href={DIRECTIONS_URL} target="_blank" rel="noopener noreferrer"><Navigation className="w-5 h-5 mr-2" /> Get Directions</a>
+            <a href={DIRECTIONS_URL} target="_blank" rel="noopener noreferrer" aria-label="Get directions to Johnnies Liquor on Google Maps" onClick={() => track('directions_click', 'hero')}><Navigation className="w-5 h-5 mr-2" /> Get Directions</a>
           </Button>
           <Button asChild variant="outlineGold" size="xl">
-            <a href="#delivery"><Truck className="w-5 h-5 mr-2" /> Order Delivery</a>
+            <a href="#delivery" onClick={() => track('delivery_click', 'hero')}><Truck className="w-5 h-5 mr-2" /> Order Delivery</a>
           </Button>
         </div>
         <p className="mt-6 text-sm text-muted-foreground flex items-center gap-2">
@@ -441,6 +451,7 @@ const StickyMobileBar = () => (
     </div>
     <div className="grid grid-cols-3 divide-x divide-border border-t border-border/50">
       <a href={`tel:${PHONE}`} className="flex flex-col items-center justify-center gap-1 py-3 font-semibold text-xs active:bg-gold/10">
+        <span className="sr-only">Call Johnnies Liquor</span>
         <Phone className="w-5 h-5 text-gold" /> Call
       </a>
       <a href="#delivery" className="flex flex-col items-center justify-center gap-1 py-3 font-semibold text-xs active:bg-gold/10">
