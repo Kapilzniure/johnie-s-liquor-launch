@@ -249,9 +249,9 @@ const Delivery = () => (
 
 const Favorites = () => {
   const items = [
-    { img: pBourbon, cat: "Whiskey · 750ml", name: "Single Barrel Bourbon"  },
-    { img: pWine, cat: "Wine · 750ml", name: "Texas Reserve Red"},
-    { img: pBeer, cat: "Beer · 6-pack", name: "Local Craft IPA"},
+    { img: pBourbon, cat: "Whiskey · 750ml", name: "Single Barrel Bourbon", price: "$42" },
+    { img: pWine,    cat: "Wine · 750ml",    name: "Texas Reserve Red",     price: "$28" },
+    { img: pBeer,    cat: "Beer · 6-pack",   name: "Local Craft IPA",       price: "$14" },
   ];
   return (
     <Section id="favorites" eyebrow="Customer favorites" title="Popular this month" subtitle="What our regulars are picking up. Stop by to see the full lineup in store.">
