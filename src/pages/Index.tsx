@@ -218,7 +218,7 @@ const QuickActions = () => {
       <div className="container mx-auto px-5">
         <div className="grid grid-cols-2 md:grid-cols-5 divide-y md:divide-y-0 md:divide-x divide-border">
           {items.map((it) => (
-            <a key={it.label} href={it.href} target={it.ext ? "_blank" : undefined} rel={it.ext ? "noopener" : undefined}
+            <a key={it.label} href={it.href} target={it.ext ? "_blank" : undefined} rel={it.ext ? "noopener noreferrer" : undefined}
                className="flex items-center justify-center gap-3 py-6 md:py-7 hover:bg-gold/5 transition-smooth group">
               <it.icon className="w-5 h-5 text-gold group-hover:scale-110 transition-smooth" />
               <span className="font-medium">{it.label}</span>
@@ -235,7 +235,7 @@ const QuickActions = () => {
 const Delivery = () => (
   <Section id="delivery" eyebrow="Delivery available" title="Order from home" subtitle="Get your favorite drinks delivered. Available on DoorDash & Grubhub.">
     <div className="grid md:grid-cols-2 gap-5 max-w-3xl">
-      <a href={DOORDASH_URL} target="_blank" rel="noopener"
+      <a href={DOORDASH_URL} target="_blank" rel="noopener noreferrer" onClick={() => track('delivery_click', 'doordash')}
          className="group flex items-center justify-between p-7 rounded-2xl bg-gradient-card border border-border hover:border-gold/50 hover-lift">
         <div>
           <div className="text-xs uppercase tracking-widest text-gold mb-2">Order on</div>
@@ -244,7 +244,7 @@ const Delivery = () => (
         </div>
         <Truck className="w-10 h-10 text-gold group-hover:scale-110 transition-smooth" />
       </a>
-      <a href={GRUBHUB_URL} target="_blank" rel="noopener"
+      <a href={GRUBHUB_URL} target="_blank" rel="noopener noreferrer" onClick={() => track('delivery_click', 'grubhub')}
          className="group flex items-center justify-between p-7 rounded-2xl bg-gradient-card border border-border hover:border-gold/50 hover-lift">
         <div>
           <div className="text-xs uppercase tracking-widest text-gold mb-2">Order on</div>
@@ -331,8 +331,8 @@ const OurStory = () => {
             className="block p-7 rounded-2xl bg-gradient-card border border-border text-center hover-lift hover:border-gold/50 transition-smooth"
           >
             <s.icon className="w-8 h-8 text-gold mx-auto mb-2" />
-            <div className="text-7xl md:text-4xl font-display font-bold gradient-gold-text">{s.value}</div>
-            <div className="mt-7 text-sm text-muted-foreground uppercase tracking-widest">{s.label}</div>
+            <div className="text-5xl md:text-6xl font-display font-bold gradient-gold-text leading-none">{s.value}</div>
+            <div className="mt-3 text-xs text-muted-foreground uppercase tracking-widest">{s.label}</div>
           </a>
         ))}
       </div>
@@ -417,8 +417,8 @@ const Footer = () => (
           </div>
           <p className="text-muted-foreground max-w-md">Austin's trusted neighborhood liquor store. Wine, beer & spirits — serving the community for over 20 years.</p>
           <div className="flex gap-3 mt-5">
-            <a href={IG_URL} aria-label="Instagram" className="w-10 h-10 rounded-lg border border-border flex items-center justify-center hover:border-gold hover:text-gold transition-smooth"><Instagram className="w-4 h-4"/></a>
-            <a href={FB_URL} aria-label="Facebook" className="w-10 h-10 rounded-lg border border-border flex items-center justify-center hover:border-gold hover:text-gold transition-smooth"><Facebook className="w-4 h-4"/></a>
+            <a href={IG_URL} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="w-10 h-10 rounded-lg border border-border flex items-center justify-center hover:border-gold hover:text-gold transition-smooth"><Instagram className="w-4 h-4"/></a>
+            <a href={FB_URL} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="w-10 h-10 rounded-lg border border-border flex items-center justify-center hover:border-gold hover:text-gold transition-smooth"><Facebook className="w-4 h-4"/></a>
           </div>
         </div>
         <div>
@@ -431,13 +431,13 @@ const Footer = () => (
         </div>
         <div>
           <h4 className="font-display font-bold mb-3 text-gold">Find us</h4>
-          <a href={MAPS_URL} target="_blank" rel="noopener" className="block rounded-lg overflow-hidden border border-border hover:border-gold/50 transition-smooth">
+          <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className="block rounded-lg overflow-hidden border border-border hover:border-gold/50 transition-smooth">
             <iframe title="Mini map" src="https://www.google.com/maps?q=13201+Pond+Springs+Rd+Suite+203+Austin+TX+78729&output=embed" className="w-full h-32 pointer-events-none" loading="lazy" />
           </a>
         </div>
       </div>
       <div className="mt-12 pt-6 border-t border-border flex flex-col md:flex-row gap-3 items-center justify-between text-xs text-muted-foreground">
-        <p>© {new Date().getFullYear()} Johnie's Liquor. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Johnnies Liquor. All rights reserved.</p>
         <p>Please drink responsibly. Must be 21+ to purchase alcohol.</p>
       </div>
     </div>
