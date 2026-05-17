@@ -6,11 +6,14 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { X, Gift } from 'lucide-react';
+import { useSurveyStore } from '@/hooks/use-survey';
+import { useShallow } from 'zustand/react/shallow';
 
-export const SurveyButton = ({ onOpen }: { onOpen: () => void }) => {
+export const SurveyButton = () => {
+  const openSurvey = useSurveyStore((state) => state.openSurvey);
   return (
     <Button
-      onClick={onOpen}
+      onClick={openSurvey}
       variant="gold"
       size="sm"
       className="flex items-center gap-2"
@@ -22,7 +25,16 @@ export const SurveyButton = ({ onOpen }: { onOpen: () => void }) => {
 };
 
 const Survey = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const { isOpen, openSurvey, closeSurvey } = useSurveyStore(
+    useShallow((state) => ({
+      isOpen: state.isOpen,
+      openSurvey: state.openSurvey,
+      closeSurvey: state.closeSurvey,
+    }))
+  );
+  
+  const setIsOpen = (open: boolean) => open ? openSurvey() : closeSurvey();
+  
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -36,7 +48,6 @@ const Survey = () => {
   const [other4, setOther4] = useState('');
   const [honeypot, setHoneypot] = useState('');
 
-   // ✅ FIXED HERE ONLY
   useEffect(() => {
     const today = new Date().toDateString();
     let triggered = false;
@@ -44,34 +55,19 @@ const Survey = () => {
     const handleMouseLeave = (e: MouseEvent) => {
       const shownDate = localStorage.getItem('surveyShown');
 
-      // Only show if NOT shown today
       if (e.clientY <= 0 && !triggered && shownDate !== today) {
         triggered = true;
 
         setTimeout(() => {
-          setIsOpen(true);
+          openSurvey();
           localStorage.setItem('surveyShown', today);
         }, 300);
       }
     };
 
     document.addEventListener('mouseleave', handleMouseLeave);
-
-    return () => {
-      document.removeEventListener('mouseleave', handleMouseLeave);
-    };
-  }, []);
-
-  const handleOpenSurvey = () => {
-    setIsOpen(true);
-    const today = new Date().toDateString();
-    localStorage.setItem('surveyShown', today);
-  };
-
-  // Expose handler to parent
-  useEffect(() => {
-    (window as any).__openSurvey = handleOpenSurvey;
-  }, []);
+    return () => document.removeEventListener('mouseleave', handleMouseLeave);
+  }, [openSurvey]);
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -139,8 +135,10 @@ const Survey = () => {
         localStorage.setItem('surveyLastSubmit', String(now));
         localStorage.setItem(countKey, String(Number(localStorage.getItem(countKey) || 0) + 1));
       } catch { /* ignore */ }
-      // GA event (no-op if gtag not present)
-      try { (window as any).gtag?.('event', 'survey_submit', { event_category: 'engagement' }); } catch { /* ignore */ }
+      try {
+        const windowWithGtag = window as typeof window & { gtag?: (type: string, action: string, data: Record<string, unknown>) => void };
+        windowWithGtag.gtag?.('event', 'survey_submit', { event_category: 'engagement' });
+      } catch { /* ignore */ }
       setIsSubmitted(true);
       setIsOpen(false);
     } catch (error) {

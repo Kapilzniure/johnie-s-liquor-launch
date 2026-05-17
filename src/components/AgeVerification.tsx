@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Wine } from 'lucide-react';
 
 const AgeVerification = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,7 +28,6 @@ const AgeVerification = () => {
   };
 
   const handleNo = () => {
-    // Redirect or show message
     window.location.href = 'https://www.google.com';
   };
 
@@ -35,20 +35,40 @@ const AgeVerification = () => {
 
   return (
     <Dialog open={isOpen} onOpenChange={() => {}}>
-      <DialogContent className="sm:max-w-md bg-black text-white border-gray-800">
-        <DialogHeader>
-          <DialogTitle className="text-center text-2xl font-bold">Age Verification</DialogTitle>
-        </DialogHeader>
-        <div className="text-center py-8">
-          <p className="text-lg mb-8">You must be 21+ to enter this site</p>
-          <div className="flex gap-4 justify-center">
-            <Button onClick={handleYes} className="bg-gold hover:bg-gold/90 text-primary-foreground px-8 py-2">
-              YES (Enter)
+      <DialogContent className="sm:max-w-md bg-background border-gold/20 shadow-gold/10 p-0 overflow-hidden">
+        <div className="relative p-8 flex flex-col items-center text-center">
+          <div className="w-16 h-16 rounded-2xl bg-gradient-gold flex items-center justify-center mb-6 shadow-gold animate-fade-up">
+            <Wine className="w-8 h-8 text-primary-foreground" />
+          </div>
+          
+          <DialogHeader>
+            <DialogTitle className="text-3xl font-display font-bold mb-2">Age Verification</DialogTitle>
+          </DialogHeader>
+          
+          <p className="text-muted-foreground mb-8 max-w-[280px]">
+            You must be <span className="text-gold font-bold">21 or older</span> to enter Johnnie's Liquor Store.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-3 w-full">
+            <Button 
+              onClick={handleYes} 
+              variant="gold" 
+              className="flex-1 py-6 text-base font-bold uppercase tracking-widest"
+            >
+              I am 21+
             </Button>
-            <Button onClick={handleNo} variant="outline" className="border-gold text-gold hover:bg-gold/10 px-8 py-2">
-              NO (Exit)
+            <Button 
+              onClick={handleNo} 
+              variant="outlineGold" 
+              className="flex-1 py-6 text-base font-bold uppercase tracking-widest"
+            >
+              Exit
             </Button>
           </div>
+          
+          <p className="mt-6 text-[10px] uppercase tracking-widest text-muted-foreground/50">
+            Please drink responsibly
+          </p>
         </div>
       </DialogContent>
     </Dialog>
