@@ -152,13 +152,13 @@ const Survey = () => {
   if (isSubmitted) {
     return (
       <Dialog open={true} onOpenChange={() => setIsSubmitted(false)}>
-        <DialogContent className="sm:max-w-md bg-black text-white border-gray-800">
+        <DialogContent className="sm:max-w-md bg-background text-foreground border-border">
           <DialogHeader>
             <DialogTitle className="text-center text-2xl font-bold">Thank You! 🎉</DialogTitle>
           </DialogHeader>
           <div className="text-center py-8">
             <p className="text-lg mb-4">You'll receive better offers from us soon.</p>
-            <p className="text-sm text-gray-400">Show this in-store for a special offer</p>
+            <p className="text-sm text-muted-foreground">Show this in-store for a special offer</p>
           </div>
         </DialogContent>
       </Dialog>
@@ -168,7 +168,7 @@ const Survey = () => {
   return (
     <>
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="sm:max-w-lg bg-black text-white border-gray-800 max-h-[80vh] overflow-y-auto">
+        <DialogContent className="sm:max-w-lg bg-background text-foreground border-border max-h-[80vh] overflow-y-auto">
           <DialogHeader className="flex flex-row items-center justify-between">
             <DialogTitle className="text-xl font-bold">Quick Survey</DialogTitle>
             <Button variant="ghost" size="sm" onClick={() => setIsOpen(false)}>
@@ -196,10 +196,10 @@ const Survey = () => {
             <div>
               <label htmlFor="q1-trigger" className="block text-sm font-medium mb-2">How did you hear about us?</label>
               <Select value={q1} onValueChange={setQ1}>
-                <SelectTrigger id="q1-trigger" aria-invalid={!!fieldErrors.q1} className="bg-gray-900 border-gray-700">
+                <SelectTrigger id="q1-trigger" aria-invalid={!!fieldErrors.q1} className="bg-card border-border">
                   <SelectValue placeholder="Select an option" />
                 </SelectTrigger>
-                <SelectContent className="bg-gray-900 border-gray-700">
+                <SelectContent className="bg-card border-border">
                   <SelectItem value="Instagram">Instagram</SelectItem>
                   <SelectItem value="Facebook">Facebook</SelectItem>
                   <SelectItem value="Google">Google</SelectItem>
@@ -216,7 +216,7 @@ const Survey = () => {
                   placeholder="Please specify"
                   maxLength={120}
                   aria-label="Specify how you heard about us"
-                  className="mt-2 bg-gray-900 border-gray-700"
+                  className="mt-2 bg-card border-border"
                 />
               )}
               {fieldErrors.q1 && <p className="mt-1 text-xs text-red-400">{fieldErrors.q1}</p>}
@@ -225,10 +225,10 @@ const Survey = () => {
             <div>
               <label htmlFor="q2-trigger" className="block text-sm font-medium mb-2">What do you usually buy?</label>
               <Select value={q2} onValueChange={setQ2}>
-                <SelectTrigger id="q2-trigger" aria-invalid={!!fieldErrors.q2} className="bg-gray-900 border-gray-700">
+                <SelectTrigger id="q2-trigger" aria-invalid={!!fieldErrors.q2} className="bg-card border-border">
                   <SelectValue placeholder="Select an option" />
                 </SelectTrigger>
-                <SelectContent className="bg-gray-900 border-gray-700">
+                <SelectContent className="bg-card border-border">
                   <SelectItem value="Beer">Beer</SelectItem>
                   <SelectItem value="Wine">Wine</SelectItem>
                   <SelectItem value="Whiskey">Whiskey</SelectItem>
@@ -242,7 +242,7 @@ const Survey = () => {
                   placeholder="Please specify"
                   maxLength={120}
                   aria-label="Specify what you usually buy"
-                  className="mt-2 bg-gray-900 border-gray-700"
+                  className="mt-2 bg-card border-border"
                 />
               )}
               {fieldErrors.q2 && <p className="mt-1 text-xs text-red-400">{fieldErrors.q2}</p>}
@@ -251,10 +251,10 @@ const Survey = () => {
             <div>
               <label htmlFor="q3-trigger" className="block text-sm font-medium mb-2">How often do you visit?</label>
               <Select value={q3} onValueChange={setQ3}>
-                <SelectTrigger id="q3-trigger" aria-invalid={!!fieldErrors.q3} className="bg-gray-900 border-gray-700">
+                <SelectTrigger id="q3-trigger" aria-invalid={!!fieldErrors.q3} className="bg-card border-border">
                   <SelectValue placeholder="Select an option" />
                 </SelectTrigger>
-                <SelectContent className="bg-gray-900 border-gray-700">
+                <SelectContent className="bg-card border-border">
                   <SelectItem value="Weekly">Weekly</SelectItem>
                   <SelectItem value="Monthly">Monthly</SelectItem>
                   <SelectItem value="Occasionally">Occasionally</SelectItem>
@@ -266,10 +266,10 @@ const Survey = () => {
             <div>
               <label htmlFor="q4-trigger" className="block text-sm font-medium mb-2">What would you like more?</label>
               <Select value={q4} onValueChange={setQ4}>
-                <SelectTrigger id="q4-trigger" aria-invalid={!!fieldErrors.q4} className="bg-gray-900 border-gray-700">
+                <SelectTrigger id="q4-trigger" aria-invalid={!!fieldErrors.q4} className="bg-card border-border">
                   <SelectValue placeholder="Select an option" />
                 </SelectTrigger>
-                <SelectContent className="bg-gray-900 border-gray-700">
+                <SelectContent className="bg-card border-border">
                   <SelectItem value="Discounts">Discounts</SelectItem>
                   <SelectItem value="New products">New products</SelectItem>
                   <SelectItem value="Events">Events</SelectItem>
@@ -283,7 +283,7 @@ const Survey = () => {
                   placeholder="Please specify"
                   maxLength={500}
                   aria-label="Specify what you'd like more of"
-                  className="mt-2 bg-gray-900 border-gray-700"
+                  className="mt-2 bg-card border-border"
                 />
               )}
               {fieldErrors.q4 && <p className="mt-1 text-xs text-red-400">{fieldErrors.q4}</p>}
@@ -294,7 +294,7 @@ const Survey = () => {
                 {submitError}
               </div>
             )}
-            <Button type="submit" disabled={isSubmitting} aria-busy={isSubmitting} className="w-full bg-gold hover:bg-gold/90">
+            <Button type="submit" disabled={isSubmitting} aria-busy={isSubmitting} className="w-full bg-gold hover:bg-gold/90 text-primary-foreground font-semibold">
               {isSubmitting ? 'Submitting...' : 'Submit'}
             </Button>
           </form>

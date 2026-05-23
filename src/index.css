@@ -4,70 +4,70 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Johnnies Liquor — Dark + Gold premium design system */
+/* Johnnies Liquor — Premium Red Brand Design System (Dark) */
 @layer base {
   :root {
-    /* Core palette (deep brown-black + gold/amber) */
-    --background: 28 18% 6%;
-    --foreground: 40 40% 95%;
+    /* Core palette: Deep charcoal-black background + Firebrick Red accents */
+    --background: 15 15% 6%;         /* Deep warm charcoal-black #171211 */
+    --foreground: 36 20% 94%;        /* Legible warm cream/white #F5EFEB */
 
-    --card: 28 18% 9%;
-    --card-foreground: 40 40% 95%;
+    --card: 15 15% 9%;               /* Slightly lighter warm charcoal #241D1C */
+    --card-foreground: 36 20% 94%;
 
-    --popover: 28 20% 8%;
-    --popover-foreground: 40 40% 95%;
+    --popover: 15 15% 9%;
+    --popover-foreground: 36 20% 94%;
 
-    --primary: 42 78% 55%;          /* gold */
-    --primary-foreground: 28 30% 8%;
+    --primary: 0 68% 42%;            /* Firebrick Red #B22222 */
+    --primary-foreground: 0 0% 100%;  /* White text on red */
 
-    --secondary: 28 18% 14%;
-    --secondary-foreground: 40 40% 95%;
+    --secondary: 0 100% 27%;         /* Dark Red #8B0000 */
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 28 14% 14%;
-    --muted-foreground: 38 18% 70%;
+    --muted: 15 10% 16%;
+    --muted-foreground: 15 8% 63%;   /* Warm gray */
 
-    --accent: 35 90% 50%;            /* amber */
-    --accent-foreground: 28 30% 8%;
+    --accent: 348 83% 47%;           /* Crimson #DC143C */
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 70% 45%;
-    --destructive-foreground: 40 40% 95%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 35 25% 18%;
-    --input: 35 25% 18%;
-    --ring: 42 78% 55%;
+    --border: 0 68% 42% / 0.25;      /* Primary Red border with 25% opacity */
+    --input: 15 10% 16%;
+    --ring: 0 68% 42%;
 
     --radius: 0.75rem;
 
-    /* Brand tokens */
-    --gold: 42 78% 55%;
-    --gold-glow: 45 95% 65%;
-    --amber: 35 90% 50%;
-    --deep: 28 30% 5%;
+    /* Brand tokens matching the physical poster exactly */
+    --gold: 0 68% 42%;               /* Primary Firebrick Red #B22222 */
+    --gold-glow: 348 83% 47%;        /* Accent Crimson #DC143C */
+    --amber: 348 83% 47%;            /* Accent Crimson #DC143C */
+    --deep: 0 100% 27%;              /* Dark Red #8B0000 */
 
-    --gradient-gold: linear-gradient(135deg, hsl(45 95% 65%) 0%, hsl(38 85% 50%) 50%, hsl(30 75% 38%) 100%);
-    --gradient-dark: linear-gradient(180deg, hsl(28 25% 7%) 0%, hsl(28 18% 4%) 100%);
-    --gradient-hero: linear-gradient(180deg, hsl(28 30% 5% / 0.55) 0%, hsl(28 30% 4% / 0.85) 100%);
-    --gradient-card: linear-gradient(160deg, hsl(28 22% 11%) 0%, hsl(28 25% 7%) 100%);
+    --gradient-gold: linear-gradient(135deg, hsl(348 83% 47%) 0%, hsl(0 68% 42%) 50%, hsl(0 100% 27%) 100%);
+    --gradient-dark: linear-gradient(180deg, hsl(15 15% 7%) 0%, hsl(15 15% 4%) 100%);
+    --gradient-hero: linear-gradient(180deg, rgba(23, 18, 17, 0.45) 0%, rgba(15, 12, 11, 0.85) 100%);
+    --gradient-card: linear-gradient(160deg, hsl(15 15% 10%) 0%, hsl(15 15% 7%) 100%);
 
-    --shadow-gold: 0 20px 60px -15px hsl(42 78% 55% / 0.35);
-    --shadow-deep: 0 25px 70px -20px hsl(0 0% 0% / 0.6);
-    --shadow-soft: 0 10px 30px -10px hsl(0 0% 0% / 0.5);
+    --shadow-gold: 0 15px 40px -12px rgba(178, 34, 34, 0.35);
+    --shadow-deep: 0 25px 70px -20px rgba(0, 0, 0, 0.6);
+    --shadow-soft: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
 
     --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
-    --sidebar-background: 28 18% 6%;
-    --sidebar-foreground: 40 40% 95%;
-    --sidebar-primary: 42 78% 55%;
-    --sidebar-primary-foreground: 28 30% 8%;
-    --sidebar-accent: 28 18% 14%;
-    --sidebar-accent-foreground: 40 40% 95%;
-    --sidebar-border: 35 25% 18%;
-    --sidebar-ring: 42 78% 55%;
+    --sidebar-background: 15 15% 6%;
+    --sidebar-foreground: 36 20% 94%;
+    --sidebar-primary: 0 68% 42%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 15 15% 9%;
+    --sidebar-accent-foreground: 36 20% 94%;
+    --sidebar-border: 0 68% 42% / 0.25;
+    --sidebar-ring: 0 68% 42%;
   }
 
-  .dark { /* keep parity, site is always dark */
-    --background: 28 18% 6%;
-    --foreground: 40 40% 95%;
+  .dark { /* Maintain parity, always use the red brand dark theme */
+    --background: 15 15% 6%;
+    --foreground: 36 20% 94%;
   }
 }
 
@@ -119,3 +119,28 @@
 /* Scroll-reveal */
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1); }
 .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+/* Footer styling overrides: Solid Black background with high-contrast warm cream text */
+footer {
+  background-color: #0A0808 !important;
+  color: hsl(var(--foreground)) !important;
+  border-top-color: hsl(var(--border)) !important;
+}
+footer h4 {
+  color: hsl(var(--foreground)) !important;
+}
+footer a {
+  color: hsl(var(--foreground)) !important;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+footer a:hover {
+  opacity: 1 !important;
+  color: hsl(var(--accent)) !important;
+}
+footer p, footer span, footer li {
+  color: hsl(var(--foreground)) !important;
+  opacity: 0.85;
+}
+
+
