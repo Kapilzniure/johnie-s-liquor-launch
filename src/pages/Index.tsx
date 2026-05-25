@@ -7,10 +7,13 @@ import Survey from "@/components/Survey";
 import { Hero } from "@/components/home/Hero";
 import { QuickActions } from "@/components/home/QuickActions";
 import { Favorites } from "@/components/home/Favorites";
+import { Specials } from "@/components/home/Specials";
 import { OurStory } from "@/components/home/OurStory";
+import { Reviews } from "@/components/home/Reviews";
 import { Gallery } from "@/components/home/Gallery";
 import { Delivery } from "@/components/home/Delivery";
 import { VisitUs } from "@/components/home/VisitUs";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
 
 const Index = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -34,13 +37,16 @@ const Index = () => {
         <Hero />
         <QuickActions />
         <Favorites />
+        <Specials />
         <OurStory />
+        <Reviews />
         <Gallery />
         <Delivery />
         <VisitUs />
       </main>
       <Footer />
       <StickyMobileBar />
+      <WhatsAppButton />
       <Survey />
       
       {/* Back to Top Button */}

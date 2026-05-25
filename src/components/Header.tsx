@@ -15,12 +15,12 @@ export const Header = () => {
   }, []);
 
   const links = [
-    { label: "Home", href: "#home" },
-    { label: "Favorites", href: "#favorites" },
-    { label: "Story", href: "#story" },
-    { label: "Visit", href: "#gallery" },
-    { label: "Delivery", href: "#delivery" },
-    { label: "Contact", href: "#contact" },
+    { label: "Home", href: "/#home" },
+    { label: "Specials", href: "/#specials" },
+    { label: "Products", href: "/catalog" },
+    { label: "Story", href: "/#story" },
+    { label: "Delivery", href: "/#delivery" },
+    { label: "Contact", href: "/#contact" },
   ];
 
   return (
