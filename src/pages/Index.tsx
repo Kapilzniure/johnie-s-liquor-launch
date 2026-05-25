@@ -13,7 +13,7 @@ import { Reviews } from "@/components/home/Reviews";
 import { Gallery } from "@/components/home/Gallery";
 import { Delivery } from "@/components/home/Delivery";
 import { VisitUs } from "@/components/home/VisitUs";
-import { WhatsAppButton } from "@/components/WhatsAppButton";
+// import { WhatsAppButton } from "@/components/WhatsAppButton";
 
 const Index = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -46,7 +46,7 @@ const Index = () => {
       </main>
       <Footer />
       <StickyMobileBar />
-      <WhatsAppButton />
+      {/* <WhatsAppButton /> */}
       <Survey />
       
       {/* Back to Top Button */}
