@@ -25,15 +25,18 @@ const IG_URL = "https://www.instagram.com/johnniesliquor_store/";
 const FB_URL = "https://www.facebook.com/people/Johnnies-Liquor-Store/61567907153640/";
 const DOORDASH_URL = "https://www.doordash.com/search/store/johnnies%20liquor%20austin/";
 const GRUBHUB_URL = "https://www.grubhub.com/search?queryText=johnnies+liquor&location=13201+Pond+Springs+Rd+Austin+TX+78729";
+// Replace XXXXXXXXXX with the owner's WhatsApp number (digits only, with country code, e.g. 15121234567)
+const WHATSAPP_URL = "https://wa.me/1XXXXXXXXXX?text=Hi%21+I%27d+like+to+place+an+order+from+Johnnies+Liquor+%F0%9F%A5%83";
 
-export { 
-  PHONE, 
-  PHONE_DISPLAY, 
-  ADDRESS, 
-  MAPS_URL, 
-  DIRECTIONS_URL, 
-  IG_URL, 
-  FB_URL, 
-  DOORDASH_URL, 
-  GRUBHUB_URL 
+export {
+  PHONE,
+  PHONE_DISPLAY,
+  ADDRESS,
+  MAPS_URL,
+  DIRECTIONS_URL,
+  IG_URL,
+  FB_URL,
+  DOORDASH_URL,
+  GRUBHUB_URL,
+  WHATSAPP_URL
 };
