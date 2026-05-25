@@ -1,7 +1,10 @@
 import { MapPin, Phone, Clock, Instagram, Facebook } from "@/components/Icons";
 import { ADDRESS, PHONE, PHONE_DISPLAY, MAPS_URL, IG_URL, FB_URL } from "@/lib/constants";
+import { getStoreStatus } from "@/lib/hours";
 
-export const Footer = () => (
+export const Footer = () => {
+  const store = getStoreStatus();
+  return (
   <footer className="border-t border-border bg-card/50 pt-16 pb-28 md:pb-12">
     <div className="container mx-auto px-5">
       <div className="grid md:grid-cols-4 gap-10">
@@ -23,7 +26,7 @@ export const Footer = () => (
           <ul className="space-y-2 text-sm text-muted-foreground">
             <li className="flex items-start gap-2"><MapPin className="w-4 h-4 mt-0.5 shrink-0" /> {ADDRESS}</li>
             <li className="flex items-center gap-2"><Phone className="w-4 h-4" /> <a href={`tel:${PHONE}`} className="hover:text-gold">{PHONE_DISPLAY}</a></li>
-            <li className="flex items-center gap-2"><Clock className="w-4 h-4" /> Open today · 10am–9pm</li>
+            <li className="flex items-center gap-2"><Clock className="w-4 h-4" /> {store.status}</li>
           </ul>
         </div>
         <div>
@@ -51,4 +54,5 @@ export const Footer = () => (
       </div>
     </div>
   </footer>
-);
+  );
+};
