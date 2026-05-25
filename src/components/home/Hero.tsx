@@ -1,6 +1,7 @@
 import { Phone, Navigation, Truck, Clock, ChevronDown } from "@/components/Icons";
 import { Button } from "@/components/ui/button";
 import { PHONE, PHONE_DISPLAY, DIRECTIONS_URL } from "@/lib/constants";
+import { getStoreStatus } from "@/lib/hours";
 import hero from "@/assets/hero-store.webp";
 import heroBottle from "@/assets/hero-bottle.webp";
 
@@ -15,7 +16,9 @@ const track = (action: string, label?: string) => {
   } catch { /* ignore */ }
 };
 
-export const Hero = () => (
+export const Hero = () => {
+  const store = getStoreStatus();
+  return (
   <section id="home" className="relative min-h-[100svh] flex items-center overflow-hidden">
     <img src={hero} alt="Inside Johnnies Liquor store in Austin, Texas with shelves of whiskey and wine" className="absolute inset-0 w-full h-full object-cover" width={1920} height={1080} />
     <div className="absolute inset-0 bg-gradient-hero" />
@@ -24,7 +27,7 @@ export const Hero = () => (
       <div className="max-w-3xl animate-fade-up">
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gold/30 bg-gold/5 backdrop-blur-sm mb-6">
           <span className="w-2 h-2 rounded-full bg-gold animate-pulse" />
-          <span className="text-xs uppercase tracking-[0.2em] text-gold">Open today · Visit us</span>
+          <span className="text-xs uppercase tracking-[0.2em] text-gold">{store.badge}</span>
         </div>
         <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-bold leading-[0.95]">
           <span className="gradient-gold-text italic">Johnnies</span><br />Liquor Store
@@ -47,7 +50,7 @@ export const Hero = () => (
           </Button>
         </div>
         <p className="mt-6 text-sm text-muted-foreground flex items-center gap-2">
-          <Clock className="w-4 h-4 text-gold" /> Open today until 9 PM · Free parking
+          <Clock className="w-4 h-4 text-gold" /> {store.status}
         </p>
       </div>
       <div className="hidden lg:block absolute right-6 xl:right-20 top-20 xl:top-16 z-10 pointer-events-none animate-fade-up">
@@ -68,4 +71,5 @@ export const Hero = () => (
       <ChevronDown className="w-5 h-5 animate-bounce" />
     </a>
   </section>
-);
+  );
+};
