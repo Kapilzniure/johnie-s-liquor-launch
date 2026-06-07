@@ -7,7 +7,12 @@ const AgeVerification = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
 
+  // Don't show on legal pages
+  const isLegalPage = typeof window !== 'undefined' &&
+    (window.location.pathname === '/privacy' || window.location.pathname === '/terms');
+
   useEffect(() => {
+    if (isLegalPage) return;
     const verified = localStorage.getItem('ageVerified');
     if (verified) {
       const verifiedTime = parseInt(verified);
@@ -31,43 +36,43 @@ const AgeVerification = () => {
     window.location.href = 'https://www.google.com';
   };
 
-  if (isVerified) return null;
+  if (isVerified || isLegalPage) return null;
 
   return (
-    <Dialog open={isOpen} onOpenChange={() => {}}>
-      <DialogContent className="sm:max-w-md bg-background border-gold/20 shadow-gold/10 p-0 overflow-hidden">
-        <div className="relative p-8 flex flex-col items-center text-center">
-          <div className="w-16 h-16 rounded-2xl bg-gradient-gold flex items-center justify-center mb-6 shadow-gold animate-fade-up">
-            <Wine className="w-8 h-8 text-primary-foreground" />
+    <Dialog open={isOpen} onOpenChange={(open) => { if (!open) handleNo(); }}>
+      <DialogContent className="w-[92vw] sm:max-w-md bg-background border-white/10 p-0 overflow-hidden shadow-2xl">
+        <div className="p-6 sm:p-10 flex flex-col items-center text-center">
+          <div className="w-20 h-20 bg-primary/10 border border-primary/30 flex items-center justify-center mb-8 text-primary">
+            <Wine className="w-10 h-10" />
           </div>
           
-          <DialogHeader>
-            <DialogTitle className="text-3xl font-display font-bold mb-2">Age Verification</DialogTitle>
-          </DialogHeader>
+          <div className="mb-6">
+            <div className="text-[10px] font-bold uppercase tracking-[0.4em] text-primary mb-2">Age Verification</div>
+            <h2 className="text-4xl font-display font-bold uppercase tracking-tighter">Are you 21+?</h2>
+          </div>
           
-          <p className="text-muted-foreground mb-8 max-w-[280px]">
-            You must be <span className="text-gold font-bold">21 or older</span> to enter Johnnie's Liquor Store.
+          <p className="text-muted-foreground font-medium mb-10 max-w-[280px] italic">
+            "You must be 21 or older to enter Johnnie's Liquor Store."
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-3 w-full">
+          <div className="flex flex-col gap-4 w-full">
             <Button 
               onClick={handleYes} 
-              variant="gold" 
-              className="flex-1 py-6 text-base font-bold uppercase tracking-widest"
+              className="bg-primary text-white h-16 text-lg font-bold uppercase tracking-widest rounded-none boutique-shadow hover:translate-y-[-2px] transition-all"
             >
-              I am 21+
+              YES, I AM 21+
             </Button>
             <Button 
               onClick={handleNo} 
-              variant="outlineGold" 
-              className="flex-1 py-6 text-base font-bold uppercase tracking-widest"
+              variant="outline"
+              className="border border-white/10 h-14 text-xs font-bold uppercase tracking-widest rounded-none hover:bg-white/5"
             >
-              Exit
+              EXIT
             </Button>
           </div>
           
-          <p className="mt-6 text-[10px] uppercase tracking-widest text-muted-foreground/50">
-            Please drink responsibly
+          <p className="mt-8 text-[9px] font-bold uppercase tracking-widest text-muted-foreground/40 pt-4 w-full">
+            PLEASE DRINK RESPONSIBLY
           </p>
         </div>
       </DialogContent>

@@ -14,12 +14,11 @@ export const SurveyButton = () => {
   return (
     <Button
       onClick={openSurvey}
-      variant="gold"
       size="sm"
-      className="flex items-center gap-2"
+      className="flex items-center gap-2 bg-primary text-white rounded-none font-bold tracking-widest uppercase text-[10px] h-10 px-6 boutique-shadow"
     >
-      <Gift className="w-4 h-4" />
-      Quick Survey
+      <Gift className="w-3.5 h-3.5" />
+      Survey
     </Button>
   );
 };
@@ -80,7 +79,7 @@ const Survey = () => {
       return;
     }
 
-    // Frontend rate limit: 1 submission per 60s, max 3 per day
+    // Frontend rate limit
     try {
       const now = Date.now();
       const last = Number(localStorage.getItem('surveyLastSubmit') || 0);
@@ -95,19 +94,17 @@ const Survey = () => {
         setSubmitError('Submission limit reached for today. Thank you!');
         return;
       }
-    } catch { /* localStorage unavailable — ignore */ }
+    } catch { /* ignore */ }
 
     // Validate inputs
     const schema = z.object({
       q1: z.string().trim().min(1, 'Please select an option').max(120),
       q2: z.string().trim().min(1, 'Please select an option').max(120),
-      q3: z.string().trim().min(1, 'Please select an option').max(60),
       q4: z.string().trim().min(1, 'Please select an option').max(500),
     });
     const parsed = schema.safeParse({
       q1: q1 === 'Other' ? other1 : q1,
       q2: q2 === 'Other' ? other2 : q2,
-      q3,
       q4: q4 === 'Other' ? other4 : q4,
     });
     if (!parsed.success) {
@@ -152,13 +149,13 @@ const Survey = () => {
   if (isSubmitted) {
     return (
       <Dialog open={true} onOpenChange={() => setIsSubmitted(false)}>
-        <DialogContent className="sm:max-w-md bg-background text-foreground border-border">
+        <DialogContent className="sm:max-w-md bg-background text-foreground border-white/10">
           <DialogHeader>
-            <DialogTitle className="text-center text-2xl font-bold">Thank You! 🎉</DialogTitle>
+            <DialogTitle className="text-center text-2xl font-display font-bold">Thank You! 🎉</DialogTitle>
           </DialogHeader>
           <div className="text-center py-8">
-            <p className="text-lg mb-4">You'll receive better offers from us soon.</p>
-            <p className="text-sm text-muted-foreground">Show this in-store for a special offer</p>
+            <p className="text-lg mb-4 font-medium italic">"We appreciate your feedback."</p>
+            <p className="text-xs text-muted-foreground uppercase tracking-widest">Show this in-store for a special offer</p>
           </div>
         </DialogContent>
       </Dialog>
@@ -168,136 +165,94 @@ const Survey = () => {
   return (
     <>
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="sm:max-w-lg bg-background text-foreground border-border max-h-[80vh] overflow-y-auto">
-          <DialogHeader className="flex flex-row items-center justify-between">
-            <DialogTitle className="text-xl font-bold">Quick Survey</DialogTitle>
-            <Button variant="ghost" size="sm" onClick={() => setIsOpen(false)}>
-              <X className="w-4 h-4" />
-            </Button>
-          </DialogHeader>
-          <form onSubmit={onSubmit} className="space-y-6">
-            {/* Honeypot — hidden from real users, visible to bots */}
-            <div aria-hidden="true" style={{ position: 'absolute', left: '-10000px', width: 1, height: 1, overflow: 'hidden' }}>
-              <label htmlFor="company">Company</label>
-              <input
-                id="company"
-                name="company"
-                type="text"
-                tabIndex={-1}
-                autoComplete="off"
-                value={honeypot}
-                onChange={(e) => setHoneypot(e.target.value)}
-              />
-            </div>
-            <input type="hidden" name="q1" value={q1 === 'Other' ? other1 : q1} />
-            <input type="hidden" name="q2" value={q2 === 'Other' ? other2 : q2} />
-            <input type="hidden" name="q3" value={q3} />
-            <input type="hidden" name="q4" value={q4 === 'Other' ? other4 : q4} />
-            <div>
-              <label htmlFor="q1-trigger" className="block text-sm font-medium mb-2">How did you hear about us?</label>
-              <Select value={q1} onValueChange={setQ1}>
-                <SelectTrigger id="q1-trigger" aria-invalid={!!fieldErrors.q1} className="bg-card border-border">
-                  <SelectValue placeholder="Select an option" />
-                </SelectTrigger>
-                <SelectContent className="bg-card border-border">
-                  <SelectItem value="Instagram">Instagram</SelectItem>
-                  <SelectItem value="Facebook">Facebook</SelectItem>
-                  <SelectItem value="Google">Google</SelectItem>
-                  <SelectItem value="Friends">Friends</SelectItem>
-                  <SelectItem value="Website">Website</SelectItem>
-                  <SelectItem value="AI">AI</SelectItem>
-                  <SelectItem value="Other">Other</SelectItem>
-                </SelectContent>
-              </Select>
-              {q1 === 'Other' && (
-                <Input
-                  value={other1}
-                  onChange={(e) => setOther1(e.target.value)}
-                  placeholder="Please specify"
-                  maxLength={120}
-                  aria-label="Specify how you heard about us"
-                  className="mt-2 bg-card border-border"
-                />
-              )}
-              {fieldErrors.q1 && <p className="mt-1 text-xs text-red-400">{fieldErrors.q1}</p>}
-            </div>
-
-            <div>
-              <label htmlFor="q2-trigger" className="block text-sm font-medium mb-2">What do you usually buy?</label>
-              <Select value={q2} onValueChange={setQ2}>
-                <SelectTrigger id="q2-trigger" aria-invalid={!!fieldErrors.q2} className="bg-card border-border">
-                  <SelectValue placeholder="Select an option" />
-                </SelectTrigger>
-                <SelectContent className="bg-card border-border">
-                  <SelectItem value="Beer">Beer</SelectItem>
-                  <SelectItem value="Wine">Wine</SelectItem>
-                  <SelectItem value="Whiskey">Whiskey</SelectItem>
-                  <SelectItem value="Other">Other</SelectItem>
-                </SelectContent>
-              </Select>
-              {q2 === 'Other' && (
-                <Input
-                  value={other2}
-                  onChange={(e) => setOther2(e.target.value)}
-                  placeholder="Please specify"
-                  maxLength={120}
-                  aria-label="Specify what you usually buy"
-                  className="mt-2 bg-card border-border"
-                />
-              )}
-              {fieldErrors.q2 && <p className="mt-1 text-xs text-red-400">{fieldErrors.q2}</p>}
-            </div>
-
-            <div>
-              <label htmlFor="q3-trigger" className="block text-sm font-medium mb-2">How often do you visit?</label>
-              <Select value={q3} onValueChange={setQ3}>
-                <SelectTrigger id="q3-trigger" aria-invalid={!!fieldErrors.q3} className="bg-card border-border">
-                  <SelectValue placeholder="Select an option" />
-                </SelectTrigger>
-                <SelectContent className="bg-card border-border">
-                  <SelectItem value="Weekly">Weekly</SelectItem>
-                  <SelectItem value="Monthly">Monthly</SelectItem>
-                  <SelectItem value="Occasionally">Occasionally</SelectItem>
-                </SelectContent>
-              </Select>
-              {fieldErrors.q3 && <p className="mt-1 text-xs text-red-400">{fieldErrors.q3}</p>}
-            </div>
-
-            <div>
-              <label htmlFor="q4-trigger" className="block text-sm font-medium mb-2">What would you like more?</label>
-              <Select value={q4} onValueChange={setQ4}>
-                <SelectTrigger id="q4-trigger" aria-invalid={!!fieldErrors.q4} className="bg-card border-border">
-                  <SelectValue placeholder="Select an option" />
-                </SelectTrigger>
-                <SelectContent className="bg-card border-border">
-                  <SelectItem value="Discounts">Discounts</SelectItem>
-                  <SelectItem value="New products">New products</SelectItem>
-                  <SelectItem value="Events">Events</SelectItem>
-                  <SelectItem value="Other">Other</SelectItem>
-                </SelectContent>
-              </Select>
-              {q4 === 'Other' && (
-                <Textarea
-                  value={other4}
-                  onChange={(e) => setOther4(e.target.value)}
-                  placeholder="Please specify"
-                  maxLength={500}
-                  aria-label="Specify what you'd like more of"
-                  className="mt-2 bg-card border-border"
-                />
-              )}
-              {fieldErrors.q4 && <p className="mt-1 text-xs text-red-400">{fieldErrors.q4}</p>}
-            </div>
-
-            {submitError && (
-              <div role="alert" className="text-sm text-red-400 bg-red-950/40 border border-red-900 rounded-md p-3">
-                {submitError}
+        <DialogContent className="sm:max-w-lg bg-background text-foreground border-white/10 max-h-[90vh] overflow-y-auto p-0">
+          <div className="p-8 md:p-12">
+            <DialogHeader className="mb-10">
+              <div className="flex items-center gap-3 text-primary text-[10px] font-bold tracking-[0.4em] mb-4 uppercase">
+                <span className="w-10 h-[1px] bg-primary" />
+                Feedback
               </div>
-            )}
-            <Button type="submit" disabled={isSubmitting} aria-busy={isSubmitting} className="w-full bg-gold hover:bg-gold/90 text-primary-foreground font-semibold">
-              {isSubmitting ? 'Submitting...' : 'Submit'}
-            </Button>
-          </form>
+              <DialogTitle className="text-4xl font-display font-bold uppercase tracking-tighter">Quick Survey</DialogTitle>
+            </DialogHeader>
+
+            <form onSubmit={onSubmit} className="space-y-8">
+              <div aria-hidden="true" style={{ position: 'absolute', left: '-10000px', width: 1, height: 1, overflow: 'hidden' }}>
+                <label htmlFor="company">Company</label>
+                <input
+                  id="company"
+                  name="company"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                />
+              </div>
+              
+              <div className="space-y-6">
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-widest mb-3">How did you hear about us?</label>
+                  <Select value={q1} onValueChange={setQ1}>
+                    <SelectTrigger className="bg-card border-white/10 h-12 rounded-none">
+                      <SelectValue placeholder="Select an option" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-background border-white/10 rounded-none">
+                      <SelectItem value="Instagram">Instagram</SelectItem>
+                      <SelectItem value="Facebook">Facebook</SelectItem>
+                      <SelectItem value="Google">Google</SelectItem>
+                      <SelectItem value="Friends">Friends</SelectItem>
+                      <SelectItem value="Website">Website</SelectItem>
+                      <SelectItem value="AI">AI</SelectItem>
+                      <SelectItem value="Other">Other</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  {q1 === 'Other' && <Input value={other1} onChange={(e) => setOther1(e.target.value)} placeholder="Please specify" className="mt-3 bg-card border-white/10 h-12 rounded-none" />}
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-widest mb-3">What do you usually buy?</label>
+                  <Select value={q2} onValueChange={setQ2}>
+                    <SelectTrigger className="bg-card border-white/10 h-12 rounded-none">
+                      <SelectValue placeholder="Select an option" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-background border-white/10 rounded-none">
+                      <SelectItem value="Beer">Beer</SelectItem>
+                      <SelectItem value="Wine">Wine</SelectItem>
+                      <SelectItem value="Whiskey">Whiskey</SelectItem>
+                      <SelectItem value="Other">Other</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  {q2 === 'Other' && <Input value={other2} onChange={(e) => setOther2(e.target.value)} placeholder="Please specify" className="mt-3 bg-card border-white/10 h-12 rounded-none" />}
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-widest mb-3">What would you like more of?</label>
+                  <Select value={q4} onValueChange={setQ4}>
+                    <SelectTrigger className="bg-card border-white/10 h-12 rounded-none">
+                      <SelectValue placeholder="Select an option" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-background border-white/10 rounded-none">
+                      <SelectItem value="Discounts">Discounts</SelectItem>
+                      <SelectItem value="New products">New products</SelectItem>
+                      <SelectItem value="Events">Events</SelectItem>
+                      <SelectItem value="Other">Other</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  {q4 === 'Other' && <Textarea value={other4} onChange={(e) => setOther4(e.target.value)} placeholder="Please specify" className="mt-3 bg-card border-white/10 rounded-none min-h-[100px]" />}
+                </div>
+              </div>
+
+              {submitError && (
+                <div role="alert" className="text-xs font-bold text-red-400 bg-red-950/20 border border-red-900/50 p-4 uppercase tracking-widest">
+                  {submitError}
+                </div>
+              )}
+              
+              <Button type="submit" disabled={isSubmitting} className="w-full bg-primary hover:bg-primary/90 text-white font-bold tracking-widest uppercase h-14 rounded-none boutique-shadow">
+                {isSubmitting ? 'Submitting...' : 'Send Feedback'}
+              </Button>
+            </form>
+          </div>
         </DialogContent>
       </Dialog>
     </>

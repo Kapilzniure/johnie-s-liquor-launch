@@ -15,61 +15,66 @@ export const Header = () => {
   }, []);
 
   const links = [
-    { label: "Home", href: "/#home" },
+    { label: "Our Story", href: "/#story" },
     { label: "Specials", href: "/#specials" },
-    { label: "Products", href: "/catalog" },
-    { label: "Story", href: "/#story" },
-    { label: "Delivery", href: "/#delivery" },
+    { label: "Gallery", href: "/#gallery" },
+    { label: "Catalog", href: "/catalog" },
     { label: "Contact", href: "/#contact" },
   ];
 
   return (
-    <header className={`fixed top-0 inset-x-0 z-50 transition-smooth ${scrolled ? "bg-background/85 backdrop-blur-xl border-b border-border" : "bg-transparent"}`}>
-      <div className="container mx-auto px-5 h-16 md:h-20 flex items-center justify-between">
-        <a href="#home" className="flex items-center gap-2.5">
-          <div className="w-9 h-9 rounded-md bg-gradient-gold flex items-center justify-center shadow-gold">
-            <span className="font-display font-bold text-primary-foreground text-lg">J</span>
-          </div>
-          <div className="leading-tight">
-            <div className="font-display font-bold text-lg tracking-tight">Johnnies</div>
-            <div className="text-[10px] uppercase tracking-[0.25em] text-gold -mt-0.5">Liquor · Austin</div>
+    <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-700 ${scrolled ? "bg-background/95 backdrop-blur-xl border-b border-foreground/5 h-14 shadow-editorial" : "h-16"}`}>
+      <div className="container mx-auto px-6 h-full flex items-center justify-between">
+        
+        {/* Editorial Logo */}
+        <a href="#home" className="flex items-center gap-3 group">
+          <div className="w-9 h-9 bg-primary flex items-center justify-center font-display font-black text-white text-lg group-hover:bg-foreground group-hover:text-background transition-colors duration-500">J</div>
+          <div className="flex flex-col">
+             <span className="font-display font-bold text-lg tracking-tight leading-none uppercase text-foreground">Johnnies</span>
+             <span className="text-[9px] font-bold uppercase tracking-[0.4em] text-primary italic">Austin, TX</span>
           </div>
         </a>
-        <div className="md:hidden flex items-center ml-auto mr-2">
-          <SurveyButton />
-        </div>
-        <nav className="hidden md:flex items-center gap-10">
+
+        {/* Minimal Nav */}
+        <nav className="hidden lg:flex items-center gap-8">
           {links.map((l) => (
-            <a key={l.href} href={l.href} className="text-sm font-medium text-foreground/80 hover:text-gold transition-smooth">
+            <a key={l.href} href={l.href} className="text-[10px] font-black uppercase tracking-[0.4em] text-foreground/60 hover:text-primary transition-all duration-300">
               {l.label}
             </a>
           ))}
         </nav>
-        <div className="hidden md:flex items-center gap-3">
-          <a href={`tel:${PHONE}`} className="text-sm font-medium hover:text-gold transition-smooth flex items-center gap-2">
-            <Phone className="w-4 h-4" /> {PHONE_DISPLAY}
+
+        {/* Action area */}
+        <div className="flex items-center gap-4">
+          <a href={`tel:${PHONE}`} className="hidden md:flex items-center gap-2 text-xs font-black uppercase tracking-widest text-foreground/80 hover:text-primary transition-colors">
+            <Phone className="w-3.5 h-3.5 text-primary" />{PHONE_DISPLAY}
           </a>
-          <SurveyButton />
-          <Button asChild variant="gold" size="sm">
-            <a href={DIRECTIONS_URL} target="_blank" rel="noopener noreferrer"><Navigation className="w-4 h-4 mr-1.5" /> Directions</a>
+          <Button asChild size="sm" className="hidden md:flex bg-primary text-white rounded-none font-black tracking-widest uppercase text-[10px] h-9 px-4 hover:bg-foreground hover:text-background transition-all">
+            <a href={DIRECTIONS_URL} target="_blank" rel="noopener noreferrer"><Navigation className="w-3.5 h-3.5 mr-1.5" />Directions</a>
           </Button>
+          <div className="hidden md:block"><SurveyButton /></div>
+          <button onClick={() => setOpen(!open)} className="lg:hidden p-2 text-foreground" aria-label="Menu">
+            {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
-        <button onClick={() => setOpen(!open)} className="md:hidden p-2" aria-label="Menu">
-          {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
       </div>
+
+      {/* Mobile Menu */}
       {open && (
-        <div className="md:hidden bg-background/95 backdrop-blur-xl border-t border-border">
-          <div className="container mx-auto px-5 py-6 flex flex-col gap-5">
-            {links.map((l) => (
-              <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="text-lg font-medium hover:text-gold">
-                {l.label}
-              </a>
-            ))}
-            <div className="pt-4 border-t border-border">
-              <SurveyButton />
-            </div>
-          </div>
+        <div className="absolute top-full inset-x-0 bg-background/98 backdrop-blur-3xl border-t border-foreground/5 px-6 py-6 animate-fade-up">
+           <div className="flex flex-col gap-4">
+              {links.map((l) => (
+                <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="text-lg font-display font-bold uppercase tracking-tight text-foreground hover:text-primary transition-colors border-b border-foreground/5 pb-4">
+                  {l.label}
+                </a>
+              ))}
+              <div className="pt-2 flex flex-col gap-3">
+                <a href={`tel:${PHONE}`} className="flex items-center gap-2 text-sm font-black text-primary uppercase tracking-widest">
+                  <Phone className="w-4 h-4" />{PHONE_DISPLAY}
+                </a>
+                <SurveyButton />
+              </div>
+           </div>
         </div>
       )}
     </header>
