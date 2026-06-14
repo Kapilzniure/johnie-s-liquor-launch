@@ -13,7 +13,7 @@ export const QuickActions = () => {
     <div id="quick" className="py-12 bg-[#050508] border-y border-white/5 relative overflow-hidden group">
       <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-6 md:gap-12">
+        <div className="grid grid-cols-3 md:grid-cols-5 gap-6 md:gap-12">
           {items.map((it) => (
             <a
               key={it.label}
