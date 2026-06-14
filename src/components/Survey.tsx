@@ -15,10 +15,10 @@ export const SurveyButton = () => {
     <Button
       onClick={openSurvey}
       size="sm"
-      className="flex items-center gap-2 bg-primary text-white rounded-none font-bold tracking-widest uppercase text-[10px] h-10 px-6 boutique-shadow"
+      className="flex items-center gap-3 bg-white text-black rounded-none font-black tracking-widest uppercase text-[9px] h-10 px-6 hover:bg-primary hover:text-white transition-all duration-500 shadow-boutique border-none"
     >
-      <Gift className="w-3.5 h-3.5" />
-      Survey
+      <Gift className="w-4 h-4" />
+      Feedback
     </Button>
   );
 };
@@ -149,13 +149,14 @@ const Survey = () => {
   if (isSubmitted) {
     return (
       <Dialog open={true} onOpenChange={() => setIsSubmitted(false)}>
-        <DialogContent className="sm:max-w-md bg-background text-foreground border-white/10">
-          <DialogHeader>
-            <DialogTitle className="text-center text-2xl font-display font-bold">Thank You! 🎉</DialogTitle>
-          </DialogHeader>
-          <div className="text-center py-8">
-            <p className="text-lg mb-4 font-medium italic">"We appreciate your feedback."</p>
-            <p className="text-xs text-muted-foreground uppercase tracking-widest">Show this in-store for a special offer</p>
+        <DialogContent className="sm:max-w-md bg-[#050508] text-white border-white/5 shadow-2xl">
+          <div className="text-center py-12">
+            <Gift className="w-12 h-12 text-primary mx-auto mb-8 animate-bounce" />
+            <h2 className="text-3xl font-display font-black italic uppercase tracking-tighter mb-4">Confirmed</h2>
+            <p className="text-white/40 italic text-lg mb-8">"We appreciate your contribution to the heritage collection."</p>
+            <Button onClick={() => setIsSubmitted(false)} className="bg-primary text-white h-14 px-10 rounded-none font-black uppercase tracking-widest text-xs">
+              Dismiss
+            </Button>
           </div>
         </DialogContent>
       </Dialog>
@@ -165,17 +166,17 @@ const Survey = () => {
   return (
     <>
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="sm:max-w-lg bg-background text-foreground border-white/10 max-h-[90vh] overflow-y-auto p-0">
-          <div className="p-8 md:p-12">
-            <DialogHeader className="mb-10">
-              <div className="flex items-center gap-3 text-primary text-[10px] font-bold tracking-[0.4em] mb-4 uppercase">
+        <DialogContent className="fixed z-[1000] sm:max-w-lg bg-[#050508] text-white border-white/10 max-h-[90vh] overflow-y-auto p-0 shadow-2xl">
+          <div className="p-8 md:p-14">
+            <DialogHeader className="mb-12">
+              <div className="flex items-center gap-3 text-primary text-[10px] font-black tracking-[0.5em] mb-6 uppercase">
                 <span className="w-10 h-[1px] bg-primary" />
-                Feedback
+                Intelligence
               </div>
-              <DialogTitle className="text-4xl font-display font-bold uppercase tracking-tighter">Quick Survey</DialogTitle>
+              <DialogTitle className="text-5xl font-display font-black italic tracking-tighter uppercase leading-none">Feedback System</DialogTitle>
             </DialogHeader>
 
-            <form onSubmit={onSubmit} className="space-y-8">
+            <form onSubmit={onSubmit} className="space-y-10">
               <div aria-hidden="true" style={{ position: 'absolute', left: '-10000px', width: 1, height: 1, overflow: 'hidden' }}>
                 <label htmlFor="company">Company</label>
                 <input
@@ -189,14 +190,14 @@ const Survey = () => {
                 />
               </div>
               
-              <div className="space-y-6">
+              <div className="space-y-8">
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-widest mb-3">How did you hear about us?</label>
+                  <label className="block text-[10px] font-black uppercase tracking-[0.3em] text-white/30 mb-4">How did you hear about us?</label>
                   <Select value={q1} onValueChange={setQ1}>
-                    <SelectTrigger className="bg-card border-white/10 h-12 rounded-none">
-                      <SelectValue placeholder="Select an option" />
+                    <SelectTrigger className="bg-white/5 border-white/10 h-14 rounded-none text-white/60">
+                      <SelectValue placeholder="Select Source" />
                     </SelectTrigger>
-                    <SelectContent className="bg-background border-white/10 rounded-none">
+                    <SelectContent className="bg-[#0A0A0F] border-white/10 rounded-none text-white">
                       <SelectItem value="Instagram">Instagram</SelectItem>
                       <SelectItem value="Facebook">Facebook</SelectItem>
                       <SelectItem value="Google">Google</SelectItem>
@@ -206,50 +207,50 @@ const Survey = () => {
                       <SelectItem value="Other">Other</SelectItem>
                     </SelectContent>
                   </Select>
-                  {q1 === 'Other' && <Input value={other1} onChange={(e) => setOther1(e.target.value)} placeholder="Please specify" className="mt-3 bg-card border-white/10 h-12 rounded-none" />}
+                  {q1 === 'Other' && <Input value={other1} onChange={(e) => setOther1(e.target.value)} placeholder="Specify Source" className="mt-4 bg-white/5 border-white/10 h-14 rounded-none" />}
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-widest mb-3">What do you usually buy?</label>
+                  <label className="block text-[10px] font-black uppercase tracking-[0.3em] text-white/30 mb-4">Primary Interest</label>
                   <Select value={q2} onValueChange={setQ2}>
-                    <SelectTrigger className="bg-card border-white/10 h-12 rounded-none">
-                      <SelectValue placeholder="Select an option" />
+                    <SelectTrigger className="bg-white/5 border-white/10 h-14 rounded-none text-white/60">
+                      <SelectValue placeholder="Select Category" />
                     </SelectTrigger>
-                    <SelectContent className="bg-background border-white/10 rounded-none">
+                    <SelectContent className="bg-[#0A0A0F] border-white/10 rounded-none text-white">
                       <SelectItem value="Beer">Beer</SelectItem>
                       <SelectItem value="Wine">Wine</SelectItem>
                       <SelectItem value="Whiskey">Whiskey</SelectItem>
                       <SelectItem value="Other">Other</SelectItem>
                     </SelectContent>
                   </Select>
-                  {q2 === 'Other' && <Input value={other2} onChange={(e) => setOther2(e.target.value)} placeholder="Please specify" className="mt-3 bg-card border-white/10 h-12 rounded-none" />}
+                  {q2 === 'Other' && <Input value={other2} onChange={(e) => setOther2(e.target.value)} placeholder="Specify Category" className="mt-4 bg-white/5 border-white/10 h-14 rounded-none" />}
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-widest mb-3">What would you like more of?</label>
+                  <label className="block text-[10px] font-black uppercase tracking-[0.3em] text-white/30 mb-4">Inventory Request</label>
                   <Select value={q4} onValueChange={setQ4}>
-                    <SelectTrigger className="bg-card border-white/10 h-12 rounded-none">
-                      <SelectValue placeholder="Select an option" />
+                    <SelectTrigger className="bg-white/5 border-white/10 h-14 rounded-none text-white/60">
+                      <SelectValue placeholder="Select Need" />
                     </SelectTrigger>
-                    <SelectContent className="bg-background border-white/10 rounded-none">
+                    <SelectContent className="bg-[#0A0A0F] border-white/10 rounded-none text-white">
                       <SelectItem value="Discounts">Discounts</SelectItem>
                       <SelectItem value="New products">New products</SelectItem>
                       <SelectItem value="Events">Events</SelectItem>
                       <SelectItem value="Other">Other</SelectItem>
                     </SelectContent>
                   </Select>
-                  {q4 === 'Other' && <Textarea value={other4} onChange={(e) => setOther4(e.target.value)} placeholder="Please specify" className="mt-3 bg-card border-white/10 rounded-none min-h-[100px]" />}
+                  {q4 === 'Other' && <Textarea value={other4} onChange={(e) => setOther4(e.target.value)} placeholder="Detail your request..." className="mt-4 bg-white/5 border-white/10 rounded-none min-h-[120px]" />}
                 </div>
               </div>
 
               {submitError && (
-                <div role="alert" className="text-xs font-bold text-red-400 bg-red-950/20 border border-red-900/50 p-4 uppercase tracking-widest">
+                <div role="alert" className="text-[10px] font-black text-primary bg-primary/10 border border-primary/20 p-5 uppercase tracking-[0.3em]">
                   {submitError}
                 </div>
               )}
               
-              <Button type="submit" disabled={isSubmitting} className="w-full bg-primary hover:bg-primary/90 text-white font-bold tracking-widest uppercase h-14 rounded-none boutique-shadow">
-                {isSubmitting ? 'Submitting...' : 'Send Feedback'}
+              <Button type="submit" disabled={isSubmitting} className="w-full bg-primary hover:bg-white hover:text-black text-white font-black tracking-[0.3em] uppercase h-16 rounded-none transition-all duration-500 shadow-boutique border-none">
+                {isSubmitting ? 'Transmitting...' : 'Transmit Feedback'}
               </Button>
             </form>
           </div>

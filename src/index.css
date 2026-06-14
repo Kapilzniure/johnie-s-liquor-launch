@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&family=Inter:wght@400;500;600;700&family=Caveat:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,175 +6,78 @@
 
 @layer base {
   :root {
-    /* "Midnight Noir" Dark Palette */
-    --background: 20 10% 6%;         /* Deep charcoal #0F0E0D */
-    --foreground: 30 18% 91%;        /* Warm cream #EAE5DC */
-
-    --card: 20 10% 10%;
-    --card-foreground: 30 18% 91%;
-
-    --primary: 0 70% 45%;            /* Johnnie's Red */
+    --background: 240 10% 2%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 4%;
+    --card-foreground: 0 0% 98%;
+    --primary: 0 85% 50%;
     --primary-foreground: 0 0% 100%;
-
-    --secondary: 20 8% 16%;
-    --secondary-foreground: 30 18% 91%;
-
-    --muted: 20 8% 13%;
-    --muted-foreground: 20 5% 52%;
-
-    --accent: 0 70% 45%;
+    --secondary: 240 10% 10%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 10% 6%;
+    --muted-foreground: 240 5% 50%;
+    --accent: 0 85% 50%;
     --accent-foreground: 0 0% 100%;
-
-    --border: 0 0% 100% / 0.08;
-    --input: 20 8% 16%;
-    --ring: 0 70% 45%;
-    --radius: 0rem;                  /* Sharp, editorial edges */
-
-    /* Gold / Amber accents */
-    --gold: 38 80% 55%;
-    --gold-glow: 38 80% 72%;
-    --amber: 35 88% 48%;
-    --deep: 20 10% 4%;
-
-    /* Branding tokens */
-    --brand-red: #B22222;
-    --brand-charcoal: #0F0E0D;
-    --brand-cream: #EAE5DC;
-    --brand-gold: #D4A843;
+    --border: 240 5% 10%;
+    --input: 240 5% 10%;
+    --ring: 0 85% 50%;
+    --radius: 0.5rem;
   }
 
-  .dark-section {
-    --background: 20 10% 9%;
-    --foreground: 30 18% 91%;
-    --border: 0 0% 100% / 0.08;
-    --card: 20 10% 12%;
-    --card-foreground: 30 18% 91%;
-  }
-
-  * { @apply border-border; }
+  * { @apply border-border/50; }
   html { scroll-behavior: smooth; }
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    background-color: hsl(var(--background));
-    font-feature-settings: "ss01", "cv11";
+    background-color: #050508;
   }
-}
-
-@layer utilities {
-  .font-hand {
-    font-family: 'Caveat', cursive;
-  }
-  
-  .font-display {
-    font-family: 'Playfair Display', serif;
-  }
-
-  .paper-texture {
-    position: relative;
-  }
-  .paper-texture::after {
-    content: ''; position: absolute; inset: 0; pointer-events: none;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    opacity: 0.06;
-    z-index: 1;
-    mix-blend-mode: overlay;
-  }
-
-  .shadow-editorial {
-    box-shadow: 20px 20px 60px rgba(0,0,0,0.4), -20px -20px 60px rgba(255,255,255,0.02);
-  }
-
-  .shadow-ink {
-    box-shadow: 6px 6px 0px 0px hsl(var(--primary) / 0.6);
-  }
-
-  .reveal-mask {
-    clip-path: inset(0 100% 0 0);
-    transition: clip-path 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .reveal-mask.is-visible {
-    clip-path: inset(0 0 0 0);
-  }
-
-  /* Success styles for Weekly Picks (preserved logic) */
-  .stamp {
-    @apply inline-block border-2 border-current px-3 py-1 font-black uppercase tracking-tighter rotate-[-3deg] bg-white/10 backdrop-blur-sm;
-  }
-
-  .paper-shadow {
-    box-shadow:
-      3px 3px 0px 0px hsl(var(--primary) / 0.5),
-      6px 6px 0px 0px hsl(var(--primary) / 0.2);
-  }
-
-  .gradient-gold-text {
-    background: linear-gradient(135deg, hsl(var(--gold)), hsl(var(--gold-glow)) 50%, hsl(var(--gold)));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .bg-gradient-gold {
-    background: linear-gradient(135deg, hsl(var(--gold)), hsl(var(--amber)));
-  }
-
-  .shadow-gold {
-    box-shadow: 0 4px 24px hsl(var(--gold) / 0.3);
-  }
-
-  .transition-smooth {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .rough-border {
-    border-image: none;
-  }
-
-  .scrollbar-hide::-webkit-scrollbar { display: none; }
-  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
-}
-
-@layer base {
-  h1, h2, h3 { @apply font-display font-black tracking-tighter uppercase; }
   section { @apply py-12 md:py-20 scroll-mt-24; }
 }
 
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+@layer utilities {
+  .font-display {
+    font-family: 'Inter', sans-serif;
+  }
+  .font-hand {
+    font-family: 'Inter', sans-serif;
+  }
+  .glow-red {
+    box-shadow: 0 0 40px -10px hsla(var(--primary) / 0.4);
+  }
+  .text-glow {
+    text-shadow: 0 0 30px hsla(var(--primary) / 0.5);
+  }
+  .glass-dark {
+    @apply bg-white/[0.03] backdrop-blur-2xl border border-white/10;
+  }
+  .shadow-editorial {
+    box-shadow: 4px 4px 0 0 hsl(var(--border));
+  }
+  .shadow-boutique {
+    box-shadow: 0 0 30px -5px hsla(var(--primary) / 0.3);
+  }
+  .paper-texture { position: relative; }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
 }
-.marquee-track {
-  display: flex;
-  width: max-content;
-  animation: marquee 28s linear infinite;
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
-.marquee-track:hover { animation-play-state: paused; }
+.animate-fade-up { animation: fade-up 0.6s ease both; }
 
 @keyframes float {
-  0% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-10px) rotate(1deg); }
-  100% { transform: translateY(0px) rotate(0deg); }
+  0%   { transform: translateY(0px) rotate(0deg) scale(1); }
+  50%  { transform: translateY(-20px) rotate(3deg) scale(1.02); }
+  100% { transform: translateY(0px) rotate(0deg) scale(1); }
 }
 .animate-float { animation: float 8s ease-in-out infinite; }
 
-@keyframes fade-up {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50%       { opacity: 0.6; transform: scale(1.2); }
 }
-.animate-fade-up {
-  animation: fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-@keyframes camera-shutter {
-  0%   { opacity: 0.55; }
-  40%  { opacity: 0.55; }
-  100% { opacity: 0; }
-}
-.camera-shutter {
-  animation: camera-shutter 0.52s ease-out forwards;
-  pointer-events: none;
-}
-
-.boutique-shadow {
-  box-shadow: 4px 4px 0px 0px hsl(var(--primary) / 0.5);
-}
+.animate-pulse-glow { animation: pulse-glow 4s ease-in-out infinite; }

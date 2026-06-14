@@ -1,4 +1,5 @@
 import { Section } from "@/components/Section";
+import { Button } from "@/components/ui/button";
 import { Phone } from "@/components/Icons";
 import { PHONE, PHONE_DISPLAY } from "@/lib/constants";
 import pBourbon from "@/assets/p-bourbon.webp";
@@ -7,77 +8,41 @@ import pBeer from "@/assets/p-beer.webp";
 import pTequila from "@/assets/p-tequila.webp";
 
 const specials = [
-  { img: pBourbon, tag: "Staff Pick",  cat: "Whiskey",  name: "Maker's Mark Bourbon",       desc: "Soft, smooth, and slightly sweet. One of the most approachable bourbons we carry.", rotate: "sm:rotate-[-1deg]" },
-  { img: pWine,    tag: "Best Value",  cat: "Wine",     name: "Josh Cabernet Sauvignon",    desc: "Consistently great California Cab. Full-bodied with dark fruit and a smooth finish.", rotate: "sm:rotate-[1deg]"  },
-  { img: pBeer,    tag: "Cold & Ready",cat: "Beer",     name: "Shiner Bock 6-Pack",         desc: "Texas-brewed, always fresh. Our most popular local beer — grab it ice cold.",         rotate: "sm:rotate-[-1deg]" },
-  { img: pTequila, tag: "Hot Deal",    cat: "Tequila",  name: "Patron Silver",              desc: "Ultra-premium silver tequila. Clean, smooth, and perfect for cocktails.",            rotate: "sm:rotate-[1deg]"  },
+  { img: pBourbon, tag: "Rare",    cat: "Whiskey", name: "Maker's Mark",  delay: 0   },
+  { img: pWine,    tag: "Select",  cat: "Wine",    name: "Josh Cabernet", delay: 100 },
+  { img: pBeer,    tag: "Cold",    cat: "Beer",    name: "Shiner Bock",   delay: 200 },
+  { img: pTequila, tag: "Premium", cat: "Tequila", name: "Patron Silver", delay: 300 },
 ];
 
 export const Specials = () => (
-  <Section id="specials" className="bg-card/30 relative">
+  <Section id="specials" className="bg-[#050508]" eyebrow="System Select" title="Weekly Specials" subtitle="Elite labels. Precise pricing. Curated for the modern Austin lifestyle.">
 
-    <div className="mb-8">
-      <div className="inline-block border border-primary/40 px-2 py-0.5 text-[9px] font-black uppercase tracking-tighter rotate-[-2deg] bg-primary/10 text-primary mb-3">
-        Limited Availability
-      </div>
-      <h2 className="text-2xl md:text-3xl font-display font-black uppercase tracking-tighter">
-        Weekly <span className="text-primary italic">Picks</span>
-      </h2>
-      <div className="flex items-center gap-2 mt-2">
-        <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-        <span className="text-[10px] font-black uppercase tracking-widest text-primary/70">Updated this week</span>
-      </div>
-      <p className="mt-2 text-muted-foreground max-w-xl text-sm italic">
-        Hand-selected deals updated every week. Come grab 'em before they're gone.
-      </p>
-    </div>
-
-    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
-      {specials.map((s, idx) => (
-        <article
-          key={s.name}
-          style={{ animationDelay: `${idx * 80}ms` }}
-          className={`group relative bg-background p-2 paper-shadow transition-smooth hover:scale-[1.02] animate-fade-up ${s.rotate} hover:rotate-0`}
-        >
-          <div className="absolute -top-3 -right-3 z-20">
-            <div className="bg-primary text-white text-[10px] font-bold px-3 py-1.5 paper-shadow uppercase tracking-widest rotate-[12deg]">
-              {s.tag}
-            </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-1">
+      {specials.map((s) => (
+        <article key={s.name} className="group relative animate-fade-up bg-white/[0.02] p-8 hover:bg-white/[0.04] transition-all duration-700" style={{ animationDelay: `${s.delay}ms` }}>
+          <div className="absolute top-0 right-0 p-4 opacity-10 text-[8px] font-black group-hover:opacity-100 transition-opacity">{s.tag}</div>
+          <div className="mb-10 relative">
+            <div className="absolute inset-0 bg-primary/10 blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity" />
+            <img src={s.img} alt={s.name} className="relative z-10 w-full h-auto group-hover:scale-105 transition-all duration-1000" />
           </div>
-
-          <div className="aspect-[3/4] overflow-hidden relative border border-border/50">
-            <img src={s.img} alt={s.name} loading="lazy"
-              className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-500" />
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />
-          </div>
-
-          <div className="p-3 relative">
-            <div className="font-mono text-[9px] text-primary/70 uppercase tracking-[0.3em] mb-1">{s.cat}</div>
-            <h3 className="font-display text-sm font-bold leading-tight mb-1 group-hover:text-primary transition-colors">{s.name}</h3>
-            <p className="text-[11px] text-muted-foreground/80 leading-relaxed font-medium italic line-clamp-2">"{s.desc}"</p>
-
-            <div className="mt-3 pt-3 border-t border-dashed border-border flex justify-between items-center">
-              <span className="text-[9px] font-mono text-muted-foreground uppercase">In-Store Only</span>
-              <a href={`tel:${PHONE}`} className="w-6 h-6 rounded-full border border-primary/20 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all">
-                <Phone className="w-3 h-3" />
-              </a>
-            </div>
+          <div>
+            <div className="text-[10px] text-primary font-black uppercase tracking-[0.4em] mb-2">{s.cat}</div>
+            <h3 className="text-2xl font-display font-black italic tracking-tighter text-white group-hover:text-primary transition-colors mb-4">{s.name}</h3>
+            <Button asChild variant="link" className="p-0 h-auto text-[9px] font-black uppercase tracking-[0.3em] text-white/30 group-hover:text-white transition-all">
+              <a href={`tel:${PHONE}`}>Check Stock →</a>
+            </Button>
           </div>
         </article>
       ))}
     </div>
 
-    <div className="mt-6 flex flex-col sm:flex-row items-center justify-between p-4 md:p-5 border border-dashed border-primary/20">
-      <div className="flex items-center gap-3 mb-3 sm:mb-0">
-        <div className="w-8 h-8 bg-primary/10 flex items-center justify-center text-primary">
-          <Phone className="w-4 h-4" />
-        </div>
-        <div>
-          <div className="font-bold text-sm uppercase tracking-tight">Confirm Availability</div>
-          <div className="text-xs text-muted-foreground">Call us to check today's prices</div>
-        </div>
+    {/* Contact Bar */}
+    <div className="mt-16 flex flex-col md:flex-row items-center justify-between gap-8 py-10 border-t border-white/5">
+      <div className="text-left">
+        <div className="text-white/20 text-[10px] font-black uppercase tracking-[0.5em] mb-3">Direct Communication</div>
+        <div className="font-display text-3xl md:text-5xl font-black italic text-white leading-none">THE HOTLINE</div>
       </div>
-      <a href={`tel:${PHONE}`} className="text-lg md:text-xl font-display font-black text-primary hover:scale-105 transition-transform">
+      <a href={`tel:${PHONE}`} className="text-3xl md:text-6xl font-display font-black text-primary hover:text-white transition-all tracking-tighter text-glow">
         {PHONE_DISPLAY}
       </a>
     </div>

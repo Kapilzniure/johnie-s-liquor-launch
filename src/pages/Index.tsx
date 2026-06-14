@@ -16,36 +16,6 @@ import { Delivery } from "@/components/home/Delivery";
 import { CallStrip } from "@/components/home/CallStrip";
 import { VisitUs } from "@/components/home/VisitUs";
 
-const Divider = () => (
-  <div className="flex items-center gap-0 overflow-hidden" aria-hidden>
-    <div className="flex-1 h-[1px] bg-foreground/5" />
-    <div className="w-32 h-[2px] bg-primary/40" />
-    <div className="flex-1 h-[1px] bg-foreground/5" />
-  </div>
-);
-
-const ScrollProgress = () => {
-  const [progress, setProgress] = useState(0);
-  useEffect(() => {
-    const onScroll = () => {
-      const el = document.documentElement;
-      const scrolled = el.scrollTop;
-      const total = el.scrollHeight - el.clientHeight;
-      setProgress(total > 0 ? scrolled / total : 0);
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-  return (
-    <div className="fixed top-0 left-0 right-0 z-[100] h-[3px] bg-transparent pointer-events-none" aria-hidden>
-      <div
-        className="h-full bg-primary transition-none"
-        style={{ width: `${progress * 100}%` }}
-      />
-    </div>
-  );
-};
-
 const Index = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
 
@@ -57,23 +27,17 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground relative overflow-x-hidden">
-      <ScrollProgress />
       <Header />
       <main>
         <Hero />
-        
-        <QuickActions />
-        <Divider />
+        <div className="relative z-10">
+          <QuickActions />
+        </div>
         <Specials />
-        <Divider />
         <Delivery />
-        <Divider />
         <Favorites />
-        <Divider />
         <OurStory />
-        <Divider />
         <Gallery />
-        <Divider />
         <Reviews />
         <CallStrip />
         <VisitUs />

@@ -1,21 +1,3 @@
-import { 
-  Phone, 
-  MapPin, 
-  Clock, 
-  Navigation, 
-  Wine, 
-  Beer, 
-  GlassWater, 
-  Truck, 
-  ChevronDown, 
-  Sparkles, 
-  Star, 
-  Package, 
-  Award,
-  Instagram,
-  Facebook
-} from "@/components/Icons";
-
 const PHONE = "+15123835004";
 const PHONE_DISPLAY = "(512) 383-5004";
 const ADDRESS = "13201 Pond Springs Rd, Suite 203, Austin, TX 78729";
