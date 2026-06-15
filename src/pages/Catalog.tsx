@@ -15,14 +15,14 @@ import catSpirits from "@/assets/cat-spirits.webp";
 import heroBottle from "@/assets/hero-bottle.webp";
 import freeze      from "@/assets/freeze.webp";
 import rum         from "@/assets/rum.webp";
-import msWhiskey from "@/assets/Messenger_creation_778A06FE-5026-499C-B0D5-57C792C0EFDC.jpeg";
-import msDarkSpirits from "@/assets/Messenger_creation_9A25B156-EF4B-418D-B65B-39C7BB14DAB1.jpeg";
-import msGameOn from "@/assets/Messenger_creation_14C57FDC-A1BD-4F63-8AF4-4475266835C6.jpeg";
-import msMiniWall from "@/assets/Messenger_creation_B45D2388-2346-4A48-A85D-53866F5C61E7.jpeg";
-import msMiniCase from "@/assets/Messenger_creation_AC6B393A-8A11-413E-8AA8-9AA50AF4DC1A.jpeg";
-import msTequila from "@/assets/Messenger_creation_D1DF73E3-C2ED-484D-AD7C-B20E7A9D9AF8.jpeg";
-import msRumMixes from "@/assets/Messenger_creation_29592D56-5229-4FBB-865F-A8973D2886D1.jpeg";
-import msGinVodka from "@/assets/Messenger_creation_ECCBCD7C-140B-4E64-828A-7C7C9F36A177.jpeg";
+import msWhiskey from "@/assets/Messenger_creation_778A06FE-5026-499C-B0D5-57C792C0EFDC.webp";
+import msDarkSpirits from "@/assets/Messenger_creation_9A25B156-EF4B-418D-B65B-39C7BB14DAB1.webp";
+import msGameOn from "@/assets/Messenger_creation_14C57FDC-A1BD-4F63-8AF4-4475266835C6.webp";
+import msMiniWall from "@/assets/Messenger_creation_B45D2388-2346-4A48-A85D-53866F5C61E7.webp";
+import msMiniCase from "@/assets/Messenger_creation_AC6B393A-8A11-413E-8AA8-9AA50AF4DC1A.webp";
+import msTequila from "@/assets/Messenger_creation_D1DF73E3-C2ED-484D-AD7C-B20E7A9D9AF8.webp";
+import msRumMixes from "@/assets/Messenger_creation_29592D56-5229-4FBB-865F-A8973D2886D1.webp";
+import msGinVodka from "@/assets/Messenger_creation_ECCBCD7C-140B-4E64-828A-7C7C9F36A177.webp";
 
 type Category = "all" | "whiskey" | "wine" | "beer" | "spirits";
 

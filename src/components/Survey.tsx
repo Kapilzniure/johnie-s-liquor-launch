@@ -44,6 +44,7 @@ const Survey = () => {
   const [q4, setQ4] = useState('');
   const [other1, setOther1] = useState('');
   const [other2, setOther2] = useState('');
+  const [other3, setOther3] = useState('');
   const [other4, setOther4] = useState('');
   const [honeypot, setHoneypot] = useState('');
 
@@ -100,11 +101,13 @@ const Survey = () => {
     const schema = z.object({
       q1: z.string().trim().min(1, 'Please select an option').max(120),
       q2: z.string().trim().min(1, 'Please select an option').max(120),
+      q3: z.string().trim().min(1, 'Please select an option').max(120),
       q4: z.string().trim().min(1, 'Please select an option').max(500),
     });
     const parsed = schema.safeParse({
       q1: q1 === 'Other' ? other1 : q1,
       q2: q2 === 'Other' ? other2 : q2,
+      q3: q3 === 'Other' ? other3 : q3,
       q4: q4 === 'Other' ? other4 : q4,
     });
     if (!parsed.success) {
@@ -197,7 +200,7 @@ const Survey = () => {
                     <SelectTrigger className="bg-white/5 border-white/10 h-14 rounded-none text-white/60">
                       <SelectValue placeholder="Select Source" />
                     </SelectTrigger>
-                    <SelectContent className="bg-[#0A0A0F] border-white/10 rounded-none text-white">
+                    <SelectContent className="bg-[#0A0A0F] border-white/10 rounded-none text-white z-[9999]">
                       <SelectItem value="Instagram">Instagram</SelectItem>
                       <SelectItem value="Facebook">Facebook</SelectItem>
                       <SelectItem value="Google">Google</SelectItem>
@@ -207,6 +210,7 @@ const Survey = () => {
                       <SelectItem value="Other">Other</SelectItem>
                     </SelectContent>
                   </Select>
+                  <input type="hidden" name="source" value={q1 === 'Other' ? other1 : q1} />
                   {q1 === 'Other' && <Input value={other1} onChange={(e) => setOther1(e.target.value)} placeholder="Specify Source" className="mt-4 bg-white/5 border-white/10 h-14 rounded-none" />}
                 </div>
 
@@ -216,14 +220,32 @@ const Survey = () => {
                     <SelectTrigger className="bg-white/5 border-white/10 h-14 rounded-none text-white/60">
                       <SelectValue placeholder="Select Category" />
                     </SelectTrigger>
-                    <SelectContent className="bg-[#0A0A0F] border-white/10 rounded-none text-white">
+                    <SelectContent className="bg-[#0A0A0F] border-white/10 rounded-none text-white z-[9999]">
                       <SelectItem value="Beer">Beer</SelectItem>
                       <SelectItem value="Wine">Wine</SelectItem>
                       <SelectItem value="Whiskey">Whiskey</SelectItem>
                       <SelectItem value="Other">Other</SelectItem>
                     </SelectContent>
                   </Select>
+                  <input type="hidden" name="interest" value={q2 === 'Other' ? other2 : q2} />
                   {q2 === 'Other' && <Input value={other2} onChange={(e) => setOther2(e.target.value)} placeholder="Specify Category" className="mt-4 bg-white/5 border-white/10 h-14 rounded-none" />}
+                </div>
+
+                <div>
+                  <label className="block text-[10px] font-black uppercase tracking-[0.3em] text-white/30 mb-4">How often do you visit?</label>
+                  <Select value={q3} onValueChange={setQ3}>
+                    <SelectTrigger className="bg-white/5 border-white/10 h-14 rounded-none text-white/60">
+                      <SelectValue placeholder="Select Frequency" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-[#0A0A0F] border-white/10 rounded-none text-white z-[9999]">
+                      <SelectItem value="Weekly">Weekly</SelectItem>
+                      <SelectItem value="Monthly">Monthly</SelectItem>
+                      <SelectItem value="Rarely">Rarely</SelectItem>
+                      <SelectItem value="Other">Other</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <input type="hidden" name="frequency" value={q3 === 'Other' ? other3 : q3} />
+                  {q3 === 'Other' && <Input value={other3} onChange={(e) => setOther3(e.target.value)} placeholder="Specify Frequency" className="mt-4 bg-white/5 border-white/10 h-14 rounded-none" />}
                 </div>
 
                 <div>
@@ -232,13 +254,14 @@ const Survey = () => {
                     <SelectTrigger className="bg-white/5 border-white/10 h-14 rounded-none text-white/60">
                       <SelectValue placeholder="Select Need" />
                     </SelectTrigger>
-                    <SelectContent className="bg-[#0A0A0F] border-white/10 rounded-none text-white">
+                    <SelectContent className="bg-[#0A0A0F] border-white/10 rounded-none text-white z-[9999]">
                       <SelectItem value="Discounts">Discounts</SelectItem>
                       <SelectItem value="New products">New products</SelectItem>
                       <SelectItem value="Events">Events</SelectItem>
                       <SelectItem value="Other">Other</SelectItem>
                     </SelectContent>
                   </Select>
+                  <input type="hidden" name="request" value={q4 === 'Other' ? other4 : q4} />
                   {q4 === 'Other' && <Textarea value={other4} onChange={(e) => setOther4(e.target.value)} placeholder="Detail your request..." className="mt-4 bg-white/5 border-white/10 rounded-none min-h-[120px]" />}
                 </div>
               </div>

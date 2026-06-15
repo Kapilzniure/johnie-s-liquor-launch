@@ -14,7 +14,7 @@ export const Hero = () => {
         <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-blue-600/5 blur-[150px] rounded-full" />
       </div>
 
-      <div className="container mx-auto px-6 relative z-10 text-center" style={{ paddingTop: '80px', paddingBottom: '60px' }}>
+      <div className="container mx-auto px-6 relative z-10 text-center" style={{ paddingBottom: '60px' }}>
 
         {/* Status Badge */}
         <div className="inline-flex items-center gap-3 px-3 py-1 mb-8 glass-dark rounded-full border border-white/10 animate-fade-up">

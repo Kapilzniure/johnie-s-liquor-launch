@@ -8,8 +8,9 @@ const AgeVerification = () => {
   const [isVerified, setIsVerified] = useState(false);
 
   // Don't show on legal pages
-  const isLegalPage = typeof window !== 'undefined' &&
-    (window.location.pathname === '/privacy' || window.location.pathname === '/terms');
+  // Use a stable value for isLegalPage based on pathname
+  const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
+  const isLegalPage = pathname === '/privacy' || pathname === '/terms';
 
   useEffect(() => {
     if (isLegalPage) return;
@@ -24,7 +25,7 @@ const AgeVerification = () => {
       }
     }
     setIsOpen(true);
-  }, []);
+  }, [isLegalPage]);
 
   const handleYes = () => {
     localStorage.setItem('ageVerified', Date.now().toString());
