@@ -16,7 +16,7 @@ export default {
     extend: {
       fontFamily: {
         display: ['"Playfair Display"', 'serif'],
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['system-ui', 'sans-serif'],
       },
       colors: {
         gold: { DEFAULT: "hsl(var(--gold))", glow: "hsl(var(--gold-glow))" },

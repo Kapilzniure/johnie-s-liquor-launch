@@ -64,7 +64,7 @@ export const Footer = () => {
             className="h-7 w-auto object-contain"
             style={{ mixBlendMode: 'screen', opacity: 0.85 }}
           />
-          <span className="text-white/30">by CybiconZ</span>
+          <span className="text-white/30"> Designed and Built by CybiconZ</span>
         </div>
       </div>
     </div>

@@ -46,38 +46,38 @@ const AgeVerification = () => {
         onPointerDownOutside={(e) => e.preventDefault()}
         onEscapeKeyDown={(e) => e.preventDefault()}
       >
-        <div className="p-10 sm:p-14 flex flex-col items-center text-center">
-          
-          <div className="w-24 h-24 bg-primary/10 border border-primary/20 flex items-center justify-center mb-12 text-primary relative">
-             <div className="absolute inset-0 bg-primary/20 blur-3xl animate-pulse" />
-             <Wine className="w-10 h-10 relative z-10" />
+        <div className="p-8 sm:p-10 flex flex-col items-center text-center">
+
+          <div className="w-14 h-14 bg-primary/10 border border-primary/20 flex items-center justify-center mb-6 text-primary relative">
+            <div className="absolute inset-0 bg-primary/20 blur-3xl animate-pulse" />
+            <Wine className="w-6 h-6 relative z-10" />
           </div>
-          
-          <div className="mb-12">
-            <div className="text-[11px] font-black uppercase tracking-[0.5em] text-primary mb-4">Identity Verification</div>
-            <h2 className="text-5xl font-display font-black italic tracking-tighter text-white uppercase leading-none">Security Gate</h2>
+
+          <div className="mb-5">
+            <div className="text-[10px] font-black uppercase tracking-[0.5em] text-primary mb-2">Identity Verification</div>
+            <h2 className="text-3xl font-display font-black italic tracking-tighter text-white uppercase leading-none">Security Gate</h2>
           </div>
-          
-          <p className="text-white/60 font-medium mb-14 max-w-[300px] italic text-lg leading-relaxed">
-            "Verification is required to access the heritage collection. Please confirm your age."
+
+          <p className="text-white/50 text-sm font-medium mb-7 max-w-[260px] leading-relaxed">
+            Confirm you are 21 or older to access this site.
           </p>
-          
-          <div className="flex flex-col gap-5 w-full">
-            <Button 
-              onClick={handleYes} 
-              className="bg-primary text-white h-20 text-xl font-black uppercase tracking-widest rounded-none hover:bg-white hover:text-black transition-all duration-500 glow-red border-none"
+
+          <div className="flex flex-col gap-3 w-full">
+            <Button
+              onClick={handleYes}
+              className="bg-primary text-white h-11 text-sm font-black uppercase tracking-widest rounded-none hover:bg-white hover:text-black transition-all duration-500 glow-red border-none"
             >
               I AM 21+
             </Button>
-            <button 
-              onClick={handleNo} 
+            <button
+              onClick={handleNo}
               className="text-[10px] font-black uppercase tracking-[0.4em] text-white/20 hover:text-white transition-all py-2"
             >
               EXIT SYSTEM
             </button>
           </div>
-          
-          <p className="mt-14 text-[9px] font-black uppercase tracking-[1em] text-white/5 pt-8 border-t border-white/5 w-full">
+
+          <p className="mt-6 text-[9px] font-black uppercase tracking-[0.8em] text-white/10 pt-5 border-t border-white/5 w-full">
             RESPONSIBLE ACCESS
           </p>
         </div>
