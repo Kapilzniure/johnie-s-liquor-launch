@@ -12,6 +12,7 @@ import { Favorites } from "@/components/home/Favorites";
 import { OurStory } from "@/components/home/OurStory";
 import { Gallery } from "@/components/home/Gallery";
 import { Reviews } from "@/components/home/Reviews";
+import { LoyaltyCard } from "@/components/home/LoyaltyCard";
 import { Delivery } from "@/components/home/Delivery";
 import { CallStrip } from "@/components/home/CallStrip";
 import { VisitUs } from "@/components/home/VisitUs";
@@ -39,6 +40,7 @@ const Index = () => {
         <OurStory />
         <Gallery />
         <Reviews />
+        <LoyaltyCard />
         <CallStrip />
         <VisitUs />
       </main>
