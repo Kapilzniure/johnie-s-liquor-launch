@@ -1,15 +1,40 @@
 import { PHONE } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
 import { getStoreStatus } from "@/lib/hours";
+import { useParallax } from "@/hooks/use-parallax";
 import heroBottle from "@/assets/hero-bottle.webp";
+
+// Drop a looped background clip at public/hero.mp4 (and optionally a poster
+// frame at public/hero-poster.jpg) whenever it's ready — referenced by plain
+// path so the build never depends on the file existing. Keep it short, muted,
+// H.264 mp4, ideally under ~8MB, roughly 1280px wide.
+const HERO_VIDEO_SRC = "/hero.mp4";
+const HERO_POSTER_SRC = "/hero-poster.jpg";
 
 export const Hero = () => {
   const store = getStoreStatus();
+  const glow = useParallax(0.06);
+  const bottle = useParallax(0.12);
+
   return (
     <div id="home" className="relative overflow-hidden" style={{ minHeight: '100svh', background: '#050508' }}>
 
+      {/* Background video (falls back to the plain dark background until the file is supplied) */}
+      <video
+        className="absolute inset-0 z-0 w-full h-full object-cover opacity-40"
+        src={HERO_VIDEO_SRC}
+        poster={HERO_POSTER_SRC}
+        autoPlay
+        muted
+        loop
+        playsInline
+        aria-hidden="true"
+      />
+      {/* Dark gradient overlay to keep headline legible over the video */}
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#050508] via-[#050508]/80 to-[#050508]" />
+
       {/* Background Glows */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
+      <div ref={glow.ref} className="absolute inset-0 z-0 pointer-events-none" style={{ transform: `translateY(${glow.offset}px)` }}>
         <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-primary/10 blur-[150px] rounded-full" />
         <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-blue-600/5 blur-[150px] rounded-full" />
       </div>
@@ -48,12 +73,19 @@ export const Hero = () => {
         </div>
 
         {/* Bottle */}
-        <div className="mt-10 animate-fade-up pointer-events-none" style={{ animationDelay: '0.3s' }}>
-          <img
-            src={heroBottle}
-            alt="Featured spirit"
-            className="w-[160px] md:w-[240px] mx-auto h-auto drop-shadow-[0_40px_80px_rgba(0,0,0,0.9)]"
-          />
+        <div ref={bottle.ref} className="mt-10 pointer-events-none" style={{ transform: `translateY(${bottle.offset}px)` }}>
+          <div className="animate-fade-up" style={{ animationDelay: '0.3s' }}>
+            <div className="relative inline-block animate-float">
+              <img
+                src={heroBottle}
+                alt="Featured spirit"
+                className="w-[160px] md:w-[240px] mx-auto h-auto drop-shadow-[0_40px_80px_rgba(0,0,0,0.9)]"
+              />
+              <div className="absolute inset-0 overflow-hidden">
+                <div className="shine-el shine-loop-el" />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

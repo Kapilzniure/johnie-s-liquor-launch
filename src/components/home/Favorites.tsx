@@ -4,6 +4,7 @@ import rum from "@/assets/rum.webp";
 import pBeer from "@/assets/p-beer.webp";
 import { Phone } from "@/components/Icons";
 import { PHONE } from "@/lib/constants";
+import { categoryColor } from "@/lib/category";
 
 const items = [
   { img: pTequila, cat: "Tequila", name: "Casamigos Blanco" },
@@ -19,9 +20,18 @@ export const Favorites = () => (
           <div className="relative mb-12 overflow-hidden bg-black">
             <img src={it.img} alt={it.name} className="w-full h-auto group-hover:scale-110 transition-all duration-1000" />
             <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+            <div className="absolute inset-0 z-20 pointer-events-none">
+              <div className="shine-el shine-hover-el" />
+            </div>
+            {it.cat === "Beer" && (
+              <div className="absolute inset-0 z-20 condensation-el opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+            )}
           </div>
           <div className="relative z-10">
-            <span className="text-[10px] font-black uppercase tracking-[0.6em] text-primary mb-3 block">{it.cat}</span>
+            <div className="flex items-center gap-3 mb-3">
+              <span className="text-[10px] font-black uppercase tracking-[0.6em] text-primary block">{it.cat}</span>
+              <div className="pour-meter" style={{ background: categoryColor(it.cat) }} />
+            </div>
             <h3 className="text-3xl font-display font-black italic text-white mb-6 tracking-tighter uppercase">{it.name}</h3>
             <a href={`tel:${PHONE}`} className="inline-flex items-center gap-4 text-[9px] font-black uppercase tracking-[0.4em] text-white/20 hover:text-white transition-all duration-500">
               Inquire Inventory

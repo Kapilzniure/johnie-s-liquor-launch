@@ -4,11 +4,14 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { StickyMobileBar } from "@/components/StickyMobileBar";
 import Survey from "@/components/Survey";
+import { SeasonalAtmosphere } from "@/components/SeasonalAtmosphere";
 import { Hero } from "@/components/home/Hero";
 
 import { QuickActions } from "@/components/home/QuickActions";
+import { Occasions } from "@/components/home/Occasions";
 import { Specials } from "@/components/home/Specials";
 import { Favorites } from "@/components/home/Favorites";
+import { StaffPicks } from "@/components/home/StaffPicks";
 import { OurStory } from "@/components/home/OurStory";
 import { Gallery } from "@/components/home/Gallery";
 import { Reviews } from "@/components/home/Reviews";
@@ -28,15 +31,18 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground relative overflow-x-hidden">
+      <SeasonalAtmosphere />
       <Header />
       <main>
         <Hero />
         <div className="relative z-10">
           <QuickActions />
         </div>
+        <Occasions />
         <Specials />
         <Delivery />
         <Favorites />
+        <StaffPicks />
         <OurStory />
         <Gallery />
         <Reviews />

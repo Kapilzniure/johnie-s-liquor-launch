@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import { Section } from "@/components/Section";
 import { PHONE, PHONE_DISPLAY, ADDRESS } from "@/lib/constants";
 
@@ -28,8 +28,27 @@ const MapPinIcon = () => (
   </svg>
 );
 
+const CONFETTI_COLORS = ["#B8952A", "hsl(0 85% 50%)", "#111111"];
+
+const ConfettiBurst = () => (
+  <div className="absolute inset-0 pointer-events-none z-30">
+    <div className="absolute inset-0 rounded-full animate-pulse-glow" style={{ background: "radial-gradient(circle, rgba(184,149,42,0.35) 0%, transparent 70%)" }} />
+    {Array.from({ length: 12 }).map((_, i) => {
+      const angle = (i / 12) * Math.PI * 2;
+      const dist = 26 + Math.random() * 14;
+      const style = {
+        "--tx": `${Math.cos(angle) * dist}px`,
+        "--ty": `${Math.sin(angle) * dist}px`,
+        background: CONFETTI_COLORS[i % CONFETTI_COLORS.length],
+      } as CSSProperties;
+      return <span key={i} className="confetti-particle" style={style} />;
+    })}
+  </div>
+);
+
 const PhysicalCard = () => {
   const [stamped, setStamped] = useState(0);
+  const [burst, setBurst] = useState(false);
 
   // Animate stamps filling in on mount
   useEffect(() => {
@@ -38,13 +57,24 @@ const PhysicalCard = () => {
     return () => clearTimeout(id);
   }, [stamped]);
 
+  // One-shot confetti burst the moment the final stamp (the star) lands
+  useEffect(() => {
+    if (stamped !== TOTAL_STAMPS) return;
+    setBurst(true);
+    const id = setTimeout(() => setBurst(false), 1000);
+    return () => clearTimeout(id);
+  }, [stamped]);
+
   return (
     <div
-      className="w-full max-w-2xl mx-auto rounded-2xl overflow-hidden shadow-[0_30px_80px_-10px_rgba(0,0,0,0.9)]"
+      className="relative w-full max-w-2xl mx-auto rounded-2xl overflow-hidden shadow-[0_30px_80px_-10px_rgba(0,0,0,0.9)]"
       style={{ background: "#ffffff" }}
       role="img"
       aria-label="Johnnies Loyalty Card — collect 10 stamps, reach the star for a free shot"
     >
+      <div className="absolute inset-0 z-20 pointer-events-none">
+        <div className="shine-el shine-el-gold shine-loop-el" />
+      </div>
       {/* ── Card header ──────────────────────────────────── */}
       <div className="px-8 pt-7 pb-5">
         <div className="flex items-start justify-between gap-4">
@@ -102,7 +132,7 @@ const PhysicalCard = () => {
             return (
               <div
                 key={i}
-                className="aspect-square flex items-center justify-center transition-all duration-200 border-r border-b"
+                className="relative aspect-square flex items-center justify-center transition-all duration-200 border-r border-b"
                 style={{
                   borderColor: "#111",
                   background: isStamped && isStar ? "rgba(184,149,42,0.08)" : "transparent",
@@ -112,16 +142,17 @@ const PhysicalCard = () => {
                   <StarIcon
                     filled={isStamped}
                     className={`w-7 h-7 md:w-9 md:h-9 transition-all duration-300 ${
-                      isStamped ? "scale-110" : "scale-90 opacity-60"
+                      isStamped ? "scale-110 animate-stamp-pop" : "scale-90 opacity-60"
                     }`}
                   />
                 ) : isStamped ? (
                   /* Stamped mark — bold X in red matching the website primary */
-                  <svg viewBox="0 0 24 24" className="w-5 h-5 md:w-7 md:h-7 transition-all duration-200" aria-hidden>
+                  <svg viewBox="0 0 24 24" className="w-5 h-5 md:w-7 md:h-7 transition-all duration-200 animate-stamp-pop" aria-hidden>
                     <line x1="4" y1="4" x2="20" y2="20" stroke="hsl(0 85% 50%)" strokeWidth="3" strokeLinecap="round" />
                     <line x1="20" y1="4" x2="4" y2="20" stroke="hsl(0 85% 50%)" strokeWidth="3" strokeLinecap="round" />
                   </svg>
                 ) : null}
+                {isStar && burst && <ConfettiBurst />}
               </div>
             );
           })}

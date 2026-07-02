@@ -14,9 +14,13 @@ import {
   ChevronDown, 
   Sparkles, 
   Star, 
-  Package, 
+  Package,
   Award,
-  Gift
+  Gift,
+  Trophy,
+  Utensils,
+  PartyPopper,
+  Heart
 } from "lucide-react";
 
 export const Instagram = ({ className = "" }: { className?: string }) => (
@@ -45,7 +49,11 @@ export {
   ChevronDown, 
   Sparkles, 
   Star, 
-  Package, 
+  Package,
   Award,
-  Gift
+  Gift,
+  Trophy,
+  Utensils,
+  PartyPopper,
+  Heart
 };

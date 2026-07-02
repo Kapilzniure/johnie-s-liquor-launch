@@ -16,6 +16,7 @@ export const Header = () => {
 
   const links = [
     { label: "Heritage", href: "/#story" },
+    { label: "Occasions", href: "/#occasions" },
     { label: "Specials", href: "/#specials" },
     { label: "Delivery", href: "/#delivery" },
     { label: "Gallery", href: "/#gallery" },
