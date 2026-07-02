@@ -38,7 +38,11 @@ const countForViewport = (type: ParticleType, width: number) => {
  * Starts a lightweight canvas particle loop on the given canvas element.
  * Returns a stop function that cancels the loop and removes listeners.
  */
-export const startParticleSystem = (canvas: HTMLCanvasElement, type: ParticleType): (() => void) => {
+export const startParticleSystem = (
+  canvas: HTMLCanvasElement,
+  type: ParticleType,
+  color = "#ffffff",
+): (() => void) => {
   const ctx = canvas.getContext("2d");
   if (!ctx) return () => {};
 
@@ -140,9 +144,9 @@ export const startParticleSystem = (canvas: HTMLCanvasElement, type: ParticleTyp
         p.x += p.speedX + (type === "snow" ? Math.sin(p.drift) * 0.3 : 0);
 
         ctx.globalAlpha = p.opacity;
-        ctx.fillStyle = type === "smoke" ? "#ffffff" : "#ffffff";
+        ctx.fillStyle = color;
         if (type === "rain") {
-          ctx.strokeStyle = "#ffffff";
+          ctx.strokeStyle = color;
           ctx.lineWidth = 1;
           ctx.beginPath();
           ctx.moveTo(p.x, p.y);

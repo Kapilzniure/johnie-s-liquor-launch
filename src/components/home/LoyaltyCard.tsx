@@ -1,5 +1,6 @@
-import { useEffect, useState, type CSSProperties } from "react";
+import { useEffect, useState } from "react";
 import { Section } from "@/components/Section";
+import { ConfettiBurst } from "@/components/ConfettiBurst";
 import { PHONE, PHONE_DISPLAY, ADDRESS } from "@/lib/constants";
 
 const TOTAL_STAMPS = 10;
@@ -26,24 +27,6 @@ const MapPinIcon = () => (
   <svg viewBox="0 0 24 24" className="w-5 h-5" fill="#B8952A" aria-hidden>
     <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
   </svg>
-);
-
-const CONFETTI_COLORS = ["#B8952A", "hsl(0 85% 50%)", "#111111"];
-
-const ConfettiBurst = () => (
-  <div className="absolute inset-0 pointer-events-none z-30">
-    <div className="absolute inset-0 rounded-full animate-pulse-glow" style={{ background: "radial-gradient(circle, rgba(184,149,42,0.35) 0%, transparent 70%)" }} />
-    {Array.from({ length: 12 }).map((_, i) => {
-      const angle = (i / 12) * Math.PI * 2;
-      const dist = 26 + Math.random() * 14;
-      const style = {
-        "--tx": `${Math.cos(angle) * dist}px`,
-        "--ty": `${Math.sin(angle) * dist}px`,
-        background: CONFETTI_COLORS[i % CONFETTI_COLORS.length],
-      } as CSSProperties;
-      return <span key={i} className="confetti-particle" style={style} />;
-    })}
-  </div>
 );
 
 const PhysicalCard = () => {

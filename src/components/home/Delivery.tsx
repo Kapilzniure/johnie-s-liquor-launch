@@ -1,13 +1,7 @@
 import { Section } from "@/components/Section";
 import { Truck } from "@/components/Icons";
 import { DOORDASH_URL, GRUBHUB_URL } from "@/lib/constants";
-
-const track = (action: string, label?: string) => {
-  try {
-    const w = window as typeof window & { gtag?: (t: string, a: string, d: Record<string, unknown>) => void };
-    w.gtag?.('event', action, { event_category: 'cta', event_label: label });
-  } catch { /* ignore */ }
-};
+import { trackEvent } from "@/lib/analytics";
 
 const platforms = [
   { name: "DoorDash", href: DOORDASH_URL, trackLabel: "doordash", badge: "30-45 Min",
@@ -21,7 +15,7 @@ export const Delivery = () => (
     <div className="grid md:grid-cols-2 gap-1 px-1 bg-white/5">
       {platforms.map((p) => (
         <a key={p.name} href={p.href} target="_blank" rel="noopener noreferrer"
-          onClick={() => track('delivery_click', p.trackLabel)}
+          onClick={() => trackEvent('delivery_click', p.trackLabel)}
           className="group bg-[#050508] p-10 hover:bg-white/[0.02] transition-all duration-700 relative overflow-hidden"
         >
           <div className="flex justify-between items-start mb-10 relative z-10">

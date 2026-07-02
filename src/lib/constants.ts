@@ -9,6 +9,8 @@ const DOORDASH_URL = "https://www.doordash.com/search/store/johnnies%20liquor%20
 const GRUBHUB_URL = "https://www.grubhub.com/search?queryText=johnnies+liquor&location=13201+Pond+Springs+Rd+Austin+TX+78729";
 // Replace XXXXXXXXXX with the owner's WhatsApp number (digits only, with country code, e.g. 15121234567)
 const WHATSAPP_URL = "https://wa.me/1XXXXXXXXXX?text=Hi%21+I%27d+like+to+place+an+order+from+Johnnies+Liquor+%F0%9F%A5%83";
+// Placeholder — replace with the store's real contact email address
+const EMAIL = "info@johnniesliquor.com";
 
 export {
   PHONE,
@@ -20,5 +22,6 @@ export {
   FB_URL,
   DOORDASH_URL,
   GRUBHUB_URL,
-  WHATSAPP_URL
+  WHATSAPP_URL,
+  EMAIL
 };

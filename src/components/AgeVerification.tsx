@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Wine } from 'lucide-react';
 
 const AgeVerification = () => {
@@ -55,12 +55,14 @@ const AgeVerification = () => {
 
           <div className="mb-5">
             <div className="text-[10px] font-black uppercase tracking-[0.5em] text-primary mb-2">Identity Verification</div>
-            <h2 className="text-3xl font-display font-black italic tracking-tighter text-white uppercase leading-none">Security Gate</h2>
+            <DialogTitle className="text-3xl font-display font-black italic tracking-tighter text-white uppercase leading-none">
+              Security Gate
+            </DialogTitle>
           </div>
 
-          <p className="text-white/50 text-sm font-medium mb-7 max-w-[260px] leading-relaxed">
+          <DialogDescription className="text-white/50 text-sm font-medium mb-7 max-w-[260px] leading-relaxed">
             Confirm you are 21 or older to access this site.
-          </p>
+          </DialogDescription>
 
           <div className="flex flex-col gap-3 w-full">
             <Button

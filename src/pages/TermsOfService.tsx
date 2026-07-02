@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Seo } from "@/components/Seo";
 
 const TermsOfService = () => {
   useEffect(() => {
@@ -7,6 +8,11 @@ const TermsOfService = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground py-20">
+      <Seo
+        title="Terms of Service | Johnnies Liquor Store"
+        description="Terms and conditions for using the Johnnies Liquor Store website."
+        path="/terms"
+      />
       <div className="container mx-auto px-5 max-w-4xl">
         <h1 className="text-4xl md:text-5xl font-display font-bold mb-8">Terms of Service</h1>
         <p className="text-muted-foreground mb-6 text-sm">Last Updated: May 17, 2026</p>

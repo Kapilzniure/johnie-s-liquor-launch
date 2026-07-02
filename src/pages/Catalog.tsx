@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { StickyMobileBar } from "@/components/StickyMobileBar";
+import { Seo } from "@/components/Seo";
+import { SkipLink } from "@/components/SkipLink";
+import { buildBreadcrumbSchema } from "@/lib/structuredData";
 import { Phone, Navigation } from "@/components/Icons";
 import { Button } from "@/components/ui/button";
 import { PHONE, DIRECTIONS_URL, PHONE_DISPLAY } from "@/lib/constants";
@@ -15,14 +18,14 @@ import catSpirits from "@/assets/cat-spirits.webp";
 import heroBottle from "@/assets/hero-bottle.webp";
 import freeze      from "@/assets/freeze.webp";
 import rum         from "@/assets/rum.webp";
-import msWhiskey from "@/assets/Messenger_creation_778A06FE-5026-499C-B0D5-57C792C0EFDC.webp";
-import msDarkSpirits from "@/assets/Messenger_creation_9A25B156-EF4B-418D-B65B-39C7BB14DAB1.webp";
-import msGameOn from "@/assets/Messenger_creation_14C57FDC-A1BD-4F63-8AF4-4475266835C6.webp";
-import msMiniWall from "@/assets/Messenger_creation_B45D2388-2346-4A48-A85D-53866F5C61E7.webp";
-import msMiniCase from "@/assets/Messenger_creation_AC6B393A-8A11-413E-8AA8-9AA50AF4DC1A.webp";
-import msTequila from "@/assets/Messenger_creation_D1DF73E3-C2ED-484D-AD7C-B20E7A9D9AF8.webp";
-import msRumMixes from "@/assets/Messenger_creation_29592D56-5229-4FBB-865F-A8973D2886D1.webp";
-import msGinVodka from "@/assets/Messenger_creation_ECCBCD7C-140B-4E64-828A-7C7C9F36A177.webp";
+import wildTurkey101 from "@/assets/wild-turkey-101-bourbon.webp";
+import jackDaniels from "@/assets/jack-daniels-tennessee-whiskey.webp";
+import crownRoyal from "@/assets/crown-royal-canadian-whisky.webp";
+import bacardiSuperior from "@/assets/bacardi-superior-rum.webp";
+import titosVodka from "@/assets/titos-handmade-vodka.webp";
+import casamigosBlanco from "@/assets/casamigos-blanco-tequila.webp";
+import blueMoonWhite from "@/assets/blue-moon-belgian-white.webp";
+import greyGooseVodka from "@/assets/grey-goose-vodka.webp";
 
 type Category = "all" | "whiskey" | "wine" | "beer" | "spirits";
 
@@ -36,11 +39,11 @@ const CATEGORIES: { id: Category; label: string }[] = [
 
 const products = [
   { id: 1,  cat: "whiskey" as Category, img: pBourbon,     pos: "50% 50%", zoom: false, name: "Single Barrel Bourbon",          size: "750ml",   desc: "Rich and full-bodied with notes of caramel and toasted oak." },
-  { id: 2,  cat: "whiskey" as Category, img: msDarkSpirits,pos: "25% 25%", zoom: true,  name: "Jack Daniel's Tennessee Whiskey", size: "750ml",   desc: "America's best-selling whiskey — smooth, mellow, and unmistakable." },
+  { id: 2,  cat: "whiskey" as Category, img: jackDaniels,pos: "25% 25%", zoom: true,  name: "Jack Daniel's Tennessee Whiskey", size: "750ml",   desc: "America's best-selling whiskey — smooth, mellow, and unmistakable." },
   { id: 3,  cat: "whiskey" as Category, img: heroBottle,   pos: "50% 50%", zoom: false, name: "Jameson Irish Whiskey",           size: "750ml",   desc: "Triple distilled for exceptional smoothness. Perfect neat or on the rocks." },
-  { id: 4,  cat: "whiskey" as Category, img: msWhiskey,    pos: "85% 50%", zoom: true,  name: "Wild Turkey 101 Bourbon",         size: "750ml",   desc: "Bold, spicy Kentucky bourbon. A staple for serious whiskey lovers." },
+  { id: 4,  cat: "whiskey" as Category, img: wildTurkey101,    pos: "85% 50%", zoom: true,  name: "Wild Turkey 101 Bourbon",         size: "750ml",   desc: "Bold, spicy Kentucky bourbon. A staple for serious whiskey lovers." },
   { id: 5,  cat: "whiskey" as Category, img: catSpirits,   pos: "50% 50%", zoom: false, name: "Maker's Mark Bourbon",            size: "750ml",   desc: "Soft, smooth, and slightly sweet. One of the most approachable bourbons." },
-  { id: 6,  cat: "whiskey" as Category, img: msGameOn,     pos: "75% 60%", zoom: true,  name: "Crown Royal Canadian Whisky",     size: "750ml",   desc: "Smooth and light with hints of vanilla. A crowd-pleasing classic." },
+  { id: 6,  cat: "whiskey" as Category, img: crownRoyal,     pos: "75% 60%", zoom: true,  name: "Crown Royal Canadian Whisky",     size: "750ml",   desc: "Smooth and light with hints of vanilla. A crowd-pleasing classic." },
   { id: 7,  cat: "wine" as Category, img: pWine,      pos: "50% 50%", zoom: false, name: "Texas Reserve Red Blend", size: "750ml",   desc: "Bold, fruit-forward blend from Texas Hill Country vineyards." },
   { id: 8,  cat: "wine" as Category, img: catWine,    pos: "50% 50%", zoom: false, name: "Cabernet Sauvignon",      size: "750ml",   desc: "Classic full-bodied red with dark fruit and cedar notes." },
   { id: 11, cat: "wine" as Category, pos: "50% 50%", zoom: false, cardBg: "linear-gradient(150deg,#BE185D 0%,#F472B6 50%,#9D174D 100%)", cardAccent: "#FBCFE8", cardLabel: "ROSÉ",          name: "Rosé",          size: "750ml",   desc: "Refreshing and dry with strawberry and floral notes. Great chilled." },
@@ -48,13 +51,13 @@ const products = [
   { id: 13, cat: "beer" as Category, img: pBeer,      pos: "50% 50%", zoom: false, name: "Local Craft IPA",         size: "6-pack",  desc: "Hoppy and aromatic, brewed fresh right here in Austin." },
   { id: 14, cat: "beer" as Category, img: catBeer,    pos: "50% 50%", zoom: false, name: "Corona Extra",            size: "12-pack", desc: "Classic Mexican lager. Best served ice-cold with lime." },
   { id: 15, cat: "beer" as Category, img: freeze,     pos: "50% 50%", zoom: false, name: "Modelo Especial",         size: "6-pack",  desc: "Rich, full-flavored pilsner-style lager from Mexico." },
-  { id: 18, cat: "beer" as Category, img: msRumMixes, pos: "20% 35%", zoom: true,  name: "Blue Moon Belgian White", size: "6-pack",  desc: "Smooth wheat ale brewed with Valencia orange peel." },
+  { id: 18, cat: "beer" as Category, img: blueMoonWhite, pos: "20% 35%", zoom: true,  name: "Blue Moon Belgian White", size: "6-pack",  desc: "Smooth wheat ale brewed with Valencia orange peel." },
   { id: 19, cat: "spirits" as Category, img: pTequila,   pos: "50% 50%", zoom: false, name: "Patron Silver Tequila",    size: "750ml",   desc: "Ultra-premium tequila. Smooth, clean, and great for cocktails." },
-  { id: 20, cat: "spirits" as Category, img: msTequila,  pos: "60% 45%", zoom: true,  name: "Casamigos Blanco",         size: "750ml",   desc: "George Clooney's premium tequila — light agave with a smooth finish." },
+  { id: 20, cat: "spirits" as Category, img: casamigosBlanco,  pos: "60% 45%", zoom: true,  name: "Casamigos Blanco",         size: "750ml",   desc: "George Clooney's premium tequila — light agave with a smooth finish." },
   { id: 21, cat: "spirits" as Category, img: rum,        pos: "50% 50%", zoom: false, name: "Captain Morgan Spiced Rum",size: "750ml",   desc: "Smooth Caribbean rum blended with warming spices." },
-  { id: 22, cat: "spirits" as Category, img: msMiniWall, pos: "70% 40%", zoom: true,  name: "Bacardi Superior Rum",     size: "750ml",   desc: "Light, dry, and versatile. The world's most popular rum." },
-  { id: 23, cat: "spirits" as Category, img: msGinVodka, pos: "25% 15%", zoom: true,  name: "Grey Goose Vodka",         size: "750ml",   desc: "French grain vodka — silky smooth and clean from start to finish." },
-  { id: 24, cat: "spirits" as Category, img: msMiniCase, pos: "35% 55%", zoom: true,  name: "Tito's Handmade Vodka",    size: "750ml",   desc: "Made in Austin, TX. America's #1 selling vodka." },
+  { id: 22, cat: "spirits" as Category, img: bacardiSuperior, pos: "70% 40%", zoom: true,  name: "Bacardi Superior Rum",     size: "750ml",   desc: "Light, dry, and versatile. The world's most popular rum." },
+  { id: 23, cat: "spirits" as Category, img: greyGooseVodka, pos: "25% 15%", zoom: true,  name: "Grey Goose Vodka",         size: "750ml",   desc: "French grain vodka — silky smooth and clean from start to finish." },
+  { id: 24, cat: "spirits" as Category, img: titosVodka, pos: "35% 55%", zoom: true,  name: "Tito's Handmade Vodka",    size: "750ml",   desc: "Made in Austin, TX. America's #1 selling vodka." },
 ];
 
 const Catalog = () => {
@@ -75,9 +78,16 @@ const Catalog = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <Seo
+        title="Product Catalog | Johnnies Liquor Store Austin"
+        description="Browse whiskey, bourbon, wine, beer, tequila & spirits at Johnnies Liquor Store — 3,200+ labels in Austin, TX. Filter by category or search by name."
+        path="/catalog"
+        jsonLd={[buildBreadcrumbSchema([{ name: "Home", path: "/" }, { name: "Catalog", path: "/catalog" }])]}
+      />
+      <SkipLink />
       <Header />
 
-      <main className="pt-16">
+      <main id="main" className="pt-16">
         <section className="bg-card border-b border-foreground/5 pb-16 pt-10">
           <div className="container mx-auto px-6">
             <div className="flex items-center gap-3 text-primary text-[10px] font-bold tracking-[0.4em] mb-4 uppercase">

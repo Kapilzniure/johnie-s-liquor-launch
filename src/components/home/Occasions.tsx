@@ -113,6 +113,8 @@ export const Occasions = () => {
                   <img
                     src={p.img}
                     alt={p.name}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-auto group-hover:scale-110 transition-all duration-1000"
                   />
                   <div className="absolute inset-0 z-20 pointer-events-none">

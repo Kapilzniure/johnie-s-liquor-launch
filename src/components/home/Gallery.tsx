@@ -5,9 +5,9 @@ import storeInside from "@/assets/johnniesliquor.webp";
 
 export const Gallery = () => {
   const items = [
-    { img: storefront, label: "01 SITE" },
-    { img: storeInside, label: "02 VAULT" },
-    { img: shelves, label: "03 STOCK" },
+    { img: storefront, label: "01 SITE", alt: "Johnnies Liquor Store storefront exterior in Austin, TX" },
+    { img: storeInside, label: "02 VAULT", alt: "Inside Johnnies Liquor Store — premium spirits vault and shelving" },
+    { img: shelves, label: "03 STOCK", alt: "Fully stocked shelves of wine, beer, and spirits at Johnnies Liquor" },
   ];
   return (
     <Section id="gallery" className="bg-[#050508]" eyebrow="Visual ID" title="The Facility" subtitle="Step inside the heart of North Austin's premier selection.">
@@ -16,7 +16,9 @@ export const Gallery = () => {
           <div key={idx} className="group relative overflow-hidden bg-black aspect-square animate-fade-up" style={{ animationDelay: `${idx * 150}ms` }}>
              <img
               src={item.img}
-              alt="Gallery"
+              alt={item.alt}
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110"
             />
             <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />

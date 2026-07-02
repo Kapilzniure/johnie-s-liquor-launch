@@ -18,7 +18,7 @@ export const Favorites = () => (
       {items.map((it, idx) => (
         <article key={it.name} className="group relative animate-fade-up bg-[#050508] p-12 hover:bg-white/[0.02] transition-all duration-700" style={{ animationDelay: `${idx * 150}ms` }}>
           <div className="relative mb-12 overflow-hidden bg-black">
-            <img src={it.img} alt={it.name} className="w-full h-auto group-hover:scale-110 transition-all duration-1000" />
+            <img src={it.img} alt={it.name} loading="lazy" decoding="async" className="w-full h-auto group-hover:scale-110 transition-all duration-1000" />
             <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
             <div className="absolute inset-0 z-20 pointer-events-none">
               <div className="shine-el shine-hover-el" />

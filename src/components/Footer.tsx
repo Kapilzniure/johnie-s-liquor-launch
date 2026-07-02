@@ -61,6 +61,8 @@ export const Footer = () => {
           <img
             src="/cybiconz-logo.webp"
             alt="CybiconZ"
+            loading="lazy"
+            decoding="async"
             className="h-7 w-auto object-contain"
             style={{ mixBlendMode: 'screen', opacity: 0.85 }}
           />

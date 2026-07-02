@@ -1,7 +1,40 @@
 import { Section } from "@/components/Section";
-import { MapPin, Phone } from "@/components/Icons";
-import { ADDRESS, DIRECTIONS_URL, PHONE, PHONE_DISPLAY } from "@/lib/constants";
+import { MapPin, Phone, Navigation, Mail, Instagram, Facebook, Star, WhatsApp } from "@/components/Icons";
+import { ADDRESS, DIRECTIONS_URL, PHONE, PHONE_DISPLAY, EMAIL, IG_URL, FB_URL, MAPS_URL, WHATSAPP_URL } from "@/lib/constants";
+import { trackEvent } from "@/lib/analytics";
 
+const CONTACT_CHANNELS = [
+  { icon: Phone, label: "Call", href: `tel:${PHONE}` },
+  { icon: Navigation, label: "Directions", href: DIRECTIONS_URL, ext: true },
+  { icon: Mail, label: "Email", href: `mailto:${EMAIL}` },
+  { icon: Instagram, label: "Instagram", href: IG_URL, ext: true },
+  { icon: Facebook, label: "Facebook", href: FB_URL, ext: true },
+  { icon: Star, label: "Reviews", href: MAPS_URL, ext: true },
+  { icon: WhatsApp, label: "WhatsApp", href: WHATSAPP_URL, ext: true },
+];
+
+const ContactHub = () => (
+  <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-1 bg-white/5 mb-10">
+    {CONTACT_CHANNELS.map((c) => (
+      <a
+        key={c.label}
+        href={c.href}
+        target={c.ext ? "_blank" : undefined}
+        rel={c.ext ? "noopener noreferrer" : undefined}
+        onClick={() => trackEvent("contact_click", c.label.toLowerCase())}
+        className="group relative min-h-[88px] flex flex-col items-center justify-center gap-3 bg-[#050508] p-4 hover:bg-white/[0.03] transition-all duration-500 overflow-hidden"
+      >
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="shine-el shine-hover-el" />
+        </div>
+        <c.icon className="relative z-10 w-5 h-5 text-white/50 group-hover:text-primary group-hover:scale-110 transition-all duration-500" />
+        <span className="relative z-10 text-[9px] font-black uppercase tracking-[0.3em] text-white/40 group-hover:text-white transition-colors">
+          {c.label}
+        </span>
+      </a>
+    ))}
+  </div>
+);
 
 export const VisitUs = () => {
   const todayIdx = new Date(new Date().toLocaleString("en-US", { timeZone: "America/Chicago" })).getDay();
@@ -14,6 +47,7 @@ export const VisitUs = () => {
       subtitle="Located in the heart of Pond Springs, Austin. We're easy to find and hard to forget."
       className="dark-section bg-background text-foreground"
     >
+      <ContactHub />
       <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
 
         {/* Contact card */}

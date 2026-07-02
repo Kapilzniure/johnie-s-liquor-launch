@@ -21,6 +21,8 @@ export const Header = () => {
     { label: "Delivery", href: "/#delivery" },
     { label: "Gallery", href: "/#gallery" },
     { label: "Catalog", href: "/catalog" },
+    { label: "Events", href: "/events" },
+    { label: "Contact", href: "/#contact" },
   ];
 
   return (
@@ -37,7 +39,7 @@ export const Header = () => {
         </a>
 
         {/* Minimal Nav */}
-        <nav className="hidden lg:flex items-center gap-10">
+        <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
           {links.map((l) => (
             <a key={l.label} href={l.href} className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/40 hover:text-primary transition-all duration-300 relative group/link">
               {l.label}

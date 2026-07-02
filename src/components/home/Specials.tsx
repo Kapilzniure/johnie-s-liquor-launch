@@ -3,28 +3,36 @@ import { Button } from "@/components/ui/button";
 import { Phone } from "@/components/Icons";
 import { PHONE, PHONE_DISPLAY } from "@/lib/constants";
 import { categoryColor } from "@/lib/category";
+import { getSeasonTheme } from "@/lib/season";
 import pBourbon from "@/assets/p-bourbon.webp";
 import pWine from "@/assets/p-wine.webp";
 import pBeer from "@/assets/p-beer.webp";
 import pTequila from "@/assets/p-tequila.webp";
 
-const specials = [
+const baseSpecials = [
   { img: pBourbon, tag: "Rare",    cat: "Whiskey", name: "Maker's Mark",  delay: 0   },
   { img: pWine,    tag: "Select",  cat: "Wine",    name: "Josh Cabernet", delay: 100 },
   { img: pBeer,    tag: "Cold",    cat: "Beer",    name: "Shiner Bock",   delay: 200 },
   { img: pTequila, tag: "Premium", cat: "Tequila", name: "Patron Silver", delay: 300 },
 ];
 
-export const Specials = () => (
+export const Specials = () => {
+  const { featuredOverride } = getSeasonTheme();
+  // Seasonal theme can swap the first slot's name/category/tag (image stays — no new photography per swap)
+  const specials = featuredOverride
+    ? [{ ...baseSpecials[0], ...featuredOverride }, ...baseSpecials.slice(1)]
+    : baseSpecials;
+
+  return (
   <Section id="specials" className="bg-[#050508]" eyebrow="System Select" title="Weekly Specials" subtitle="Elite labels. Precise pricing. Curated for the modern Austin lifestyle.">
 
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-1">
-      {specials.map((s) => (
-        <article key={s.name} className="group relative animate-fade-up bg-white/[0.02] p-8 hover:bg-white/[0.04] transition-all duration-700" style={{ animationDelay: `${s.delay}ms` }}>
+      {specials.map((s, i) => (
+        <article key={`${i}-${s.name}`} className="group relative animate-fade-up bg-white/[0.02] p-8 hover:bg-white/[0.04] transition-all duration-700" style={{ animationDelay: `${s.delay}ms` }}>
           <div className="absolute top-0 right-0 p-4 opacity-10 text-[8px] font-black group-hover:opacity-100 transition-opacity">{s.tag}</div>
           <div className="mb-10 relative">
             <div className="absolute inset-0 bg-primary/10 blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity" />
-            <img src={s.img} alt={s.name} className="relative z-10 w-full h-auto group-hover:scale-105 transition-all duration-1000" />
+            <img src={s.img} alt={s.name} loading="lazy" decoding="async" className="relative z-10 w-full h-auto group-hover:scale-105 transition-all duration-1000" />
             <div className="absolute inset-0 z-20 overflow-hidden pointer-events-none">
               <div className="shine-el shine-hover-el" />
             </div>
@@ -57,4 +65,5 @@ export const Specials = () => (
       </a>
     </div>
   </Section>
-);
+  );
+};

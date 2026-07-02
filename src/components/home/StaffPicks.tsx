@@ -49,6 +49,8 @@ export const StaffPicks = () => (
             <img
               src={p.img}
               alt={p.name}
+              loading="lazy"
+              decoding="async"
               className="w-full h-auto group-hover:scale-110 transition-all duration-1000"
             />
           </div>

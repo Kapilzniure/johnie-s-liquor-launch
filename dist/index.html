@@ -13,20 +13,16 @@
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()" />
 
-  <!-- TITLE — local SEO keyword-first -->
+  <!--
+    TITLE — pre-hydration fallback only. Description, canonical, robots, OG, and
+    Twitter tags are now rendered per-route by src/components/Seo.tsx (via
+    react-helmet-async) instead of living here statically — having both caused
+    duplicate/conflicting canonical and meta tags across routes.
+  -->
   <title>Johnnies Liquor Store Austin | Premium Spirits, Wine & Beer — Pond Springs Rd</title>
 
-  <!-- META DESCRIPTION — 155 chars, local intent + CTA -->
-  <meta name="description" content="Austin's premier liquor store since 2004. Premium whiskey, wine, beer, tequila & spirits at 13201 Pond Springs Rd. Expert staff, 3,200+ labels. Visit us Mon–Sat." />
-
-  <!-- KEYWORDS (supplemental) -->
+  <!-- KEYWORDS (supplemental, static site-wide) -->
   <meta name="keywords" content="liquor store Austin TX, whiskey Austin, wine Austin, beer Austin, tequila Austin, bourbon Austin, spirits near me, Pond Springs liquor, North Austin liquor store, Johnnies Liquor" />
-
-  <!-- CANONICAL -->
-  <link rel="canonical" href="https://johnniesliquor.com/" />
-
-  <!-- ROBOTS -->
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
   <!-- GOOGLE SITE VERIFICATION -->
   <meta name="google-site-verification" content="mZP2h6WFgQ5Jh-bYXWqJRXGqVF_qEXJqp8v2sn1GX8E" />
@@ -36,24 +32,6 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-
-  <!-- OPEN GRAPH -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://johnniesliquor.com/" />
-  <meta property="og:title" content="Johnnies Liquor Store Austin — Premium Spirits Since 2004" />
-  <meta property="og:description" content="Austin's most curated spirit selection. Whiskey, wine, beer, tequila & rare bottles — expertly chosen, competitively priced. Mon–Sat 10AM–9PM." />
-  <meta property="og:image" content="https://johnniesliquor.com/johnniesliquor.webp" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Johnnies Liquor Store interior — premium spirits selection in Austin, TX" />
-  <meta property="og:site_name" content="Johnnies Liquor Store" />
-  <meta property="og:locale" content="en_US" />
-
-  <!-- TWITTER CARD -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Johnnies Liquor Store Austin — Premium Spirits Since 2004" />
-  <meta name="twitter:description" content="Austin's most curated spirit selection. 3,200+ labels, expert staff, free parking. Mon–Sat 10AM–9PM at Pond Springs Rd." />
-  <meta name="twitter:image" content="https://johnniesliquor.com/johnniesliquor.webp" />
 
   <!-- LOCAL BUSINESS SCHEMA (enhanced) -->
   <script type="application/ld+json">
@@ -135,95 +113,28 @@
   }
   </script>
 
-  <!-- FAQ SCHEMA — boosts Google featured snippets & voice search -->
+  <!-- ORGANIZATION SCHEMA — brand/logo signal for Google's knowledge panel, linked to the LiquorStore listing above -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "What are Johnnies Liquor Store's hours?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Johnnies Liquor Store is open Monday through Saturday from 10:00 AM to 9:00 PM. We are closed on Sundays. Free parking is available at our Pond Springs Rd location."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Where is Johnnies Liquor Store located in Austin?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "We are located at 13201 Pond Springs Rd, Suite 203, Austin, TX 78729. We're in the Pond Springs shopping center in North Austin, with free parking available."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Does Johnnies Liquor offer delivery?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes! Johnnies Liquor Store offers delivery through DoorDash and GrubHub. Delivery typically arrives in 30–50 minutes depending on your location in the Austin area."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Does Johnnies carry Texas craft spirits?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Absolutely. We proudly carry a strong selection of Texas craft spirits including Garrison Brothers, Treaty Oak, and Balcones Distilling — some of the finest bourbons and whiskeys made in the Lone Star State."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What types of spirits does Johnnies Liquor carry?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Johnnies Liquor Store carries over 3,200 labels including bourbon, Scotch whisky, Irish whiskey, tequila, mezcal, rum, gin, vodka, wine, beer, sake, and non-alcoholic alternatives. We stock both everyday favorites and rare, limited-release bottles."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Does Johnnies Liquor have a loyalty program?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes! Johnnies Reserve Club is our loyalty program. Earn points with every visit and unlock exclusive member benefits as you climb through Explorer, Connoisseur, and Master tiers. Sign up in-store or ask our staff."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Is there free parking at Johnnies Liquor Store?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, free parking is available directly in front of our store in the Pond Springs shopping center at 13201 Pond Springs Rd, Suite 203, Austin, TX."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How long has Johnnies Liquor been in Austin?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Johnnies Liquor Store has been serving the Austin community since 2004 — over 20 years as a trusted neighborhood bottle shop in North Austin."
-        }
-      }
+    "@type": "Organization",
+    "@id": "https://johnniesliquor.com/#organization",
+    "name": "Johnnies Liquor Store",
+    "url": "https://johnniesliquor.com/",
+    "logo": "https://johnniesliquor.com/android-chrome-192.png",
+    "sameAs": [
+      "https://www.instagram.com/johnniesliquor_store/",
+      "https://www.facebook.com/people/Johnnies-Liquor-Store/61567907153640/"
     ]
   }
   </script>
 
-  <!-- BREADCRUMB SCHEMA -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://johnniesliquor.com/"
-      }
-    ]
-  }
-  </script>
+  <!--
+    FAQPage and BreadcrumbList schema moved to src/lib/structuredData.ts, injected
+    per-page via the <Seo> component (src/components/Seo.tsx). This keeps structured
+    data scoped to pages that actually render matching visible content, instead of
+    the same FAQ/breadcrumb schema appearing on every route regardless of content.
+  -->
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EZ8Y2CNLMK"></script>
@@ -234,12 +145,12 @@
     gtag('config', 'G-EZ8Y2CNLMK', { anonymize_ip: true });
   </script>
 
-  <!-- Preconnect for font performance -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Playfair Display is self-hosted via @fontsource (imported in src/main.tsx) — no external font request needed -->
 
-  <script type="module" crossorigin src="/assets/index-M8ydmH9n.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-CZYqcNHS.css">
+  <script type="module" crossorigin src="/assets/index-OcRKd1t2.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/react-vendor-B8h0N95H.js">
+  <link rel="modulepreload" crossorigin href="/assets/radix-vendor-DHRgsZvG.js">
+  <link rel="stylesheet" crossorigin href="/assets/index-CY6S1Pe_.css">
 </head>
 
 <body>

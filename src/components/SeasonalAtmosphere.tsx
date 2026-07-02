@@ -4,9 +4,10 @@ import { startParticleSystem } from "@/lib/particles";
 import { getSeasonTheme } from "@/lib/season";
 
 /**
- * Full-viewport, non-interactive ambient layer: snow around the holidays,
- * fireworks around July 4th / New Year's, a soft drifting smoke/mist the
- * rest of the year. Renders nothing under prefers-reduced-motion.
+ * Full-viewport, non-interactive ambient layer driven by src/lib/season.ts —
+ * snow for Christmas, fireworks for New Year's/July 4th, tinted smoke for
+ * Valentine's/Summer/Halloween, soft ambient smoke the rest of the year.
+ * Renders nothing under prefers-reduced-motion.
  */
 export const SeasonalAtmosphere = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -15,7 +16,7 @@ export const SeasonalAtmosphere = () => {
   useEffect(() => {
     if (reducedMotion || !canvasRef.current) return;
     const theme = getSeasonTheme();
-    const stop = startParticleSystem(canvasRef.current, theme);
+    const stop = startParticleSystem(canvasRef.current, theme.particle, theme.particleColor);
     return stop;
   }, [reducedMotion]);
 

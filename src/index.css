@@ -31,6 +31,13 @@
     background-color: #050508;
   }
   section { @apply py-12 md:py-20 scroll-mt-24; }
+
+  /* Visible focus ring tuned for the dark theme — shadcn's default ring can be
+     hard to see against near-black backgrounds. */
+  :focus-visible {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: 2px;
+  }
 }
 
 @layer utilities {

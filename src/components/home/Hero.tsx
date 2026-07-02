@@ -1,6 +1,7 @@
 import { PHONE } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
 import { getStoreStatus } from "@/lib/hours";
+import { getSeasonTheme } from "@/lib/season";
 import { useParallax } from "@/hooks/use-parallax";
 import heroBottle from "@/assets/hero-bottle.webp";
 
@@ -14,7 +15,7 @@ const HERO_POSTER_SRC = "/hero-poster.jpg";
 export const Hero = () => {
   const store = getStoreStatus();
   const glow = useParallax(0.06);
-  const bottle = useParallax(0.12);
+  const season = getSeasonTheme();
 
   return (
     <div id="home" className="relative overflow-hidden" style={{ minHeight: '100svh', background: '#050508' }}>
@@ -50,15 +51,15 @@ export const Hero = () => {
         {/* Headline */}
         <div className="max-w-4xl mx-auto mb-8">
           <h1 className="text-[clamp(3rem,12vw,120px)] leading-[0.85] font-display font-black tracking-tighter text-white animate-fade-up italic">
-            PURE <br />
-            <span className="text-primary text-glow">HERITAGE</span>
+            {season.headline.line1} <br />
+            <span className="text-primary text-glow">{season.headline.line2}</span>
           </h1>
         </div>
 
         {/* Subtext */}
         <div className="max-w-xl mx-auto mb-10 animate-fade-up" style={{ animationDelay: '0.1s' }}>
           <p className="text-sm md:text-base text-white/40 uppercase tracking-[0.2em] font-medium leading-relaxed">
-            Austin's Premier Destination for Rare Spirits & Craft Selection. Since 2004.
+            {season.promoText ?? "Austin's Premier Destination for Rare Spirits & Craft Selection. Since 2004."}
           </p>
         </div>
 
@@ -73,19 +74,14 @@ export const Hero = () => {
         </div>
 
         {/* Bottle */}
-        <div ref={bottle.ref} className="mt-10 pointer-events-none" style={{ transform: `translateY(${bottle.offset}px)` }}>
-          <div className="animate-fade-up" style={{ animationDelay: '0.3s' }}>
-            <div className="relative inline-block animate-float">
-              <img
-                src={heroBottle}
-                alt="Featured spirit"
-                className="w-[160px] md:w-[240px] mx-auto h-auto drop-shadow-[0_40px_80px_rgba(0,0,0,0.9)]"
-              />
-              <div className="absolute inset-0 overflow-hidden">
-                <div className="shine-el shine-loop-el" />
-              </div>
-            </div>
-          </div>
+        <div className="mt-10 pointer-events-none animate-fade-up" style={{ animationDelay: '0.3s' }}>
+          <img
+            src={heroBottle}
+            alt="Featured spirit"
+            width={240}
+            height={400}
+            className="w-[160px] md:w-[240px] mx-auto h-auto drop-shadow-[0_40px_80px_rgba(0,0,0,0.9)]"
+          />
         </div>
       </div>
     </div>

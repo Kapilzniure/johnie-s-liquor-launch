@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { z } from 'zod';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -155,8 +155,8 @@ const Survey = () => {
         <DialogContent className="sm:max-w-md bg-[#050508] text-white border-white/5 shadow-2xl">
           <div className="text-center py-12">
             <Gift className="w-12 h-12 text-primary mx-auto mb-8 animate-bounce" />
-            <h2 className="text-3xl font-display font-black italic uppercase tracking-tighter mb-4">Confirmed</h2>
-            <p className="text-white/40 italic text-lg mb-8">"We appreciate your contribution to the heritage collection."</p>
+            <DialogTitle className="text-3xl font-display font-black italic uppercase tracking-tighter mb-4">Confirmed</DialogTitle>
+            <DialogDescription className="text-white/40 italic text-lg mb-8">"We appreciate your contribution to the heritage collection."</DialogDescription>
             <Button onClick={() => setIsSubmitted(false)} className="bg-primary text-white h-14 px-10 rounded-none font-black uppercase tracking-widest text-xs">
               Dismiss
             </Button>

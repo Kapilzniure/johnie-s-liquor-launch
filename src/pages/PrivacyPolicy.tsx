@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Seo } from "@/components/Seo";
 
 const PrivacyPolicy = () => {
   useEffect(() => {
@@ -7,6 +8,11 @@ const PrivacyPolicy = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground py-20">
+      <Seo
+        title="Privacy Policy | Johnnies Liquor Store"
+        description="How Johnnies Liquor Store collects, uses, and protects your information."
+        path="/privacy"
+      />
       <div className="container mx-auto px-5 max-w-4xl">
         <h1 className="text-4xl md:text-5xl font-display font-bold mb-8">Privacy Policy</h1>
         <p className="text-muted-foreground mb-6 text-sm">Effective Date: May 17, 2026</p>

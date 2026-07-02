@@ -4,8 +4,12 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { StickyMobileBar } from "@/components/StickyMobileBar";
 import Survey from "@/components/Survey";
+import { Seo } from "@/components/Seo";
+import { SkipLink } from "@/components/SkipLink";
 import { SeasonalAtmosphere } from "@/components/SeasonalAtmosphere";
 import { Hero } from "@/components/home/Hero";
+import { buildFaqSchema } from "@/lib/structuredData";
+import { FAQ_ITEMS } from "@/lib/faq";
 
 import { QuickActions } from "@/components/home/QuickActions";
 import { Occasions } from "@/components/home/Occasions";
@@ -15,7 +19,9 @@ import { StaffPicks } from "@/components/home/StaffPicks";
 import { OurStory } from "@/components/home/OurStory";
 import { Gallery } from "@/components/home/Gallery";
 import { Reviews } from "@/components/home/Reviews";
+import { Faq } from "@/components/home/Faq";
 import { LoyaltyCard } from "@/components/home/LoyaltyCard";
+import { VipClub } from "@/components/home/VipClub";
 import { Delivery } from "@/components/home/Delivery";
 import { CallStrip } from "@/components/home/CallStrip";
 import { VisitUs } from "@/components/home/VisitUs";
@@ -31,9 +37,11 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground relative overflow-x-hidden">
+      <Seo jsonLd={[buildFaqSchema(FAQ_ITEMS)]} />
+      <SkipLink />
       <SeasonalAtmosphere />
       <Header />
-      <main>
+      <main id="main">
         <Hero />
         <div className="relative z-10">
           <QuickActions />
@@ -46,7 +54,9 @@ const Index = () => {
         <OurStory />
         <Gallery />
         <Reviews />
+        <Faq />
         <LoyaltyCard />
+        <VipClub />
         <CallStrip />
         <VisitUs />
       </main>
