@@ -50,7 +50,7 @@ const PhysicalCard = () => {
 
   return (
     <div
-      className="relative w-full max-w-2xl mx-auto rounded-2xl overflow-hidden shadow-[0_30px_80px_-10px_rgba(0,0,0,0.9)]"
+      className="relative w-full max-w-2xl mx-auto overflow-hidden rounded-[1.25rem] border border-black/10 shadow-[0_30px_80px_-10px_rgba(0,0,0,0.9)]"
       style={{ background: "#ffffff" }}
       role="img"
       aria-label="Johnnies Loyalty Card — collect 10 stamps, reach the star for a free shot"
@@ -59,20 +59,20 @@ const PhysicalCard = () => {
         <div className="shine-el shine-el-gold shine-loop-el" />
       </div>
       {/* ── Card header ──────────────────────────────────── */}
-      <div className="px-8 pt-7 pb-5">
-        <div className="flex items-start justify-between gap-4">
+      <div className="px-2 pt-2 pb-1.5 sm:px-8 sm:pt-7 sm:pb-5">
+        <div className="flex flex-col gap-1.5 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
           {/* Left — brand */}
-          <div>
+          <div className="w-full sm:w-auto">
             <div
               className="font-display font-black leading-none tracking-tight"
-              style={{ fontSize: "clamp(1.6rem, 5vw, 2.6rem)", color: "#111" }}
+              style={{ fontSize: "clamp(1.05rem, 3.25vw, 2.6rem)", color: "#111" }}
             >
               JOHNNIE'S LIQUOR
             </div>
             {/* Gold rule */}
-            <div className="my-2" style={{ height: "2px", background: "#B8952A", width: "100%" }} />
+            <div className="my-1" style={{ height: "2px", background: "#B8952A", width: "100%" }} />
             <div
-              className="font-black uppercase tracking-[0.25em] text-sm"
+              className="font-black uppercase tracking-[0.2em] text-[0.65rem] sm:text-sm"
               style={{ color: "#111", letterSpacing: "0.22em" }}
             >
               SPIRITS &nbsp;·&nbsp; WINE &nbsp;·&nbsp; BEER &nbsp;·&nbsp; MORE
@@ -80,22 +80,22 @@ const PhysicalCard = () => {
           </div>
 
           {/* Right — "LOYALTY CARD" */}
-          <div className="text-right shrink-0">
+          <div className="shrink-0 text-left sm:text-right">
             <div
               className="font-display font-black italic leading-tight"
-              style={{ fontSize: "clamp(1rem, 3vw, 1.5rem)", color: "#111" }}
+              style={{ fontSize: "clamp(0.85rem, 2.6vw, 1.5rem)", color: "#111" }}
             >
               LOYALTY<br />CARD
             </div>
             {/* Gold underline */}
-            <div className="mt-1" style={{ height: "2px", background: "#B8952A" }} />
+            <div className="mt-0.25" style={{ height: "2px", background: "#B8952A" }} />
           </div>
         </div>
       </div>
 
       {/* ── Black banner ─────────────────────────────────── */}
       <div
-        className="px-8 py-3 text-center text-sm md:text-base font-bold"
+        className="px-2 py-1 text-center text-[0.6rem] font-bold sm:px-8 sm:py-3 sm:text-sm md:text-base"
         style={{ background: "#111", color: "#fff" }}
       >
         Reach the{" "}
@@ -106,7 +106,7 @@ const PhysicalCard = () => {
       </div>
 
       {/* ── Stamp grid ───────────────────────────────────── */}
-      <div className="px-6 py-5" style={{ borderBottom: "2px solid #111" }}>
+      <div className="px-1 py-1 sm:px-6 sm:py-5" style={{ borderBottom: "2px solid #111" }}>
         <div className="grid grid-cols-10 border-l border-t" style={{ borderColor: "#111" }}>
           {Array.from({ length: TOTAL_STAMPS }).map((_, i) => {
             const isStar = i === TOTAL_STAMPS - 1;
@@ -124,7 +124,7 @@ const PhysicalCard = () => {
                 {isStar ? (
                   <StarIcon
                     filled={isStamped}
-                    className={`w-7 h-7 md:w-9 md:h-9 transition-all duration-300 ${
+                    className={`w-4 h-4 sm:w-7 sm:h-7 md:w-9 md:h-9 transition-all duration-300 ${
                       isStamped ? "scale-110 animate-stamp-pop" : "scale-90 opacity-60"
                     }`}
                   />
@@ -143,11 +143,11 @@ const PhysicalCard = () => {
       </div>
 
       {/* ── Card footer ──────────────────────────────────── */}
-      <div className="px-6 py-5 flex flex-wrap items-center gap-x-6 gap-y-3">
+      <div className="flex flex-col gap-1.5 px-2 py-2 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-6 sm:gap-y-3 sm:px-6 sm:py-5">
         {/* Phone */}
         <div className="flex items-center gap-2">
           <PhoneIcon />
-          <span className="font-bold text-sm" style={{ color: "#111" }}>{PHONE_DISPLAY}</span>
+          <span className="text-[0.72rem] font-bold sm:text-sm" style={{ color: "#111" }}>{PHONE_DISPLAY}</span>
         </div>
 
         {/* Divider */}
@@ -156,7 +156,7 @@ const PhysicalCard = () => {
         {/* Address */}
         <div className="flex items-center gap-2">
           <MapPinIcon />
-          <span className="text-sm font-medium" style={{ color: "#111", lineHeight: 1.35 }}>
+          <span className="text-[0.68rem] font-medium sm:text-sm" style={{ color: "#111", lineHeight: 1.35 }}>
             13201 Pond Springs Rd. #203<br />Austin, TX 78729
           </span>
         </div>
@@ -165,9 +165,9 @@ const PhysicalCard = () => {
         <div style={{ width: "1px", height: "32px", background: "#B8952A" }} className="hidden sm:block" aria-hidden />
 
         {/* Thank you */}
-        <div className="flex items-center gap-2 flex-1 justify-end min-w-0">
+        <div className="flex items-center gap-2 min-w-0 sm:flex-1 sm:justify-end">
           <StarIcon filled className="w-4 h-4 shrink-0" />
-          <span className="text-sm font-medium text-center" style={{ color: "#111" }}>
+          <span className="text-[0.68rem] font-medium text-center sm:text-sm" style={{ color: "#111" }}>
             We appreciate your patronage<br />and support!
           </span>
           <StarIcon filled className="w-4 h-4 shrink-0" />
@@ -183,7 +183,7 @@ const PhysicalCard = () => {
 export const LoyaltyCard = () => (
   <Section
     id="loyalty"
-    className="bg-[#050508]"
+    className="bg-[#090c14]"
     eyebrow="Johnnies Reserve Club"
     title="Loyalty Card"
     subtitle="10 visits. Reach the star. Get a free shot from the basket — it's that simple."
@@ -191,7 +191,7 @@ export const LoyaltyCard = () => (
     <PhysicalCard />
 
     {/* How it works strip */}
-    <div className="mt-14 grid grid-cols-1 sm:grid-cols-3 gap-1">
+    <div className="mt-10 grid grid-cols-1 gap-3 sm:mt-14 sm:grid-cols-3 sm:gap-1">
       {[
         { step: "01", title: "Visit & Shop", desc: "Every time you visit the store, ask our staff to stamp your card." },
         { step: "02", title: "Collect Stamps", desc: "Fill all 9 squares to reach the gold star on your 10th visit." },
@@ -199,7 +199,7 @@ export const LoyaltyCard = () => (
       ].map((item) => (
         <div
           key={item.step}
-          className="bg-white/[0.02] border border-white/5 p-8 hover:bg-white/[0.04] transition-colors duration-500"
+          className="bg-white/[0.02] border border-white/5 p-6 hover:bg-white/[0.04] transition-colors duration-500 sm:p-8"
         >
           <div className="text-[10px] font-black uppercase tracking-[0.5em] text-primary mb-3">
             {item.step}
@@ -213,13 +213,13 @@ export const LoyaltyCard = () => (
     </div>
 
     {/* CTA */}
-    <div className="mt-10 flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-white/5">
+    <div className="mt-8 flex flex-col items-center justify-between gap-5 border-t border-white/5 pt-6 sm:mt-10 sm:flex-row sm:gap-6 sm:pt-8">
       <p className="text-white/30 text-sm font-medium">
         Don't have a card yet? Ask for one next time you're in — it's free.
       </p>
       <a
         href={`tel:${PHONE}`}
-        className="h-14 px-10 bg-white text-black font-black uppercase tracking-widest text-xs flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-500 shadow-boutique whitespace-nowrap"
+        className="h-14 w-full px-8 bg-white text-black font-black uppercase tracking-widest text-xs flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-500 shadow-boutique whitespace-nowrap sm:w-auto sm:px-10"
       >
         Call the Store
       </a>

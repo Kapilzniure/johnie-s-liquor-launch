@@ -11,12 +11,12 @@ const platforms = [
 ];
 
 export const Delivery = () => (
-  <Section id="delivery" className="bg-[#050508]" eyebrow="Rapid Access" title="Order Online" subtitle="Elite delivery partners. Your selection from our shelf to your door in under 60 minutes.">
+  <Section id="delivery" className="bg-[#090c14]" eyebrow="Rapid Access" title="Order Online" subtitle="Elite delivery partners. Your selection from our shelf to your door in under 60 minutes.">
     <div className="grid md:grid-cols-2 gap-1 px-1 bg-white/5">
       {platforms.map((p) => (
         <a key={p.name} href={p.href} target="_blank" rel="noopener noreferrer"
           onClick={() => trackEvent('delivery_click', p.trackLabel)}
-          className="group bg-[#050508] p-10 hover:bg-white/[0.02] transition-all duration-700 relative overflow-hidden"
+          className="group bg-card p-10 hover:bg-white/[0.04] transition-all duration-700 relative overflow-hidden"
         >
           <div className="flex justify-between items-start mb-10 relative z-10">
             <div className="w-14 h-14 bg-white/5 border border-white/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-700">

@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 
 const SITE_URL = "https://johnniesliquor.com";
 const DEFAULT_IMAGE = `${SITE_URL}/johnniesliquor.webp`;
-const DEFAULT_TITLE = "Johnnies Liquor Store Austin | Premium Spirits, Wine & Beer — Pond Springs Rd";
+const DEFAULT_TITLE = "Johnnies Liquor Store | Premium Spirits, Wine & Beer in Austin, TX";
 const DEFAULT_DESCRIPTION =
   "Austin's premier liquor store since 2004. Premium whiskey, wine, beer, tequila & spirits at 13201 Pond Springs Rd. Expert staff, 3,200+ labels. Visit us Mon–Sat.";
 

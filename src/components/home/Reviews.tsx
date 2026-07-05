@@ -38,7 +38,7 @@ export const Reviews = () => (
     glow
   >
     {/* Rating banner */}
-    <div className="flex items-center gap-5 p-5 bg-card border border-foreground/10 mb-6">
+    <div className="flex flex-col gap-5 rounded-3xl border border-foreground/10 bg-card p-6 shadow-[0_20px_70px_rgba(0,0,0,0.16)] mb-6 md:flex-row md:items-center">
       <div className="text-center shrink-0">
         <div className="text-4xl font-display font-black leading-none mb-1">4.8</div>
         <Stars count={5} />

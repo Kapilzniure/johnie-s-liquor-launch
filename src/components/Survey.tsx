@@ -8,6 +8,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { X, Gift } from 'lucide-react';
 import { useSurveyStore } from '@/hooks/use-survey';
 import { useShallow } from 'zustand/react/shallow';
+import { FORM_SUBMISSION_ENDPOINT } from '@/lib/constants';
 
 export const SurveyButton = () => {
   const openSurvey = useSurveyStore((state) => state.openSurvey);
@@ -119,8 +120,9 @@ const Survey = () => {
 
     setIsSubmitting(true);
     const formData = new FormData(e.target as HTMLFormElement);
+    formData.set('_subject', 'New Johnnies feedback submission');
     try {
-      const res = await fetch('https://formspree.io/f/xlgzdaoa', {
+      const res = await fetch(FORM_SUBMISSION_ENDPOINT, {
         method: 'POST',
         body: formData,
         headers: {
@@ -152,7 +154,7 @@ const Survey = () => {
   if (isSubmitted) {
     return (
       <Dialog open={true} onOpenChange={() => setIsSubmitted(false)}>
-        <DialogContent className="sm:max-w-md bg-[#050508] text-white border-white/5 shadow-2xl">
+        <DialogContent className="sm:max-w-md bg-slate-950 text-white border-white/5 shadow-2xl">
           <div className="text-center py-12">
             <Gift className="w-12 h-12 text-primary mx-auto mb-8 animate-bounce" />
             <DialogTitle className="text-3xl font-display font-black italic uppercase tracking-tighter mb-4">Confirmed</DialogTitle>
@@ -169,7 +171,7 @@ const Survey = () => {
   return (
     <>
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="fixed z-[1000] sm:max-w-lg bg-[#050508] text-white border-white/10 max-h-[90vh] overflow-y-auto p-0 shadow-2xl">
+        <DialogContent className="fixed z-[1000] sm:max-w-lg bg-slate-950 text-white border-white/10 max-h-[90vh] overflow-y-auto p-0 shadow-2xl">
           <div className="p-8 md:p-14">
             <DialogHeader className="mb-12">
               <div className="flex items-center gap-3 text-primary text-[10px] font-black tracking-[0.5em] mb-6 uppercase">

@@ -34,7 +34,7 @@ const picks = [
 export const StaffPicks = () => (
   <Section
     id="staff-picks"
-    className="bg-[#050508]"
+    className="bg-[#090c14]"
     eyebrow="From The Floor"
     title="Staff Picks"
     subtitle="Not algorithms. Not ads. Just the bottles our team actually reaches for."
@@ -43,9 +43,9 @@ export const StaffPicks = () => (
       {picks.map((p) => (
         <article
           key={p.staff}
-          className="group relative bg-[#050508] p-10 hover:bg-white/[0.02] transition-all duration-700 flex flex-col"
+          className="group relative bg-card p-10 hover:bg-white/[0.04] transition-all duration-700 flex flex-col"
         >
-          <div className="relative mb-8 overflow-hidden bg-black">
+          <div className="relative mb-8 overflow-hidden bg-slate-950">
             <img
               src={p.img}
               alt={p.name}
@@ -57,10 +57,10 @@ export const StaffPicks = () => (
           <span className="text-[10px] font-black uppercase tracking-[0.5em] text-primary mb-2 block">
             {p.cat}
           </span>
-          <h3 className="text-2xl font-display font-black italic text-white mb-4 tracking-tighter uppercase">
+          <h3 className="text-2xl font-display font-black italic text-slate-100 mb-4 tracking-tighter uppercase">
             {p.name}
           </h3>
-          <p className="text-sm text-white/40 font-medium leading-relaxed italic mb-6 flex-1">
+          <p className="text-sm text-slate-300 font-medium leading-relaxed italic mb-6 flex-1">
             "{p.quote}"
           </p>
           <div className="flex items-center justify-between pt-6 border-t border-white/5">

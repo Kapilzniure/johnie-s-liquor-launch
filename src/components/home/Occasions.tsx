@@ -73,7 +73,7 @@ export const Occasions = () => {
   return (
     <Section
       id="occasions"
-      className="bg-[#050508]"
+      className="bg-[#090c14]"
       eyebrow="Shop By Moment"
       title="What's the Occasion?"
       subtitle="Tell us what you're planning — we'll point you to the right bottles."
@@ -106,10 +106,10 @@ export const Occasions = () => {
           {current.picks.map((p) => (
             <article
               key={p.name}
-              className="group bg-[#050508] p-10 hover:bg-white/[0.02] transition-all duration-700"
+              className="group bg-card p-10 hover:bg-white/[0.06] transition-all duration-700"
             >
               <div className="flex items-center gap-8">
-                <div className="w-24 shrink-0 relative overflow-hidden bg-black">
+                <div className="w-24 shrink-0 relative overflow-hidden bg-slate-950">
                   <img
                     src={p.img}
                     alt={p.name}

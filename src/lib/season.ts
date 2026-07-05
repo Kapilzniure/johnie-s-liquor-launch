@@ -51,8 +51,8 @@ const THEMES: Record<SeasonTheme["id"], SeasonTheme> = {
   july4: {
     id: "july4",
     particle: "firework",
-    headline: { line1: "PURE", line2: "FREEDOM" },
-    promoText: "Fireworks-approved coolers & backyard BBQ pairings.",
+    headline: { line1: "PURE", line2: "HERITAGE" },
+    promoText: "Austin's Premier Destination for Rare Spirits & Craft Selection. Since 2004.",
     featuredOverride: { name: "Corona Extra", cat: "Beer", tag: "Cookout" },
   },
   halloween: {

@@ -1,6 +1,6 @@
 import { Section } from "@/components/Section";
-import { MapPin, Phone, Navigation, Mail, Instagram, Facebook, Star, WhatsApp } from "@/components/Icons";
-import { ADDRESS, DIRECTIONS_URL, PHONE, PHONE_DISPLAY, EMAIL, IG_URL, FB_URL, MAPS_URL, WHATSAPP_URL } from "@/lib/constants";
+import { MapPin, Phone, Navigation, Mail, Instagram, Facebook, Star } from "@/components/Icons";
+import { ADDRESS, DIRECTIONS_URL, PHONE, PHONE_DISPLAY, EMAIL, IG_URL, FB_URL, MAPS_URL } from "@/lib/constants";
 import { trackEvent } from "@/lib/analytics";
 
 const CONTACT_CHANNELS = [
@@ -10,7 +10,6 @@ const CONTACT_CHANNELS = [
   { icon: Instagram, label: "Instagram", href: IG_URL, ext: true },
   { icon: Facebook, label: "Facebook", href: FB_URL, ext: true },
   { icon: Star, label: "Reviews", href: MAPS_URL, ext: true },
-  { icon: WhatsApp, label: "WhatsApp", href: WHATSAPP_URL, ext: true },
 ];
 
 const ContactHub = () => (
@@ -22,7 +21,7 @@ const ContactHub = () => (
         target={c.ext ? "_blank" : undefined}
         rel={c.ext ? "noopener noreferrer" : undefined}
         onClick={() => trackEvent("contact_click", c.label.toLowerCase())}
-        className="group relative min-h-[88px] flex flex-col items-center justify-center gap-3 bg-[#050508] p-4 hover:bg-white/[0.03] transition-all duration-500 overflow-hidden"
+        className="group relative min-h-[88px] flex flex-col items-center justify-center gap-3 bg-card p-4 hover:bg-white/[0.06] transition-all duration-500 overflow-hidden"
       >
         <div className="absolute inset-0 z-0 pointer-events-none">
           <div className="shine-el shine-hover-el" />

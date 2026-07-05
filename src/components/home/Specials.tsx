@@ -24,7 +24,19 @@ export const Specials = () => {
     : baseSpecials;
 
   return (
-  <Section id="specials" className="bg-[#050508]" eyebrow="System Select" title="Weekly Specials" subtitle="Elite labels. Precise pricing. Curated for the modern Austin lifestyle.">
+  <Section id="specials" className="bg-[#090c14]" eyebrow="System Select" title="Weekly Specials" subtitle="Elite labels. Precise pricing. Curated for the modern Austin lifestyle.">
+
+    <div className="mb-10 flex flex-col gap-4 rounded-3xl border border-white/10 bg-card p-6 md:flex-row md:items-center md:justify-between">
+      <div>
+        <p className="text-[10px] font-black uppercase tracking-[0.4em] text-primary mb-2">Why shoppers return</p>
+        <h3 className="text-xl md:text-2xl font-display font-black italic uppercase tracking-tighter text-white">Fresh picks, fair pricing, and staff that knows their shelves.</h3>
+      </div>
+      <div className="flex flex-wrap gap-2 text-[10px] font-black uppercase tracking-[0.35em] text-white/50">
+        <span className="rounded-full border border-white/10 px-3 py-2">Curated</span>
+        <span className="rounded-full border border-white/10 px-3 py-2">Local</span>
+        <span className="rounded-full border border-white/10 px-3 py-2">Trusted</span>
+      </div>
+    </div>
 
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-1">
       {specials.map((s, i) => (

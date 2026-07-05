@@ -2,7 +2,7 @@ import { Phone } from "@/components/Icons";
 import { PHONE, PHONE_DISPLAY } from "@/lib/constants";
 
 export const CallStrip = () => (
-  <div className="bg-primary py-8 relative overflow-hidden">
+  <div className="bg-primary py-10 relative overflow-hidden">
     {/* Noise texture overlay */}
     <div
       className="absolute inset-0 pointer-events-none opacity-[0.08]"
@@ -20,17 +20,17 @@ export const CallStrip = () => (
     </div>
 
     <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
-      <div>
+      <div className="max-w-2xl">
         <div className="text-[10px] font-black uppercase tracking-[0.5em] text-white/70 mb-2">
           Have a question? Talk to us directly.
         </div>
         <h2 className="text-2xl md:text-3xl font-display font-black text-white tracking-tight leading-none">
-          We're here to help.
+          Friendly experts. Fast answers. Zero guesswork.
         </h2>
       </div>
       <a
         href={`tel:${PHONE}`}
-        className="flex items-center gap-3 bg-white text-primary px-6 py-3 font-black text-base md:text-lg tracking-tight hover:bg-white/90 transition-colors whitespace-nowrap shadow-2xl"
+        className="flex items-center gap-3 rounded-full bg-white text-primary px-6 py-3 font-black text-base md:text-lg tracking-tight hover:bg-white/90 transition-colors whitespace-nowrap shadow-2xl"
       >
         <Phone className="w-6 h-6" />
         {PHONE_DISPLAY}

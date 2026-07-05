@@ -3,7 +3,7 @@ import { Calendar, Clock } from "@/components/Icons";
 
 export const EventCard = ({ event }: { event: StoreEvent }) => (
   <article className="group relative bg-white/[0.02] border border-white/5 hover:border-primary/40 transition-all duration-700 overflow-hidden flex flex-col">
-    <div className="relative aspect-[4/3] overflow-hidden bg-black">
+    <div className="relative aspect-[4/3] overflow-hidden bg-slate-950">
       <img
         src={event.image}
         alt={event.title}

@@ -24,7 +24,7 @@ const StatBlock = ({ icon: Icon, value, suffix, label, duration, display }: {
 };
 
 export const OurStory = () => (
-  <Section id="story" className="bg-[#050508]" eyebrow="The Heritage" title="An Austin Original" subtitle="For over two decades, we've been more than just a store — we're a part of the local fabric.">
+  <Section id="story" className="bg-[#090c14]" eyebrow="The Heritage" title="An Austin Original" subtitle="For over two decades, we've been more than just a store — we're a part of the local fabric.">
     <div className="grid lg:grid-cols-2 gap-10 items-center">
 
       <div className="animate-fade-up">

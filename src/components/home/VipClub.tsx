@@ -63,28 +63,28 @@ export const VipClub = () => {
   return (
     <Section
       id="vip-club"
-      className="bg-[#050508]"
+      className="bg-[#090c14]"
       eyebrow="Members Only"
       title="Join the VIP Club"
       subtitle="Free to join. First to know about rare drops, tastings, and seasonal offers."
     >
-      <div className="grid lg:grid-cols-2 gap-1 bg-white/5">
+      <div className="grid gap-3 bg-white/5 lg:grid-cols-2 lg:gap-1">
         {/* Benefits */}
-        <div className="bg-[#050508] p-10 md:p-14">
-          <ul className="space-y-8">
+        <div className="bg-card p-6 sm:p-10 md:p-14">
+          <ul className="space-y-6 sm:space-y-8">
             {BENEFITS.map((b) => (
-              <li key={b.text} className="flex items-start gap-5">
-                <div className="w-11 h-11 shrink-0 flex items-center justify-center border border-[#B8952A]/30 text-[#B8952A]">
-                  <b.icon className="w-5 h-5" />
+              <li key={b.text} className="flex items-start gap-4 sm:gap-5">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-[#B8952A]/30 text-[#B8952A] sm:h-11 sm:w-11">
+                  <b.icon className="h-4 w-4 sm:h-5 sm:w-5" />
                 </div>
-                <p className="text-white/70 text-base leading-relaxed pt-2">{b.text}</p>
+                <p className="pt-1 text-sm leading-relaxed text-white/70 sm:pt-2 sm:text-base">{b.text}</p>
               </li>
             ))}
           </ul>
         </div>
 
         {/* Form */}
-        <div className="bg-[#050508] p-10 md:p-14 relative">
+        <div className="relative bg-card p-6 sm:p-10 md:p-14">
           {submitted ? (
             <div className="relative flex flex-col items-center justify-center text-center h-full min-h-[280px]">
               <ConfettiBurst />
@@ -98,7 +98,7 @@ export const VipClub = () => {
             </div>
           ) : (
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6" noValidate>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5 sm:space-y-6" noValidate>
                 <div aria-hidden="true" style={{ position: "absolute", left: "-10000px", width: 1, height: 1, overflow: "hidden" }}>
                   <FormField
                     control={form.control}
@@ -123,7 +123,7 @@ export const VipClub = () => {
                         First Name (optional)
                       </FormLabel>
                       <FormControl>
-                        <Input id="vip-name" placeholder="Jane" className="bg-white/5 border-white/10 h-14 rounded-none text-white" {...field} />
+                        <Input id="vip-name" placeholder="Jane" className="h-12 rounded-none border-white/10 bg-white/5 text-white sm:h-14" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -139,7 +139,7 @@ export const VipClub = () => {
                         Email Address
                       </FormLabel>
                       <FormControl>
-                        <Input id="vip-email" type="email" placeholder="jane@example.com" className="bg-white/5 border-white/10 h-14 rounded-none text-white" {...field} />
+                        <Input id="vip-email" type="email" placeholder="jane@example.com" className="h-12 rounded-none border-white/10 bg-white/5 text-white sm:h-14" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -155,7 +155,7 @@ export const VipClub = () => {
                 <Button
                   type="submit"
                   disabled={form.formState.isSubmitting}
-                  className="w-full h-14 bg-[#B8952A] hover:bg-white hover:text-black text-black font-black uppercase tracking-widest text-xs rounded-none transition-all duration-500 border-none"
+                  className="h-12 w-full rounded-none border-none bg-[#B8952A] text-black text-xs font-black uppercase tracking-widest transition-all duration-500 hover:bg-white hover:text-black sm:h-14"
                 >
                   {form.formState.isSubmitting ? "Joining…" : "Join Free"}
                 </Button>

@@ -1,4 +1,4 @@
-import { PHONE } from "@/lib/constants";
+import { DIRECTIONS_URL, PHONE } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
 import { getStoreStatus } from "@/lib/hours";
 import { getSeasonTheme } from "@/lib/season";
@@ -18,11 +18,15 @@ export const Hero = () => {
   const season = getSeasonTheme();
 
   return (
-    <div id="home" className="relative overflow-hidden" style={{ minHeight: '100svh', background: '#050508' }}>
+    <div
+      id="home"
+      className="relative overflow-hidden"
+      style={{ minHeight: '100svh', background: 'linear-gradient(180deg, rgba(9,11,18,0.96) 0%, rgba(12,14,22,0.96) 100%)' }}
+    >
 
       {/* Background video (falls back to the plain dark background until the file is supplied) */}
       <video
-        className="absolute inset-0 z-0 w-full h-full object-cover opacity-40"
+        className="absolute inset-0 z-0 w-full h-full object-cover opacity-45"
         src={HERO_VIDEO_SRC}
         poster={HERO_POSTER_SRC}
         autoPlay
@@ -32,7 +36,7 @@ export const Hero = () => {
         aria-hidden="true"
       />
       {/* Dark gradient overlay to keep headline legible over the video */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#050508] via-[#050508]/80 to-[#050508]" />
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#090b12] via-[#111827]/80 to-[#090b12]" />
 
       {/* Background Glows */}
       <div ref={glow.ref} className="absolute inset-0 z-0 pointer-events-none" style={{ transform: `translateY(${glow.offset}px)` }}>
@@ -49,7 +53,7 @@ export const Hero = () => {
         </div>
 
         {/* Headline */}
-        <div className="max-w-4xl mx-auto mb-8">
+        <div className="max-w-4xl mx-auto mb-6">
           <h1 className="text-[clamp(3rem,12vw,120px)] leading-[0.85] font-display font-black tracking-tighter text-white animate-fade-up italic">
             {season.headline.line1} <br />
             <span className="text-primary text-glow">{season.headline.line2}</span>
@@ -57,19 +61,34 @@ export const Hero = () => {
         </div>
 
         {/* Subtext */}
-        <div className="max-w-xl mx-auto mb-10 animate-fade-up" style={{ animationDelay: '0.1s' }}>
+        <div className="max-w-2xl mx-auto mb-8 animate-fade-up" style={{ animationDelay: '0.1s' }}>
           <p className="text-sm md:text-base text-white/40 uppercase tracking-[0.2em] font-medium leading-relaxed">
             {season.promoText ?? "Austin's Premier Destination for Rare Spirits & Craft Selection. Since 2004."}
           </p>
         </div>
 
+        <div className="flex flex-wrap items-center justify-center gap-3 mb-8 animate-fade-up" style={{ animationDelay: '0.15s' }}>
+          {[
+            { label: "Open Today" },
+            { label: "Rare Finds" },
+            { label: "Local Favorites" },
+          ].map((chip) => (
+            <span key={chip.label} className="rounded-full border border-white/10 bg-white/10 px-4 py-2 text-[10px] font-black uppercase tracking-[0.35em] text-white/70">
+              {chip.label}
+            </span>
+          ))}
+        </div>
+
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up" style={{ animationDelay: '0.2s' }}>
-          <Button asChild size="lg" className="w-full sm:w-auto h-14 px-12 bg-white text-black font-black uppercase tracking-widest rounded-none hover:bg-primary hover:text-white transition-all duration-500 border-none">
+          <Button asChild size="lg" className="w-full sm:w-auto h-14 px-10 bg-primary text-white font-black uppercase tracking-widest rounded-none hover:bg-white hover:text-black transition-all duration-500 border-none shadow-[0_0_30px_rgba(255,0,0,0.2)]">
             <a href={`tel:${PHONE}`}>Call Now</a>
           </Button>
-          <Button asChild variant="outline" size="lg" className="w-full sm:w-auto h-14 px-12 glass-dark text-white border-white/10 font-black uppercase tracking-widest rounded-none hover:bg-white/5 transition-all">
-            <a href="#specials">Browse Catalog</a>
+          <Button asChild size="lg" className="w-full sm:w-auto h-14 px-10 glass-dark text-white border-white/10 font-black uppercase tracking-widest rounded-none hover:bg-white/10 transition-all">
+            <a href={DIRECTIONS_URL} target="_blank" rel="noopener noreferrer">Get Directions</a>
+          </Button>
+          <Button asChild variant="outline" size="lg" className="w-full sm:w-auto h-14 px-10 glass-dark text-white border-white/10 font-black uppercase tracking-widest rounded-none hover:bg-white/5 transition-all">
+            <a href="#specials">View Deals</a>
           </Button>
         </div>
 

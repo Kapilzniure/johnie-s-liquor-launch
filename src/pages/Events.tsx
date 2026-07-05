@@ -24,7 +24,7 @@ const Events = () => (
     <main id="main">
       <Section
         id="events"
-        className="bg-[#050508] pt-32"
+        className="bg-[#090c14] pt-32"
         eyebrow="What's Happening"
         title="Upcoming Events"
         subtitle="Tastings, showcases, and community nights at Johnnies — come meet the people behind the shelf."
