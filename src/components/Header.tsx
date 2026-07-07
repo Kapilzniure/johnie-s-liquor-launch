@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Phone } from "@/components/Icons";
+import { Menu, X, Phone, ChevronDown } from "@/components/Icons";
 import { Button } from "@/components/ui/button";
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { SurveyButton } from "@/components/Survey";
 import { PHONE, PHONE_DISPLAY } from "@/lib/constants";
 
@@ -14,15 +15,34 @@ export const Header = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const links = [
+  const primaryLinks = [
+    { label: "Home", href: "/#home" },
+    { label: "Catalog", href: "/catalog" },
+    { label: "Events", href: "/events" },
+    { label: "Delivery", href: "/#delivery" },
+  ];
+
+  const moreLinks = [
+    { label: "Gallery", href: "/#gallery" },
+    { label: "Reviews", href: "/#reviews" },
+    { label: "FAQ", href: "/#faq" },
+    { label: "Contact", href: "/#contact" },
+  ];
+
+  const mobileLinks = [
+    { label: "Home", href: "/#home" },
     { label: "Heritage", href: "/#story" },
     { label: "Occasions", href: "/#occasions" },
     { label: "Specials", href: "/#specials" },
     { label: "Delivery", href: "/#delivery" },
     { label: "Gallery", href: "/#gallery" },
+    { label: "Reviews", href: "/#reviews" },
+    { label: "FAQ", href: "/#faq" },
+    { label: "VIP Club", href: "/#vip-club" },
+    { label: "Loyalty", href: "/#loyalty" },
+    { label: "Contact", href: "/#contact" },
     { label: "Catalog", href: "/catalog" },
     { label: "Events", href: "/events" },
-    { label: "Contact", href: "/#contact" },
   ];
 
   return (
@@ -37,23 +57,42 @@ export const Header = () => {
           </div>
         </a>
 
-        {/* Minimal Nav */}
+        {/* Simplified desktop nav */}
         <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
-          {links.map((l) => (
+          {primaryLinks.map((l) => (
             <a key={l.label} href={l.href} className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/40 hover:text-primary transition-all duration-300 relative group/link">
               {l.label}
               <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-primary transition-all duration-500 group-hover/link:w-full" />
             </a>
           ))}
+
+          <DropdownMenu>
+            <DropdownMenuTrigger className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.3em] text-white/40 hover:text-primary transition-all duration-300">
+              More
+              <ChevronDown className="w-3.5 h-3.5" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="mt-2 bg-slate-950 border-white/10">
+              {moreLinks.map((link) => (
+                <DropdownMenuItem
+                  key={link.label}
+                  asChild
+                >
+                  <a href={link.href} className="block w-full px-4 py-2 text-sm uppercase tracking-[0.25em] text-white/70 hover:text-white hover:bg-white/5">
+                    {link.label}
+                  </a>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </nav>
 
         {/* Action area */}
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-4 md:gap-6">
           <a href={`tel:${PHONE}`} className="hidden md:flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.2em] text-white/60 hover:text-primary transition-all">
             <Phone className="w-4 h-4 text-primary" />{PHONE_DISPLAY}
           </a>
           <div className="hidden md:block"><SurveyButton /></div>
-          <button onClick={() => setOpen(!open)} className="lg:hidden p-2 text-white relative z-[70]" aria-label="Menu">
+          <button onClick={() => setOpen(!open)} className="lg:hidden p-2 text-white relative z-[70]" aria-label="Toggle menu">
             {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
@@ -63,7 +102,7 @@ export const Header = () => {
       {open && (
         <div className="fixed inset-0 z-[60] bg-slate-950/95 flex flex-col justify-center px-10 animate-fade-up">
            <div className="flex flex-col gap-10">
-              {links.map((l) => (
+              {mobileLinks.map((l) => (
                 <a key={l.label} href={l.href} onClick={() => setOpen(false)} className="text-5xl font-display font-black italic tracking-tighter text-white hover:text-primary transition-colors border-b border-white/5 pb-8">
                   {l.label}
                 </a>
