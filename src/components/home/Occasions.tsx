@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Section } from "@/components/Section";
+import { TiltCard } from "@/components/ui/TiltCard";
 import { PHONE } from "@/lib/constants";
 import { Trophy, Utensils, Gift, PartyPopper, Heart, GlassWater } from "@/components/Icons";
 import { categoryColor } from "@/lib/category";
@@ -104,45 +105,46 @@ export const Occasions = () => {
         <p className="text-white/40 text-sm md:text-base font-medium mb-8 max-w-lg">{current.blurb}</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 bg-white/5">
           {current.picks.map((p) => (
-            <article
-              key={p.name}
-              className="group bg-card p-10 hover:bg-white/[0.06] transition-all duration-700"
-            >
-              <div className="flex items-center gap-8">
-                <div className="w-24 shrink-0 relative overflow-hidden bg-slate-950">
-                  <img
-                    src={p.img}
-                    alt={p.name}
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-auto group-hover:scale-110 transition-all duration-1000"
-                  />
-                  <div className="absolute inset-0 z-20 pointer-events-none">
-                    <div className="shine-el shine-hover-el" />
+            <TiltCard key={p.name}>
+              <article
+                className="group p-10 bg-black/40 h-full"
+              >
+                <div className="flex items-center gap-8 relative z-10">
+                  <div className="w-24 shrink-0 relative overflow-hidden bg-slate-950 rounded-lg">
+                    <img
+                      src={p.img}
+                      alt={p.name}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-auto group-hover:scale-110 transition-all duration-1000"
+                    />
+                    <div className="absolute inset-0 z-20 pointer-events-none">
+                      <div className="shine-el shine-hover-el" />
+                    </div>
+                    {p.cat === "Beer" && (
+                      <div className="absolute inset-0 z-20 condensation-el opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                    )}
                   </div>
-                  {p.cat === "Beer" && (
-                    <div className="absolute inset-0 z-20 condensation-el opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-                  )}
-                </div>
-                <div>
-                  <div className="flex items-center gap-3 mb-2">
-                    <span className="text-[10px] font-black uppercase tracking-[0.5em] text-primary block">
-                      {p.cat}
-                    </span>
-                    <div className="pour-meter" style={{ background: categoryColor(p.cat) }} />
+                  <div>
+                    <div className="flex items-center gap-3 mb-2">
+                      <span className="text-[10px] font-black uppercase tracking-[0.5em] text-primary block">
+                        {p.cat}
+                      </span>
+                      <div className="pour-meter" style={{ background: categoryColor(p.cat) }} />
+                    </div>
+                    <h3 className="text-xl font-display font-black italic text-white tracking-tighter uppercase mb-3 drop-shadow-md">
+                      {p.name}
+                    </h3>
+                    <a
+                      href={`tel:${PHONE}`}
+                      className="inline-flex items-center gap-3 text-[9px] font-black uppercase tracking-[0.4em] text-white/50 group-hover:text-primary transition-all duration-500"
+                    >
+                      Check Stock →
+                    </a>
                   </div>
-                  <h3 className="text-xl font-display font-black italic text-white tracking-tighter uppercase mb-3">
-                    {p.name}
-                  </h3>
-                  <a
-                    href={`tel:${PHONE}`}
-                    className="inline-flex items-center gap-3 text-[9px] font-black uppercase tracking-[0.4em] text-white/20 group-hover:text-white transition-all duration-500"
-                  >
-                    Check Stock →
-                  </a>
                 </div>
-              </div>
-            </article>
+              </article>
+            </TiltCard>
           ))}
         </div>
       </div>

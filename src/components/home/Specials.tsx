@@ -1,5 +1,6 @@
 import { Section } from "@/components/Section";
-import { Button } from "@/components/ui/button";
+import { TiltCard } from "@/components/ui/TiltCard";
+import { MagneticButton } from "@/components/ui/MagneticButton";
 import { Phone } from "@/components/Icons";
 import { PHONE, PHONE_DISPLAY } from "@/lib/constants";
 import { categoryColor } from "@/lib/category";
@@ -40,29 +41,31 @@ export const Specials = () => {
 
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-1">
       {specials.map((s, i) => (
-        <article key={`${i}-${s.name}`} className="group relative animate-fade-up bg-white/[0.02] p-8 hover:bg-white/[0.04] transition-all duration-700" style={{ animationDelay: `${s.delay}ms` }}>
-          <div className="absolute top-0 right-0 p-4 opacity-10 text-[8px] font-black group-hover:opacity-100 transition-opacity">{s.tag}</div>
-          <div className="mb-10 relative">
-            <div className="absolute inset-0 bg-primary/10 blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity" />
-            <img src={s.img} alt={s.name} loading="lazy" decoding="async" className="relative z-10 w-full h-auto group-hover:scale-105 transition-all duration-1000" />
-            <div className="absolute inset-0 z-20 overflow-hidden pointer-events-none">
-              <div className="shine-el shine-hover-el" />
+        <TiltCard key={`${i}-${s.name}`} className="h-full">
+          <article className="group relative bg-black/40 p-8 h-full">
+            <div className="absolute top-0 right-0 p-4 opacity-30 text-[8px] font-black group-hover:opacity-100 transition-opacity z-10">{s.tag}</div>
+            <div className="mb-10 relative">
+              <div className="absolute inset-0 bg-primary/10 blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity" />
+              <img src={s.img} alt={s.name} loading="lazy" decoding="async" className="relative z-10 w-full h-auto group-hover:scale-105 transition-all duration-1000" />
+              <div className="absolute inset-0 z-20 overflow-hidden pointer-events-none">
+                <div className="shine-el shine-hover-el" />
+              </div>
+              {s.cat === "Beer" && (
+                <div className="absolute inset-0 z-20 condensation-el opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              )}
             </div>
-            {s.cat === "Beer" && (
-              <div className="absolute inset-0 z-20 condensation-el opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-            )}
-          </div>
-          <div>
-            <div className="flex items-center gap-3 mb-2">
-              <div className="text-[10px] text-primary font-black uppercase tracking-[0.4em]">{s.cat}</div>
-              <div className="pour-meter" style={{ background: categoryColor(s.cat) }} />
+            <div className="relative z-10">
+              <div className="flex items-center gap-3 mb-2">
+                <div className="text-[10px] text-primary font-black uppercase tracking-[0.4em]">{s.cat}</div>
+                <div className="pour-meter" style={{ background: categoryColor(s.cat) }} />
+              </div>
+              <h3 className="text-2xl font-display font-black italic tracking-tighter text-white group-hover:text-primary transition-colors mb-6 drop-shadow-md">{s.name}</h3>
+              <a href={`tel:${PHONE}`} className="inline-flex items-center gap-3 text-[9px] font-black uppercase tracking-[0.3em] text-white/50 group-hover:text-primary transition-all">
+                Check Stock →
+              </a>
             </div>
-            <h3 className="text-2xl font-display font-black italic tracking-tighter text-white group-hover:text-primary transition-colors mb-4">{s.name}</h3>
-            <Button asChild variant="link" className="p-0 h-auto text-[9px] font-black uppercase tracking-[0.3em] text-white/30 group-hover:text-white transition-all">
-              <a href={`tel:${PHONE}`}>Check Stock →</a>
-            </Button>
-          </div>
-        </article>
+          </article>
+        </TiltCard>
       ))}
     </div>
 

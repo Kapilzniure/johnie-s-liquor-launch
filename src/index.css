@@ -6,29 +6,32 @@
 
 @layer base {
   :root {
-    --background: 222 15% 10%;
-    --foreground: 210 15% 96%;
-    --card: 220 10% 14%;
-    --card-foreground: 0 0% 96%;
-    --primary: 0 85% 50%;
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 3%;
+    --card-foreground: 0 0% 100%;
+    --primary: 0 100% 50%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 220 12% 18%;
+    --secondary: 0 0% 10%;
     --secondary-foreground: 0 0% 94%;
-    --muted: 220 15% 46%;
-    --muted-foreground: 210 15% 60%;
-    --accent: 0 85% 50%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
+    --accent: 0 100% 50%;
     --accent-foreground: 0 0% 100%;
-    --border: 220 12% 22%;
-    --input: 220 14% 16%;
-    --ring: 0 85% 50%;
+    --border: 0 0% 15%;
+    --input: 0 0% 10%;
+    --ring: 0 100% 50%;
     --radius: 0.75rem;
   }
 
-  * { @apply border-border/40; }
+  * { 
+    @apply border-border/40; 
+    cursor: none !important;
+  }
   html { scroll-behavior: smooth; }
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    background-color: #090b12;
+    background-color: #000000;
     font-feature-settings: "liga" 1, "kern" 1;
     text-rendering: optimizeLegibility;
   }
@@ -48,13 +51,16 @@
 
 @layer utilities {
   .glow-red {
-    box-shadow: 0 0 40px -10px hsla(var(--primary) / 0.4);
+    box-shadow: 0 0 40px -10px hsla(var(--primary) / 0.6);
   }
   .text-glow {
-    text-shadow: 0 0 30px hsla(var(--primary) / 0.5);
+    text-shadow: 0 0 30px hsla(var(--primary) / 0.8);
   }
   .glass-dark {
-    @apply bg-white/[0.08] backdrop-blur-2xl border border-white/10;
+    @apply bg-white/[0.03] backdrop-blur-2xl border border-white/10;
+  }
+  .glass-panel {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl;
   }
   .shadow-editorial {
     box-shadow: 4px 4px 0 0 hsl(var(--border));

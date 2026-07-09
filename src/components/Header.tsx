@@ -46,7 +46,7 @@ export const Header = () => {
   ];
 
   return (
-    <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${scrolled ? "bg-slate-950/90 backdrop-blur-2xl border-b border-white/10 h-16 shadow-lg" : "bg-transparent h-20"}`}>
+    <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${scrolled ? "bg-black/40 backdrop-blur-xl border-b border-white/5 h-16 shadow-2xl" : "bg-transparent h-24"}`}>
       <div className="container mx-auto px-6 h-full flex items-center justify-between">
         
         {/* Modern Minimal Logo */}
@@ -100,7 +100,7 @@ export const Header = () => {
 
       {/* Mobile Menu */}
       {open && (
-        <div className="fixed inset-0 z-[60] bg-slate-950/95 flex flex-col justify-center px-10 animate-fade-up">
+        <div className="fixed inset-0 z-[60] bg-black/95 backdrop-blur-3xl flex flex-col justify-center px-10 animate-fade-up">
            <div className="flex flex-col gap-10">
               {mobileLinks.map((l) => (
                 <a key={l.label} href={l.href} onClick={() => setOpen(false)} className="text-5xl font-display font-black italic tracking-tighter text-white hover:text-primary transition-colors border-b border-white/5 pb-8">

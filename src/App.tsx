@@ -5,6 +5,8 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import AgeVerification from "./components/AgeVerification";
+import { CanvasBackground } from "@/components/ui/CanvasBackground";
+import { CustomCursor } from "@/components/ui/CustomCursor";
 
 const Index = lazy(() => import("./pages/Index.tsx"));
 const Catalog = lazy(() => import("./pages/Catalog.tsx"));
@@ -24,6 +26,8 @@ const RouteFallback = () => (
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
+      <CanvasBackground />
+      <CustomCursor />
       <Toaster />
       <Sonner />
       <AgeVerification />

@@ -1,108 +1,113 @@
 import { DIRECTIONS_URL, PHONE } from "@/lib/constants";
-import { Button } from "@/components/ui/button";
 import { getStoreStatus } from "@/lib/hours";
 import { getSeasonTheme } from "@/lib/season";
 import { useParallax } from "@/hooks/use-parallax";
+import { motion } from "framer-motion";
+import { MagneticButton } from "@/components/ui/MagneticButton";
 import heroBottle from "@/assets/hero-bottle.webp";
-
-// Drop a looped background clip at public/hero.mp4 (and optionally a poster
-// frame at public/hero-poster.jpg) whenever it's ready — referenced by plain
-// path so the build never depends on the file existing. Keep it short, muted,
-// H.264 mp4, ideally under ~8MB, roughly 1280px wide.
-const HERO_VIDEO_SRC = "/hero.mp4";
-const HERO_POSTER_SRC = "/hero-poster.jpg";
 
 export const Hero = () => {
   const store = getStoreStatus();
   const glow = useParallax(0.06);
   const season = getSeasonTheme();
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30, filter: "blur(10px)" },
+    visible: {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      transition: { type: "spring", stiffness: 100, damping: 20 },
+    },
+  };
+
   return (
     <div
       id="home"
-      className="relative overflow-hidden"
-      style={{ minHeight: '100svh', background: 'linear-gradient(180deg, rgba(9,11,18,0.96) 0%, rgba(12,14,22,0.96) 100%)' }}
+      className="relative flex items-center justify-center overflow-hidden min-h-screen"
     >
-
-      {/* Background video (falls back to the plain dark background until the file is supplied) */}
-      <video
-        className="absolute inset-0 z-0 w-full h-full object-cover opacity-45"
-        src={HERO_VIDEO_SRC}
-        poster={HERO_POSTER_SRC}
-        autoPlay
-        muted
-        loop
-        playsInline
-        aria-hidden="true"
-      />
-      {/* Dark gradient overlay to keep headline legible over the video */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#090b12] via-[#111827]/80 to-[#090b12]" />
-
       {/* Background Glows */}
       <div ref={glow.ref} className="absolute inset-0 z-0 pointer-events-none" style={{ transform: `translateY(${glow.offset}px)` }}>
-        <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-primary/10 blur-[150px] rounded-full" />
-        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-blue-600/5 blur-[150px] rounded-full" />
+        <div className="absolute top-1/4 left-1/4 w-[40vw] h-[40vw] bg-primary/20 blur-[150px] rounded-full mix-blend-screen" />
+        <div className="absolute bottom-1/4 right-1/4 w-[30vw] h-[30vw] bg-blue-600/10 blur-[150px] rounded-full mix-blend-screen" />
       </div>
 
-      <div className="container mx-auto px-6 relative z-10 text-center" style={{ paddingBottom: '60px' }}>
-
+      <motion.div 
+        className="container mx-auto px-6 relative z-10 text-center flex flex-col items-center justify-center pt-24 pb-12"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
         {/* Status Badge */}
-        <div className="inline-flex items-center gap-3 px-3 py-1 mb-8 glass-dark rounded-full border border-white/10 animate-fade-up">
-          <div className={`w-1.5 h-1.5 rounded-full ${store.isOpen ? 'bg-primary shadow-[0_0_10px_rgba(255,0,0,0.8)] animate-pulse' : 'bg-white/20'}`} />
-          <span className="text-[9px] font-black uppercase tracking-[0.4em] text-white/70">{store.badge}</span>
-        </div>
+        <motion.div variants={itemVariants} className="inline-flex items-center gap-3 px-4 py-2 mb-8 glass-panel rounded-full">
+          <div className={`w-2 h-2 rounded-full ${store.isOpen ? 'bg-primary shadow-[0_0_15px_rgba(255,0,0,0.8)] animate-pulse' : 'bg-white/20'}`} />
+          <span className="text-[10px] font-black uppercase tracking-[0.5em] text-white/80">{store.badge}</span>
+        </motion.div>
 
         {/* Headline */}
-        <div className="max-w-4xl mx-auto mb-6">
-          <h1 className="text-[clamp(3rem,12vw,120px)] leading-[0.85] font-display font-black tracking-tighter text-white animate-fade-up italic">
+        <motion.div variants={itemVariants} className="max-w-5xl mx-auto mb-8 relative">
+          <h1 className="text-[clamp(3.5rem,14vw,140px)] leading-[0.8] font-display font-black tracking-tighter text-white italic drop-shadow-2xl">
             {season.headline.line1} <br />
-            <span className="text-primary text-glow">{season.headline.line2}</span>
+            <span className="text-primary text-glow block mt-2">{season.headline.line2}</span>
           </h1>
-        </div>
+        </motion.div>
 
         {/* Subtext */}
-        <div className="max-w-2xl mx-auto mb-8 animate-fade-up" style={{ animationDelay: '0.1s' }}>
-          <p className="text-sm md:text-base text-white/40 uppercase tracking-[0.2em] font-medium leading-relaxed">
+        <motion.div variants={itemVariants} className="max-w-3xl mx-auto mb-12">
+          <p className="text-base md:text-xl text-white/60 uppercase tracking-[0.2em] font-light leading-relaxed">
             {season.promoText ?? "Austin's Premier Destination for Rare Spirits & Craft Selection. Since 2004."}
           </p>
-        </div>
+        </motion.div>
 
-        <div className="flex flex-wrap items-center justify-center gap-3 mb-8 animate-fade-up" style={{ animationDelay: '0.15s' }}>
+        <motion.div variants={itemVariants} className="flex flex-wrap items-center justify-center gap-4 mb-12">
           {[
             { label: "Open Today" },
             { label: "Rare Finds" },
             { label: "Local Favorites" },
           ].map((chip) => (
-            <span key={chip.label} className="rounded-full border border-white/10 bg-white/10 px-4 py-2 text-[10px] font-black uppercase tracking-[0.35em] text-white/70">
+            <span key={chip.label} className="rounded-full border border-white/10 bg-white/5 px-6 py-2.5 text-[10px] font-black uppercase tracking-[0.4em] text-white/70 backdrop-blur-md">
               {chip.label}
             </span>
           ))}
-        </div>
+        </motion.div>
 
         {/* CTAs */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up" style={{ animationDelay: '0.2s' }}>
-          <Button asChild size="lg" className="w-full sm:w-auto h-14 px-10 bg-primary text-white font-black uppercase tracking-widest rounded-none hover:bg-white hover:text-black transition-all duration-500 border-none shadow-[0_0_30px_rgba(255,0,0,0.2)]">
-            <a href={`tel:${PHONE}`}>Call Now</a>
-          </Button>
-          <Button asChild size="lg" className="w-full sm:w-auto h-14 px-10 glass-dark text-white border-white/10 font-black uppercase tracking-widest rounded-none hover:bg-white/10 transition-all">
-            <a href={DIRECTIONS_URL} target="_blank" rel="noopener noreferrer">Get Directions</a>
-          </Button>
-          <Button asChild variant="outline" size="lg" className="w-full sm:w-auto h-14 px-10 glass-dark text-white border-white/10 font-black uppercase tracking-widest rounded-none hover:bg-white/5 transition-all">
-            <a href="#specials">View Deals</a>
-          </Button>
-        </div>
+        <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center gap-6">
+          <MagneticButton className="w-full sm:w-auto h-16 px-12 bg-primary text-white font-black uppercase tracking-[0.2em] rounded-none shadow-[0_0_40px_rgba(255,0,0,0.3)] hover:shadow-[0_0_60px_rgba(255,0,0,0.6)]">
+            <a href={`tel:${PHONE}`} className="w-full h-full flex items-center justify-center">Call Now</a>
+          </MagneticButton>
+          <MagneticButton className="w-full sm:w-auto h-16 px-12 glass-panel text-white font-black uppercase tracking-[0.2em] rounded-none hover:bg-white/10 transition-colors">
+            <a href={DIRECTIONS_URL} target="_blank" rel="noopener noreferrer" className="w-full h-full flex items-center justify-center">Get Directions</a>
+          </MagneticButton>
+        </motion.div>
 
         {/* Bottle */}
-        <div className="mt-10 pointer-events-none animate-fade-up" style={{ animationDelay: '0.3s' }}>
+        <motion.div 
+          variants={itemVariants} 
+          className="mt-20 pointer-events-none relative"
+        >
+          {/* Backlight for the bottle */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] bg-primary/20 blur-[100px] rounded-full" />
           <img
             src={heroBottle}
             alt="Featured spirit"
             width={240}
             height={400}
-            className="w-[160px] md:w-[240px] mx-auto h-auto drop-shadow-[0_40px_80px_rgba(0,0,0,0.9)]"
+            className="w-[180px] md:w-[280px] mx-auto h-auto drop-shadow-[0_40px_80px_rgba(0,0,0,0.9)] relative z-10"
           />
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </div>
   );
 };
