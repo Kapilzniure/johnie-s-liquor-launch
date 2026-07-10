@@ -13,6 +13,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import AgeVerification from "./components/AgeVerification";
 import { CanvasBackground } from "@/components/ui/CanvasBackground";
+import { AmbientBackground } from "@/components/ui/AmbientBackground";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 
 const Index = lazy(() => import("./pages/Index.tsx"));
@@ -52,6 +53,7 @@ const App = () => (
     <QueryClientProvider client={queryClient}>
       <AtmosphereProvider>
         <TooltipProvider>
+          <AmbientBackground />
           <CanvasBackground />
           <CustomCursor />
           <Toaster />

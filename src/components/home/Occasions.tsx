@@ -55,7 +55,7 @@ export const Occasions = () => {
             <span className="h-px w-12 bg-gradient-to-r from-primary/50 to-transparent" aria-hidden="true" />
             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/50">Right Bottle, Right Time</span>
           </div>
-          <h2 className="text-5xl md:text-7xl font-display font-light text-white tracking-tighter leading-[0.9]">
+          <h2 className="text-5xl md:text-7xl font-display font-black uppercase text-white tracking-tighter leading-[0.9]">
             The <span className="italic text-primary block mt-2">Occasions</span>
           </h2>
           <p className="mt-8 max-w-xl text-lg text-white/50 leading-relaxed font-sans">
@@ -80,7 +80,7 @@ export const Occasions = () => {
               <Link to="/catalog" className="block relative">
                 
                 {/* The Window (Image) */}
-                <div className="relative aspect-[3/4] overflow-hidden border border-white/5 bg-black/50">
+                <div className="relative aspect-[3/4] overflow-hidden rounded-3xl bg-white/[0.02] border border-white/[0.08] shadow-2xl">
                   <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10 mix-blend-color-dodge" />
                   <img
                     src={occ.img}
@@ -88,7 +88,7 @@ export const Occasions = () => {
                     className="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000 grayscale-[30%] group-hover:grayscale-0"
                   />
                   {/* Faded bottom for text overlap */}
-                  <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-obsidian via-obsidian/50 to-transparent z-20 pointer-events-none" />
+                  <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black via-black/50 to-transparent z-20 pointer-events-none" />
                 </div>
                 
                 {/* Overlapping Text (Negative Margin) */}

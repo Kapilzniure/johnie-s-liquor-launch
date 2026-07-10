@@ -210,7 +210,7 @@ const PhysicalCard = () => {
 export const LoyaltyCard = () => (
   <Section
     id="loyalty"
-    className="bg-[#090c14]"
+    className="bg-transparent"
     eyebrow="Johnnies Reserve Club"
     title="Loyalty Card"
     subtitle="10 visits. Reach the star. Get a free shot from the basket — it's that simple."
@@ -226,7 +226,7 @@ export const LoyaltyCard = () => (
       ].map((item) => (
         <div
           key={item.step}
-          className="bg-black/40 backdrop-blur-md border border-white/10 p-8 rounded-2xl hover:bg-white/5 transition-all duration-500 shadow-xl"
+          className="bg-white/[0.02] backdrop-blur-3xl border border-white/[0.08] p-8 rounded-3xl hover:bg-white/5 transition-all duration-500 shadow-2xl"
         >
           <div className="text-[10px] font-black uppercase tracking-[0.5em] text-primary mb-3">
             {item.step}
@@ -240,13 +240,13 @@ export const LoyaltyCard = () => (
     </div>
 
     {/* CTA */}
-    <div className="mt-8 flex flex-col items-center justify-between gap-5 border-t border-white/5 pt-6 sm:mt-10 sm:flex-row sm:gap-6 sm:pt-8">
-      <p className="text-white/30 text-sm font-medium">
+    <div className="mt-8 flex flex-col items-center justify-between gap-5 border-t border-white/[0.08] pt-6 sm:mt-10 sm:flex-row sm:gap-6 sm:pt-8">
+      <p className="text-white/40 text-sm font-medium">
         Don't have a card yet? Ask for one next time you're in — it's free.
       </p>
       <a
         href={`tel:${PHONE}`}
-        className="group relative inline-flex items-center justify-center gap-3 bg-white/5 backdrop-blur-md border border-white/10 rounded-full px-10 py-4 font-black uppercase tracking-[0.2em] text-[11px] text-white overflow-hidden transition-all hover:bg-white/10 hover:border-white/20 hover:scale-105 h-14 w-full sm:w-auto shadow-xl"
+        className="group relative inline-flex items-center justify-center gap-3 bg-white/5 border border-white/10 rounded-full px-10 py-4 font-black uppercase tracking-[0.2em] text-[11px] text-white overflow-hidden transition-all hover:bg-white/10 hover:border-white/20 hover:scale-105 h-14 w-full sm:w-auto shadow-xl"
       >
         <span className="relative z-10 flex items-center gap-2">
           Call the Store

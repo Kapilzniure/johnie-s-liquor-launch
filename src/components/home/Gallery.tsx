@@ -1,43 +1,53 @@
 import { Section } from "@/components/Section";
-import { TiltCard } from "@/components/ui/TiltCard";
 import bacardi from "@/assets/bacardi-superior-rum.webp";
 import shelves from "@/assets/freeze.webp";
 import storeInside from "@/assets/johnniesliquor.webp";
 
 export const Gallery = () => {
+  // We double the items array to create a seamless infinite marquee effect
   const items = [
-    { img: bacardi, label: "01 SITE", alt: "Johnnies Liquor Store storefront exterior in Austin, TX" },
-    { img: storeInside, label: "02 VAULT", alt: "Inside Johnnies Liquor Store — premium spirits vault and shelving" },
-    { img: shelves, label: "03 STOCK", alt: "Fully stocked shelves of wine, beer, and spirits at Johnnies Liquor" },
+    { img: bacardi, label: "01 SITE" },
+    { img: storeInside, label: "02 VAULT" },
+    { img: shelves, label: "03 STOCK" },
+    { img: bacardi, label: "04 SITE" },
+    { img: storeInside, label: "05 VAULT" },
+    { img: shelves, label: "06 STOCK" },
   ];
+
   return (
-    <Section id="gallery" className="" eyebrow="Visual ID" title="The Facility" subtitle="Step inside the heart of North Austin's premier selection.">
-      <div className="mb-8 flex flex-col gap-3 rounded-3xl border border-white/10 bg-card p-6 md:flex-row md:items-center md:justify-between">
-        <div>
-          <p className="text-[10px] font-black uppercase tracking-[0.4em] text-primary mb-2">Store experience</p>
-          <p className="text-sm text-white/50 max-w-xl">A welcoming shop with premium shelving, strong selections, and a polished atmosphere built for serious shoppers.</p>
-        </div>
-        <a href="#contact" className="text-[10px] font-black uppercase tracking-[0.35em] text-white/60 hover:text-primary transition-colors">Visit us in person →</a>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {items.map((item, idx) => (
-          <TiltCard key={idx} className="aspect-square">
-            <div className="group relative overflow-hidden w-full h-full bg-slate-950">
-               <img
+    <Section id="gallery" className="!pb-0" eyebrow="Our Space" title="Inside Johnnie's" subtitle="Step inside the heart of North Austin's premier selection.">
+      
+      {/* Cinematic Film Strip Marquee */}
+      <div className="relative w-screen -ml-[50vw] left-1/2 mt-16 overflow-hidden py-10">
+        
+        {/* Gradient fades for the edges to make it look like it's fading into the dark */}
+        <div className="absolute top-0 bottom-0 left-0 w-32 bg-gradient-to-r from-[#09090b] to-transparent z-10 pointer-events-none" />
+        <div className="absolute top-0 bottom-0 right-0 w-32 bg-gradient-to-l from-[#09090b] to-transparent z-10 pointer-events-none" />
+
+        <div className="flex gap-8 w-max animate-marquee hover:[animation-play-state:paused]">
+          {[...items, ...items].map((item, idx) => (
+            <div 
+              key={idx} 
+              className="group relative w-[300px] md:w-[450px] aspect-[4/3] rounded-2xl overflow-hidden bg-white/[0.02] border border-white/[0.08] shadow-2xl shrink-0 cursor-grab active:cursor-grabbing"
+            >
+              <img
                 src={item.img}
-                alt={item.alt}
+                alt={item.label}
                 loading="lazy"
                 decoding="async"
-                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 grayscale-[50%] group-hover:grayscale-0"
               />
-              <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-              <div className="absolute bottom-6 left-6 z-30">
-                 <div className="text-[10px] font-black text-white tracking-widest bg-black/50 px-3 py-1 rounded backdrop-blur-sm">{item.label}</div>
+              <div className="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-500" />
+              <div className="absolute bottom-6 left-6 z-30 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                 <div className="text-[10px] font-black uppercase text-white tracking-widest bg-black/80 px-4 py-2 rounded-full border border-white/10 backdrop-blur-md">
+                   {item.label}
+                 </div>
               </div>
             </div>
-          </TiltCard>
-        ))}
+          ))}
+        </div>
       </div>
+      
     </Section>
   );
 };

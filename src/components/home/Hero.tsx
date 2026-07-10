@@ -33,7 +33,7 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.6 }}
-            className="text-sm sm:text-base text-white/60 font-light max-w-lg mb-10 leading-relaxed"
+            className="text-sm sm:text-base text-white/60 font-medium max-w-lg mb-10 leading-relaxed"
           >
             Discover Pasadena's most exquisite collection of rare bourbons, vintage wines, and craft spirits. Curated for the connoisseur, delivered with prestige.
           </motion.p>
@@ -47,7 +47,7 @@ export const Hero = () => {
             <Magnetic>
               <Link 
                 to="/catalog" 
-                className="group relative inline-flex items-center justify-center gap-3 bg-white/5 backdrop-blur-md border border-white/10 rounded-full px-8 py-4 font-black uppercase tracking-[0.2em] text-[11px] text-white overflow-hidden transition-all hover:bg-white/10 hover:border-white/20 hover:scale-105"
+                className="group relative inline-flex items-center justify-center gap-3 bg-white/[0.05] backdrop-blur-3xl border border-white/10 shadow-2xl rounded-full px-8 py-4 font-black uppercase tracking-[0.2em] text-[11px] text-white overflow-hidden transition-all hover:bg-white/10 hover:scale-105"
               >
                 <span className="relative z-10 flex items-center gap-2">
                   Explore Collection
@@ -61,9 +61,9 @@ export const Hero = () => {
                 href={`https://maps.google.com/?q=${encodeURIComponent(ADDRESS)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center gap-3 px-6 py-4 font-black uppercase tracking-[0.2em] text-[11px] text-white/70 hover:text-white transition-colors"
+                className="group flex items-center gap-3 px-6 py-4 font-black uppercase tracking-[0.2em] text-[11px] text-white/60 hover:text-white transition-colors"
               >
-                <div className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center group-hover:border-white/50 transition-colors">
+                <div className="w-8 h-8 rounded-full border border-white/10 bg-white/5 shadow-sm flex items-center justify-center group-hover:border-white/30 group-hover:bg-white/10 transition-all">
                   <MapPin className="w-3.5 h-3.5" />
                 </div>
                 <span>Visit Store</span>
@@ -72,10 +72,9 @@ export const Hero = () => {
           </motion.div>
         </div>
 
-        {/* Right Content (Floating Bottle 3D Presentation) */}
         <div className="relative h-[60vh] lg:h-[80vh] w-full flex items-center justify-center z-0 lg:ml-10">
           {/* Ambient Glows */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-primary/20 blur-[100px] rounded-full pointer-events-none mix-blend-screen" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-primary/20 blur-[100px] rounded-full pointer-events-none" />
           
           <motion.div 
             animate={{ y: [0, -20, 0] }}

@@ -6,14 +6,14 @@
 
 @layer base {
   :root {
-    --background: #050505;
-    --foreground: #FFFFFF;
-    --primary: #B22222;
+    --background: #09090b;
+    --foreground: #f8fafc;
+    --primary: #e11d48;
     --primary-foreground: #FFFFFF;
     --border: 0 0% 15%;
     --input: 0 0% 15%;
-    --ring: 0 0% 15%;
-    --card: 0 0% 10%;
+    --ring: 0 0% 20%;
+    --card: 0 0% 5%;
     --card-foreground: 0 0% 100%;
     --radius: 0.5rem;
     --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.5);
@@ -71,7 +71,7 @@
   }
   
   .glass-smoked {
-    @apply bg-black/40 backdrop-blur-2xl border border-white/5;
+    @apply bg-white/[0.02] backdrop-blur-3xl border border-white/[0.08] shadow-2xl;
   }
 
   .scrollbar-hide {

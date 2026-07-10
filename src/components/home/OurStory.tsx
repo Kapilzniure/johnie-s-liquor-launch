@@ -45,11 +45,11 @@ export const OurStory = () => (
       </div>
 
       <div className="relative animate-fade-up" style={{ animationDelay: '0.2s' }}>
-        <div className="bg-white/5 border border-white/10 p-3 relative group overflow-hidden">
+        <div className="bg-white/[0.02] backdrop-blur-3xl border border-white/[0.08] shadow-2xl p-3 relative group overflow-hidden rounded-3xl">
           <img src={storeInside} alt="Johnnies Interior"
-            className="w-full h-auto transition-all duration-1000 group-hover:scale-105" />
+            className="w-full h-auto transition-all duration-1000 group-hover:scale-105 rounded-xl" />
         </div>
-        <div className="absolute -bottom-4 right-4 bg-primary text-white px-5 py-3 shadow-2xl rotate-[-2deg]">
+        <div className="absolute -bottom-4 right-4 bg-primary text-white px-5 py-3 shadow-2xl rotate-[-2deg] rounded-xl border border-primary/20">
           <div className="text-xl font-display font-black italic">EST. 2004</div>
           <div className="text-[9px] uppercase tracking-[0.4em] font-bold opacity-80">Local Neighborhood Shop</div>
         </div>

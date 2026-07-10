@@ -34,23 +34,23 @@ export const Reviews = () => (
     eyebrow="Google Reviews"
     title="The Word on the Street"
     subtitle="Rated 4.8 stars by Austin customers on Google."
-    className="bg-background paper-texture"
+    className="bg-transparent text-white"
     glow
   >
     {/* Rating banner */}
-    <div className="flex flex-col gap-5 rounded-3xl border border-foreground/10 bg-card p-6 shadow-[0_20px_70px_rgba(0,0,0,0.16)] mb-6 md:flex-row md:items-center">
+    <div className="flex flex-col gap-5 rounded-3xl border border-white/[0.08] bg-white/[0.02] backdrop-blur-3xl p-6 shadow-2xl mb-6 md:flex-row md:items-center">
       <div className="text-center shrink-0">
-        <div className="text-4xl font-display font-black leading-none mb-1">4.8</div>
+        <div className="text-4xl font-display font-black leading-none mb-1 text-white">4.8</div>
         <Stars count={5} />
-        <div className="text-[10px] text-muted-foreground mt-1 font-bold uppercase tracking-widest">out of 5</div>
+        <div className="text-[10px] text-white/50 mt-1 font-bold uppercase tracking-widest">out of 5</div>
       </div>
-      <div className="w-px h-12 bg-foreground/10 shrink-0" />
+      <div className="w-px h-12 bg-white/10 shrink-0" />
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 mb-1">
           <GoogleLogo />
-          <span className="text-sm font-bold">Google Reviews</span>
+          <span className="text-sm font-bold text-white">Google Reviews</span>
         </div>
-        <p className="text-xs text-muted-foreground mb-2">Based on verified customer reviews from Google Maps.</p>
+        <p className="text-xs text-white/50 mb-2">Based on verified customer reviews from Google Maps.</p>
         <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className="text-xs text-primary hover:underline font-black uppercase tracking-widest">
           See all reviews on Google →
         </a>
@@ -65,20 +65,20 @@ export const Reviews = () => (
           href={MAPS_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="block group p-4 bg-card border border-foreground/10 hover:border-primary/40 transition-all duration-300"
+          className="block group p-6 bg-white/[0.02] border border-white/[0.08] backdrop-blur-3xl rounded-3xl hover:border-primary/40 hover:bg-white/5 transition-all duration-300"
         >
           <div className="flex items-center gap-3 mb-3">
-            <div className="w-8 h-8 bg-primary/10 border border-primary/20 flex items-center justify-center text-xs font-black text-primary shrink-0">
+            <div className="w-8 h-8 bg-primary/10 border border-primary/20 flex items-center justify-center text-xs font-black text-primary shrink-0 rounded-full">
               {r.initials}
             </div>
             <div className="flex-1 min-w-0">
-              <div className="text-sm font-bold leading-tight truncate">{r.name}</div>
-              <div className="text-[10px] text-muted-foreground">{r.date}</div>
+              <div className="text-sm font-bold leading-tight truncate text-white">{r.name}</div>
+              <div className="text-[10px] text-white/50">{r.date}</div>
             </div>
             <GoogleLogo />
           </div>
           <Stars count={r.rating} />
-          <p className="mt-2 text-xs text-muted-foreground leading-relaxed line-clamp-3">{r.text}</p>
+          <p className="mt-2 text-xs text-white/60 leading-relaxed line-clamp-3">{r.text}</p>
         </a>
       ))}
     </div>
