@@ -1,82 +1,103 @@
-import { Section } from "@/components/Section";
-import { PHONE } from "@/lib/constants";
-import pBourbon from "@/assets/p-bourbon.webp";
-import pTequila from "@/assets/p-tequila.webp";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import pWine from "@/assets/p-wine.webp";
+import pTequila from "@/assets/p-tequila.webp";
+import pBourbon from "@/assets/p-bourbon.webp";
 
 const picks = [
-  {
-    img: pBourbon,
-    staff: "Mike",
-    role: "Owner",
-    cat: "Whiskey",
-    name: "Maker's Mark",
-    quote: "My go-to weekend pour. Smooth enough to sip neat, priced right for a Tuesday.",
-  },
-  {
-    img: pTequila,
-    staff: "Sarah",
-    role: "Store Manager",
-    cat: "Tequila",
-    name: "Casamigos Blanco",
-    quote: "Clean, easy, never harsh. What I hand to anyone who says they \"don't like tequila.\"",
-  },
-  {
-    img: pWine,
-    staff: "David",
-    role: "Wine Buyer",
-    cat: "Wine",
-    name: "Josh Cabernet",
-    quote: "Punches way above its price point. Our regulars keep coming back for it.",
-  },
+  { id: "1", title: "Silver Oak", type: "Cabernet Sauvignon", img: pWine, rating: "98 pts", price: "$95" },
+  { id: "2", title: "Clase Azul", type: "Reposado Tequila", img: pTequila, rating: "Staff Favorite", price: "$180" },
+  { id: "3", title: "Blanton's", type: "Single Barrel Bourbon", img: pBourbon, rating: "Rare Find", price: "$120" }
 ];
 
-export const StaffPicks = () => (
-  <Section
-    id="staff-picks"
-    className="bg-[#090c14]"
-    eyebrow="From The Floor"
-    title="Staff Picks"
-    subtitle="Not algorithms. Not ads. Just the bottles our team actually reaches for."
-  >
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-1 bg-white/5">
-      {picks.map((p) => (
-        <article
-          key={p.staff}
-          className="group relative bg-card p-10 hover:bg-white/[0.04] transition-all duration-700 flex flex-col"
+export const StaffPicks = () => {
+  return (
+    <section className="relative py-32 z-20">
+      <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
+        
+        {/* Cinematic Chapter Header */}
+        <motion.header 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-10%" }}
+          transition={{ duration: 1 }}
+          className="max-w-3xl mb-24 relative z-20"
         >
-          <div className="relative mb-8 overflow-hidden bg-slate-950">
-            <img
-              src={p.img}
-              alt={p.name}
-              loading="lazy"
-              decoding="async"
-              className="w-full h-auto group-hover:scale-110 transition-all duration-1000"
-            />
+          <div className="flex items-center gap-4 mb-8">
+            <span className="h-px w-12 bg-gradient-to-r from-white/50 to-transparent" aria-hidden="true" />
+            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/50">Staff Picks</span>
           </div>
-          <span className="text-[10px] font-black uppercase tracking-[0.5em] text-primary mb-2 block">
-            {p.cat}
-          </span>
-          <h3 className="text-2xl font-display font-black italic text-slate-100 mb-4 tracking-tighter uppercase">
-            {p.name}
-          </h3>
-          <p className="text-sm text-slate-300 font-medium leading-relaxed italic mb-6 flex-1">
-            "{p.quote}"
+          <h2 className="text-5xl md:text-7xl font-display font-light text-white tracking-tighter leading-[0.9]">
+            The <span className="italic text-primary block mt-2">Vault</span>
+          </h2>
+          <p className="mt-8 max-w-xl text-lg text-white/50 leading-relaxed font-sans">
+            Rare finds and highly allocated bottles. If it's on this list, it's worth your time.
           </p>
-          <div className="flex items-center justify-between pt-6 border-t border-white/5">
-            <div>
-              <div className="text-xs font-black uppercase tracking-widest text-white">{p.staff}</div>
-              <div className="text-[10px] text-white/30 uppercase tracking-widest">{p.role}</div>
-            </div>
-            <a
-              href={`tel:${PHONE}`}
-              className="text-[9px] font-black uppercase tracking-[0.4em] text-white/20 group-hover:text-white transition-all duration-500"
+        </motion.header>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 relative">
+          {picks.map((pick, idx) => (
+            <motion.div 
+              key={pick.id} 
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-10%" }}
+              transition={{ duration: 0.8, delay: idx * 0.2 }}
+              className="group cursor-pointer"
             >
-              Ask For This →
-            </a>
-          </div>
-        </article>
-      ))}
-    </div>
-  </Section>
-);
+              <Link to={`/catalog?s=${pick.title}`} className="block relative glass-smoked rounded-none overflow-hidden hover:border-primary/30 transition-colors duration-500">
+                
+                {/* Spotlit Image Area */}
+                <div className="relative h-[400px] flex items-center justify-center p-8 overflow-hidden bg-black/60">
+                  <div className="cinematic-glow absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                  <img 
+                    src={pick.img} 
+                    alt={pick.title} 
+                    className="relative z-10 max-h-full w-auto object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.8)] group-hover:scale-110 transition-transform duration-1000" 
+                  />
+                  {/* Subtle edge highlight */}
+                  <div className="absolute inset-0 border border-white/5 group-hover:border-primary/20 transition-colors duration-500 pointer-events-none" />
+                </div>
+                
+                {/* Information Card */}
+                <div className="p-8 relative bg-obsidian">
+                  <div className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                  
+                  <div className="flex justify-between items-baseline mb-4">
+                    <h3 className="text-3xl font-display text-white group-hover:text-primary transition-colors duration-500">{pick.title}</h3>
+                    <span className="text-sm font-sans font-black text-primary/80">{pick.price}</span>
+                  </div>
+                  
+                  <div className="flex items-center justify-between">
+                    <div className="text-[10px] font-sans font-black text-white/30 uppercase tracking-[0.3em]">
+                      {pick.type}
+                    </div>
+                    <div className="text-[10px] font-black uppercase tracking-[0.2em] text-white/70 border border-white/20 px-2 py-1 rounded-sm">
+                      {pick.rating}
+                    </div>
+                  </div>
+                </div>
+
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="mt-24 flex items-center justify-center gap-6"
+        >
+          <div className="h-px w-24 bg-gradient-to-r from-transparent to-white/10" />
+          <Link to="/catalog" className="group flex items-center gap-4 text-[11px] font-black uppercase tracking-[0.3em] text-white/50 hover:text-white transition-colors duration-300">
+            <span>Explore the Cellar</span>
+            <span className="w-8 h-px bg-white/20 group-hover:bg-primary/50 transition-colors" />
+          </Link>
+          <div className="h-px w-24 bg-gradient-to-l from-transparent to-white/10" />
+        </motion.div>
+
+      </div>
+    </section>
+  );
+};

@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from 'react';
+import { useAtmosphere } from '@/components/AtmosphereProvider';
 
 interface Particle {
   x: number;
@@ -10,6 +11,7 @@ interface Particle {
 
 export const CanvasBackground: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const { config } = useAtmosphere();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -27,7 +29,7 @@ export const CanvasBackground: React.FC = () => {
     const connectionDistance = 150;
     const mouseRadius = 200;
     
-    let mouse = { x: -1000, y: -1000 };
+    const mouse = { x: -1000, y: -1000 };
 
     for (let i = 0; i < particleCount; i++) {
       particles.push({
@@ -77,42 +79,8 @@ export const CanvasBackground: React.FC = () => {
         // Draw particle
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+        ctx.fillStyle = config.canvasParticles;
         ctx.fill();
-
-        // Connect particles
-        for (let j = index + 1; j < particles.length; j++) {
-          const p2 = particles[j];
-          const dx = p.x - p2.x;
-          const dy = p.y - p2.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-
-          if (dist < connectionDistance) {
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(p2.x, p2.y);
-            const opacity = 1 - (dist / connectionDistance);
-            ctx.strokeStyle = `rgba(255, 255, 255, ${opacity * 0.15})`;
-            ctx.lineWidth = 1;
-            ctx.stroke();
-          }
-        }
-
-        // Mouse interaction
-        const mdx = p.x - mouse.x;
-        const mdy = p.y - mouse.y;
-        const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
-
-        if (mdist < mouseRadius) {
-          ctx.beginPath();
-          ctx.moveTo(p.x, p.y);
-          ctx.lineTo(mouse.x, mouse.y);
-          const mOpacity = 1 - (mdist / mouseRadius);
-          // Neon red connection to mouse
-          ctx.strokeStyle = `rgba(255, 0, 0, ${mOpacity * 0.5})`;
-          ctx.lineWidth = 1.5;
-          ctx.stroke();
-        }
       });
 
       animationFrameId = requestAnimationFrame(draw);
@@ -126,7 +94,7 @@ export const CanvasBackground: React.FC = () => {
       window.removeEventListener('resize', handleResize);
       cancelAnimationFrame(animationFrameId);
     };
-  }, []);
+  }, [config]);
 
   return (
     <canvas

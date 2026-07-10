@@ -2,10 +2,10 @@ import { Phone } from "@/components/Icons";
 import { PHONE, PHONE_DISPLAY } from "@/lib/constants";
 
 export const CallStrip = () => (
-  <div className="bg-primary py-10 relative overflow-hidden">
+  <div className="bg-black/60 backdrop-blur-md border-y border-white/5 py-16 relative overflow-hidden">
     {/* Noise texture overlay */}
     <div
-      className="absolute inset-0 pointer-events-none opacity-[0.08]"
+      className="absolute inset-0 pointer-events-none opacity-[0.05]"
       style={{
         backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
         backgroundRepeat: "repeat",
@@ -13,27 +13,25 @@ export const CallStrip = () => (
       }}
       aria-hidden
     />
-    {/* Diagonal stripe accent */}
-    <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden>
-      <div className="absolute -right-20 top-0 bottom-0 w-64 bg-white/[0.03] skew-x-[-12deg]" />
-      <div className="absolute -right-4 top-0 bottom-0 w-24 bg-white/[0.04] skew-x-[-12deg]" />
-    </div>
 
-    <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
-      <div className="max-w-2xl">
-        <div className="text-[10px] font-black uppercase tracking-[0.5em] text-white/70 mb-2">
+    <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-10 relative z-10 max-w-5xl">
+      <div className="max-w-2xl text-center md:text-left">
+        <div className="text-[10px] font-black uppercase tracking-[0.4em] text-white/40 mb-4">
           Have a question? Talk to us directly.
         </div>
-        <h2 className="text-2xl md:text-3xl font-display font-black text-white tracking-tight leading-none">
-          Friendly experts. Fast answers. Zero guesswork.
+        <h2 className="text-3xl md:text-4xl font-display font-light text-white tracking-tight leading-tight">
+          Friendly experts. Fast answers.<br />
+          <span className="italic text-white/50">Zero guesswork.</span>
         </h2>
       </div>
-      <a
+      <a 
         href={`tel:${PHONE}`}
-        className="flex items-center gap-3 rounded-full bg-white text-primary px-6 py-3 font-black text-base md:text-lg tracking-tight hover:bg-white/90 transition-colors whitespace-nowrap shadow-2xl"
+        className="group relative inline-flex items-center justify-center gap-3 bg-white/5 backdrop-blur-md border border-white/10 rounded-full px-10 py-5 font-black uppercase tracking-[0.2em] text-[11px] text-white overflow-hidden transition-all hover:bg-white/10 hover:border-white/20 hover:scale-105 shadow-xl whitespace-nowrap"
       >
-        <Phone className="w-6 h-6" />
-        {PHONE_DISPLAY}
+        <span className="relative z-10 flex items-center gap-2">
+          <Phone className="w-5 h-5 text-white/50 group-hover:text-white transition-colors" />
+          {PHONE_DISPLAY}
+        </span>
       </a>
     </div>
   </div>

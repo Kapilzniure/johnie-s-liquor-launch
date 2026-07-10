@@ -1,10 +1,11 @@
 import { Section } from "@/components/Section";
 import { TiltCard } from "@/components/ui/TiltCard";
 import { MagneticButton } from "@/components/ui/MagneticButton";
-import { Phone } from "@/components/Icons";
+import { Phone, ArrowRight } from "@/components/Icons";
 import { PHONE, PHONE_DISPLAY } from "@/lib/constants";
 import { categoryColor } from "@/lib/category";
 import { getSeasonTheme } from "@/lib/season";
+import Magnetic from "@/components/ui/Magnetic";
 import pBourbon from "@/assets/p-bourbon.webp";
 import pWine from "@/assets/p-wine.webp";
 import pBeer from "@/assets/p-beer.webp";
@@ -25,9 +26,9 @@ export const Specials = () => {
     : baseSpecials;
 
   return (
-  <Section id="specials" className="bg-[#090c14]" eyebrow="System Select" title="Weekly Specials" subtitle="Elite labels. Precise pricing. Curated for the modern Austin lifestyle.">
+  <Section id="specials" className="" eyebrow="System Select" title="Weekly Specials" subtitle="Elite labels. Precise pricing. Curated for the modern Austin lifestyle.">
 
-    <div className="mb-10 flex flex-col gap-4 rounded-3xl border border-white/10 bg-card p-6 md:flex-row md:items-center md:justify-between">
+    <div className="mb-10 flex flex-col gap-4 rounded-3xl border border-white/10 bg-black/40 backdrop-blur-md p-6 md:flex-row md:items-center md:justify-between">
       <div>
         <p className="text-[10px] font-black uppercase tracking-[0.4em] text-primary mb-2">Why shoppers return</p>
         <h3 className="text-xl md:text-2xl font-display font-black italic uppercase tracking-tighter text-white">Fresh picks, fair pricing, and staff that knows their shelves.</h3>
@@ -42,9 +43,9 @@ export const Specials = () => {
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-1">
       {specials.map((s, i) => (
         <TiltCard key={`${i}-${s.name}`} className="h-full">
-          <article className="group relative bg-black/40 p-8 h-full">
+          <article className="group relative bg-black/40 backdrop-blur-md p-12 hover:bg-white/5 transition-colors border border-white/5 rounded-2xl h-full flex flex-col">
             <div className="absolute top-0 right-0 p-4 opacity-30 text-[8px] font-black group-hover:opacity-100 transition-opacity z-10">{s.tag}</div>
-            <div className="mb-10 relative">
+            <div className="mb-10 relative flex-grow flex items-center justify-center">
               <div className="absolute inset-0 bg-primary/10 blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity" />
               <img src={s.img} alt={s.name} loading="lazy" decoding="async" className="relative z-10 w-full h-auto group-hover:scale-105 transition-all duration-1000" />
               <div className="absolute inset-0 z-20 overflow-hidden pointer-events-none">
@@ -59,10 +60,12 @@ export const Specials = () => {
                 <div className="text-[10px] text-primary font-black uppercase tracking-[0.4em]">{s.cat}</div>
                 <div className="pour-meter" style={{ background: categoryColor(s.cat) }} />
               </div>
-              <h3 className="text-2xl font-display font-black italic tracking-tighter text-white group-hover:text-primary transition-colors mb-6 drop-shadow-md">{s.name}</h3>
-              <a href={`tel:${PHONE}`} className="inline-flex items-center gap-3 text-[9px] font-black uppercase tracking-[0.3em] text-white/50 group-hover:text-primary transition-all">
-                Check Stock →
-              </a>
+              <h3 className="text-2xl font-display font-black tracking-tight text-white mb-6 uppercase">{s.name}</h3>
+              <Magnetic>
+                <a href={`tel:${PHONE}`} className="inline-flex items-center gap-3 bg-white/5 backdrop-blur-md border border-white/10 px-5 py-3 rounded-full text-[9px] font-black uppercase tracking-[0.4em] text-white hover:bg-white/10 hover:border-white/20 transition-all duration-500 shadow-xl group/btn">
+                  Reserve <ArrowRight className="w-3 h-3 group-hover/btn:translate-x-1 transition-transform" />
+                </a>
+              </Magnetic>
             </div>
           </article>
         </TiltCard>

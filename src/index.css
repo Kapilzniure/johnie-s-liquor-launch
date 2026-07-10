@@ -6,74 +6,81 @@
 
 @layer base {
   :root {
-    --background: 0 0% 0%;
-    --foreground: 0 0% 100%;
-    --card: 0 0% 3%;
-    --card-foreground: 0 0% 100%;
-    --primary: 0 100% 50%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 0 0% 10%;
-    --secondary-foreground: 0 0% 94%;
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 60%;
-    --accent: 0 100% 50%;
-    --accent-foreground: 0 0% 100%;
+    --background: #050505;
+    --foreground: #FFFFFF;
+    --primary: #B22222;
+    --primary-foreground: #FFFFFF;
     --border: 0 0% 15%;
-    --input: 0 0% 10%;
-    --ring: 0 100% 50%;
-    --radius: 0.75rem;
+    --input: 0 0% 15%;
+    --ring: 0 0% 15%;
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 100%;
+    --radius: 0.5rem;
+    --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.5);
+    --shadow-elegant: 0 20px 40px rgba(0, 0, 0, 0.8);
   }
 
-  * { 
-    @apply border-border/40; 
-    cursor: none !important;
+  * {
+    @apply border-border;
   }
+
   html { scroll-behavior: smooth; }
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    background-color: #000000;
+    background-color: var(--background);
     font-feature-settings: "liga" 1, "kern" 1;
     text-rendering: optimizeLegibility;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    letter-spacing: -0.02em;
-  }
-  section { @apply py-12 md:py-20 scroll-mt-24; }
-
-  /* Visible focus ring tuned for the dark theme — shadcn's default ring can be
-     hard to see against near-black backgrounds. */
-  :focus-visible {
-    outline: 2px solid hsl(var(--primary));
-    outline-offset: 2px;
+    @apply font-display tracking-tight text-foreground;
   }
 }
 
 @layer utilities {
-  .glow-red {
-    box-shadow: 0 0 40px -10px hsla(var(--primary) / 0.6);
+  .eyebrow {
+    @apply text-[10px] font-sans font-medium uppercase tracking-[0.24em] text-primary;
   }
-  .text-glow {
-    text-shadow: 0 0 30px hsla(var(--primary) / 0.8);
+  
+  .card-lift {
+    @apply transition-transform duration-500 hover:-translate-y-1 hover:shadow-[var(--shadow-elegant)];
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .glass-dark {
-    @apply bg-white/[0.03] backdrop-blur-2xl border border-white/10;
+
+  .img-zoom img {
+    @apply transition-transform duration-700;
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .glass-panel {
-    @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl;
+  
+  .img-zoom:hover img {
+    @apply scale-105;
   }
-  .shadow-editorial {
-    box-shadow: 4px 4px 0 0 hsl(var(--border));
+
+  .gold-rule {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-primary to-transparent opacity-50;
   }
-  .shadow-boutique {
-    box-shadow: 0 0 30px -5px hsla(var(--primary) / 0.3);
+
+  .grain {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.3'/%3E%3C/svg%3E");
+    pointer-events: none;
+    mix-blend-mode: overlay;
   }
-  .paper-texture { position: relative; }
+
+  .cinematic-glow {
+    background: radial-gradient(circle at center, rgba(178, 34, 34, 0.15) 0%, transparent 60%);
+  }
+  
+  .glass-smoked {
+    @apply bg-black/40 backdrop-blur-2xl border border-white/5;
+  }
+
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
-  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 @keyframes fade-up {

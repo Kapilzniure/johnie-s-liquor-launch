@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Section } from "@/components/Section";
 import { ConfettiBurst } from "@/components/ConfettiBurst";
 import { PHONE, PHONE_DISPLAY, ADDRESS } from "@/lib/constants";
@@ -32,13 +32,39 @@ const MapPinIcon = () => (
 const PhysicalCard = () => {
   const [stamped, setStamped] = useState(0);
   const [burst, setBurst] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [isInView, setIsInView] = useState(false);
 
-  // Animate stamps filling in on mount
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { threshold: 0.5 } // Trigger when 50% of the card is visible
+    );
+    
+    if (cardRef.current) {
+      observer.observe(cardRef.current);
+    }
+    return () => observer.disconnect();
+  }, []);
+
+  // Reset when scrolling out of view
+  useEffect(() => {
+    if (!isInView) {
+      setStamped(0);
+      setBurst(false);
+    }
+  }, [isInView]);
+
+  // Animate stamps filling in when in view
+  useEffect(() => {
+    if (!isInView) return;
     if (stamped >= TOTAL_STAMPS) return;
-    const id = setTimeout(() => setStamped((s) => s + 1), 220);
+    
+    const id = setTimeout(() => setStamped((s) => s + 1), stamped === 0 ? 600 : 220);
     return () => clearTimeout(id);
-  }, [stamped]);
+  }, [stamped, isInView]);
 
   // One-shot confetti burst the moment the final stamp (the star) lands
   useEffect(() => {
@@ -50,6 +76,7 @@ const PhysicalCard = () => {
 
   return (
     <div
+      ref={cardRef}
       className="relative w-full max-w-2xl mx-auto overflow-hidden rounded-[1.25rem] border border-black/10 shadow-[0_30px_80px_-10px_rgba(0,0,0,0.9)]"
       style={{ background: "#ffffff" }}
       role="img"
@@ -191,7 +218,7 @@ export const LoyaltyCard = () => (
     <PhysicalCard />
 
     {/* How it works strip */}
-    <div className="mt-10 grid grid-cols-1 gap-3 sm:mt-14 sm:grid-cols-3 sm:gap-1">
+    <div className="mt-10 grid grid-cols-1 gap-4 sm:mt-14 sm:grid-cols-3 sm:gap-6">
       {[
         { step: "01", title: "Visit & Shop", desc: "Every time you visit the store, ask our staff to stamp your card." },
         { step: "02", title: "Collect Stamps", desc: "Fill all 9 squares to reach the gold star on your 10th visit." },
@@ -199,15 +226,15 @@ export const LoyaltyCard = () => (
       ].map((item) => (
         <div
           key={item.step}
-          className="bg-white/[0.02] border border-white/5 p-6 hover:bg-white/[0.04] transition-colors duration-500 sm:p-8"
+          className="bg-black/40 backdrop-blur-md border border-white/10 p-8 rounded-2xl hover:bg-white/5 transition-all duration-500 shadow-xl"
         >
           <div className="text-[10px] font-black uppercase tracking-[0.5em] text-primary mb-3">
             {item.step}
           </div>
-          <h3 className="text-lg font-display font-black italic text-white mb-3 tracking-tight">
+          <h3 className="text-xl font-display font-black text-white mb-3 tracking-tight uppercase">
             {item.title}
           </h3>
-          <p className="text-sm text-white/40 font-medium leading-relaxed">{item.desc}</p>
+          <p className="text-sm text-white/50 font-medium leading-relaxed">{item.desc}</p>
         </div>
       ))}
     </div>
@@ -219,9 +246,11 @@ export const LoyaltyCard = () => (
       </p>
       <a
         href={`tel:${PHONE}`}
-        className="h-14 w-full px-8 bg-white text-black font-black uppercase tracking-widest text-xs flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-500 shadow-boutique whitespace-nowrap sm:w-auto sm:px-10"
+        className="group relative inline-flex items-center justify-center gap-3 bg-white/5 backdrop-blur-md border border-white/10 rounded-full px-10 py-4 font-black uppercase tracking-[0.2em] text-[11px] text-white overflow-hidden transition-all hover:bg-white/10 hover:border-white/20 hover:scale-105 h-14 w-full sm:w-auto shadow-xl"
       >
-        Call the Store
+        <span className="relative z-10 flex items-center gap-2">
+          Call the Store
+        </span>
       </a>
     </div>
   </Section>

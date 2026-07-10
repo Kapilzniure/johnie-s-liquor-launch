@@ -23,30 +23,30 @@ export const Section = ({ id, eyebrow, title, subtitle, children, className = ""
           }
         }
       }}
-      className={`relative overflow-hidden ${className}`}
+      className={`relative overflow-hidden py-32 z-20 ${className}`}
     >
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-6 max-w-7xl relative z-10">
         {(eyebrow || title) && (
-          <div className="max-w-4xl mb-20 md:mb-32">
+          <div className="max-w-3xl mb-24 relative z-20">
             {eyebrow && (
               <motion.div 
                 variants={{
                   hidden: { opacity: 0, x: -30 },
                   visible: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 100, damping: 20 } }
                 }}
-                className="text-[10px] uppercase tracking-[0.6em] text-primary font-black mb-6 flex items-center gap-4"
+                className="flex items-center gap-4 mb-8"
               >
-                <div className="w-8 h-px bg-primary" />
-                {eyebrow}
+                <div className="w-12 h-px bg-gradient-to-r from-primary/50 to-transparent" />
+                <span className="text-[10px] uppercase tracking-[0.4em] font-black text-white/50">{eyebrow}</span>
               </motion.div>
             )}
             {title && (
               <motion.h2 
                 variants={{
-                  hidden: { opacity: 0, y: 50 },
+                  hidden: { opacity: 0, y: 30 },
                   visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100, damping: 20 } }
                 }}
-                className="text-5xl md:text-8xl lg:text-9xl font-display font-black italic leading-[0.8] tracking-tighter text-white"
+                className="text-5xl md:text-7xl font-display font-light text-white tracking-tighter leading-[0.9]"
               >
                 {title}
               </motion.h2>
@@ -54,10 +54,10 @@ export const Section = ({ id, eyebrow, title, subtitle, children, className = ""
             {subtitle && (
               <motion.p 
                 variants={{
-                  hidden: { opacity: 0, y: 30 },
+                  hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100, damping: 20 } }
                 }}
-                className="mt-10 text-lg md:text-xl text-white/40 font-light max-w-xl leading-relaxed"
+                className="mt-8 max-w-xl text-lg text-white/50 leading-relaxed font-sans"
               >
                 {subtitle}
               </motion.p>
@@ -66,7 +66,7 @@ export const Section = ({ id, eyebrow, title, subtitle, children, className = ""
         )}
         <motion.div 
           variants={{
-            hidden: { opacity: 0, y: 50 },
+            hidden: { opacity: 0, y: 30 },
             visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100, damping: 20 } }
           }}
         >

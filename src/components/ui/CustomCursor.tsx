@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
+import { useAtmosphere } from "@/components/AtmosphereProvider";
 
 export const CustomCursor = () => {
   const [isHovering, setIsHovering] = useState(false);
+  const { config } = useAtmosphere();
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
 
@@ -12,8 +14,9 @@ export const CustomCursor = () => {
 
   useEffect(() => {
     const moveCursor = (e: MouseEvent) => {
-      cursorX.set(e.clientX - 16);
-      cursorY.set(e.clientY - 16);
+      // Offset by half the size of the lens glow (which will be 150px)
+      cursorX.set(e.clientX - 75);
+      cursorY.set(e.clientY - 75);
     };
 
     const handleMouseOver = (e: MouseEvent) => {
@@ -39,33 +42,34 @@ export const CustomCursor = () => {
     };
   }, [cursorX, cursorY]);
 
-  // Only show custom cursor on devices with a mouse
-  const [hasMouse, setHasMouse] = useState(true);
-  useEffect(() => {
-    if (window.matchMedia("(pointer: coarse)").matches) {
-      setHasMouse(false);
-    }
-  }, []);
 
-  if (!hasMouse) return null;
 
   return (
-    <motion.div
-      className="fixed top-0 left-0 w-8 h-8 rounded-full pointer-events-none z-[9999] mix-blend-difference flex items-center justify-center"
-      style={{
-        x: cursorXSpring,
-        y: cursorYSpring,
-      }}
-    >
+    <>
       <motion.div
-        animate={{
-          scale: isHovering ? 2.5 : 1,
-          backgroundColor: isHovering ? "white" : "white",
-          opacity: isHovering ? 0.2 : 1,
+        className="fixed top-0 left-0 w-[150px] h-[150px] rounded-full pointer-events-none z-[9998] mix-blend-screen"
+        style={{
+          x: cursorXSpring,
+          y: cursorYSpring,
+          background: `radial-gradient(circle, ${config.lensFlare} 0%, transparent 70%)`
         }}
-        transition={{ type: "spring", stiffness: 300, damping: 20 }}
-        className="w-4 h-4 bg-white rounded-full"
       />
-    </motion.div>
+      <motion.div
+        className="fixed top-0 left-0 w-[150px] h-[150px] pointer-events-none z-[9999] flex items-center justify-center mix-blend-difference"
+        style={{
+          x: cursorXSpring,
+          y: cursorYSpring,
+        }}
+      >
+        <motion.div
+          animate={{
+            scale: isHovering ? 3 : 1,
+            opacity: isHovering ? 0.3 : 1,
+          }}
+          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          className="w-3 h-3 bg-white rounded-full"
+        />
+      </motion.div>
+    </>
   );
 };

@@ -2,37 +2,62 @@ import { Section } from "@/components/Section";
 import { Truck } from "@/components/Icons";
 import { DOORDASH_URL, GRUBHUB_URL } from "@/lib/constants";
 import { trackEvent } from "@/lib/analytics";
+import { TiltCard } from "@/components/ui/TiltCard";
+import Magnetic from "@/components/ui/Magnetic";
+import { SiDoordash } from "react-icons/si";
+import { ShoppingBag } from "lucide-react";
+import doordashImg from "@/assets/doordash.png";
+import grubhubImg from "@/assets/grubhub.png";
 
 const platforms = [
   { name: "DoorDash", href: DOORDASH_URL, trackLabel: "doordash", badge: "30-45 Min",
-    description: "Premium on-demand delivery for West Austin. Spirits, wine, and beer at your door." },
+    description: "Premium on-demand delivery for West Austin. Spirits, wine, and beer at your door.",
+    Icon: SiDoordash, brandColor: "#FF3008", img: doordashImg },
   { name: "GrubHub",  href: GRUBHUB_URL,  trackLabel: "grubhub",  badge: "30-50 Min",
-    description: "Reliable boutique service. Real-time tracking from our shelf to your hands." },
+    description: "Reliable boutique service. Real-time tracking from our shelf to your hands.",
+    Icon: ShoppingBag, brandColor: "#FF8000", img: grubhubImg },
 ];
 
 export const Delivery = () => (
-  <Section id="delivery" className="bg-[#090c14]" eyebrow="Rapid Access" title="Order Online" subtitle="Elite delivery partners. Your selection from our shelf to your door in under 60 minutes.">
-    <div className="grid md:grid-cols-2 gap-1 px-1 bg-white/5">
+  <Section id="delivery" className="" eyebrow="Rapid Access" title="Order Online" subtitle="Elite delivery partners. Your selection from our shelf to your door in under 60 minutes.">
+    <div className="grid md:grid-cols-2 gap-8 px-1">
       {platforms.map((p) => (
-        <a key={p.name} href={p.href} target="_blank" rel="noopener noreferrer"
-          onClick={() => trackEvent('delivery_click', p.trackLabel)}
-          className="group bg-card p-10 hover:bg-white/[0.04] transition-all duration-700 relative overflow-hidden"
-        >
-          <div className="flex justify-between items-start mb-10 relative z-10">
-            <div className="w-14 h-14 bg-white/5 border border-white/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-700">
-              <Truck className="w-7 h-7" />
+        <TiltCard key={p.name}>
+          <a href={p.href} target="_blank" rel="noopener noreferrer"
+            onClick={() => trackEvent('delivery_click', p.trackLabel)}
+            className="group relative flex flex-col items-center justify-center gap-6 bg-black/40 backdrop-blur-md p-12 hover:bg-white/5 transition-colors border border-white/5 rounded-2xl h-full overflow-hidden"
+          >
+            {/* Background Image */}
+            <div className="absolute inset-0 z-0 bg-black">
+              <img src={p.img} alt={p.name} className="w-full h-full object-cover opacity-30 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/30 group-hover:opacity-20 transition-opacity duration-700" />
             </div>
-            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/20 group-hover:text-primary transition-colors">{p.badge}</span>
-          </div>
-          <div className="relative z-10">
-            <h4 className="text-3xl font-display font-black italic text-white mb-4 tracking-tighter uppercase">{p.name}</h4>
-            <p className="text-white/40 text-base leading-relaxed mb-8 italic">"{p.description}"</p>
-            <div className="flex items-center gap-4 text-[11px] font-black uppercase tracking-[0.4em] text-primary group-hover:text-white transition-colors">
-              Access Platform
-              <span className="w-10 h-[1px] bg-primary/30 group-hover:w-16 group-hover:bg-primary transition-all duration-700" />
+
+            {/* Brand Glow Background */}
+            <div className="absolute inset-0 z-0 opacity-0 group-hover:opacity-15 transition-opacity duration-700 pointer-events-none" 
+                 style={{ background: `radial-gradient(circle at center, ${p.brandColor} 0%, transparent 40%)` }} 
+            />
+            <div className="flex justify-between items-start mb-10 relative z-10 w-full transition-opacity duration-700"
+                 style={{ '--brand-color': p.brandColor } as React.CSSProperties}
+            >
+              <div className="w-16 h-16 bg-white/5 border border-white/10 flex items-center justify-center text-white/50 group-hover:scale-110 transition-all duration-700 rounded-full group-hover:text-[var(--brand-color)] group-hover:opacity-100">
+                <p.Icon className="w-8 h-8 transition-colors duration-500 opacity-50 group-hover:opacity-100" />
+              </div>
+              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/20 group-hover:text-primary transition-colors">{p.badge}</span>
             </div>
-          </div>
-        </a>
+            <div className="relative z-10 w-full text-center mt-auto">
+              <div className="transition-opacity duration-700">
+                <h4 className="text-2xl font-display font-black text-white mb-4 tracking-tight uppercase">{p.name}</h4>
+                <p className="text-white/40 text-sm leading-relaxed mb-8 group-hover:opacity-0 transition-opacity duration-700">{p.description}</p>
+              </div>
+              <Magnetic>
+                <div className="inline-flex items-center gap-3 bg-white/10 px-6 py-3 rounded-full text-[9px] font-black uppercase tracking-[0.4em] text-white group-hover:bg-primary transition-all duration-500">
+                  Access Platform
+                </div>
+              </Magnetic>
+            </div>
+          </a>
+        </TiltCard>
       ))}
     </div>
   </Section>

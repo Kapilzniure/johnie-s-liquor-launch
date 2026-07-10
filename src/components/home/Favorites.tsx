@@ -2,9 +2,12 @@ import { Section } from "@/components/Section";
 import pTequila from "@/assets/p-tequila.webp";
 import rum from "@/assets/rum.webp";
 import pBeer from "@/assets/p-beer.webp";
-import { Phone } from "@/components/Icons";
+import { Phone, ArrowRight } from "@/components/Icons";
 import { PHONE } from "@/lib/constants";
 import { categoryColor } from "@/lib/category";
+
+import { TiltCard } from "@/components/ui/TiltCard";
+import Magnetic from "@/components/ui/Magnetic";
 
 const items = [
   { img: pTequila, cat: "Tequila", name: "Casamigos Blanco" },
@@ -13,32 +16,27 @@ const items = [
 ];
 
 export const Favorites = () => (
-  <Section id="favorites" className="bg-[#090c14]" eyebrow="Top Tier" title="Curated Stock" subtitle="The bottles that define our collection. Hand-selected, precisely handled.">
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-1 px-1 bg-white/5">
+  <Section id="favorites" className="" eyebrow="Top Tier" title="Curated Stock" subtitle="The bottles that define our collection. Hand-selected, precisely handled.">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-1">
       {items.map((it, idx) => (
-        <article key={it.name} className="group relative animate-fade-up bg-card p-12 hover:bg-white/[0.04] transition-all duration-700" style={{ animationDelay: `${idx * 150}ms` }}>
-          <div className="relative mb-12 overflow-hidden bg-slate-950">
-            <img src={it.img} alt={it.name} loading="lazy" decoding="async" className="w-full h-auto group-hover:scale-110 transition-all duration-1000" />
-            <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-            <div className="absolute inset-0 z-20 pointer-events-none">
-              <div className="shine-el shine-hover-el" />
+        <TiltCard key={it.name} className="group animate-fade-up" style={{ animationDelay: `${idx * 150}ms` }}>
+          <article className="h-full bg-black/40 backdrop-blur-md p-12 hover:bg-white/5 transition-colors border border-white/5 rounded-2xl relative z-10 flex flex-col">
+            <div className="relative mb-12 flex-grow flex items-center justify-center">
+              <img src={it.img} alt={it.name} loading="lazy" decoding="async" className="w-full max-w-[200px] h-auto group-hover:scale-110 transition-all duration-1000" />
             </div>
-            {it.cat === "Beer" && (
-              <div className="absolute inset-0 z-20 condensation-el opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-            )}
-          </div>
-          <div className="relative z-10">
-            <div className="flex items-center gap-3 mb-3">
-              <span className="text-[10px] font-black uppercase tracking-[0.6em] text-primary block">{it.cat}</span>
-              <div className="pour-meter" style={{ background: categoryColor(it.cat) }} />
+            <div className="relative z-10 mt-auto">
+              <div className="flex items-center gap-3 mb-3">
+                <span className="text-[10px] font-black uppercase tracking-[0.6em] text-primary block">{it.cat}</span>
+              </div>
+              <h3 className="text-2xl font-display font-black text-slate-100 mb-8 tracking-tight uppercase">{it.name}</h3>
+              <Magnetic>
+                <a href={`tel:${PHONE}`} className="inline-flex items-center gap-3 bg-white/5 backdrop-blur-md border border-white/10 px-5 py-3 rounded-full text-[9px] font-black uppercase tracking-[0.4em] text-white hover:bg-white/10 hover:border-white/20 transition-all duration-500 shadow-xl group/btn">
+                  Order Now <ArrowRight className="w-3 h-3 group-hover/btn:translate-x-1 transition-transform" />
+                </a>
+              </Magnetic>
             </div>
-            <h3 className="text-3xl font-display font-black italic text-slate-100 mb-6 tracking-tighter uppercase">{it.name}</h3>
-            <a href={`tel:${PHONE}`} className="inline-flex items-center gap-4 text-[9px] font-black uppercase tracking-[0.4em] text-slate-300/80 hover:text-slate-100 transition-all duration-500">
-              Inquire Inventory
-              <span className="w-8 h-[1px] bg-white/10 group-hover:w-16 group-hover:bg-primary transition-all duration-1000" />
-            </a>
-          </div>
-        </article>
+          </article>
+        </TiltCard>
       ))}
     </div>
   </Section>

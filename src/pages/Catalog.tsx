@@ -1,13 +1,11 @@
 import { useState, useEffect } from "react";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-import { StickyMobileBar } from "@/components/StickyMobileBar";
 import { Seo } from "@/components/Seo";
 import { SkipLink } from "@/components/SkipLink";
 import { buildBreadcrumbSchema } from "@/lib/structuredData";
 import { Phone, Navigation } from "@/components/Icons";
 import { Button } from "@/components/ui/button";
 import { PHONE, DIRECTIONS_URL, PHONE_DISPLAY } from "@/lib/constants";
+import { PageTransition } from "@/components/ui/PageTransition";
 import pWine     from "@/assets/p-wine.webp";
 import pBeer     from "@/assets/p-beer.webp";
 import pBourbon  from "@/assets/p-bourbon.webp";
@@ -77,17 +75,17 @@ const Catalog = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <Seo
-        title="Product Catalog | Johnnies Liquor Store Austin"
-        description="Browse whiskey, bourbon, wine, beer, tequila & spirits at Johnnies Liquor Store — 3,200+ labels in Austin, TX. Filter by category or search by name."
-        path="/catalog"
-        jsonLd={[buildBreadcrumbSchema([{ name: "Home", path: "/" }, { name: "Catalog", path: "/catalog" }])]}
-      />
-      <SkipLink />
-      <Header />
-
-      <main id="main" className="pt-16">
+    <PageTransition>
+      <div className="bg-transparent text-foreground pt-16">
+        <Seo
+          title="Product Catalog | Johnnies Liquor Store Austin"
+          description="Browse whiskey, bourbon, wine, beer, tequila & spirits at Johnnies Liquor Store — 3,200+ labels in Austin, TX. Filter by category or search by name."
+          path="/catalog"
+          jsonLd={[buildBreadcrumbSchema([{ name: "Home", path: "/" }, { name: "Catalog", path: "/catalog" }])]}
+        />
+        <SkipLink />
+        
+        <div id="main">
         <section className="bg-card border-b border-foreground/5 pb-16 pt-10">
           <div className="container mx-auto px-6">
             <div className="flex items-center gap-3 text-primary text-[10px] font-bold tracking-[0.4em] mb-4 uppercase">
@@ -201,10 +199,7 @@ const Catalog = () => {
             </div>
           </div>
         </div>
-      </main>
-
-      <Footer />
-      <StickyMobileBar />
+        </div>
 
       {/* Scroll-to-top */}
       {showTop && (
@@ -216,7 +211,8 @@ const Catalog = () => {
           ↑
         </button>
       )}
-    </div>
+      </div>
+    </PageTransition>
   );
 };
 

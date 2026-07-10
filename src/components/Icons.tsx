@@ -22,7 +22,8 @@ import {
   PartyPopper,
   Heart,
   Calendar,
-  Mail
+  Mail,
+  ArrowRight
 } from "lucide-react";
 
 export const Instagram = ({ className = "" }: { className?: string }) => (
@@ -65,5 +66,6 @@ export {
   PartyPopper,
   Heart,
   Calendar,
-  Mail
+  Mail,
+  ArrowRight
 };

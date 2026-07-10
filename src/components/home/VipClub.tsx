@@ -9,6 +9,8 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { ConfettiBurst } from "@/components/ConfettiBurst";
 import { Star, Gift, Award, Sparkles } from "@/components/Icons";
 import { subscribeToVipClub } from "@/lib/emailSignup";
+import { TiltCard } from "@/components/ui/TiltCard";
+import Magnetic from "@/components/ui/Magnetic";
 
 const schema = z.object({
   name: z.string().trim().max(80).optional(),
@@ -63,33 +65,36 @@ export const VipClub = () => {
   return (
     <Section
       id="vip-club"
-      className="bg-[#090c14]"
+      className=""
       eyebrow="Members Only"
       title="Join the VIP Club"
       subtitle="Free to join. First to know about rare drops, tastings, and seasonal offers."
     >
-      <div className="grid gap-3 bg-white/5 lg:grid-cols-2 lg:gap-1">
+      <div className="grid gap-8 lg:grid-cols-2">
         {/* Benefits */}
-        <div className="bg-card p-6 sm:p-10 md:p-14">
+        <TiltCard>
+          <div className="bg-black/40 backdrop-blur-md border border-white/5 p-6 sm:p-10 md:p-14 h-full rounded-2xl">
           <ul className="space-y-6 sm:space-y-8">
             {BENEFITS.map((b) => (
               <li key={b.text} className="flex items-start gap-4 sm:gap-5">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-[#B8952A]/30 text-[#B8952A] sm:h-11 sm:w-11">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-white/20 text-white/70 sm:h-11 sm:w-11">
                   <b.icon className="h-4 w-4 sm:h-5 sm:w-5" />
                 </div>
                 <p className="pt-1 text-sm leading-relaxed text-white/70 sm:pt-2 sm:text-base">{b.text}</p>
               </li>
             ))}
           </ul>
-        </div>
+          </div>
+        </TiltCard>
 
         {/* Form */}
-        <div className="relative bg-card p-6 sm:p-10 md:p-14">
+        <TiltCard>
+          <div className="relative bg-black/40 backdrop-blur-md border border-white/5 p-6 sm:p-10 md:p-14 h-full rounded-2xl">
           {submitted ? (
             <div className="relative flex flex-col items-center justify-center text-center h-full min-h-[280px]">
               <ConfettiBurst />
-              <div className="relative z-10 w-16 h-16 border-2 border-[#B8952A] rounded-full flex items-center justify-center mb-6">
-                <Star className="w-7 h-7 text-[#B8952A]" />
+              <div className="relative z-10 w-16 h-16 border border-white/20 rounded-full flex items-center justify-center mb-6">
+                <Star className="w-7 h-7 text-white/70" />
               </div>
               <h3 className="text-2xl font-display font-black italic text-white mb-3 tracking-tight">You're In</h3>
               <p className="text-white/50 text-sm max-w-xs">
@@ -152,18 +157,23 @@ export const VipClub = () => {
                   </div>
                 )}
 
-                <Button
-                  type="submit"
-                  disabled={form.formState.isSubmitting}
-                  className="h-12 w-full rounded-none border-none bg-[#B8952A] text-black text-xs font-black uppercase tracking-widest transition-all duration-500 hover:bg-white hover:text-black sm:h-14"
-                >
-                  {form.formState.isSubmitting ? "Joining…" : "Join Free"}
-                </Button>
-                <p className="text-white/20 text-[10px] text-center">No spam. Unsubscribe anytime.</p>
+                <Magnetic>
+                  <button 
+                    type="submit"
+                    disabled={form.formState.isSubmitting}
+                    className="group relative inline-flex h-12 sm:h-14 w-full items-center justify-center gap-3 bg-white/5 backdrop-blur-md border border-white/10 rounded-full px-8 font-black uppercase tracking-[0.2em] text-[11px] text-white overflow-hidden transition-all hover:bg-white/10 hover:border-white/20 hover:scale-105 shadow-xl"
+                  >
+                    <span className="relative z-10 flex items-center gap-2">
+                      {form.formState.isSubmitting ? "Joining…" : "Join Free"}
+                    </span>
+                  </button>
+                </Magnetic>
+                <p className="text-white/20 text-[10px] text-center mt-4">No spam. Unsubscribe anytime.</p>
               </form>
             </Form>
           )}
-        </div>
+          </div>
+        </TiltCard>
       </div>
     </Section>
   );

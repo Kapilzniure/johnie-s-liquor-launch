@@ -5,7 +5,7 @@ import { FAQ_ITEMS } from "@/lib/faq";
 export const Faq = () => (
   <Section
     id="faq"
-    className="bg-[#090c14]"
+    className=""
     eyebrow="Good to Know"
     title="Questions, Answered"
     subtitle="The things customers ask us most — hours, delivery, our loyalty program, and more."

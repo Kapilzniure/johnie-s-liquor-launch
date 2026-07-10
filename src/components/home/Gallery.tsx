@@ -1,17 +1,17 @@
 import { Section } from "@/components/Section";
 import { TiltCard } from "@/components/ui/TiltCard";
-import storefront from "@/assets/hero-store.webp";
+import bacardi from "@/assets/bacardi-superior-rum.webp";
 import shelves from "@/assets/freeze.webp";
 import storeInside from "@/assets/johnniesliquor.webp";
 
 export const Gallery = () => {
   const items = [
-    { img: storefront, label: "01 SITE", alt: "Johnnies Liquor Store storefront exterior in Austin, TX" },
+    { img: bacardi, label: "01 SITE", alt: "Johnnies Liquor Store storefront exterior in Austin, TX" },
     { img: storeInside, label: "02 VAULT", alt: "Inside Johnnies Liquor Store — premium spirits vault and shelving" },
     { img: shelves, label: "03 STOCK", alt: "Fully stocked shelves of wine, beer, and spirits at Johnnies Liquor" },
   ];
   return (
-    <Section id="gallery" className="bg-[#090c14]" eyebrow="Visual ID" title="The Facility" subtitle="Step inside the heart of North Austin's premier selection.">
+    <Section id="gallery" className="" eyebrow="Visual ID" title="The Facility" subtitle="Step inside the heart of North Austin's premier selection.">
       <div className="mb-8 flex flex-col gap-3 rounded-3xl border border-white/10 bg-card p-6 md:flex-row md:items-center md:justify-between">
         <div>
           <p className="text-[10px] font-black uppercase tracking-[0.4em] text-primary mb-2">Store experience</p>

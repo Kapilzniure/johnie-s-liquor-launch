@@ -1,6 +1,4 @@
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-import { StickyMobileBar } from "@/components/StickyMobileBar";
+import { PageTransition } from "@/components/ui/PageTransition";
 import { Seo } from "@/components/Seo";
 import { SkipLink } from "@/components/SkipLink";
 import { Section } from "@/components/Section";
@@ -9,7 +7,8 @@ import { STORE_EVENTS } from "@/lib/events";
 import { buildBreadcrumbSchema, buildEventSchema } from "@/lib/structuredData";
 
 const Events = () => (
-  <div className="min-h-screen bg-background text-foreground">
+  <PageTransition>
+    <div className="bg-transparent text-foreground">
     <Seo
       title="Upcoming Events | Johnnies Liquor Store Austin"
       description="Tastings, showcases, and live music at Johnnies Liquor Store in Austin, TX. See what's coming up and reserve your spot."
@@ -20,7 +19,6 @@ const Events = () => (
       ]}
     />
     <SkipLink />
-    <Header />
     <main id="main">
       <Section
         id="events"
@@ -48,9 +46,8 @@ const Events = () => (
         )}
       </Section>
     </main>
-    <Footer />
-    <StickyMobileBar />
-  </div>
+    </div>
+  </PageTransition>
 );
 
 export default Events;

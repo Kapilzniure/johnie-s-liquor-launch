@@ -1,81 +1,55 @@
 import { MapPin, Phone, Clock, Instagram, Facebook } from "@/components/Icons";
-import { ADDRESS, DIRECTIONS_URL, PHONE, PHONE_DISPLAY, IG_URL, FB_URL } from "@/lib/constants";
+import { ADDRESS, PHONE, PHONE_DISPLAY, MAPS_URL, IG_URL, FB_URL } from "@/lib/constants";
 import { getStoreStatus } from "@/lib/hours";
 
 export const Footer = () => {
   const store = getStoreStatus();
   return (
-  <footer className="bg-[#090c14] border-t border-white/10 pt-16 pb-32 md:pb-12">
-    <div className="container mx-auto px-6">
-      <div className="grid md:grid-cols-3 gap-12">
-
-        {/* Brand */}
+  <footer className="border-t border-border bg-black pt-16 pb-28 md:pb-12 relative z-10">
+    <div className="container mx-auto px-5 max-w-7xl">
+      <div className="grid md:grid-cols-4 gap-10">
         <div className="md:col-span-2">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 bg-primary flex items-center justify-center text-white font-display font-black text-lg italic shadow-boutique">J</div>
-            <span className="font-display font-black italic text-xl uppercase tracking-tighter text-white">Johnnies Liquor</span>
+          <div className="flex items-center gap-2.5 mb-4">
+            <div className="w-9 h-9 rounded-md bg-primary flex items-center justify-center">
+              <span className="font-display font-bold text-primary-foreground text-lg">J</span>
+            </div>
+            <span className="font-display font-bold text-xl text-white">Johnnies Liquor</span>
           </div>
-          <p className="text-slate-300 text-sm mb-6 max-w-sm leading-relaxed">
-            Austin's trusted neighborhood liquor store. Wine, beer &amp; spirits — serving the community for over 20 years.
-          </p>
-          <div className="flex flex-wrap gap-3 mb-6">
-            <a href={`tel:${PHONE}`} className="rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-[10px] font-black uppercase tracking-[0.35em] text-primary hover:bg-primary hover:text-black transition-all">
-              Call now
-            </a>
-            <a href={DIRECTIONS_URL} target="_blank" rel="noopener noreferrer" className="rounded-full border border-white/10 px-4 py-2 text-[10px] font-black uppercase tracking-[0.35em] text-slate-300 hover:border-primary hover:text-primary transition-all">
-              Get directions
-            </a>
-          </div>
-          <div className="flex gap-3">
-            <a href={IG_URL} target="_blank" rel="noopener noreferrer" aria-label="Instagram"
-              className="w-9 h-9 border border-white/10 flex items-center justify-center hover:border-primary hover:text-primary transition-colors text-white/50">
-              <Instagram className="w-4 h-4" />
-            </a>
-            <a href={FB_URL} target="_blank" rel="noopener noreferrer" aria-label="Facebook"
-              className="w-9 h-9 border border-white/10 flex items-center justify-center hover:border-primary hover:text-primary transition-colors text-white/50">
-              <Facebook className="w-4 h-4" />
-            </a>
+          <p className="text-white/60 max-w-md">Austin's trusted neighborhood liquor store. Wine, beer & spirits — serving the community for over 20 years.</p>
+          <div className="flex gap-3 mt-5">
+            <a href={IG_URL} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="w-10 h-10 rounded-lg border border-white/20 flex items-center justify-center hover:border-primary hover:text-primary transition-colors text-white"><Instagram className="w-4 h-4"/></a>
+            <a href={FB_URL} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="w-10 h-10 rounded-lg border border-white/20 flex items-center justify-center hover:border-primary hover:text-primary transition-colors text-white"><Facebook className="w-4 h-4"/></a>
           </div>
         </div>
-
-        {/* Contact */}
         <div>
-          <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-primary mb-5">Contact</h4>
-          <ul className="space-y-3 text-sm text-white/50">
-            <li className="flex items-start gap-2">
-              <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-primary/60" />{ADDRESS}
-            </li>
-            <li className="flex items-center gap-2">
-              <Phone className="w-4 h-4 shrink-0 text-primary/60" />
-              <a href={`tel:${PHONE}`} className="text-slate-300 hover:text-primary transition-colors">{PHONE_DISPLAY}</a>
-            </li>
-            <li className="flex items-center gap-2">
-              <Clock className="w-4 h-4 shrink-0 text-primary/60" />
-              <span className="text-slate-300">{store.status}</span>
-            </li>
+          <h4 className="font-display font-bold mb-3 text-primary">Contact</h4>
+          <ul className="space-y-2 text-sm text-white/60">
+            <li className="flex items-start gap-2"><MapPin className="w-4 h-4 mt-0.5 shrink-0 text-white/40" /> {ADDRESS}</li>
+            <li className="flex items-center gap-2"><Phone className="w-4 h-4 text-white/40" /> <a href={`tel:${PHONE}`} className="hover:text-primary transition-colors">{PHONE_DISPLAY}</a></li>
+            <li className="flex items-center gap-2"><Clock className="w-4 h-4 text-white/40" /> {store.status}</li>
           </ul>
         </div>
-
-      </div>
-
-      {/* Copyright bar */}
-      <div className="mt-14 pt-8 border-t border-white/5 flex flex-col md:flex-row flex-wrap gap-3 md:gap-8 items-center text-[10px] text-white/25 font-medium uppercase tracking-widest">
-        <p>© {new Date().getFullYear()} Johnnies Liquor Austin</p>
-        <p className="text-primary/40">21+ · Drink Responsibly</p>
-        <div className="flex gap-5">
-          <a href="/privacy" className="hover:text-white transition-colors">Privacy</a>
-          <a href="/terms" className="hover:text-white transition-colors">Terms</a>
+        <div>
+          <h4 className="font-display font-bold mb-3 text-primary">Find us</h4>
+          <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className="block rounded-lg overflow-hidden border border-white/20 hover:border-primary/50 transition-colors">
+            <iframe title="Mini map" src="https://www.google.com/maps?q=13201+Pond+Springs+Rd+Suite+203+Austin+TX+78729&output=embed" className="w-full h-32 pointer-events-none grayscale opacity-80" loading="lazy" />
+          </a>
         </div>
-        <div className="flex items-center gap-2 md:ml-auto">
+      </div>
+      <div className="mt-12 pt-6 border-t border-white/10 flex flex-col md:flex-row flex-wrap gap-4 md:gap-x-12 items-center text-xs text-white/50">
+        <p>© {new Date().getFullYear()} Johnnies Liquor. All rights reserved.</p>
+        <p>Please drink responsibly. Must be 21+ to purchase alcohol.</p>
+        <div className="flex gap-4">
+          <a href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</a>
+          <a href="/terms" className="hover:text-primary transition-colors">Terms of Service</a>
+        </div>
+        <div className="flex items-center gap-2">
           <img
             src="/cybiconz-logo.webp"
             alt="CybiconZ"
-            loading="lazy"
-            decoding="async"
-            className="h-7 w-auto object-contain"
-            style={{ mixBlendMode: 'screen', opacity: 0.85 }}
+            className="h-8 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
           />
-          <span className="text-white/30"> Designed and Built by CybiconZ</span>
+          <p>Designed and Built by CybiconZ</p>
         </div>
       </div>
     </div>
