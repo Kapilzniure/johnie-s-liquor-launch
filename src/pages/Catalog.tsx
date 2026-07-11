@@ -6,6 +6,7 @@ import { Phone, Navigation } from "@/components/Icons";
 import { Button } from "@/components/ui/button";
 import { PHONE, DIRECTIONS_URL, PHONE_DISPLAY } from "@/lib/constants";
 import { PageTransition } from "@/components/ui/PageTransition";
+import { NextPage } from "@/components/NextPage";
 import pWine     from "@/assets/p-wine.webp";
 import pBeer     from "@/assets/p-beer.webp";
 import pBourbon  from "@/assets/p-bourbon.webp";
@@ -24,6 +25,11 @@ import titosVodka from "@/assets/titos-handmade-vodka.webp";
 import casamigosBlanco from "@/assets/casamigos-blanco-tequila.webp";
 import blueMoonWhite from "@/assets/blue-moon-belgian-white.webp";
 import greyGooseVodka from "@/assets/grey-goose-vodka.webp";
+import makersMark from "@/assets/makers-mark.png";
+import cabernetSauvignon from "@/assets/cabernet-sauvignon.png";
+import coronaExtra from "@/assets/corona-extra.png";
+import roseWine from "@/assets/rose-wine.png";
+import proseccoBrut from "@/assets/prosecco-brut.png";
 
 type Category = "all" | "whiskey" | "wine" | "beer" | "spirits";
 
@@ -40,17 +46,17 @@ const products = [
   { id: 2,  cat: "whiskey" as Category, img: jackDaniels,pos: "25% 25%", zoom: true,  name: "Jack Daniel's Tennessee Whiskey", size: "750ml",   desc: "America's best-selling whiskey — smooth, mellow, and unmistakable." },
   { id: 3,  cat: "whiskey" as Category, img: heroBottle,   pos: "50% 50%", zoom: false, name: "Jameson Irish Whiskey",           size: "750ml",   desc: "Triple distilled for exceptional smoothness. Perfect neat or on the rocks." },
   { id: 4,  cat: "whiskey" as Category, img: wildTurkey101,    pos: "85% 50%", zoom: true,  name: "Wild Turkey 101 Bourbon",         size: "750ml",   desc: "Bold, spicy Kentucky bourbon. A staple for serious whiskey lovers." },
-  { id: 5,  cat: "whiskey" as Category, img: catSpirits,   pos: "50% 50%", zoom: false, name: "Maker's Mark Bourbon",            size: "750ml",   desc: "Soft, smooth, and slightly sweet. One of the most approachable bourbons." },
+  { id: 5,  cat: "whiskey" as Category, img: makersMark,   pos: "50% 50%", zoom: false, name: "Maker's Mark Bourbon",            size: "750ml",   desc: "Soft, smooth, and slightly sweet. One of the most approachable bourbons." },
   { id: 6,  cat: "whiskey" as Category, img: crownRoyal,     pos: "75% 60%", zoom: true,  name: "Crown Royal Canadian Whisky",     size: "750ml",   desc: "Smooth and light with hints of vanilla. A crowd-pleasing classic." },
   { id: 7,  cat: "wine" as Category, img: pWine,      pos: "50% 50%", zoom: false, name: "Texas Reserve Red Blend", size: "750ml",   desc: "Bold, fruit-forward blend from Texas Hill Country vineyards." },
-  { id: 8,  cat: "wine" as Category, img: catWine,    pos: "50% 50%", zoom: false, name: "Cabernet Sauvignon",      size: "750ml",   desc: "Classic full-bodied red with dark fruit and cedar notes." },
-  { id: 11, cat: "wine" as Category, pos: "50% 50%", zoom: false, cardBg: "linear-gradient(150deg,#BE185D 0%,#F472B6 50%,#9D174D 100%)", cardAccent: "#FBCFE8", cardLabel: "ROSÉ",          name: "Rosé",          size: "750ml",   desc: "Refreshing and dry with strawberry and floral notes. Great chilled." },
-  { id: 12, cat: "wine" as Category, pos: "50% 50%", zoom: false, cardBg: "linear-gradient(150deg,#5C4A00 0%,#A88B00 50%,#F5E676 100%)", cardAccent: "#FEF9C3", cardLabel: "PROSECCO BRUT", name: "Prosecco Brut", size: "750ml",   desc: "Light Italian sparkling wine. Perfect for celebrations." },
+  { id: 8,  cat: "wine" as Category, img: cabernetSauvignon,    pos: "50% 50%", zoom: false, name: "Cabernet Sauvignon",      size: "750ml",   desc: "Classic full-bodied red with dark fruit and cedar notes." },
+  { id: 11, cat: "wine" as Category, img: roseWine, pos: "50% 50%", zoom: false, name: "Rosé",          size: "750ml",   desc: "Refreshing and dry with strawberry and floral notes. Great chilled." },
+  { id: 12, cat: "wine" as Category, img: proseccoBrut, pos: "50% 50%", zoom: false, name: "Prosecco Brut", size: "750ml",   desc: "Light Italian sparkling wine. Perfect for celebrations." },
   { id: 13, cat: "beer" as Category, img: pBeer,      pos: "50% 50%", zoom: false, name: "Local Craft IPA",         size: "6-pack",  desc: "Hoppy and aromatic, brewed fresh right here in Austin." },
-  { id: 14, cat: "beer" as Category, img: catBeer,    pos: "50% 50%", zoom: false, name: "Corona Extra",            size: "12-pack", desc: "Classic Mexican lager. Best served ice-cold with lime." },
+  { id: 14, cat: "beer" as Category, img: coronaExtra,    pos: "50% 50%", zoom: false, name: "Corona Extra",            size: "12-pack", desc: "Classic Mexican lager. Best served ice-cold with lime." },
   { id: 15, cat: "beer" as Category, img: freeze,     pos: "50% 50%", zoom: false, name: "Modelo Especial",         size: "6-pack",  desc: "Rich, full-flavored pilsner-style lager from Mexico." },
   { id: 18, cat: "beer" as Category, img: blueMoonWhite, pos: "20% 35%", zoom: true,  name: "Blue Moon Belgian White", size: "6-pack",  desc: "Smooth wheat ale brewed with Valencia orange peel." },
-  { id: 19, cat: "spirits" as Category, img: pTequila,   pos: "50% 50%", zoom: false, name: "Patron Silver Tequila",    size: "750ml",   desc: "Ultra-premium tequila. Smooth, clean, and great for cocktails." },
+  { id: 19, cat: "spirits" as Category, img: pTequila,   pos: "50% 50%", zoom: false, name: "Premium Blanco Tequila",    size: "750ml",   desc: "100% blue agave tequila. Smooth, clean, and great for cocktails." },
   { id: 20, cat: "spirits" as Category, img: casamigosBlanco,  pos: "60% 45%", zoom: true,  name: "Casamigos Blanco",         size: "750ml",   desc: "George Clooney's premium tequila — light agave with a smooth finish." },
   { id: 21, cat: "spirits" as Category, img: rum,        pos: "50% 50%", zoom: false, name: "Captain Morgan Spiced Rum",size: "750ml",   desc: "Smooth Caribbean rum blended with warming spices." },
   { id: 22, cat: "spirits" as Category, img: bacardiSuperior, pos: "70% 40%", zoom: true,  name: "Bacardi Superior Rum",     size: "750ml",   desc: "Light, dry, and versatile. The world's most popular rum." },
@@ -189,11 +195,11 @@ const Catalog = () => {
             ))}
           </div>
 
-          <div className="mt-20 p-12 bg-primary text-white text-center shadow-2xl relative overflow-hidden">
+          <div className="mt-20 p-12 bg-white/[0.02] border border-white/10 backdrop-blur-md rounded-[2rem] text-white text-center shadow-[0_20px_100px_rgba(0,0,0,0.5)] relative overflow-hidden">
             <div className="relative z-10">
               <h2 className="text-4xl md:text-5xl font-display font-black uppercase tracking-tighter mb-4">Can't find it?</h2>
-              <p className="text-white/80 font-medium italic text-lg mb-8 max-w-xl mx-auto">"Our inventory changes daily. Give us a call and we'll check the shelf for you."</p>
-              <a href={`tel:${PHONE}`} className="inline-flex items-center gap-4 text-3xl md:text-5xl font-display font-black hover:scale-105 transition-transform">
+              <p className="text-white/60 font-medium italic text-lg mb-8 max-w-xl mx-auto">"Our inventory changes daily. Give us a call and we'll check the shelf for you."</p>
+              <a href={`tel:${PHONE}`} className="inline-flex items-center gap-4 text-3xl md:text-5xl font-display font-black text-primary hover:text-white transition-colors">
                 <Phone className="w-8 h-8 md:w-12 md:h-12" /> {PHONE_DISPLAY}
               </a>
             </div>
@@ -212,6 +218,7 @@ const Catalog = () => {
         </button>
       )}
       </div>
+          <NextPage title="Return Home" href="/" />
     </PageTransition>
   );
 };

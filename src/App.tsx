@@ -1,6 +1,6 @@
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactLenis } from "@studio-freight/react-lenis";
+import { ReactLenis, useLenis } from "@studio-freight/react-lenis";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { AtmosphereProvider } from "@/components/AtmosphereProvider";
@@ -56,6 +56,21 @@ const AnimatedRoutes = () => {
   );
 };
 
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  const lenis = useLenis();
+  
+  useEffect(() => {
+    if (lenis) {
+      lenis.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname, lenis]);
+  
+  return null;
+};
+
 const App = () => (
   <ReactLenis root options={{ lerp: 0.05, duration: 1.5, smoothWheel: true }}>
     <QueryClientProvider client={queryClient}>
@@ -67,14 +82,15 @@ const App = () => (
           <Toaster />
           <Sonner />
           <AgeVerification />
-          <Header />
           <BrowserRouter>
+            <ScrollToTop />
+            <Header />
             <Suspense fallback={<RouteFallback />}>
               <AnimatedRoutes />
             </Suspense>
+            <Footer />
+            <StickyMobileBar />
           </BrowserRouter>
-          <Footer />
-          <StickyMobileBar />
           <Survey />
         </TooltipProvider>
       </AtmosphereProvider>

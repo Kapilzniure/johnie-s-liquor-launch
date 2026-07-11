@@ -1,7 +1,9 @@
 import { Section } from "@/components/Section";
-import pTequila from "@/assets/p-tequila.webp";
+import casamigosBlanco from "@/assets/casamigos-blanco-tequila.webp";
 import rum from "@/assets/rum.webp";
-import pBeer from "@/assets/p-beer.webp";
+import freeze from "@/assets/freeze.webp";
+import wildTurkey from "@/assets/wild-turkey-101-bourbon.webp";
+import pWine from "@/assets/p-wine.webp";
 import { Phone, ArrowRight } from "@/components/Icons";
 import { PHONE } from "@/lib/constants";
 import { categoryColor } from "@/lib/category";
@@ -10,9 +12,10 @@ import { cn } from "@/lib/utils";
 import Magnetic from "@/components/ui/Magnetic";
 
 const items = [
-  { img: pTequila, cat: "Tequila", name: "Casamigos Blanco" },
-  { img: rum,      cat: "Rum",     name: "Captain Morgan" },
-  { img: pBeer,    cat: "Beer",    name: "Modelo Especial" },
+  { img: wildTurkey, cat: "Whiskey", name: "Wild Turkey 101" },
+  { img: casamigosBlanco, cat: "Tequila", name: "Casamigos Blanco" },
+  { img: pWine,    cat: "Wine",    name: "Meiomi Pinot Noir" },
+  { img: freeze,    cat: "Beer",    name: "Modelo Especial" },
 ];
 
 export const Favorites = () => (
@@ -26,7 +29,7 @@ export const Favorites = () => (
             {/* Museum Display Pedestal */}
             <div className="w-full md:w-1/2 relative flex justify-center items-center py-20 bg-white/[0.02] backdrop-blur-3xl border border-white/[0.08] rounded-3xl overflow-hidden group shadow-2xl">
                <div className="absolute inset-0 bg-primary/5 blur-[100px] group-hover:bg-primary/10 transition-colors duration-1000" />
-               <img src={it.img} alt={it.name} className="relative z-10 max-h-[400px] md:max-h-[600px] object-contain drop-shadow-2xl group-hover:scale-105 transition-transform duration-1000" />
+               <img src={it.img} alt={it.name} className={cn("relative z-10 max-h-[400px] md:max-h-[600px] object-contain drop-shadow-2xl transition-transform duration-1000", it.name === "Modelo Especial" ? "scale-75 group-hover:scale-[0.80]" : "group-hover:scale-105")} />
                <div className="absolute inset-0 z-20 overflow-hidden pointer-events-none">
                  <div className="shine-el shine-hover-el" />
                </div>

@@ -1,11 +1,10 @@
-import { MapPin, Clock, Phone, Mail } from "@/components/Icons";
-import { ADDRESS, MAPS_URL, PHONE, EMAIL } from "@/lib/constants";
+import { MapPin, Clock, Phone, Mail, Instagram, Facebook } from "@/components/Icons";
+import { ADDRESS, MAPS_URL, PHONE, EMAIL, IG_URL, FB_URL } from "@/lib/constants";
 
 const HOURS = [
   { days: "Mon - Sat", hours: "10:00 AM - 9:00 PM" },
   { days: "Sunday", hours: "Closed" }
 ];
-import { TiltCard } from "@/components/ui/TiltCard";
 import Magnetic from "@/components/ui/Magnetic";
 
 export const VisitUs = () => {
@@ -26,8 +25,8 @@ export const VisitUs = () => {
         <div className="grid lg:grid-cols-2 gap-8">
           
           {/* Glass Contact Card */}
-          <TiltCard className="w-full h-full">
-            <div className="h-full flex flex-col bg-white/[0.02] backdrop-blur-3xl border border-white/[0.08] shadow-[0_20px_100px_rgba(0,0,0,0.5)] rounded-[2rem] overflow-hidden p-10 md:p-14">
+          <div className="w-full h-full">
+            <div className="h-full flex flex-col bg-white/[0.02] backdrop-blur-3xl border border-white/[0.08] shadow-2xl rounded-[2rem] overflow-hidden p-10 md:p-14">
               
               <div className="w-12 h-12 bg-primary/10 border border-primary/20 flex items-center justify-center rounded-full mb-8">
                 <MapPin className="w-5 h-5 text-primary" />
@@ -65,10 +64,27 @@ export const VisitUs = () => {
                     <a href={`mailto:${EMAIL}`} className="text-sm text-white/80 hover:text-primary transition-colors">{EMAIL}</a>
                   </div>
                 </div>
+
+                <div className="h-px w-full bg-white/10" />
+
+                <div>
+                   <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-white/50 mb-4">Connect With Us</h4>
+                   <div className="flex items-center gap-4">
+                     <a href={IG_URL} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="w-11 h-11 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary/20 hover:text-primary hover:border-primary/50 transition-all shadow-lg group">
+                       <Instagram className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                     </a>
+                     <a href={FB_URL} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="w-11 h-11 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary/20 hover:text-primary hover:border-primary/50 transition-all shadow-lg group">
+                       <Facebook className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                     </a>
+                     <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" aria-label="Google Maps" className="w-11 h-11 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-blue-500/20 hover:text-blue-500 hover:border-blue-500/50 transition-all shadow-lg group">
+                       <MapPin className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                     </a>
+                   </div>
+                </div>
               </div>
 
             </div>
-          </TiltCard>
+          </div>
 
           {/* Embedded Map Container */}
           <div className="relative w-full h-[500px] lg:h-full rounded-[2rem] overflow-hidden border border-white/[0.08] shadow-[0_20px_100px_rgba(0,0,0,0.5)] group">

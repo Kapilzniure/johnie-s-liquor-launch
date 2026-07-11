@@ -1,5 +1,5 @@
 import { Section } from "@/components/Section";
-import vintageVaultVideo from "@/assets/vintage-vault.mp4";
+import heritageVideo from "@/assets/johnnies.mp4";
 import { Award, Package, Star } from "@/components/Icons";
 import { useCounter } from "@/hooks/use-counter";
 
@@ -44,16 +44,16 @@ export const OurStory = () => (
         </div>
       </div>
 
-      <div className="relative animate-fade-up h-[400px] md:h-[600px]" style={{ animationDelay: '0.2s' }}>
-        <div className="absolute inset-0 bg-white/[0.02] backdrop-blur-3xl border border-white/[0.08] shadow-2xl p-3 group overflow-hidden rounded-3xl">
+      <div className="relative animate-fade-up w-full aspect-video md:aspect-[16/9]" style={{ animationDelay: '0.2s' }}>
+        <div className="absolute inset-0 bg-white/[0.02] backdrop-blur-3xl border border-white/[0.08] shadow-2xl p-2 md:p-3 group overflow-hidden rounded-[2rem]">
           <video 
             autoPlay 
             loop 
             muted 
             playsInline 
-            className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105 rounded-xl grayscale-[50%] contrast-125"
+            className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-[1.02] rounded-xl"
           >
-            <source src={vintageVaultVideo} type="video/mp4" />
+            <source src={heritageVideo} type="video/mp4" />
           </video>
         </div>
         <div className="absolute -bottom-4 right-4 bg-primary text-white px-5 py-3 shadow-2xl rotate-[-2deg] rounded-xl border border-primary/20">

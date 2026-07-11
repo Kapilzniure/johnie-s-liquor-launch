@@ -1,22 +1,21 @@
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Section } from "@/components/Section";
-import { TiltCard } from "@/components/ui/TiltCard";
-import { MagneticButton } from "@/components/ui/MagneticButton";
 import { Phone, ArrowRight } from "@/components/Icons";
 import { PHONE, PHONE_DISPLAY } from "@/lib/constants";
 import { categoryColor } from "@/lib/category";
 import { getSeasonTheme } from "@/lib/season";
 import { cn } from "@/lib/utils";
-import Magnetic from "@/components/ui/Magnetic";
-import pBourbon from "@/assets/p-bourbon.webp";
-import pWine from "@/assets/p-wine.webp";
-import pBeer from "@/assets/p-beer.webp";
-import pTequila from "@/assets/p-tequila.webp";
+import isoBourbon from "@/assets/iso-bourbon.png";
+import isoWine from "@/assets/iso-wine.png";
+import isoBeer from "@/assets/iso-beer.png";
+import isoTequila from "@/assets/iso-tequila.png";
 
 const baseSpecials = [
-  { img: pBourbon, tag: "Rare",    cat: "Whiskey", name: "Maker's Mark",  delay: 0   },
-  { img: pWine,    tag: "Select",  cat: "Wine",    name: "Josh Cabernet", delay: 100 },
-  { img: pBeer,    tag: "Cold",    cat: "Beer",    name: "Shiner Bock",   delay: 200 },
-  { img: pTequila, tag: "Premium", cat: "Tequila", name: "Patron Silver", delay: 300 },
+  { img: isoBourbon, tag: "Rare",    cat: "Whiskey", name: "Crown Royal",  delay: 0   },
+  { img: isoWine,    tag: "Select",  cat: "Wine",    name: "Reserve Cabernet", delay: 100 },
+  { img: isoBeer,    tag: "Cold",    cat: "Beer",    name: "Blue Moon",   delay: 200 },
+  { img: isoTequila, tag: "Premium", cat: "Tequila", name: "Casamigos Blanco", delay: 300 },
 ];
 
 export const Specials = () => {
@@ -25,6 +24,8 @@ export const Specials = () => {
   const specials = featuredOverride
     ? [{ ...baseSpecials[0], ...featuredOverride }, ...baseSpecials.slice(1)]
     : baseSpecials;
+
+  const [activeIndex, setActiveIndex] = useState(0);
 
   return (
   <Section id="specials" className="" eyebrow="Limited Releases" title="The Curator's Selection" subtitle="Elite labels. Precise pricing. Curated for the modern Austin lifestyle.">
@@ -41,46 +42,84 @@ export const Specials = () => {
       </div>
     </div>
 
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[400px]">
+    <div className="flex flex-col md:flex-row w-full h-[800px] md:h-[500px] gap-4">
       {specials.map((s, i) => {
-        const isFeatured = i === 0;
-        return (
-          <TiltCard key={`${i}-${s.name}`} className={cn("h-full", isFeatured ? "md:col-span-2 md:row-span-2" : "md:col-span-1 md:row-span-1")}>
-            <article className="group relative glass-smoked p-8 md:p-12 hover:bg-white/5 transition-all duration-700 rounded-3xl h-full flex flex-col justify-between overflow-hidden">
-              <div className="absolute top-0 right-0 p-6 opacity-40 text-[10px] font-black tracking-widest uppercase group-hover:opacity-100 transition-opacity z-20 text-white/40">{s.tag}</div>
-              
-              {/* Massive background typography for the featured item */}
-              {isFeatured && (
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center z-0 opacity-[0.03] pointer-events-none">
-                  <span className="text-[150px] md:text-[250px] font-display font-black tracking-tighter uppercase whitespace-nowrap leading-none text-white">{s.name.split(' ')[0]}</span>
-                </div>
-              )}
+        const isActive = activeIndex === i;
 
-              <div className="relative z-10 flex-grow flex items-center justify-center my-8">
-                <div className="absolute inset-0 bg-primary/20 blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
-                <img src={s.img} alt={s.name} loading="lazy" decoding="async" className={cn("relative z-10 h-auto object-contain drop-shadow-2xl group-hover:scale-110 transition-all duration-1000", isFeatured ? "max-h-[500px]" : "max-h-[250px]")} />
-                <div className="absolute inset-0 z-20 overflow-hidden pointer-events-none">
-                  <div className="shine-el shine-hover-el" />
-                </div>
-                {s.cat === "Beer" && (
-                  <div className="absolute inset-0 z-20 condensation-el opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-                )}
-              </div>
-              
-              <div className="relative z-20 flex flex-col items-start mt-auto">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="text-[9px] text-primary font-black uppercase tracking-[0.4em]">{s.cat}</div>
-                  <div className="pour-meter" style={{ background: categoryColor(s.cat) }} />
-                </div>
-                <h3 className={cn("font-display font-black tracking-tight text-white mb-8 uppercase leading-none", isFeatured ? "text-5xl md:text-7xl" : "text-3xl")}>{s.name}</h3>
-                <Magnetic>
-                  <a href={`tel:${PHONE}`} className="inline-flex items-center gap-4 bg-white/5 border border-white/10 px-6 py-4 rounded-full text-[10px] font-black uppercase tracking-[0.3em] text-white hover:bg-white/10 hover:border-white/20 transition-all duration-500 shadow-xl group/btn">
-                    Reserve <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-2 transition-transform duration-500" />
+        return (
+          <div
+            key={s.name}
+            onMouseEnter={() => setActiveIndex(i)}
+            onClick={() => setActiveIndex(i)}
+            className="relative rounded-3xl overflow-hidden glass-smoked border border-white/[0.05] cursor-pointer flex-shrink-0 md:flex-shrink transition-[flex] duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]"
+            style={{ flex: isActive ? 4 : 1, minHeight: "80px", minWidth: "80px" }}
+          >
+            {/* Massive background typography for active item */}
+            <motion.div 
+              animate={{ opacity: isActive ? 0.03 : 0 }}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center z-0 pointer-events-none"
+            >
+              <span className="text-[120px] md:text-[250px] font-display font-black tracking-tighter uppercase whitespace-nowrap leading-none text-white">
+                {s.name.split(' ')[0]}
+              </span>
+            </motion.div>
+
+            {/* The Bottle */}
+            <div className="absolute inset-0 flex items-center justify-center p-4 z-10 pointer-events-none">
+              <motion.div 
+                className="absolute inset-0 bg-primary/20 blur-[80px]"
+                animate={{ opacity: isActive ? 1 : 0 }}
+                transition={{ duration: 0.5 }}
+              />
+              <img 
+                src={s.img} 
+                alt={s.name} 
+                className={cn(
+                  "relative z-10 object-contain drop-shadow-2xl transition-all duration-700 ease-out",
+                  isActive ? "h-[70%] md:h-[90%] scale-100 opacity-100 translate-y-[-5%]" : "h-[60%] md:h-[60%] opacity-60 scale-100"
+                )} 
+              />
+            </div>
+
+            {/* Inactive State: Subtle Interactive Overlay */}
+            <AnimatePresence>
+              {!isActive && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute inset-0 z-20 bg-black/20 hover:bg-black/0 transition-colors pointer-events-none"
+                />
+              )}
+            </AnimatePresence>
+
+            {/* Active State: Details & CTA */}
+            <AnimatePresence>
+              {isActive && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  transition={{ duration: 0.4, delay: 0.1 }}
+                  className="absolute bottom-0 left-0 w-full p-6 md:p-10 z-20 flex flex-col justify-end bg-gradient-to-t from-[#050505] via-[#050505]/80 to-transparent pointer-events-auto"
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="text-[9px] text-primary font-black uppercase tracking-[0.4em]">{s.cat}</div>
+                    <div className="pour-meter" style={{ background: categoryColor(s.cat) }} />
+                    <div className="ml-auto text-[9px] font-black tracking-widest uppercase text-white/40 border border-white/10 rounded-full px-3 py-1 bg-black/50 backdrop-blur-md">{s.tag}</div>
+                  </div>
+                  
+                  <h3 className="font-display font-black tracking-tight text-white mb-6 uppercase leading-none text-4xl md:text-6xl">{s.name}</h3>
+                  
+                  <a href={`tel:${PHONE}`} className="inline-flex items-center gap-4 bg-white hover:bg-primary text-black hover:text-white border border-white/10 px-8 py-4 rounded-full text-[10px] font-black uppercase tracking-[0.3em] transition-all duration-500 shadow-xl group w-fit">
+                    Reserve Bottle <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform duration-500" />
                   </a>
-                </Magnetic>
-              </div>
-            </article>
-          </TiltCard>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+          </div>
         );
       })}
     </div>

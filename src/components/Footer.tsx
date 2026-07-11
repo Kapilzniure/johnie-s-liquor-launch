@@ -43,14 +43,19 @@ export const Footer = () => {
           <a href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</a>
           <a href="/terms" className="hover:text-primary transition-colors">Terms of Service</a>
         </div>
-        <div className="flex items-center gap-2">
+        <a 
+          href="https://cybiconz.com" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="flex items-center gap-2 group hover:text-white transition-colors cursor-pointer"
+        >
           <img
             src="/cybiconz-logo.webp"
             alt="CybiconZ"
-            className="h-8 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
+            className="h-8 w-auto object-contain opacity-70 group-hover:opacity-100 transition-opacity"
           />
           <p>Designed and Built by CybiconZ</p>
-        </div>
+        </a>
       </div>
     </div>
   </footer>

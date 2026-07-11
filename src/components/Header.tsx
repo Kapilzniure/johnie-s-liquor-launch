@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Menu, X, Phone, ChevronDown } from "@/components/Icons";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
@@ -24,13 +25,8 @@ export const Header = () => {
 
   const moreLinks = [
     { label: "Our Story", href: "/about" },
-    { label: "Staff Picks", href: "/about#staff" },
-    { label: "Gallery", href: "/about#gallery" },
-    { label: "Reviews", href: "/about#reviews" },
-    { label: "Specials", href: "/services" },
-    { label: "Delivery", href: "/services#delivery" },
-    { label: "Occasions", href: "/services#occasions" },
-    { label: "FAQ", href: "/contact#faq" },
+    { label: "Services", href: "/services" },
+    { label: "Events", href: "/events" },
   ];
 
   const mobileLinks = [
@@ -43,12 +39,12 @@ export const Header = () => {
       <div className="container mx-auto px-6 h-full flex items-center justify-between">
         
         {/* Modern Minimal Logo */}
-        <a href="#home" className="flex items-center gap-4 group">
+        <Link to="/" onClick={() => window.scrollTo(0,0)} className="flex items-center gap-4 group">
           <div className="w-10 h-10 bg-primary flex items-center justify-center font-display font-bold text-white text-xl shadow-lg group-hover:bg-white group-hover:text-primary transition-all duration-500">J</div>
           <div className="flex flex-col">
              <span className="font-display font-bold text-[0.95rem] sm:text-lg tracking-tight leading-none uppercase text-white">Johnnies Liquor Store</span>
           </div>
-        </a>
+        </Link>
 
         {/* Simplified desktop nav */}
         <nav className="hidden lg:flex items-center gap-6 xl:gap-8">

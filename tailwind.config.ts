@@ -18,6 +18,7 @@ export default {
         sans: ["Inter", "sans-serif"],
         display: ["Plus Jakarta Sans", "sans-serif"],
         mono: ["JetBrains Mono", "monospace"],
+        serif: ["Playfair Display", "serif"],
       },
       colors: {
         obsidian: '#050505',

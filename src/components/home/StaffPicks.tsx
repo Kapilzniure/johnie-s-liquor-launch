@@ -1,13 +1,13 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import pWine from "@/assets/p-wine.webp";
-import pTequila from "@/assets/p-tequila.webp";
-import pBourbon from "@/assets/p-bourbon.webp";
+import casamigosBlanco from "@/assets/casamigos-blanco-tequila.webp";
+import wildTurkey from "@/assets/wild-turkey-101-bourbon.webp";
 
 const picks = [
   { id: "1", title: "Silver Oak", type: "Cabernet Sauvignon", img: pWine, rating: "98 pts" },
-  { id: "2", title: "Clase Azul", type: "Reposado Tequila", img: pTequila, rating: "Staff Favorite" },
-  { id: "3", title: "Blanton's", type: "Single Barrel Bourbon", img: pBourbon, rating: "Rare Find" }
+  { id: "2", title: "Casamigos Blanco", type: "Blanco Tequila", img: casamigosBlanco, rating: "Staff Favorite" },
+  { id: "3", title: "Wild Turkey 101", type: "Kentucky Bourbon", img: wildTurkey, rating: "Rare Find" }
 ];
 
 export const StaffPicks = () => {

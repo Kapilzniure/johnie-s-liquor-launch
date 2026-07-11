@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import { motion } from "framer-motion";
 import { Section } from "@/components/Section";
 import { ConfettiBurst } from "@/components/ConfettiBurst";
 import { PHONE, PHONE_DISPLAY, ADDRESS } from "@/lib/constants";
@@ -77,7 +78,7 @@ const PhysicalCard = () => {
   return (
     <div
       ref={cardRef}
-      className="relative w-full max-w-2xl mx-auto overflow-hidden rounded-[1.25rem] border border-black/10 shadow-[0_30px_80px_-10px_rgba(0,0,0,0.9)]"
+      className="relative w-full max-w-xl mx-auto overflow-hidden rounded-[1.25rem] border border-black/10 shadow-[0_30px_80px_-10px_rgba(0,0,0,0.9)] aspect-video flex flex-col justify-between"
       style={{ background: "#ffffff" }}
       role="img"
       aria-label="Johnnies Loyalty Card — collect 10 stamps, reach the star for a free shot"
@@ -86,7 +87,7 @@ const PhysicalCard = () => {
         <div className="shine-el shine-el-gold shine-loop-el" />
       </div>
       {/* ── Card header ──────────────────────────────────── */}
-      <div className="px-2 pt-2 pb-1.5 sm:px-8 sm:pt-7 sm:pb-5">
+      <div className="px-3 pt-3 pb-2 sm:px-6 sm:pt-4 sm:pb-2">
         <div className="flex flex-col gap-1.5 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
           {/* Left — brand */}
           <div className="w-full sm:w-auto">
@@ -122,7 +123,7 @@ const PhysicalCard = () => {
 
       {/* ── Black banner ─────────────────────────────────── */}
       <div
-        className="px-2 py-1 text-center text-[0.6rem] font-bold sm:px-8 sm:py-3 sm:text-sm md:text-base"
+        className="px-2 py-1 sm:py-1.5 text-center text-[0.6rem] sm:text-xs font-bold md:text-sm"
         style={{ background: "#111", color: "#fff" }}
       >
         Reach the{" "}
@@ -133,8 +134,8 @@ const PhysicalCard = () => {
       </div>
 
       {/* ── Stamp grid ───────────────────────────────────── */}
-      <div className="px-1 py-1 sm:px-6 sm:py-5" style={{ borderBottom: "2px solid #111" }}>
-        <div className="grid grid-cols-10 border-l border-t" style={{ borderColor: "#111" }}>
+      <div className="px-2 py-2 sm:px-6 sm:py-3 flex-1 flex flex-col justify-center" style={{ borderBottom: "2px solid #111" }}>
+        <div className="grid grid-cols-10 border-l border-t w-full" style={{ borderColor: "#111" }}>
           {Array.from({ length: TOTAL_STAMPS }).map((_, i) => {
             const isStar = i === TOTAL_STAMPS - 1;
             const isStamped = i < stamped;
@@ -170,7 +171,7 @@ const PhysicalCard = () => {
       </div>
 
       {/* ── Card footer ──────────────────────────────────── */}
-      <div className="flex flex-col gap-1.5 px-2 py-2 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-6 sm:gap-y-3 sm:px-6 sm:py-5">
+      <div className="flex flex-col gap-1 px-2 py-1 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-6 sm:gap-y-1 sm:px-6 sm:py-2">
         {/* Phone */}
         <div className="flex items-center gap-2">
           <PhoneIcon />
@@ -223,19 +224,32 @@ export const LoyaltyCard = () => (
         { step: "01", title: "Visit & Shop", desc: "Every time you visit the store, ask our staff to stamp your card." },
         { step: "02", title: "Collect Stamps", desc: "Fill all 9 squares to reach the gold star on your 10th visit." },
         { step: "03", title: "Claim Your Shot", desc: "Show the completed card and pick a free shot from our basket." },
-      ].map((item) => (
-        <div
+      ].map((item, i) => (
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: i * 0.15 }}
           key={item.step}
-          className="bg-white/[0.02] backdrop-blur-3xl border border-white/[0.08] p-8 rounded-3xl hover:bg-white/5 transition-all duration-500 shadow-2xl"
+          className="group relative overflow-hidden glass-smoked p-5 md:p-6 rounded-2xl hover:bg-white/5 hover:border-primary/30 transition-all duration-700 shadow-xl"
         >
-          <div className="text-[10px] font-black uppercase tracking-[0.5em] text-primary mb-3">
-            {item.step}
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+          
+          <div className="relative z-10">
+            <div className="flex items-center justify-between mb-5">
+              <div className="text-[10px] font-black uppercase tracking-[0.4em] text-primary bg-primary/10 px-3 py-1.5 rounded-full border border-primary/20">
+                Step {item.step}
+              </div>
+              <div className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center bg-white/5 group-hover:scale-110 group-hover:border-primary/50 transition-all duration-500 shadow-md">
+                 <StarIcon filled className="w-3 h-3 opacity-40 group-hover:opacity-100 transition-opacity duration-500" />
+              </div>
+            </div>
+            <h3 className="text-lg font-display font-black text-white mb-2 tracking-tight uppercase group-hover:text-primary transition-colors duration-500">
+              {item.title}
+            </h3>
+            <p className="text-xs text-white/50 font-medium leading-relaxed">{item.desc}</p>
           </div>
-          <h3 className="text-xl font-display font-black text-white mb-3 tracking-tight uppercase">
-            {item.title}
-          </h3>
-          <p className="text-sm text-white/50 font-medium leading-relaxed">{item.desc}</p>
-        </div>
+        </motion.div>
       ))}
     </div>
 

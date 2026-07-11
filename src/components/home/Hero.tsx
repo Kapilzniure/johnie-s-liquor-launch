@@ -18,27 +18,35 @@ export const Hero = () => {
 
       <div className="relative z-10 flex flex-col items-center justify-center text-center w-full h-full pt-20">
         
-        {/* Massive Minimalist Typography */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none"
-        >
-          <h1 className="text-[12vw] md:text-[10vw] font-display font-black uppercase tracking-tighter text-white leading-none mix-blend-overlay">
-            JOHNNIE'S
-          </h1>
-        </motion.div>
-
-        {/* The Text Layout */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 2, ease: "easeOut" }}
-          className="relative z-30"
-        >
-          <span className="block text-primary font-black uppercase tracking-[0.4em] mb-6 text-sm">Welcome to</span>
-        </motion.div>
+        <div className="relative z-30 flex flex-col items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+          >
+            <span className="text-primary font-display italic text-3xl md:text-4xl tracking-wide drop-shadow-lg mb-2 md:mb-0 block text-center">
+              Welcome to
+            </span>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
+          >
+            <h1 className="text-[16vw] md:text-[12vw] font-serif font-black uppercase tracking-tighter text-white leading-[0.8] drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
+              JOHNNIE'S
+            </h1>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.5, duration: 2 }}
+            className="mt-6 md:mt-8 text-center"
+          >
+             <p className="text-white/60 font-sans tracking-[0.3em] uppercase text-[10px] md:text-xs font-bold">Fine Spirits & Quality Goods</p>
+          </motion.div>
+        </div>
 
         <motion.div
           initial={{ opacity: 0 }}

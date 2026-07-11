@@ -77,35 +77,40 @@ export const Occasions = () => {
               variants={itemVariants}
               className={`group cursor-pointer relative ${idx === 1 ? 'md:mt-24' : ''} ${idx === 2 ? 'md:mt-48' : ''}`}
             >
-              <Link to="/catalog" className="block relative">
-                
-                {/* The Window (Image) */}
-                <div className="relative aspect-[3/4] overflow-hidden rounded-3xl bg-white/[0.02] border border-white/[0.08] shadow-2xl">
-                  <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10 mix-blend-color-dodge" />
-                  <img
-                    src={occ.img}
-                    alt={occ.title}
-                    className="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000 grayscale-[30%] group-hover:grayscale-0"
-                  />
-                  {/* Faded bottom for text overlap */}
-                  <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black via-black/50 to-transparent z-20 pointer-events-none" />
-                </div>
-                
-                {/* Overlapping Text (Negative Margin) */}
-                <div className="relative z-30 -mt-20 px-6">
-                  <div className="flex items-baseline gap-4 mb-3">
-                    <span className="text-[10px] font-display italic text-primary/70">{occ.number}</span>
-                    <h3 className="font-display text-3xl md:text-4xl text-white group-hover:text-white/80 transition-colors duration-500">
-                      {occ.title}
-                    </h3>
+              <motion.div
+                animate={{ y: [0, -15, 0] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: idx * 1.5 }}
+              >
+                <Link to="/catalog" className="block relative">
+                  
+                  {/* The Window (Image) */}
+                  <div className="relative aspect-[3/4] overflow-hidden rounded-3xl bg-white/[0.02] border border-white/[0.08] shadow-2xl">
+                    <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10 mix-blend-color-dodge" />
+                    <img
+                      src={occ.img}
+                      alt={occ.title}
+                      className="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000 grayscale-[30%] group-hover:grayscale-0"
+                    />
+                    {/* Faded bottom for text overlap */}
+                    <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black via-black/50 to-transparent z-20 pointer-events-none" />
                   </div>
-                  <div className="h-px w-full bg-gradient-to-r from-primary/30 to-transparent mb-4" />
-                  <p className="text-sm font-sans text-white/50 leading-relaxed">
-                    {occ.desc}
-                  </p>
-                </div>
+                  
+                  {/* Overlapping Text (Negative Margin) */}
+                  <div className="relative z-30 -mt-20 px-6">
+                    <div className="flex items-baseline gap-4 mb-3">
+                      <span className="text-[10px] font-display italic text-primary/70">{occ.number}</span>
+                      <h3 className="font-display text-3xl md:text-4xl text-white group-hover:text-white/80 transition-colors duration-500">
+                        {occ.title}
+                      </h3>
+                    </div>
+                    <div className="h-px w-full bg-gradient-to-r from-primary/30 to-transparent mb-4" />
+                    <p className="text-sm font-sans text-white/50 leading-relaxed">
+                      {occ.desc}
+                    </p>
+                  </div>
 
-              </Link>
+                </Link>
+              </motion.div>
             </motion.div>
           ))}
         </motion.div>

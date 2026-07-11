@@ -63,19 +63,19 @@ export const VipClub = () => {
       title="The VIP Club"
       subtitle="Free to join. First to know about rare drops, tastings, and seasonal offers."
     >
-      <div className="max-w-4xl mx-auto pt-10">
+      <div className="max-w-3xl mx-auto pt-10">
         <TiltCard>
-          <div className="relative overflow-hidden rounded-[2rem] md:rounded-[3rem] bg-gradient-to-br from-[#1a1a1a] to-[#050505] border-t border-l border-white/20 border-b-white/5 border-r-white/5 shadow-[0_0_150px_rgba(212,175,55,0.15),0_20px_50px_rgba(0,0,0,0.5)]">
+          <div className="relative overflow-hidden rounded-[2rem] md:rounded-[3rem] bg-gradient-to-br from-[#1f1f1f] to-[#0a0a0a] border border-[#B8952A]/40 shadow-[0_0_80px_rgba(184,149,42,0.15),0_20px_50px_rgba(0,0,0,0.8)] min-h-[400px] flex flex-col justify-center">
             {/* Metal Texture / Shine overlay */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-white/5 via-transparent to-white/5 opacity-50 pointer-events-none mix-blend-overlay z-10" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-white/10 opacity-30 pointer-events-none mix-blend-overlay z-10" />
             
-            {/* Dark base background instead of video */}
-            <div className="absolute inset-0 bg-[#050505] opacity-80" />
+            {/* Dark base background */}
+            <div className="absolute inset-0 bg-[#050505] opacity-70" />
 
             <div className="absolute top-0 left-0 w-full h-full bg-[#050505]/40 z-10 pointer-events-none backdrop-blur-sm" />
             <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.1),transparent_70%)] pointer-events-none z-10" />
 
-            <div className="relative z-20 grid md:grid-cols-5 p-8 md:p-16 gap-12 items-center">
+            <div className="relative z-20 grid md:grid-cols-5 p-8 md:p-12 gap-8 md:gap-12 items-center">
               
               {/* Left Side: Card Details & Benefits */}
               <div className="md:col-span-2 space-y-12 border-b md:border-b-0 md:border-r border-white/10 pb-12 md:pb-0 md:pr-12">
@@ -127,7 +127,7 @@ export const VipClub = () => {
                           <FormItem>
                             <FormLabel className="text-[10px] font-black uppercase tracking-[0.3em] text-white/30">First Name (optional)</FormLabel>
                             <FormControl>
-                              <Input placeholder="JANE DOE" className="h-14 rounded-xl border-white/10 bg-white/5 text-white focus:border-white/30 transition-colors uppercase placeholder:text-white/20 font-mono tracking-widest" {...field} />
+                              <Input placeholder="JANE DOE" className="h-12 md:h-14 rounded-xl border-white/10 bg-white/5 text-white focus:border-white/30 transition-colors uppercase placeholder:text-white/20 font-mono tracking-widest" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -141,7 +141,7 @@ export const VipClub = () => {
                           <FormItem>
                             <FormLabel className="text-[10px] font-black uppercase tracking-[0.3em] text-white/30">Email Address</FormLabel>
                             <FormControl>
-                              <Input type="email" placeholder="JANE@EXAMPLE.COM" className="h-14 rounded-xl border-white/10 bg-white/5 text-white focus:border-white/30 transition-colors uppercase placeholder:text-white/20 font-mono tracking-widest" {...field} />
+                              <Input type="email" placeholder="JANE@EXAMPLE.COM" className="h-12 md:h-14 rounded-xl border-white/10 bg-white/5 text-white focus:border-white/30 transition-colors uppercase placeholder:text-white/20 font-mono tracking-widest" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>

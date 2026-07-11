@@ -1,5 +1,6 @@
 import { Seo } from "@/components/Seo";
 import { PageTransition } from "@/components/ui/PageTransition";
+import { NextPage } from "@/components/NextPage";
 import { VipClub } from "@/components/home/VipClub";
 import { LoyaltyCard } from "@/components/home/LoyaltyCard";
 import vipVideo from "@/assets/vip.mp4";
@@ -38,6 +39,7 @@ const Vip = () => {
           <LoyaltyCard />
         </div>
       </div>
+          <NextPage title="Services" href="/services" />
     </PageTransition>
   );
 };

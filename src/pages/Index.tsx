@@ -11,6 +11,7 @@ import { buildFaqSchema } from "@/lib/structuredData";
 import { FAQ_ITEMS } from "@/lib/faq";
 import { Gallery } from "@/components/home/Gallery";
 import { VisitUs } from "@/components/home/VisitUs";
+import { NextPage } from "@/components/NextPage";
 
 const Index = () => {
   const mouseX = useMotionValue(typeof window !== "undefined" ? window.innerWidth / 2 : 0);
@@ -63,6 +64,8 @@ const Index = () => {
           <Gallery />
           <VisitUs />
         </div>
+        
+        <NextPage title="VIP Access" href="/vip" />
       </div>
 
     </div>
