@@ -19,6 +19,10 @@ import { CustomCursor } from "@/components/ui/CustomCursor";
 const Index = lazy(() => import("./pages/Index.tsx"));
 const Catalog = lazy(() => import("./pages/Catalog.tsx"));
 const Events = lazy(() => import("./pages/Events.tsx"));
+const About = lazy(() => import("./pages/About.tsx"));
+const Services = lazy(() => import("./pages/Services.tsx"));
+const Vip = lazy(() => import("./pages/Vip.tsx"));
+const Contact = lazy(() => import("./pages/Contact.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy.tsx"));
 const TermsOfService = lazy(() => import("./pages/TermsOfService.tsx"));
@@ -40,6 +44,10 @@ const AnimatedRoutes = () => {
         <Route path="/" element={<Index />} />
         <Route path="/catalog" element={<Catalog />} />
         <Route path="/events" element={<Events />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/vip" element={<Vip />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/terms" element={<TermsOfService />} />
         <Route path="*" element={<NotFound />} />

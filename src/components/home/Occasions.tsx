@@ -55,7 +55,7 @@ export const Occasions = () => {
             <span className="h-px w-12 bg-gradient-to-r from-primary/50 to-transparent" aria-hidden="true" />
             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/50">Right Bottle, Right Time</span>
           </div>
-          <h2 className="text-5xl md:text-7xl font-display font-black uppercase text-white tracking-tighter leading-[0.9]">
+          <h2 className="text-4xl md:text-6xl font-display font-black uppercase text-white tracking-tighter leading-[0.9]">
             The <span className="italic text-primary block mt-2">Occasions</span>
           </h2>
           <p className="mt-8 max-w-xl text-lg text-white/50 leading-relaxed font-sans">

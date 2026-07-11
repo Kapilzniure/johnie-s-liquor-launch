@@ -1,17 +1,17 @@
 import { Section } from "@/components/Section";
-import bacardi from "@/assets/bacardi-superior-rum.webp";
-import shelves from "@/assets/freeze.webp";
-import storeInside from "@/assets/johnniesliquor.webp";
+import vault from "@/assets/vault.png";
+import pour from "@/assets/pour.png";
+import lounge from "@/assets/lounge.png";
 
 export const Gallery = () => {
   // We double the items array to create a seamless infinite marquee effect
   const items = [
-    { img: bacardi, label: "01 SITE" },
-    { img: storeInside, label: "02 VAULT" },
-    { img: shelves, label: "03 STOCK" },
-    { img: bacardi, label: "04 SITE" },
-    { img: storeInside, label: "05 VAULT" },
-    { img: shelves, label: "06 STOCK" },
+    { img: vault, label: "01 THE VAULT" },
+    { img: pour, label: "02 THE POUR" },
+    { img: lounge, label: "03 THE LOUNGE" },
+    { img: vault, label: "04 THE VAULT" },
+    { img: pour, label: "05 THE POUR" },
+    { img: lounge, label: "06 THE LOUNGE" },
   ];
 
   return (
@@ -37,8 +37,8 @@ export const Gallery = () => {
                 decoding="async"
                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 grayscale-[50%] group-hover:grayscale-0"
               />
-              <div className="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-500" />
-              <div className="absolute bottom-6 left-6 z-30 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+              <div className="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-500 pointer-events-none" />
+              <div className="absolute bottom-6 left-6 z-30 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none">
                  <div className="text-[10px] font-black uppercase text-white tracking-widest bg-black/80 px-4 py-2 rounded-full border border-white/10 backdrop-blur-md">
                    {item.label}
                  </div>

@@ -1,24 +1,16 @@
 import { useRef, useEffect } from "react";
-import { useMotionValue, useSpring, useTransform, motion, useMotionTemplate } from "framer-motion";
+import { useMotionValue, useSpring, motion, useMotionTemplate } from "framer-motion";
 import { Seo } from "@/components/Seo";
 import { SkipLink } from "@/components/SkipLink";
 import { Hero } from "@/components/home/Hero";
+import { Deconstruction } from "@/components/home/Deconstruction";
+import { Carousel } from "@/components/home/Carousel";
+import { FeaturedVideos } from "@/components/home/FeaturedVideos";
+import { MoodMatcher } from "@/components/home/MoodMatcher";
 import { buildFaqSchema } from "@/lib/structuredData";
 import { FAQ_ITEMS } from "@/lib/faq";
-import { Occasions } from "@/components/home/Occasions";
-import { StaffPicks } from "@/components/home/StaffPicks";
-import { Specials } from "@/components/home/Specials";
-import { OurStory } from "@/components/home/OurStory";
 import { Gallery } from "@/components/home/Gallery";
-import { Reviews } from "@/components/home/Reviews";
-import { Faq } from "@/components/home/Faq";
-import { LoyaltyCard } from "@/components/home/LoyaltyCard";
-import { VipClub } from "@/components/home/VipClub";
 import { VisitUs } from "@/components/home/VisitUs";
-import { QuickActions } from "@/components/home/QuickActions";
-import { Delivery } from "@/components/home/Delivery";
-import { Favorites } from "@/components/home/Favorites";
-import { CallStrip } from "@/components/home/CallStrip";
 
 const Index = () => {
   const mouseX = useMotionValue(typeof window !== "undefined" ? window.innerWidth / 2 : 0);
@@ -58,25 +50,17 @@ const Index = () => {
       <Seo jsonLd={[buildFaqSchema(FAQ_ITEMS)]} />
       <SkipLink />
       
-      {/* Scrollable Content Layer */}
-      <div id="main" className="relative z-10 flex flex-col pt-16">
+      {/* The Sensory Pour Cinematic Flow */}
+      <div id="main" className="relative z-10 flex flex-col bg-[#050505]">
         <Hero />
+        <Deconstruction />
+        <Carousel />
+        <FeaturedVideos />
+        <MoodMatcher />
         
-        {/* We use clear spacing between sections now instead of overlapping chaos */}
-        <div className="flex flex-col gap-24 sm:gap-32 py-24">
-          <QuickActions />
-          <Specials />
-          <Delivery />
-          <Favorites />
-          <Occasions />
-          <StaffPicks />
-          <OurStory />
+        {/* Supporting Architecture */}
+        <div className="flex flex-col border-t border-white/[0.02]">
           <Gallery />
-          <Reviews />
-          <Faq />
-          <LoyaltyCard />
-          <VipClub />
-          <CallStrip />
           <VisitUs />
         </div>
       </div>

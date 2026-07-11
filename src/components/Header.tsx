@@ -16,33 +16,26 @@ export const Header = () => {
   }, []);
 
   const primaryLinks = [
-    { label: "Home", href: "/#home" },
+    { label: "Home", href: "/" },
     { label: "Catalog", href: "/catalog" },
-    { label: "Events", href: "/events" },
-    { label: "Delivery", href: "/#delivery" },
+    { label: "VIP Club", href: "/vip" },
+    { label: "Visit Us", href: "/contact" },
   ];
 
   const moreLinks = [
-    { label: "Gallery", href: "/#gallery" },
-    { label: "Reviews", href: "/#reviews" },
-    { label: "FAQ", href: "/#faq" },
-    { label: "Contact", href: "/#contact" },
+    { label: "Our Story", href: "/about" },
+    { label: "Staff Picks", href: "/about#staff" },
+    { label: "Gallery", href: "/about#gallery" },
+    { label: "Reviews", href: "/about#reviews" },
+    { label: "Specials", href: "/services" },
+    { label: "Delivery", href: "/services#delivery" },
+    { label: "Occasions", href: "/services#occasions" },
+    { label: "FAQ", href: "/contact#faq" },
   ];
 
   const mobileLinks = [
-    { label: "Home", href: "/#home" },
-    { label: "Heritage", href: "/#story" },
-    { label: "Occasions", href: "/#occasions" },
-    { label: "Specials", href: "/#specials" },
-    { label: "Delivery", href: "/#delivery" },
-    { label: "Gallery", href: "/#gallery" },
-    { label: "Reviews", href: "/#reviews" },
-    { label: "FAQ", href: "/#faq" },
-    { label: "VIP Club", href: "/#vip-club" },
-    { label: "Loyalty", href: "/#loyalty" },
-    { label: "Contact", href: "/#contact" },
-    { label: "Catalog", href: "/catalog" },
-    { label: "Events", href: "/events" },
+    ...primaryLinks,
+    ...moreLinks
   ];
 
   return (

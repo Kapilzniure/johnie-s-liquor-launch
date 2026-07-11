@@ -46,7 +46,7 @@ export const Section = ({ id, eyebrow, title, subtitle, children, className = ""
                   hidden: { opacity: 0, y: 30 },
                   visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100, damping: 20 } }
                 }}
-                className="text-5xl md:text-7xl font-display font-black uppercase text-white tracking-tighter leading-[0.9]"
+                className="text-4xl md:text-6xl font-display font-black uppercase text-white tracking-tighter leading-[0.9]"
               >
                 {title}
               </motion.h2>
