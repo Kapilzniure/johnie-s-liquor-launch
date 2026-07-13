@@ -16,6 +16,15 @@ export const Header = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => { document.body.style.overflow = "auto"; };
+  }, [open]);
+
   const primaryLinks = [
     { label: "Home", href: "/" },
     { label: "Catalog", href: "/catalog" },
@@ -89,16 +98,18 @@ export const Header = () => {
 
       {/* Mobile Menu */}
       {open && (
-        <div className="fixed inset-0 z-[60] bg-[#09090b]/95 backdrop-blur-3xl flex flex-col justify-center px-10 animate-fade-up">
-           <div className="flex flex-col gap-10">
-              {mobileLinks.map((l) => (
-                <a key={l.label} href={l.href} onClick={() => setOpen(false)} className="text-5xl font-display font-black italic tracking-tighter text-white hover:text-primary transition-colors border-b border-white/10 pb-8">
-                  {l.label}
-                </a>
-              ))}
-              <div className="pt-10 flex flex-col gap-4">
-                <a href={`tel:${PHONE}`} className="flex items-center gap-4 text-xl font-bold text-primary uppercase tracking-widest">
-                  <Phone className="w-6 h-6" />{PHONE_DISPLAY}
+        <div className="fixed inset-0 z-[60] bg-[#09090b]/95 backdrop-blur-md overflow-y-auto animate-fade-up">
+           <div className="flex flex-col px-8 pt-32 pb-20 min-h-screen">
+              <div className="flex flex-col gap-6">
+                {mobileLinks.map((l) => (
+                  <a key={l.label} href={l.href} onClick={() => setOpen(false)} className="text-3xl sm:text-4xl font-display font-black uppercase tracking-tight text-white hover:text-primary transition-colors border-b border-white/10 pb-4">
+                    {l.label}
+                  </a>
+                ))}
+              </div>
+              <div className="mt-12 flex flex-col gap-4">
+                <a href={`tel:${PHONE}`} className="flex items-center gap-4 text-sm font-bold text-white uppercase tracking-widest bg-white/5 border border-white/10 p-4 rounded-xl hover:bg-white/10 transition-colors">
+                  <Phone className="w-5 h-5 text-primary" />{PHONE_DISPLAY}
                 </a>
                 <SurveyButton />
               </div>

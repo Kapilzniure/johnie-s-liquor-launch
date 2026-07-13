@@ -21,20 +21,15 @@ export const Footer = () => {
             <a href={FB_URL} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="w-10 h-10 rounded-lg border border-white/20 flex items-center justify-center hover:border-primary hover:text-primary transition-colors text-white"><Facebook className="w-4 h-4"/></a>
           </div>
         </div>
-        <div>
+        <div className="md:col-start-4">
           <h4 className="font-display font-bold mb-3 text-primary">Contact</h4>
-          <ul className="space-y-2 text-sm text-white/60">
-            <li className="flex items-start gap-2"><MapPin className="w-4 h-4 mt-0.5 shrink-0 text-white/40" /> {ADDRESS}</li>
+          <ul className="space-y-2 text-sm text-white/60 flex flex-col">
+            <li className="flex items-start gap-2"><MapPin className="w-4 h-4 mt-0.5 shrink-0 text-white/40" /> <span className="text-left">{ADDRESS}</span></li>
             <li className="flex items-center gap-2"><Phone className="w-4 h-4 text-white/40" /> <a href={`tel:${PHONE}`} className="hover:text-primary transition-colors">{PHONE_DISPLAY}</a></li>
-            <li className="flex items-center gap-2"><Clock className="w-4 h-4 text-white/40" /> {store.status}</li>
+            <li className="flex items-center gap-2"><Clock className="w-4 h-4 text-white/40" /> <span>{store.status}</span></li>
           </ul>
         </div>
-        <div>
-          <h4 className="font-display font-bold mb-3 text-primary">Find us</h4>
-          <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className="block rounded-lg overflow-hidden border border-white/20 hover:border-primary/50 transition-colors">
-            <iframe title="Mini map" src="https://www.google.com/maps?q=13201+Pond+Springs+Rd+Suite+203+Austin+TX+78729&output=embed" className="w-full h-32 pointer-events-none grayscale opacity-80" loading="lazy" />
-          </a>
-        </div>
+        
       </div>
       <div className="mt-12 pt-6 border-t border-white/10 flex flex-col md:flex-row flex-wrap gap-4 md:gap-x-12 items-center text-xs text-white/50">
         <p>© {new Date().getFullYear()} Johnnies Liquor. All rights reserved.</p>
