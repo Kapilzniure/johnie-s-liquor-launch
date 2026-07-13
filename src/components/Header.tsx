@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useLenis } from "@studio-freight/react-lenis";
 import { Menu, X, Phone, ChevronDown } from "@/components/Icons";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
@@ -9,6 +10,7 @@ import { PHONE, PHONE_DISPLAY } from "@/lib/constants";
 export const Header = () => {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const lenis = useLenis();
   
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -19,11 +21,16 @@ export const Header = () => {
   useEffect(() => {
     if (open) {
       document.body.style.overflow = "hidden";
+      lenis?.stop();
     } else {
       document.body.style.overflow = "auto";
+      lenis?.start();
     }
-    return () => { document.body.style.overflow = "auto"; };
-  }, [open]);
+    return () => { 
+      document.body.style.overflow = "auto"; 
+      lenis?.start();
+    };
+  }, [open, lenis]);
 
   const primaryLinks = [
     { label: "Home", href: "/" },
@@ -44,6 +51,7 @@ export const Header = () => {
   ];
 
   return (
+    <>
     <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${scrolled ? "bg-[#09090b]/70 backdrop-blur-3xl border-b border-white/[0.08] h-16 shadow-2xl" : "bg-transparent h-24"}`}>
       <div className="container mx-auto px-6 h-full flex items-center justify-between">
         
@@ -90,16 +98,24 @@ export const Header = () => {
             <Phone className="w-4 h-4 text-primary" />{PHONE_DISPLAY}
           </a>
           <div className="hidden md:block"><SurveyButton /></div>
-          <button onClick={() => setOpen(!open)} className="lg:hidden p-2 text-white relative z-[70]" aria-label="Toggle menu">
-            {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          {!open && (
+            <button onClick={() => setOpen(true)} className="lg:hidden p-2 text-white relative z-[70]" aria-label="Open menu">
+              <Menu className="w-6 h-6" />
+            </button>
+          )}
         </div>
       </div>
+    </header>
 
       {/* Mobile Menu */}
       {open && (
-        <div className="fixed inset-0 z-[60] bg-[#09090b]/95 backdrop-blur-md overflow-y-auto animate-fade-up">
-           <div className="flex flex-col px-8 pt-32 pb-20 min-h-screen">
+        <div className="fixed inset-0 z-[100] bg-[#09090b]/98 backdrop-blur-xl overflow-y-auto animate-fade-up">
+           <div className="absolute top-0 inset-x-0 h-24 px-6 flex items-center justify-end">
+             <button onClick={() => setOpen(false)} className="p-2 text-white" aria-label="Close menu">
+               <X className="w-8 h-8" />
+             </button>
+           </div>
+           <div className="flex flex-col px-8 pt-28 pb-20 min-h-screen">
               <div className="flex flex-col gap-6">
                 {mobileLinks.map((l) => (
                   <a key={l.label} href={l.href} onClick={() => setOpen(false)} className="text-3xl sm:text-4xl font-display font-black uppercase tracking-tight text-white hover:text-primary transition-colors border-b border-white/10 pb-4">
@@ -116,6 +132,6 @@ export const Header = () => {
            </div>
         </div>
       )}
-    </header>
+    </>
   );
 };
